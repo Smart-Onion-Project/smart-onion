@@ -3,23 +3,41 @@ import re
 import sys
 import datetime
 import json
+import base64
 from elasticsearch import Elasticsearch
 from bottle import route, run, template, get, request
 import os
-
-#TODO: Add code for determining the metric name based on the config file + replacements
-#TODO: Add code for updating the metrics via statsd
+import statsd
 
 
-
-elasticsearch_server = "127.0.0.1"
+elasticsearch_server = "10.10.10.10"
+metrics_prefix = "smart-onion"
 
 class QueryNameNotFoundOrOfWrongType(Exception):
     pass
 
+class Utils:
+     def is_number(cls, s):
+         try:
+             float(s)
+             return True
+         except (TypeError, ValueError):
+             pass
+
+         try:
+             import unicodedata
+             unicodedata.numeric(s)
+             return True
+         except (TypeError, ValueError):
+             pass
+
+         return False
+
+
 class SmartOnionSampler:
      queries = {}
      es = Elasticsearch(hosts=[elasticsearch_server], timeout=30)
+     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
      def __init__(self):
         pass
@@ -28,6 +46,7 @@ class SmartOnionSampler:
          with open(config_file, 'r') as config_file_obj:
              SmartOnionSampler.queries = json.load(config_file_obj)
          run(host=listen_ip, port=listen_port, server="gunicorn", workers=32)
+
 
      @get('/smart-onion/field-query/<queryname>')
      def fieldQuery(queryname):
@@ -42,12 +61,17 @@ class SmartOnionSampler:
          metric_name = metric_name.replace("{{#query_name}}", queryname)
          query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
          query_base = query_details["query"].replace("{{#query_name}}", queryname)
+         base_64_used = query_details["base_64_used"]
          for i in range(1, 10):
              if "{{#arg" + str(i) + "}}" in str(query_base):
                  arg = request.query["arg" + str(i)]
                  if len(str(arg).strip()) != 0:
-                     query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
-                     metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                     if base_64_used:
+                         query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode("ascii")).decode("ascii"))
+                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                     else:
+                         query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
              else:
                  break
 
@@ -67,9 +91,16 @@ class SmartOnionSampler:
                  body=query_body,
                  size=1
              )
-             res = "@@RES: " + res['hits']['hits'][0]['_source'][query_details["field_name"]]
+             raw_res = res['hits']['hits'][0]['_source'][query_details["field_name"]]
+             res = "@@RES: " + raw_res
          except Exception as e:
              res = "@@RES: @@EXCEPTION: " + str(e)
+
+         if Utils().is_number(raw_res):
+             try:
+                 metric_object = SmartOnionSampler().statsd_client.gauge(metric_name, raw_res)
+             except:
+                 pass
 
          return res
 
@@ -82,13 +113,21 @@ class SmartOnionSampler:
          now = datetime.datetime.now()
          yesterday = datetime.date.today() - datetime.timedelta(1)
          time_range = (now.utcnow() - datetime.timedelta(seconds=query_details["time_range"])).isoformat() + " TO " + now.utcnow().isoformat()
+         metric_name = query_details["metric_name"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
+         metric_name = metric_name.replace("{{#query_name}}", queryname)
          query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
          query_base = query_details["query"].replace("{{#query_name}}", queryname)
+         base_64_used = query_details["base_64_used"]
          for i in range(1, 10):
              if "{{#arg" + str(i) + "}}" in str(query_base):
                  arg = request.query["arg" + str(i)]
                  if len(str(arg).strip()) != 0:
-                     query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+                     if base_64_used:
+                         query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode("ascii")).decode("ascii"))
+                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                     else:
+                         query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
              else:
                  break
 
@@ -103,13 +142,85 @@ class SmartOnionSampler:
                  }
 
          try:
+             print("Running query: `" + query_string + "'")
              res = SmartOnionSampler().es.count(
                  index=query_index,
                  body=query_body
              )
-             res = "@@RES: " + str(res['count'])
+             raw_res = res['count']
+             res = "@@RES: " + str(raw_res)
          except Exception as e:
              res = "@@RES: @@EXCEPTION: " + str(e)
+
+         if Utils().is_number(raw_res):
+             try:
+                 metric_object = SmartOnionSampler().statsd_client.gauge(metric_name, raw_res)
+             except:
+                 pass
+
+         return res
+
+     @get('/smart-onion/discover/<queryname>')
+     def discover(queryname):
+         query_details = SmartOnionSampler.queries[queryname]
+         if query_details["type"] != "LLD":
+             raise QueryNameNotFoundOrOfWrongType()
+
+         now = datetime.datetime.now()
+         yesterday = datetime.date.today() - datetime.timedelta(1)
+         time_range = (now.utcnow() - datetime.timedelta(seconds=query_details["time_range"])).isoformat() + " TO " + now.utcnow().isoformat()
+         query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
+         query_base = query_details["query"].replace("{{#query_name}}", queryname)
+         agg_on_field = query_details["agg_on_field"].replace("{{#query_name}}", queryname)
+         zabbix_macro = query_details["zabbix_macro"].replace("{{#query_name}}", queryname)
+         use_base64 = query_details["use_base64"]
+         for i in range(1, 10):
+             if "{{#arg" + str(i) + "}}" in str(query_base):
+                 arg = request.query["arg" + str(i)]
+                 if len(str(arg).strip()) != 0:
+                     query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+             else:
+                 break
+
+
+         query_string = "(" + query_base + ") AND @timestamp:[" + time_range + "]"
+         query_body = {
+                     "size": 0,
+                     "query":{
+                         "query_string": {
+                             "query": query_string
+                         }
+                     },
+                     "aggs": {
+                         "field_values": {
+                              "terms": { "field": agg_on_field }
+                         }
+                     }
+                 }
+
+         try:
+             res = SmartOnionSampler().es.search(
+                 index=query_index,
+                 body=query_body
+             )
+             raw_res = res["aggregations"]["field_values"]["buckets"]
+             res = {"data":[]}
+             for item in raw_res:
+                 if use_base64:
+                      value = base64.b64encode(item["key"].encode('ascii')).decode("ascii")
+                 else:
+                      value = item["key"]
+                 res["data"].append({"{#" + zabbix_macro + "}": value})
+             res = "@@RES: " + str(json.dumps(res))
+         except Exception as e:
+             raw_res = ""
+             res = "@@RES: @@EXCEPTION: " + str(e)
+
+         if Utils().is_number(raw_res):
+             try:
+                 metric_object = SmartOnionSampler().statsd_client.gauge(metric_name, raw_res)
+             except:
+                 pass
 
          return res
 
