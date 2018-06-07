@@ -33,7 +33,6 @@ class Utils:
 
          return False
 
-
 class SmartOnionSampler:
      queries = {}
      es = Elasticsearch(hosts=[elasticsearch_server], timeout=30)
@@ -231,7 +230,7 @@ class SmartOnionSampler:
 script_path = os.path.dirname(os.path.realpath(__file__))
 listen_ip = "127.0.0.1"
 listen_port = 8080
-config_file_name = "queries.conf"
+config_file_name = "queries.json"
 config_file_default_path = "/etc/smart-onion/"
 config_file = os.path.join(config_file_default_path, config_file_name)
 config_file_specified_on_cmd = False
@@ -258,7 +257,7 @@ if len(sys.argv) > 1:
                 config_file_specified_on_cmd = True
         else:
             if arg == "--help" or arg == "-h" or arg == "/h" or arg == "/?":
-                print("USAGE: " + os.path.basename(os.path.realpath(__file__)) + " [--listen-ip=127.0.0.1 --listen-port=8080 --config-file=/etc/smart-onion/queries.conf]")
+                print("USAGE: " + os.path.basename(os.path.realpath(__file__)) + " [--listen-ip=127.0.0.1 --listen-port=8080 --config-file=/etc/smart-onion/queries.json]")
                 print("")
                 print("-h, --help, /h and /q will print this help screen.")
                 print("")
