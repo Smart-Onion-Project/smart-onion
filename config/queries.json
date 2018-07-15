@@ -1,4 +1,7 @@
 {
+  "___________________________________________HEALTH___________________________________________": {
+    "type": "COMMENT"
+  },
   "grokparsefailure": {
     "query": "tags:_grokparsefailure",
     "index_pattern": "logstash-*",
@@ -15,6 +18,17 @@
     "metric_name": "health._global.grokparsefailure_count",
     "type": "QUERY_COUNT",
     "base_64_used": false
+  },
+  "events_per_type": {
+    "query": "event_type:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "health._global.number_of_events_per_type.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "___________________________________________METRICS___________________________________________": {
+    "type": "COMMENT"
   },
   "count_events_on_host": {
     "query": "type:syslog_nxlog AND LogType:WindowsEventLog AND EventID:{{#arg2}} AND host:{{#arg1}}",
@@ -64,20 +78,12 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
-  "events_per_type": {
-    "query": "event_type:\"{{#arg1}}\"",
-    "index_pattern": "logstash-*",
-    "time_range": 300,
-    "metric_name": "health._global.number_of_events_per_type.{{#arg1}}",
-    "type": "QUERY_COUNT",
-    "base_64_used": false
-  },
   "events_per_source_ip": {
     "query": "source_ip:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "time_range": 300,
     "metric_name": "health._global.number_of_events_per_source_ip.{{#arg1}}",
-    "type": "QUERY_COUNT",
+    "type": "QUERY_ COUNT",
     "base_64_used": false
   },
   "events_per_destination_ip": {
@@ -96,7 +102,7 @@
     "type": "QUERY_COUNT",
     "base_64_used": true
   },
-  "number_of_handle_manipulation_and_audit_events_per_host": {
+    "number_of_handle_manipulation_and_audit_events_per_host": {
     "query": "_type:syslog_nxlog AND (EventID:4656 OR EventID:4658) AND host:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "time_range": 300,
@@ -136,7 +142,10 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
-  "discover_types": {
+  "___________________________________________DISCOVERIES___________________________________________": {
+    "type": "COMMENT"
+  },
+  "types": {
     "query": "*",
     "index_pattern": "logstash-*",
     "agg_on_field": "event_type.keyword",
@@ -144,29 +153,440 @@
     "time_range": 86400,
     "type": "LLD"
   },
-  "discover_sources": {
-    "query": "*",
+  "external_ips_connecting_to_the_org": {
+    "query": "(NOT source_ip:172.169.1.* AND NOT source_ip:172.168.1.* AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/)",
     "index_pattern": "logstash-bro-*",
-    "agg_on_field": "source_ip",
+    "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "SRC_IP",
     "time_range": 86400,
     "type": "LLD"
   },
-  "discover_destinations": {
-    "query": "*",
+  "external_ips_pinging_the_org": {
+    "query": "(NOT source_ip:172.169.1.* AND NOT source_ip:172.168.1.* AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/) AND protocol:icmp",
     "index_pattern": "logstash-bro-*",
-    "agg_on_field": "destination_ip",
-    "zabbix_macro": "DST_IP",
+    "agg_on_field": "source_ip.keyword",
+    "zabbix_macro": "SRC_IP",
     "time_range": 86400,
     "type": "LLD"
   },
-  "discover_useragents": {
+  "external_ips_connected_to_by_org": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "EXT_IP",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "useragents": {
     "query": "*",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "useragent.keyword",
-    "zabbix_macro": "USERAGENT",
+    "zabbix_macro": "UA",
     "time_range": 86400,
     "type": "LLD",
     "use_base64": true
+  },
+  "lan_ips": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.*",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "source_ip.keyword",
+    "zabbix_macro": "LAN_IP",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "external_website_vhost": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "virtual_host.keyword",
+    "zabbix_macro": "EXT_WEB_VHOST",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "external_website_uri": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "uri.keyword",
+    "zabbix_macro": "EXT_WEB_VHOST",
+    "time_range": 86400,
+    "type": "LLD",
+    "use_base64": true
+  },
+  "external_destination_continents_from_org": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_geo.continent_code.keyword",
+    "zabbix_macro": "EXT_DEST_CONTINENT",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "external_destination_countries_from_org": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_geo.country_code2.keyword",
+    "zabbix_macro": "EXT_DEST_COUNTRY",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "external_destination_cities_from_org": {
+    "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_geo.city_name.keyword",
+    "zabbix_macro": "EXT_DEST_CONTINENT",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "top_n_most_frequently_queried_fqdns": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query.keyword",
+    "zabbix_macro": "DNS_REC",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "top_n_most_rarely_queried_fqdns": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query.keyword",
+    "zabbix_macro": "DNS_REC",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
+    "max_list_size": 50
+  },
+  "top_n_most_frequently_queried_subdomains": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "subdomain.keyword",
+    "zabbix_macro": "DNS_SUBDOMAIN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "top_n_most_rarely_queried_subdomains": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "subdomain.keyword",
+    "zabbix_macro": "DNS_SUBDOMAIN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
+    "max_list_size": 50
+  },
+  "top_n_most_frequently_queried_tlds": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "top_level_domain.keyword",
+    "zabbix_macro": "DNS_TLD",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "top_n_most_rarely_queried_tlds": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "top_level_domain.keyword",
+    "zabbix_macro": "DNS_TLD",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
+    "max_list_size": 50
+  },
+  "top_n_most_frequently_queried_tld_subdomains": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "tld.subdomain.keyword",
+    "zabbix_macro": "DNS_TLD_SUBDOMAIN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "top_n_most_rarely_queried_tld_subdomains": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "tld.subdomain.keyword",
+    "zabbix_macro": "DNS_TLD_SUBDOMAIN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
+    "max_list_size": 50
+  },
+  "top_n_most_frequently_queried_class_names": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query_class_name.keyword",
+    "zabbix_macro": "DNS_QRY_CLASS",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "top_n_most_rarely_queried_class_names": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query_class_name.keyword",
+    "zabbix_macro": "DNS_QRY_CLASS",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
+    "max_list_size": 50
+  },
+  "top_n_most_frequently_queried_parent_domains": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "parent_domain.keyword",
+    "zabbix_macro": "DNS_PARENT_DOMAIN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "top_n_most_rarely_queried_parent_domains": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "parent_domain.keyword",
+    "zabbix_macro": "DNS_PARENT_DOMAIN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
+    "max_list_size": 50
+  },
+  "org_dns_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:53 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "DNS_IP",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "external_dns_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:53 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "DNS_IP",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "dns_query_flags": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns AND NOT query_type_name:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query_type_name.keyword",
+    "zabbix_macro": "DNS_QRY_FLAG",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "lan_servers_ips": {
+    "query": "source_ip:172.168.1.*",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "source_ip.keyword",
+    "zabbix_macro": "SERVER_IP",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "lan_workstations_ips": {
+    "query": "source_ip:172.169.1.*",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "source_ip.keyword",
+    "zabbix_macro": "WORKSTAION_IP",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "crown_jewels_ips": {
+    "query": "source_ip:172.169.1.4 OR source_ip:172.168.1.4",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "source_ip.keyword",
+    "zabbix_macro": "CROWN_JEWEL_IP",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "org_tftp_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:69 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "TFTP_SRV_IP",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_ftp_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:21 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "FTP_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_mysql_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:3306 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "MYSQL_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_mssql_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:1433 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "MSSQL_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_pgsql_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:5432 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "PGSQL_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_ldap_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:389 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "LDAP_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_dhcp_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:67 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "DHCP_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_ssh_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:22 AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "SSH_SERVER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "org_http_verbs": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_http AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND _exists_:method AND NOT method:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "method.keyword",
+    "zabbix_macro": "HTTP_VERB",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "ext_http_verbs": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_http AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND _exists_:method AND NOT method:\"-\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "method.keyword",
+    "zabbix_macro": "HTTP_VERB",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "certs_issuers": {
+    "query": "event_type:bro_x509",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "certificate_issuer.keyword",
+    "zabbix_macro": "CERT_ISSUER",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "use_base64": true,
+    "max_list_size": 50
+  },
+  "certs_cn": {
+    "query": "event_type:bro_x509",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "certificate_common_name.keyword",
+    "zabbix_macro": "CERT_CN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "use_base64": true,
+    "max_list_size": 50
+  },
+  "org_web_servers": {
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:(80 8080) AND connection_state:\"SF\"",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "SERVER_IP",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "webservers_webmethods": {
+    "query": "event_type:bro_http",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "virtual_host.keyword,method.keyword",
+    "zabbix_macro": "VIRT_HOST,HTTP_VERB",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc"
+  },
+  "dst_workstations_dst_ports": {
+    "query": "event_type:bro_conn AND destination_ip:172.168.1.* AND connection_state:(\"SF\" \"RSTO\")",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword,destination_port",
+    "zabbix_macro": "WKSTA_IP,DPORT",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc"
+  },
+  "website_pages": {
+    "query": "event_type:bro_http",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "virtual_host.keyword,uri.keyword",
+    "zabbix_macro": "VIRT_HOST,URL",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "website_files": {
+    "query": "event_type:bro_files AND file_name:/.*/",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "file_name.keyword,md5.keyword",
+    "zabbix_macro": "WEB_FILE,MD5",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
+  },
+  "websites_ports": {
+    "query": "event_type:bro_http AND (source_ip:172.169.1.* OR source_ip:172.168.1.*)",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "virtual_host.keyword,destination_port",
+    "zabbix_macro": "WEBSITE,WEBPORT",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "max_list_size": 50
   }
 }
