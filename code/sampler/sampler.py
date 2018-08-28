@@ -9,6 +9,9 @@ from bottle import route, run, template, get, request
 import os
 import statsd
 import dateutil.parser
+import hashlib
+import editdistance
+import nltk.metrics
 
 DEBUG=True
 elasticsearch_server = "127.0.0.1"
@@ -20,8 +23,9 @@ class QueryNameNotFoundOrOfWrongType(Exception):
 class Utils:
     lst = ""
 
-    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64):
-        cls.FlattenAggregates(res["aggregations"])
+    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, add_doc_count=True, re_sort_by_value=False):
+        cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
+#        print(cls.lst)
         cls.lst = cls.lst.strip("|")
 
         res = {
@@ -43,16 +47,36 @@ class Utils:
 
                 if len(macro_list) <= idx:
                     if idx == len(line_as_arr) - 1:
-                        line_element["{#_DOC_COUNT}"] = item_parsed
+                        if add_doc_count:
+                            line_element["{#_DOC_COUNT}"] = item_parsed
                     else:
                         line_element["{#ITEM_" + str(idx) + "}"] = item_parsed
                 else:
                     line_element["{#" + macro_list[idx] + "}"] = item_parsed
                 idx = idx + 1
             res["data"].append(line_element)
+
+            if re_sort_by_value:
+                idx = 0
+                res_tmp = {
+                    "data": []
+                }
+                res_tmp_sorted_arr = []
+                for item in res["data"]:
+                    res_tmp_sorted_arr.append(item["{#ITEM_" + str(idx) + "}"])
+
+                #Sort res_tmp
+                res_tmp_sorted_arr.sort()
+
+                for item in res_tmp_sorted_arr:
+                    res_tmp["data"].append({"{#ITEM_" + str(idx) + "}": item})
+
+                #TODO: Add support for multi level lists?
+
+                res = res_tmp
         return res
 
-    def FlattenAggregates(cls, obj, idx=0):
+    def FlattenAggregates(cls, obj, idx=0, add_doc_count=True):
         if "key" in obj:
             if len(cls.lst) > 0:
                 if cls.lst[len(cls.lst) - 1] == "|":
@@ -70,9 +94,12 @@ class Utils:
                 cls.lst = str(base64.b64encode(str(obj["key"]).encode('ascii')).decode("ascii"))
         if "field_values" + str(idx) in obj and "buckets" in obj["field_values" + str(idx)]:
             for value in obj["field_values" + str(idx)]["buckets"]:
-                cls.FlattenAggregates(value, idx + 1)
+                cls.FlattenAggregates(obj=value, idx=idx + 1, add_doc_count=add_doc_count)
         else:
-            cls.lst = cls.lst + "," + str(base64.b64encode(str(obj["doc_count"]).encode('ascii')).decode("ascii")) + "|"
+            if add_doc_count:
+                cls.lst = cls.lst + "," + str(base64.b64encode(str(obj["doc_count"]).encode('ascii')).decode("ascii")) + "|"
+            else:
+                cls.lst = cls.lst + "," + "|"
             return
 
     def is_number(cls, s):
@@ -90,6 +117,51 @@ class Utils:
             pass
 
         return False
+
+    def HammingDistance(self, cur_value_to_compare_to, value_to_compare):
+        if value_to_compare == cur_value_to_compare_to:
+            match_rate = 100
+        else:
+            if len(cur_value_to_compare_to) != len(value_to_compare):
+                cur_value_to_compare_to_split = cur_value_to_compare_to.split(".")
+                value_to_compare_split = value_to_compare.split(".")
+                if len(cur_value_to_compare_to_split) < len(value_to_compare_split):
+                    for i in range(0, len(value_to_compare_split) - len(cur_value_to_compare_to_split)):
+                        cur_value_to_compare_to_split.append(" ")
+
+                if len(value_to_compare_split) < len(cur_value_to_compare_to_split):
+                    for i in range(0, len(cur_value_to_compare_to_split) - len(value_to_compare_split)):
+                        value_to_compare_split.append(" ")
+
+                for idx in range(0, len(value_to_compare_split)):
+                    if len(value_to_compare_split[idx]) < len(cur_value_to_compare_to_split[idx]):
+                        padding = " " * (len(cur_value_to_compare_to_split[idx]) - len(value_to_compare_split[idx]))
+                        value_to_compare_split[idx] = value_to_compare_split[idx] + padding
+                    if len(cur_value_to_compare_to_split[idx]) < len(value_to_compare_split[idx]):
+                        padding = " " * (len(value_to_compare_split[idx]) - len(cur_value_to_compare_to_split[idx]))
+                        cur_value_to_compare_to_split[idx] = cur_value_to_compare_to_split[idx] + padding
+
+                cur_value_to_compare_to = ".".join(cur_value_to_compare_to_split)
+                value_to_compare = ".".join(value_to_compare_split)
+
+            matched_chars = 0.0
+            for idx in range(0, len(cur_value_to_compare_to)):
+                if cur_value_to_compare_to[idx] == value_to_compare[idx]:
+                    matched_chars = matched_chars + 1
+            match_rate = matched_chars / len(cur_value_to_compare_to) * 100.0
+        return match_rate
+
+    def LevenshteinDistance(self, cur_value_to_compare_to, value_to_compare):
+        if len(cur_value_to_compare_to) > len(value_to_compare):
+            match_rate = (len(cur_value_to_compare_to) - editdistance.eval(value_to_compare,
+                                                                           cur_value_to_compare_to)) / len(
+                cur_value_to_compare_to) * 100
+        else:
+            match_rate = (len(value_to_compare) - editdistance.eval(value_to_compare, cur_value_to_compare_to)) / len(
+                value_to_compare) * 100
+
+        return match_rate
+
 
 class SmartOnionSampler:
     queries = {}
@@ -109,22 +181,23 @@ class SmartOnionSampler:
 
     def GetQueryTimeRange(self, query_details):
         if DEBUG:
-            now = dateutil.parser.parse("2018-06-12T00:00")
-            yesterday = dateutil.parser.parse("2018-06-11T00:00")
+            now = dateutil.parser.parse("2018-06-12T08:00")
+            yesterday = dateutil.parser.parse("2018-06-11T08:00")
+            last_month = dateutil.parser.parse("2018-05-11T00:00")
         else:
             now = datetime.datetime.now()
             yesterday = datetime.date.today() - datetime.timedelta(1)
+            last_month = datetime.date.today() - datetime.timedelta(months=1)
 
         time_range = (now - datetime.timedelta(
             seconds=query_details["time_range"])).isoformat() + " TO " + now.isoformat()
 
         return {
             "yesterday": yesterday,
+            "last_month": last_month,
             "now": now,
             "time_range": time_range
         }
-
-
 
     @get('/smart-onion/field-query/<queryname>')
     def fieldQuery(queryname):
@@ -180,6 +253,93 @@ class SmartOnionSampler:
 
         return res
 
+    @get('/smart-onion/test-similarity/<queryname>')
+    def queryCount(queryname):
+        query_details = SmartOnionSampler.queries[queryname]
+        if query_details["type"] != "SIMILARITY_TEST":
+            raise QueryNameNotFoundOrOfWrongType()
+
+        time_range_args = SmartOnionSampler().GetQueryTimeRange(query_details)
+        yesterday = time_range_args["yesterday"]
+        now = time_range_args["now"]
+        last_month = time_range_args["last_month"]
+        metric_name = query_details["metric_name"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
+        metric_name = metric_name.replace("{{#query_name}}", queryname)
+        query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
+        query_list_to_test_similarity_to = query_details["query"].replace("{{#query_name}}", queryname)
+        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
+        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("%{last_month}", last_month.strftime("%Y.%m.%d"))
+        agg_on_field = query_details["agg_on_field"].replace("{{#query_name}}", queryname)
+        base_64_used = query_details["base_64_used"]
+        value_to_compare = request.query["arg1"]
+        max_list_size = 20
+        if "max_list_size" in query_details and str.isdigit(str(query_details["max_list_size"])):
+            max_list_size = int(query_details["max_list_size"])
+        list_order = "desc"
+        if "list_order" in query_details and (query_details["list_order"] == "asc" or query_details["list_order"] == "asc"):
+            list_order = query_details["list_order"]
+
+        for i in range(1, 10):
+            if "{{#arg" + str(i) + "}}" in str(query_list_to_test_similarity_to):
+                arg = request.query["arg" + str(i)]
+                if len(str(arg).strip()) != 0:
+                    if base_64_used:
+                        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode("ascii")).decode("ascii"))
+                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                    else:
+                        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", arg)
+                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+            else:
+                break
+
+        query_list_to_test_similarity_to_query_body = {
+            "size": 0,
+            "query": {
+                "query_string": {
+                    "query": query_list_to_test_similarity_to
+                }
+            },
+            "aggs": {
+                "field_values0": {
+                    "terms": {
+                        "field": agg_on_field,
+                        "size": max_list_size,
+                        "order": {
+                            "_count": list_order
+                        }
+                    }
+                }
+            }
+        }
+
+
+        try:
+            print("Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'")
+            raw_res = ""
+            res = SmartOnionSampler().es.search(
+                index=query_index,
+                body=query_list_to_test_similarity_to_query_body
+            )
+
+            #TODO: Loop through all the values returned by the query and look for similarities to the value given in arg1
+            highest_match_rate = 0
+            highest_match_rate_value = ""
+            value_compared = ""
+            for bucket in res['aggregations']['field_values0']['buckets']:
+                cur_value_to_compare_to = bucket["key"]
+                match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
+
+                if match_rate > highest_match_rate:
+                    highest_match_rate = match_rate
+                    highest_match_rate_value = cur_value_to_compare_to
+                    value_compared = value_to_compare
+
+            res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "," + value_compared
+        except Exception as e:
+            res = "@@RES: @@EXCEPTION: " + str(e)
+
+        return res
+
     @get('/smart-onion/query-count/<queryname>')
     def queryCount(queryname):
         query_details = SmartOnionSampler.queries[queryname]
@@ -195,6 +355,10 @@ class SmartOnionSampler:
         query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
         query_base = query_details["query"].replace("{{#query_name}}", queryname)
         base_64_used = query_details["base_64_used"]
+        count_unique_values_in = None
+        if "count_unique_values_in" in query_details:
+            count_unique_values_in = query_details["count_unique_values_in"]
+
         for i in range(1, 10):
             if "{{#arg" + str(i) + "}}" in str(query_base):
                 arg = request.query["arg" + str(i)]
@@ -208,7 +372,6 @@ class SmartOnionSampler:
             else:
                 break
 
-
         query_string = "(" + query_base + ") AND @timestamp:[" + time_range + "]"
         query_body = {
                     "query":{
@@ -216,15 +379,41 @@ class SmartOnionSampler:
                             "query": query_string
                         }
                     }
+            }
+        if count_unique_values_in is not None:
+            query_body = {
+                "size": 0,
+                "aggs": {
+                    "unique_count": {
+                        "cardinality": {
+                            "field": count_unique_values_in
+                        }
+                    }
+                },
+                "query": {
+                    "query_string": {
+                        "query": query_string
+                    }
                 }
 
+            }
+
         try:
-            print("Running query: `" + query_string + "'")
-            res = SmartOnionSampler().es.count(
-                index=query_index,
-                body=query_body
-            )
-            raw_res = res['count']
+            print("Running query: `" + json.dumps(query_body) + "'")
+            raw_res = ""
+            if count_unique_values_in != None:
+                res = SmartOnionSampler().es.search(
+                    index=query_index,
+                    body=query_body
+                )
+                raw_res = res['aggregations']["unique_count"]["value"]
+            else:
+                res = SmartOnionSampler().es.count(
+                    index=query_index,
+                    body=query_body
+                )
+                raw_res = res['count']
+
             res = "@@RES: " + str(raw_res)
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
@@ -234,6 +423,76 @@ class SmartOnionSampler:
                 metric_object = SmartOnionSampler().statsd_client.gauge(metric_name, raw_res)
             except:
                 pass
+
+        return res
+
+    @get('/smart-onion/list-hash/<queryname>')
+    def list_hash(queryname):
+        query_details = SmartOnionSampler.queries[queryname]
+        if query_details["type"] != "LIST_HASH":
+            raise QueryNameNotFoundOrOfWrongType()
+
+        time_range_args = SmartOnionSampler().GetQueryTimeRange(query_details)
+        yesterday = time_range_args["yesterday"]
+        now = time_range_args["now"]
+        time_range = time_range_args["time_range"]
+        query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
+        query_base = query_details["query"].replace("{{#query_name}}", queryname)
+        agg_on_field = query_details["agg_on_field"].replace("{{#query_name}}", queryname)
+        max_list_size = 20
+        if "max_list_size" in query_details and str.isdigit(str(query_details["max_list_size"])):
+            max_list_size = int(query_details["max_list_size"])
+        list_order = "desc"
+
+        for i in range(1, 10):
+            if "{{#arg" + str(i) + "}}" in str(query_base):
+                arg = request.query["arg" + str(i)]
+                if len(str(arg).strip()) != 0:
+                    query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+            else:
+                break
+
+
+        query_string = "(" + query_base + ") AND @timestamp:[" + time_range + "]"
+        agg_on_field_list = str.split(agg_on_field, ",")
+
+        query_body = {
+                    "size": 0,
+                    "query":{
+                        "query_string": {
+                            "query": query_string
+                        }
+                    },
+                    "aggs":{
+                    }
+                }
+
+        agg = query_body["aggs"]
+        for i in range(0, len(agg_on_field_list)):
+            agg["field_values" + str(i)] = {
+                "terms": {
+                    "field": agg_on_field_list[i],
+                    "size": max_list_size,
+                    "order": {
+                        "_count": list_order
+                    }
+                }
+            }
+            agg["field_values" + str(i)]["aggs"] = {}
+            agg = agg["field_values" + str(i)]["aggs"]
+
+        try:
+            res = SmartOnionSampler().es.search(
+                index=query_index,
+                body=query_body
+            )
+
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=[], use_base64=False, add_doc_count=False, re_sort_by_value=True)
+            res_str = str(hashlib.sha1(json.dumps(res_lld).encode("utf-8")).hexdigest())
+
+            res = "@@RES: " + res_str
+        except Exception as e:
+            res = "@@RES: @@EXCEPTION: " + str(e)
 
         return res
 

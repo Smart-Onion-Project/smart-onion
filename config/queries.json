@@ -27,10 +27,11 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
-  "___________________________________________METRICS___________________________________________": {
+  "_____________________________________METRICS_WITHOUT_DATA____________________________________": {
     "type": "COMMENT"
   },
   "count_events_on_host": {
+    "comment": "TODO: Add Windows event log data to the elastic and then configure this metric again",
     "query": "type:syslog_nxlog AND LogType:WindowsEventLog AND EventID:{{#arg2}} AND host:{{#arg1}}",
     "index_pattern": "logstash-syslog_nxlog-*",
     "time_range": 3600,
@@ -38,23 +39,8 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
-  "ids_alerts_for_host": {
-    "query": "sotool:snort AND (dstip:{{#arg1}} OR srcip:{{#arg1}}) AND _exists_:priority AND priority:1) OR (sotool:bro_notice AND (dstip:{{#arg1}} OR srcip:{{#arg1}}))",
-    "index_pattern": "logstash-*",
-    "time_range": 300,
-    "metric_name": "host_behaviour.ids_alerts_for_host.{{#arg1}}",
-    "type": "QUERY_COUNT",
-    "base_64_used": false
-  },
-  "ids_attacks_for_host": {
-    "query": "sotool:snort AND (dstip:{{#arg1}} OR srcip:{{#arg1}}) AND _exists_:priority AND priority:2) OR (sotool:bro_notice AND (dstip:{{#arg1}} OR srcip:{{#arg1}}))",
-    "index_pattern": "logstash-*",
-    "time_range": 300,
-    "metric_name": "host_behaviour.ids_attacks_for_host.{{#arg1}}",
-    "type": "QUERY_COUNT",
-    "base_64_used": false
-  },
   "drops_per_internal_dstip": {
+    "comment": "TODO: Add IPTABLES firewall logs to the elastic and then configure this metric again",
     "query": "type.raw:syslog_checkpoint AND status:drop AND dstip:{{#arg1}}))",
     "index_pattern": "logstash-*",
     "time_range": 300,
@@ -63,6 +49,7 @@
     "base_64_used": false
   },
   "drops_per_internal_srcip": {
+    "comment": "TODO: Add IPTABLES firewall logs to the elastic and then configure this metric again",
     "query": "type.raw:syslog_checkpoint AND status:drop AND srcip:{{#arg1}}))",
     "index_pattern": "logstash-*",
     "time_range": 300,
@@ -71,36 +58,13 @@
     "base_64_used": false
   },
   "number_of_drops_per_policy": {
+    "comment": "TODO: Add IPTABLES firewall logs to the elastic and then configure this metric again",
     "query": "sotool:snmptrapd_fortigate OR sotool:fortigate OR type:syslog_checkpoint) AND host:\"{{#arg1}}\" AND policyid:{{#arg2}} AND status:(\"blocked\" \"drop\" \"deny\")",
     "index_pattern": "logstash-*",
     "time_range": 300,
     "metric_name": "network_behaviour.drops_per_fw_policy.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false
-  },
-  "events_per_source_ip": {
-    "query": "source_ip:\"{{#arg1}}\"",
-    "index_pattern": "logstash-*",
-    "time_range": 300,
-    "metric_name": "health._global.number_of_events_per_source_ip.{{#arg1}}",
-    "type": "QUERY_ COUNT",
-    "base_64_used": false
-  },
-  "events_per_destination_ip": {
-    "query": "destination_ip:\"{{#arg1}}\"",
-    "index_pattern": "logstash-*",
-    "time_range": 300,
-    "metric_name": "health._global.number_of_events_per_destination_ip.{{#arg1}}",
-    "type": "QUERY_COUNT",
-    "base_64_used": false
-  },
-  "events_per_useragent": {
-    "query": "useragent:\"{{#arg1}}\"",
-    "index_pattern": "logstash-*",
-    "time_range": 3600,
-    "metric_name": "health._global.number_of_events_per_useragent.{{#arg1}}",
-    "type": "QUERY_COUNT",
-    "base_64_used": true
   },
     "number_of_handle_manipulation_and_audit_events_per_host": {
     "query": "_type:syslog_nxlog AND (EventID:4656 OR EventID:4658) AND host:\"{{#arg1}}\"",
@@ -134,6 +98,79 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
+  "_______________________________________SIMILARITY_TEST_______________________________________": {
+    "type": "COMMENT"
+  },
+  "highest_similarity_to_any_top_searched_fqdn": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_searched_fqdn.{{#arg1}}",
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false
+  },
+  "___________________________________________METRICS___________________________________________": {
+    "type": "COMMENT"
+  },
+  "ids_alerts_for_host": {
+    "query": "(event_type:snort AND (destination_ip:{{#arg1}} OR source_ip:{{#arg1}}) AND _exists_:priority AND priority:1) OR (event_type:bro_notice AND (destination_ip:{{#arg1}} OR source_ip:{{#arg1}}))",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "host_behaviour.ids_alerts_for_host.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "ids_attacks_for_host": {
+    "query": "(event_type:snort AND (destination_ip:{{#arg1}} OR source_ip:{{#arg1}}) AND _exists_:priority AND priority:2) OR (event_type:bro_notice AND (destination_ip:{{#arg1}} OR source_ip:{{#arg1}}))",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "host_behaviour.ids_attacks_for_host.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "events_per_source_ip": {
+    "query": "source_ip:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "health._global.number_of_events_per_source_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "events_per_destination_ip": {
+    "query": "destination_ip:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "health._global.number_of_events_per_destination_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "events_per_useragent": {
+    "query": "useragent:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "health._global.number_of_events_per_useragent.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": true
+  },
+  "pings_from_host": {
+    "query": "event_type:bro_conn AND protocol:icmp AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "health._global.number_of_events_per_useragent.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "orphan_syn_messages_from_host": {
+    "query": "event_type:bro_conn AND connection_state:(\"RSTOS0\" \"S0\" \"SH\") AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "health._global.number_of_events_per_useragent.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
   "events_per_day": {
     "query": "*",
     "index_pattern": "logstash-*",
@@ -141,6 +178,109 @@
     "metric_name": "health._global.number_of_events_per_day",
     "type": "QUERY_COUNT",
     "base_64_used": false
+  },
+  "ports_used_by_host": {
+    "query": "event_type:bro_conn AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.ports_attempted_by_ext_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "destination_port"
+  },
+  "ports_used_to_host": {
+    "query": "event_type:bro_conn AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.ports_attempted_to_pub_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "destination_port"
+  },
+  "pings_to_pub_ip": {
+    "query": "event_type:bro_conn AND protocol:icmp AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.pings_to_pub_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "destination_port"
+  },
+  "dns_tcp_requests": {
+    "query": "event_type:bro_conn AND protocol:tcp AND destination_port:53",
+    "index_pattern": "logstash-*",
+    "time_range": 600,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_tcp_requests_in_10mins",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "dns_queries_to_ip": {
+    "query": "event_type:bro_dns AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 600,
+    "metric_name": "smart-onion.metrics.network.general_health.dns_queries_to_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "dns_nxdomain_queries_to_ip": {
+    "query": "event_type:bro_dns AND rcode_name:NXDOMAIN AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 600,
+    "metric_name": "smart-onion.metrics.dga.number_of_dns_queries_responded_with_nxdmomain_per_server.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "dns_nxdomain_queries_from_ip": {
+    "query": "event_type:bro_dns AND rcode_name:NXDOMAIN AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 600,
+    "metric_name": "smart-onion.metrics.dga.number_of_dns_queries_responded_with_nxdmomain_per_client.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "number_of_clients_per_dns_qry_flag": {
+    "query": "event_type:bro_dns AND query_type_name:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_qry_flag.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword"
+  },
+  "number_of_requests_per_verb_per_website": {
+    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "number_of_connections_to_port": {
+    "query": "event_type:bro_conn AND destination_port:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.wierd_behaviour.number_of_connections_to_port.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "___________________________________________LIST_HASH___________________________________________": {
+    "type": "COMMENT"
+  },
+  "ports_used_by_host_list_hash": {
+    "query": "event_type:bro_conn AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "type": "LIST_HASH",
+    "base_64_used": false,
+    "agg_on_field": "destination_port"
+  },
+  "ports_used_to_host_list_hash": {
+    "query": "event_type:bro_conn AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "type": "LIST_HASH",
+    "base_64_used": false,
+    "agg_on_field": "destination_port"
   },
   "___________________________________________DISCOVERIES___________________________________________": {
     "type": "COMMENT"
@@ -587,6 +727,16 @@
     "time_range": 86400,
     "type": "LLD",
     "list_order": "desc",
+    "max_list_size": 50
+  },
+  "downloaded_files": {
+    "query": "event_type:bro_files",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "sha1.keyword",
+    "zabbix_macro": "FILE_HASH",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
     "max_list_size": 50
   }
 }
