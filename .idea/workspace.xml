@@ -1,145 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Redesigned the directory structure">
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/ARIALBD_0.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Arial Bold Italic.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Arial Bold.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Arial_0.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Arialalt.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Cordia New Bold Italic.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Cordia New Bold.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Cordia New.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Courier New Bold Italic.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Courier New Bold.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Courier New Italic.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Courier New.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/TIMESBD_0.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/TIMESBI_0.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/TIMES_0.TTF" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Tahoma Bold.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/Tahoma_0.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/arial.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/arialbd.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/tahoma.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/fonts/tahomabd.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/bat-master/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/bat-master/docs/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/bat-master/examples/__init__.py" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/.gitignore" afterPath="$PROJECT_DIR$/resources/bat-master/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/.idea/modules.xml" afterPath="$PROJECT_DIR$/resources/bat-master/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/.idea/workspace.xml" afterPath="$PROJECT_DIR$/resources/bat-master/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/.travis.yml" afterPath="$PROJECT_DIR$/resources/bat-master/.travis.yml" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/LICENSE" afterPath="$PROJECT_DIR$/resources/bat-master/LICENSE" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/Makefile" afterPath="$PROJECT_DIR$/resources/bat-master/Makefile" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/README.rst" afterPath="$PROJECT_DIR$/resources/bat-master/README.rst" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/__init__.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/bro_log_reader.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/bro_log_reader.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/bro_multi_log_reader.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/bro_multi_log_reader.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/data_generator.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/data_generator.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/dataframe_cache.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/dataframe_cache.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/dataframe_stats.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/dataframe_stats.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/dataframe_to_matrix.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/dataframe_to_matrix.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/dataframe_to_parquet.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/dataframe_to_parquet.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/live_simulator.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/live_simulator.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/log_to_dataframe.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/log_to_dataframe.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/log_to_parquet.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/log_to_parquet.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/test_data/g_test_data.csv" afterPath="$PROJECT_DIR$/resources/bat-master/bat/test_data/g_test_data.csv" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/__init__.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/cache.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/cache.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/compat.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/compat.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/dir_watcher.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/dir_watcher.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/dummy_encoder.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/dummy_encoder.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/file_tailer.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/file_tailer.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/file_utils.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/file_utils.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/net_utils.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/net_utils.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/ngrams.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/ngrams.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/plot_utils.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/plot_utils.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/reverse_dns.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/reverse_dns.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/signal_utils.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/signal_utils.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/bat/utils/vt_query.py" afterPath="$PROJECT_DIR$/resources/bat-master/bat/utils/vt_query.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/data/dhcp.log.gz" afterPath="$PROJECT_DIR$/resources/bat-master/data/dhcp.log.gz" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/data/dhcp_002.log.gz" afterPath="$PROJECT_DIR$/resources/bat-master/data/dhcp_002.log.gz" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/data/http.log.gz" afterPath="$PROJECT_DIR$/resources/bat-master/data/http.log.gz" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/Makefile" afterPath="$PROJECT_DIR$/resources/bat-master/docs/Makefile" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/authors.rst" afterPath="$PROJECT_DIR$/resources/bat-master/docs/authors.rst" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/conf.py" afterPath="$PROJECT_DIR$/resources/bat-master/docs/conf.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/contributing.rst" afterPath="$PROJECT_DIR$/resources/bat-master/docs/contributing.rst" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/examples.rst" afterPath="$PROJECT_DIR$/resources/bat-master/docs/examples.rst" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/index.rst" afterPath="$PROJECT_DIR$/resources/bat-master/docs/index.rst" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/docs/make.bat" afterPath="$PROJECT_DIR$/resources/bat-master/docs/make.bat" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/anomaly_detection.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/anomaly_detection.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/anomaly_detection_streaming.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/anomaly_detection_streaming.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/bro_pprint.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/bro_pprint.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/bro_to_pandas.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/bro_to_pandas.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/bro_to_parquet.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/bro_to_parquet.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/bro_to_scikit.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/bro_to_scikit.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/cert_checker.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/cert_checker.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/file_log_vtquery.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/file_log_vtquery.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/http_user_agents.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/http_user_agents.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/risky_dns.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/risky_dns.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/tor_and_port_count.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/tor_and_port_count.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/yara_matches.py" afterPath="$PROJECT_DIR$/resources/bat-master/examples/yara_matches.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/yara_test/README.md" afterPath="$PROJECT_DIR$/resources/bat-master/examples/yara_test/README.md" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/yara_test/apt1.yar" afterPath="$PROJECT_DIR$/resources/bat-master/examples/yara_test/apt1.yar" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/yara_test/auriga_pe_test" afterPath="$PROJECT_DIR$/resources/bat-master/examples/yara_test/auriga_pe_test" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/examples/yara_test/index.yar" afterPath="$PROJECT_DIR$/resources/bat-master/examples/yara_test/index.yar" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Anomaly_Detection.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Anomaly_Detection.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Bro_to_Kafka_to_Spark.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Bro_to_Kafka_to_Spark.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Bro_to_Parquet_to_Spark.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Bro_to_Parquet_to_Spark.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Bro_to_Plot.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Bro_to_Plot.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Bro_to_Scikit_Learn.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Bro_to_Scikit_Learn.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Bro_to_Spark_Cheesy.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Bro_to_Spark_Cheesy.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Clustering_Picking_K.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Clustering_Picking_K.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Risky_Domains.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Risky_Domains.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/Spark_Clustering.ipynb" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/Spark_Clustering.ipynb" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/anxious.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/anxious.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/arrow.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/arrow.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/bleeding.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/bleeding.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/bro.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/bro.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/cheesy.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/cheesy.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/cleanup.jpeg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/cleanup.jpeg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/clusters.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/clusters.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/compressed.jpeg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/compressed.jpeg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/confused.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/confused.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/deep_dive.jpeg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/deep_dive.jpeg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/dynamic.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/dynamic.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/exploration.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/exploration.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/eyeball.jpeg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/eyeball.jpeg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/fast.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/fast.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/fish.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/fish.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/kafka.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/kafka.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/magic.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/magic.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/matplotlib.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/matplotlib.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/mllib.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/mllib.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/no_hands.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/no_hands.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/pandas.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/pandas.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/pandas_real.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/pandas_real.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/parquet.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/parquet.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/picking.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/picking.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/pipeline.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/pipeline.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/rock.gif" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/rock.gif" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/scikit.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/scikit.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/spark.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/spark.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/spark_distributed.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/spark_distributed.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/spark_jobs.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/spark_jobs.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/spark_shell.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/spark_shell.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/spark_sql.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/spark_sql.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/transformers.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/transformers.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/umbrella.png" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/umbrella.png" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/whew.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/whew.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/notebooks/images/why_normal.jpg" afterPath="$PROJECT_DIR$/resources/bat-master/notebooks/images/why_normal.jpg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/setup.cfg" afterPath="$PROJECT_DIR$/resources/bat-master/setup.cfg" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/setup.py" afterPath="$PROJECT_DIR$/resources/bat-master/setup.py" />
-      <change beforePath="$PROJECT_DIR$/code/bat-master/tox.ini" afterPath="$PROJECT_DIR$/resources/bat-master/tox.ini" />
-      <change beforePath="$PROJECT_DIR$/code/sampler/sampler.py" afterPath="$PROJECT_DIR$/code/backend/services/metrics_collector/metrics_collector.py" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" afterPath="$PROJECT_DIR$/config/queries.json" />
-      <change beforePath="$PROJECT_DIR$/docs/.~Metrics.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/Metrics Backup.xlk" afterPath="$PROJECT_DIR$/docs/Metrics Backup.xlk" />
-      <change beforePath="$PROJECT_DIR$/docs/Metrics.xlsx" afterPath="$PROJECT_DIR$/docs/Metrics.xlsx" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -150,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="metrics_collector.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="metrics_collector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -170,12 +34,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="496">
-                <caret line="44" column="77" lean-forward="false" selection-start-line="44" selection-start-column="77" selection-end-line="44" selection-end-column="77" />
+              <first_editor relative-caret-position="430">
+                <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -220,8 +84,8 @@
         <option value="$PROJECT_DIR$/Tests_and_POCs/test_text2image.py" />
         <option value="$PROJECT_DIR$/code/sampler/sampler.py" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/code/backend/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -375,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528352489865</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Redesigned the directory structure">
+      <created>1537101388385</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1537101388385</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -847,22 +718,22 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="496">
-            <caret line="44" column="77" lean-forward="false" selection-start-line="44" selection-start-column="77" selection-end-line="44" selection-end-column="77" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="430">
+            <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

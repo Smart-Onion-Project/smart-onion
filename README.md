@@ -31,28 +31,3 @@ The project's architecture is based on the microservices paradigm: <br />
 + Each frontend service will be developed in NodeJS.
 + Each such service will be responsible ONLY for its task as listed above. 
  
-
-# TODO:
-<b>[ ] <u>Backend:</u></b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>[ ] metrics_collector:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to test texts similarities by using perceptive hashing.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to test texts similarities by using edit-distance algorithms.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to count records in Elasticsearch based on query.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to retrieve the top/bottom one value from records in Elasticsearch based on query.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to retrieve list of unique values (either in cleartext or base64 encoded) based on query.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to retrieve a hash of a list of unique values based on query.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] Add the ability to measure the similarity between a string and the unique values returned from an Elasticsearch query.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Add the relevant queries in the system's config file to allow for measuring all the metrics defined in /docs/Metrics.xlsx.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>[ ] metrics_analyzer:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Add the ability to use clustering algorithms to detect anomalies in metrics collected.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Add the ability to use Nupic framework to detect anomalies in metrics collected.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Add the ability to use statistical algorithms (Moving-Min, Moving-Max, Moving-Average, Moving-Stdev, etc.) to detect anomalies in metrics collected.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] configurator:<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Add the ability to use relational database (postgreSQL, mysql, etc.) for storing and retrieving configuration values.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>[ ] General infrastructure:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Add a scheduling mechanism (Zabbix?) for quering the various services of this project and creating metrics.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Test the maturity of the Ceres database for storing metrics and either prefer Ceres or Whisper files.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>[ ] alerter:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] Create the alerter microservice. This service will be responsible for conducting an automated investigation of triggered alerts and according to the amount of available information forward alerts with all the relevant data to the analysts.<br />
-
-<b>[ ] <u>Frontend:<br /></u></b>
