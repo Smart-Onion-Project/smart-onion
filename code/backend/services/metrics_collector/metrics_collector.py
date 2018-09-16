@@ -12,6 +12,11 @@ import dateutil.parser
 import hashlib
 import editdistance
 import nltk.metrics
+from PIL import ImageFont
+from PIL import Image
+from PIL import ImageDraw
+import imagehash
+
 
 DEBUG=True
 elasticsearch_server = "127.0.0.1"
@@ -22,6 +27,7 @@ class QueryNameNotFoundOrOfWrongType(Exception):
 
 class Utils:
     lst = ""
+    perceptive_hashing_algs = ["phash", "ahash", "dhash", "whash"]
 
     def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, add_doc_count=True, re_sort_by_value=False):
         cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
@@ -153,14 +159,96 @@ class Utils:
 
     def LevenshteinDistance(self, cur_value_to_compare_to, value_to_compare):
         if len(cur_value_to_compare_to) > len(value_to_compare):
-            match_rate = (len(cur_value_to_compare_to) - editdistance.eval(value_to_compare,
-                                                                           cur_value_to_compare_to)) / len(
-                cur_value_to_compare_to) * 100
+            match_rate = (len(cur_value_to_compare_to) - editdistance.eval(value_to_compare, cur_value_to_compare_to)) / len(cur_value_to_compare_to) * 100
         else:
             match_rate = (len(value_to_compare) - editdistance.eval(value_to_compare, cur_value_to_compare_to)) / len(
                 value_to_compare) * 100
 
         return match_rate
+
+    def text2png(self, text, color="#000", bgcolor="#FFF", fontfullpath=None, fontsize=13, leftpadding=3,
+                 rightpadding=3, width=-1, height=-1):
+        REPLACEMENT_CHARACTER = u'\uFFFD'
+        NEWLINE_REPLACEMENT_STRING = ' ' + REPLACEMENT_CHARACTER + ' '
+
+        font = ImageFont.load_default()
+        if fontfullpath != None:
+            if fontfullpath.lower().endswith(".ttf"):
+                ImageFont.truetype(fontfullpath, fontsize)
+            else:
+                ImageFont.load(fontfullpath)
+        text = text.replace('\n', NEWLINE_REPLACEMENT_STRING)
+
+        lines = []
+        line = u""
+
+        for word in text.split():
+            # print(word)
+            if word == REPLACEMENT_CHARACTER:  # give a blank line
+                lines.append(line[1:])  # slice the white space in the begining of the line
+                line = u""
+                lines.append(u"")  # the blank line
+            elif font.getsize(line + ' ' + word)[0] <= (width - rightpadding - leftpadding):
+                line += ' ' + word
+            else:  # start a new line
+                lines.append(line[1:])  # slice the white space in the begining of the line
+                line = u""
+
+                line += ' ' + word  # for now, assume no word alone can exceed the line width
+
+        if len(line) != 0:
+            lines.append(line[1:])  # add the last line
+
+        line_height = -1
+        if height == -1:
+            line_height = font.getsize(text)[1]
+        img_height = line_height * (len(lines) + 1)
+        if width == -1:
+            width = leftpadding + font.getsize(text)[0] + rightpadding
+        img_width = width
+
+        img = Image.new("RGBA", (img_width, img_height), bgcolor)
+        draw = ImageDraw.Draw(img)
+
+        y = 0
+        for line in lines:
+            draw.text((leftpadding, y), line, color, font=font)
+            y += line_height
+
+        # img.save(fullpath)
+        return img
+
+    def VisualSimilarityRate(self, cur_value_to_compare_to, value_to_compare, algorithm="phash"):
+        fonts = [
+            "/home/yuval/.fonts/Arial_0.ttf",
+            "/home/yuval/.fonts/tahoma.ttf",
+            "/home/yuval/.fonts/TIMES_0.TTF",
+            "/home/yuval/.fonts/Courier New.ttf"
+        ]
+        max_similarity_rate = 0
+
+        for font in fonts:
+            cur_value_to_compare_to_img = self.text2png(cur_value_to_compare_to, fontsize=99, fontfullpath=font)
+            value_to_compare_img = self.text2png(value_to_compare, fontsize=99, fontfullpath=font)
+            if algorithm == "phash":
+                cur_value_to_compare_to_img_hash = imagehash.phash(cur_value_to_compare_to_img)
+                value_to_compare_img_hash = imagehash.phash(value_to_compare_img)
+            elif algorithm == "ahash":
+                cur_value_to_compare_to_img_hash = imagehash.average_hash(cur_value_to_compare_to_img)
+                value_to_compare_img_hash = imagehash.average_hash(value_to_compare_img)
+            elif algorithm == "whash":
+                cur_value_to_compare_to_img_hash = imagehash.whash(cur_value_to_compare_to_img)
+                value_to_compare_img_hash = imagehash.whash(value_to_compare_img)
+            elif algorithm == "dhash":
+                cur_value_to_compare_to_img_hash = imagehash.dhash(cur_value_to_compare_to_img)
+                value_to_compare_img_hash = imagehash.dhash(value_to_compare_img)
+
+
+            cur_similarity_rate = 100.0 - ((cur_value_to_compare_to_img_hash - value_to_compare_img_hash) / 100.0 * 100.0)
+            if cur_similarity_rate > max_similarity_rate:
+                max_similarity_rate = cur_similarity_rate
+
+        return max_similarity_rate
 
 
 class SmartOnionSampler:
@@ -254,7 +342,7 @@ class SmartOnionSampler:
         return res
 
     @get('/smart-onion/test-similarity/<queryname>')
-    def queryCount(queryname):
+    def get_similarity(queryname):
         query_details = SmartOnionSampler.queries[queryname]
         if query_details["type"] != "SIMILARITY_TEST":
             raise QueryNameNotFoundOrOfWrongType()
@@ -321,24 +409,49 @@ class SmartOnionSampler:
                 body=query_list_to_test_similarity_to_query_body
             )
 
-            #TODO: Loop through all the values returned by the query and look for similarities to the value given in arg1
             highest_match_rate = 0
             highest_match_rate_value = ""
             value_compared = ""
             for bucket in res['aggregations']['field_values0']['buckets']:
                 cur_value_to_compare_to = bucket["key"]
-                match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
+                edit_distance_match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
+                visual_similarity_rate = []
+
+                for p_hashing_alg in Utils.perceptive_hashing_algs:
+                    visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, algorithm=p_hashing_alg))
+
+                # Create average match rate between all the perceptive hashing algorithms
+                match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
+
+                # Use the highest match rate detected (either visual similarity or textual similarity
+                max_match_rate = 0
+                max_match_rate_algorithm = None
+                if match_rate > edit_distance_match_rate:
+                    max_match_rate = match_rate
+                    max_match_rate_algorithm = "visual_match_rate"
+                else:
+                    max_match_rate = edit_distance_match_rate
+                    max_match_rate_algorithm = "edit_distance"
+                match_rate = max_match_rate
 
                 if match_rate > highest_match_rate:
                     highest_match_rate = match_rate
                     highest_match_rate_value = cur_value_to_compare_to
                     value_compared = value_to_compare
 
-            res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "," + value_compared
+            res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "(" + max_match_rate_algorithm + ")," + value_compared
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
 
         return res
+
+    @get('/smart-onion/get-length/<queryname>')
+    def get_length(queryname):
+        return str(len(queryname))
+
+    @get('/smart-onion/get-length_b64/<queryname>')
+    def get_length_b64(queryname):
+        return str(len(base64.b64decode(queryname.encode("utf-8")).decode("utf-8")))
 
     @get('/smart-onion/query-count/<queryname>')
     def queryCount(queryname):
@@ -582,6 +695,26 @@ class SmartOnionSampler:
     @get('/smart-onion/dump_queries')
     def dump_queries():
         return "@@RES: " + json.dumps(SmartOnionSampler.queries)
+
+    @get('/test/similarity/<algo>/<s1>/<s2>')
+    def test_similarity(algo, s1, s2):
+        utils = Utils()
+        res = "ERROR_UNKNOWN_ALGO"
+        try:
+            if algo == "levenstein":
+                res = str(utils.LevenshteinDistance(s1, s2))
+            if algo == "visual-phash":
+                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="phash"))
+            if algo == "visual-ahash":
+                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="ahash"))
+            if algo == "visual-dhash":
+                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="dhash"))
+            if algo == "visual-whash":
+                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="whash"))
+
+            return res
+        except Exception as ex:
+            return "@@EX: " + str(ex)
 
 script_path = os.path.dirname(os.path.realpath(__file__))
 listen_ip = "127.0.0.1"

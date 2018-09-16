@@ -27,6 +27,18 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
+  "_________________________________________FIELD_QUERY_________________________________________": {
+    "type": "COMMENT"
+  },
+  "certificate_issuer_per_virtual_host": {
+    "query": "event_type:bro_http AND certificate_common_name:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "field_name": "certificate_issuer",
+    "convert_timestamp_to_epoch": false,
+    "type": "FIELD_QUERY",
+    "base_64_used": true
+  },
   "_____________________________________METRICS_WITHOUT_DATA____________________________________": {
     "type": "COMMENT"
   },
@@ -106,6 +118,17 @@
     "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "query.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false
+  },
+  "highest_similarity_to_any_top_searched_virtual_host": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_searched_virtual_host.{{#arg1}}",
+    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_http",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "virtual_host.keyword",
     "time_range": 86400,
     "type": "SIMILARITY_TEST",
     "list_order": "desc",
@@ -247,6 +270,24 @@
     "base_64_used": false,
     "count_unique_values_in": "source_ip.keyword"
   },
+  "number_of_internal_ips_connected_to_sites_signed_by_issuer": {
+    "query": "event_type:bro_x509 AND certificate_issuer:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_issuer.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": true,
+    "count_unique_values_in": "source_ip.keyword"
+  },
+  "number_of_internal_ips_connected_to_sites_signed_by_cert_cn": {
+    "query": "event_type:bro_x509 AND certificate_common_name:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": true,
+    "count_unique_values_in": "source_ip.keyword"
+  },
   "number_of_requests_per_verb_per_website": {
     "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
     "index_pattern": "logstash-*",
@@ -255,11 +296,43 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
+  "number_of_requests_per_url": {
+    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg2}} AND method:{{#arg3}} AND destination_port:{{#arg4}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg3}}.{{#arg1}}.{{#arg4}}.{{#arg2}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "number_of_connections_to_ext_ip": {
+    "query": "event_type:bro_conn AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.command_and_control.number_of_internal_ips_connected_to_ext_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
   "number_of_connections_to_port": {
     "query": "event_type:bro_conn AND destination_port:{{#arg1}}",
     "index_pattern": "logstash-*",
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.wierd_behaviour.number_of_connections_to_port.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "number_of_connections_to_workstations_for_server": {
+    "query": "event_type:bro_conn AND destination_ip:172.168.1.* AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.lateral_movement.number_of_connections_to_workstations_for_server.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
+  "number_of_connections_to_workstations_for_workstation": {
+    "query": "event_type:bro_conn AND destination_ip:172.168.1.* AND source_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.lateral_movement.number_of_connections_to_workstations_for_workstation.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
