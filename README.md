@@ -30,4 +30,4 @@ The project's architecture is based on the microservices paradigm: <br />
 + Each backend service will be developed in Python 3.5.
 + Each frontend service will be developed in NodeJS.
 + Each such service will be responsible ONLY for its task as listed above. 
- 
++ Each service is defined as a GitHub project with issues 

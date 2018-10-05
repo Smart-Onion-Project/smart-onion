@@ -1,11 +1,11 @@
 #!/usr/bin/python3.5
-import re
 import sys
+from bottle import route, run, template, get, request
 import datetime
 import json
 import base64
 from elasticsearch import Elasticsearch
-from bottle import route, run, template, get, request
+import re
 import os
 import statsd
 import dateutil.parser
@@ -16,9 +16,9 @@ from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
 import imagehash
+import homoglyphs
 
-
-DEBUG=True
+DEBUG = True
 elasticsearch_server = "127.0.0.1"
 metrics_prefix = "smart-onion"
 
@@ -249,6 +249,24 @@ class Utils:
                 max_similarity_rate = cur_similarity_rate
 
         return max_similarity_rate
+    
+    def HomoglyphsRatio(self, cur_value_to_compare_to, value_to_compare):
+        homoglyphs_cache = {}
+        homoglyphs_obj = homoglyphs.Homoglyphs()
+        homoglyphs_found = 0
+        for i in range(0, len(cur_value_to_compare_to)):
+            char1 = cur_value_to_compare_to[i]
+            if len(value_to_compare) >= i:
+                char2 = value_to_compare[i]
+            else:
+                char2 = ""
+            if not char1 in homoglyphs_cache:
+                homoglyphs_cache[char1] = homoglyphs_obj.get_combinations(char1)
+            if char2 != char1 and char2 in homoglyphs_cache[char1]:
+                print(char2 + " -> " + char1)
+                homoglyphs_found = homoglyphs_found + 1
+
+        return homoglyphs_found / len(cur_value_to_compare_to) * 100
 
 
 class SmartOnionSampler:
@@ -415,23 +433,29 @@ class SmartOnionSampler:
             for bucket in res['aggregations']['field_values0']['buckets']:
                 cur_value_to_compare_to = bucket["key"]
                 edit_distance_match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
+                homoglyphs_ratio = Utils().HomoglyphsRatio(value_to_compare, cur_value_to_compare_to)
                 visual_similarity_rate = []
 
                 for p_hashing_alg in Utils.perceptive_hashing_algs:
                     visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, algorithm=p_hashing_alg))
 
                 # Create average match rate between all the perceptive hashing algorithms
-                match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
+                visual_match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
 
-                # Use the highest match rate detected (either visual similarity or textual similarity
+                # Use the highest match rate detected (either visual similarity or textual similarity or homoglyphs ratio)
                 max_match_rate = 0
                 max_match_rate_algorithm = None
-                if match_rate > edit_distance_match_rate:
-                    max_match_rate = match_rate
+
+                if visual_match_rate > edit_distance_match_rate:
+                    max_match_rate = visual_match_rate
                     max_match_rate_algorithm = "visual_match_rate"
                 else:
-                    max_match_rate = edit_distance_match_rate
-                    max_match_rate_algorithm = "edit_distance"
+                    if homoglyphs_ratio > edit_distance_match_rate:
+                        max_match_rate = homoglyphs_ratio
+                        max_match_rate_algorithm = "homoglyphs_ratio"
+                    else:
+                        max_match_rate = edit_distance_match_rate
+                        max_match_rate_algorithm = "edit_distance"
                 match_rate = max_match_rate
 
                 if match_rate > highest_match_rate:
