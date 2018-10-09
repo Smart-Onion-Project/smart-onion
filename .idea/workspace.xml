@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/code/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/alerter/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/alerter/alerter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/configurator/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/configurator/configurator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/homoglyphs_test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/smart-onion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smart-onion.iml" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +51,7 @@
     <session id="371866572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.opened" value="4" />
@@ -89,10 +70,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="857" />
+          <entry key="txt" value="226" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="PLAIN_TEXT" value="226" />
           <entry key="Python" value="857" />
         </counts>
       </usages-collector>
@@ -239,52 +222,6 @@
               <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
               <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="python3_5" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="python3_5" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="python3_5" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_collector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="homoglyphs_test" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -430,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537103590878</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)">
+      <created>1538740590473</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1538740590474</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -444,7 +388,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -471,7 +414,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Preps" />
     <MESSAGE value="Redesigned the directory structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesigned the directory structure" />
+    <MESSAGE value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
