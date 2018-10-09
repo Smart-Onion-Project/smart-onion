@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Added resources and a Zabbix template">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +53,9 @@
         <counts>
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -70,12 +71,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="857" />
-          <entry key="txt" value="226" />
+          <entry key="txt" value="263" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="226" />
+          <entry key="PLAIN_TEXT" value="263" />
           <entry key="Python" value="857" />
         </counts>
       </usages-collector>
@@ -107,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="20" column="75" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="75" />
+              <caret line="20" column="75" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -214,7 +215,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,10 +222,16 @@
               <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
               <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -374,7 +380,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538740590474</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added resources and a Zabbix template">
+      <created>1539113199167</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1539113199167</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -389,7 +402,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -401,8 +414,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4994726" visible="true" weight="0.32930845" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50052744" side_tool="true" visible="true" weight="0.32930845" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49894515" visible="true" weight="0.33040616" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.5010548" side_tool="true" visible="true" weight="0.33040616" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -415,7 +428,8 @@
     <MESSAGE value="Preps" />
     <MESSAGE value="Redesigned the directory structure" />
     <MESSAGE value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
+    <MESSAGE value="Added resources and a Zabbix template" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added resources and a Zabbix template" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -595,6 +609,26 @@ hashlib.algorithms_available</expression-string>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tests_and_POCs/test_text2image.py" />
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="466" selection-start-line="466" selection-end-line="466" />
+          <folding>
+            <element signature="e#21#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="75" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
@@ -626,26 +660,6 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="e#21#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="75" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="466" selection-start-line="466" selection-end-line="466" />
           <folding>
             <element signature="e#21#31#0" expanded="true" />
           </folding>
