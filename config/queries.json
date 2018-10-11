@@ -27,6 +27,14 @@
     "type": "QUERY_COUNT",
     "base_64_used": false
   },
+  "events_per_vhost": {
+    "query": "virtual_host:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "health._global.number_of_events_per_type.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false
+  },
   "_________________________________________FIELD_QUERY_________________________________________": {
     "type": "COMMENT"
   },
@@ -397,7 +405,7 @@
     "zabbix_macro": "UA",
     "time_range": 86400,
     "type": "LLD",
-    "use_base64": true
+    "use_base64": true,
   },
   "lan_ips": {
     "query": "source_ip:172.169.1.* OR source_ip:172.168.1.*",
@@ -406,6 +414,7 @@
     "zabbix_macro": "LAN_IP",
     "time_range": 86400,
     "type": "LLD"
+    //////////////////////////////////////////////////////////////////////////////
   },
   "external_website_vhost": {
     "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
