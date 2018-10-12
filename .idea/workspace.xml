@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Added resources and a Zabbix template">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
       <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z01" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z02" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z03" afterDir="false" />
@@ -207,14 +207,14 @@
         <counts>
           <entry key="json" value="84" />
           <entry key="py" value="857" />
-          <entry key="txt" value="263" />
+          <entry key="txt" value="355" />
           <entry key="xml" value="256" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="84" />
-          <entry key="PLAIN_TEXT" value="263" />
+          <entry key="PLAIN_TEXT" value="355" />
           <entry key="Python" value="857" />
           <entry key="XML" value="256" />
         </counts>
@@ -507,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539119279010</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
+      <created>1539282443309</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1539282443309</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -549,7 +556,8 @@
     <MESSAGE value="Redesigned the directory structure" />
     <MESSAGE value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
     <MESSAGE value="Added resources and a Zabbix template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added resources and a Zabbix template" />
+    <MESSAGE value="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
