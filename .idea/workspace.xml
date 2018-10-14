@@ -2,138 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z01" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z02" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z03" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z04" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z05" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z06" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z07" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z08" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z09" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z10" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z11" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z12" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z13" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z14" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z15" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z16" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z17" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z18" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z19" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z20" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z21" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z22" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z23" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z24" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z25" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z26" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z27" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z28" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z29" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z30" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z31" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z32" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z33" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z34" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z35" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z36" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z37" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z38" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z39" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z40" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z41" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z42" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z43" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z44" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z45" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z46" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z47" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z48" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z49" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z50" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z51" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z52" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z53" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z54" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z55" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z56" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z57" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z58" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z59" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z60" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z61" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z62" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z63" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.z64" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nupic/nupic_videos.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z01" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z02" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z03" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z04" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z05" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z06" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z07" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z08" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z09" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z10" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z11" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z12" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z13" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z14" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z15" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z16" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z17" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z18" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z19" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z20" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z21" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z22" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z23" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z24" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z25" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z26" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z27" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z28" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z29" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z30" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z31" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z32" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z33" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z34" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z35" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z36" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z37" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z38" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z39" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z40" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z41" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z42" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z43" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z44" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z45" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z46" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.z47" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vms/security_onion_elk.ova.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/zbx_sampling_template.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Beginner's Guide to NuPIC-BCwOgbSSDM4.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Boosting (Episode 9)-MSwoNAODrgk.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Channel Trailer 2017-3IpwEYbG-ik.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Datetime Encoding (Episode 6)-PTYlge2K1G8.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Experimenting with NuPIC for Audio stream analysis-rNbntHRdEmM.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/HTM Engine Tutorial - Traffic Anomalies-lzJd_a6y6-E.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Hot Gym Prediction Tutorial-S-0thrzOHTc.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/NuPIC Development Progress Review, May 15, 2015-jIUJlh6cHYw.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/NuPIC Development Tutorial-Yc3PKaT1knU.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Predicting Sine Waves with NuPIC-KuFfm3ncEwI.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Spatial Pooling - Input Space &amp; Connections (Episode 7)-R5UoFNtv5AU.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Spatial Pooling - Learning (Episode 8)-rHvjykCIrZM.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Temporal Memory Part 1 (Episode 11)-UBzemKcUoOk.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Temporal Memory Part 2 (Episode 12)-1OhY_u3NjdM.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/nupic/Topology (Episode 10)-HTW2Q_UrkAw.mkv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vms/security_onion_elk.ova" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -182,11 +51,13 @@
     <session id="371866572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="4" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -514,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539282443309</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
+      <created>1539316905950</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1539316905951</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -529,7 +407,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.2056962" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.2056962" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -541,8 +419,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49736288" visible="true" weight="0.33369923" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50263715" side_tool="true" visible="true" weight="0.33369923" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="9" sideWeight="0.49630803" visible="true" weight="0.3358946" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.503692" side_tool="true" visible="true" weight="0.3358946" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
