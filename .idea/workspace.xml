@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Pycharm settings changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,13 +51,14 @@
     <session id="371866572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="4" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -78,14 +79,14 @@
         <counts>
           <entry key="json" value="84" />
           <entry key="py" value="857" />
-          <entry key="txt" value="355" />
+          <entry key="txt" value="387" />
           <entry key="xml" value="256" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="84" />
-          <entry key="PLAIN_TEXT" value="355" />
+          <entry key="PLAIN_TEXT" value="387" />
           <entry key="Python" value="857" />
           <entry key="XML" value="256" />
         </counts>
@@ -102,8 +103,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="18">
-                  <caret line="733" column="42" selection-start-line="733" selection-start-column="42" selection-end-line="733" selection-end-column="42" />
+                <state relative-caret-position="144">
+                  <caret line="740" column="9" lean-forward="true" selection-start-line="740" selection-start-column="9" selection-end-line="740" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -392,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539316905951</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Pycharm settings changes">
+      <created>1539503945256</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1539503945258</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -407,7 +415,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.2056962" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.2056962" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -419,8 +427,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="9" sideWeight="0.49630803" visible="true" weight="0.3358946" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.503692" side_tool="true" visible="true" weight="0.3358946" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.4957806" visible="true" weight="0.33699232" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5042194" side_tool="true" visible="true" weight="0.33699232" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -435,7 +443,8 @@
     <MESSAGE value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
     <MESSAGE value="Added resources and a Zabbix template" />
     <MESSAGE value="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template" />
+    <MESSAGE value="Pycharm settings changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pycharm settings changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -656,17 +665,17 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="733" column="42" selection-start-line="733" selection-start-column="42" selection-end-line="733" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="429" column="34" selection-start-line="429" selection-start-column="34" selection-end-line="429" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="740" column="9" lean-forward="true" selection-start-line="740" selection-start-column="9" selection-end-line="740" selection-end-column="9" />
         </state>
       </provider>
     </entry>
