@@ -414,7 +414,6 @@
     "zabbix_macro": "LAN_IP",
     "time_range": 86400,
     "type": "LLD"
-    //////////////////////////////////////////////////////////////////////////////
   },
   "external_website_vhost": {
     "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
@@ -432,6 +431,7 @@
     "time_range": 86400,
     "type": "LLD",
     "use_base64": true
+    //////////////////////////////////////////////////////////////////////////////
   },
   "external_destination_continents_from_org": {
     "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
