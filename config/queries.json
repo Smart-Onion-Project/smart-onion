@@ -431,7 +431,6 @@
     "time_range": 86400,
     "type": "LLD",
     "use_base64": true
-    //////////////////////////////////////////////////////////////////////////////
   },
   "external_destination_continents_from_org": {
     "query": "source_ip:172.169.1.* OR source_ip:172.168.1.* AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*)",
@@ -516,6 +515,7 @@
     "type": "LLD",
     "list_order": "asc",
     "max_list_size": 50
+    //////////////////////////////////////////////////////////////////////////////
   },
   "top_n_most_frequently_queried_tld_subdomains": {
     "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
