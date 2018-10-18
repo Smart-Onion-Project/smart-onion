@@ -31,3 +31,7 @@ The project's architecture is based on the microservices paradigm: <br />
 + Each frontend service will be developed in NodeJS.
 + Each such service will be responsible ONLY for its task as listed above. 
 + Each service is defined as a GitHub project with issues 
+
+
+For more resources on this project see this folder in Google drive (contains relevant information about Numenta's nupic library and few VMs that will be needed to get you started):
+https://drive.google.com/open?id=1uol2G02WjjUFv614DC3KC6wPoMR6qUZm
