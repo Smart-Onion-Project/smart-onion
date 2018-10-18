@@ -496,7 +496,7 @@
     "list_order": "asc",
     "max_list_size": 50
   },
-  "top_n_most_frequently_queried_tlds": {
+  "w": {
     "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "top_level_domain.keyword",
