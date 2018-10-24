@@ -59,7 +59,6 @@ class MetricsRealtimeAnalyzer:
             importedModelParams = importlib.import_module(importName).MODEL_PARAMS
             print("No model params exist for '%s'. Using default module params."
                   % metric_family)
-            return None
 
         return importedModelParams
 

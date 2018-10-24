@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Completed the Zabbix template (and fixed a tiny typo in the queries file)">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/test_data/rec-center-hourly.csv" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/test_data/rec-center-hourly.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +54,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="20" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="4" />
@@ -63,14 +66,14 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="5" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="22" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="json" value="5" />
           <entry key="md" value="1" />
-          <entry key="py" value="2" />
+          <entry key="py" value="3" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
@@ -78,7 +81,7 @@
         <counts>
           <entry key="JSON" value="5" />
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="2" />
+          <entry key="Python" value="3" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
@@ -87,7 +90,7 @@
           <entry key="json" value="86" />
           <entry key="md" value="209" />
           <entry key="py" value="857" />
-          <entry key="txt" value="606" />
+          <entry key="txt" value="807" />
           <entry key="xml" value="1215" />
         </counts>
       </usages-collector>
@@ -95,7 +98,7 @@
         <counts>
           <entry key="JSON" value="86" />
           <entry key="Markdown" value="209" />
-          <entry key="PLAIN_TEXT" value="606" />
+          <entry key="PLAIN_TEXT" value="807" />
           <entry key="Python" value="857" />
           <entry key="XML" value="1215" />
         </counts>
@@ -106,7 +109,17 @@
     <favorites_list name="smart-onion" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -154,6 +167,7 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/config/queries.json" />
+        <option value="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" />
       </list>
     </option>
   </component>
@@ -167,7 +181,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -178,12 +191,48 @@
             <path>
               <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
               <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540135573041</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in.">
+      <created>1540381361743</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1540381361743</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -441,10 +497,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49525318" visible="true" weight="0.2151482" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49472573" visible="true" weight="0.2151482" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49367088" weight="0.3413831" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50474685" side_tool="true" visible="true" weight="0.2151482" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50527424" side_tool="true" visible="true" weight="0.2151482" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -489,7 +545,8 @@
     <MESSAGE value="Removed large files" />
     <MESSAGE value="Moved all the nupic videos and the exported VMs to Google drive and added the address to the project's readme." />
     <MESSAGE value="Completed the Zabbix template (and fixed a tiny typo in the queries file)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed the Zabbix template (and fixed a tiny typo in the queries file)" />
+    <MESSAGE value="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -676,9 +733,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -730,6 +784,13 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="407" column="22" selection-start-line="407" selection-start-column="22" selection-end-line="407" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
         </state>
       </provider>
     </entry>
