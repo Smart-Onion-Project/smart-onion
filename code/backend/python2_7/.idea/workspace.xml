@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/services/metrics_analyzer/data_models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force/number_of_failed_logins_per_user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/metrics_analyzer/data_models/default.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/metrics_analyzer/test_data/rec-center-hourly.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,30 +21,38 @@
     <session id="-993061676">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.5" value="4" />
+          <entry key="project.open.time.6" value="4" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="csv" value="1" />
+          <entry key="py" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="285" />
+          <entry key="dummy" value="11" />
+          <entry key="py" value="3497" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="285" />
+          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="Python" value="3497" />
         </counts>
       </usages-collector>
     </session>
@@ -48,16 +62,55 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+            <state relative-caret-position="576">
+              <caret line="59" column="79" selection-start-line="59" selection-start-column="79" selection-end-line="59" selection-end-column="79" />
               <folding>
-                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
+                <marker date="1540381110514" expanded="true" signature="3226:3227" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_models/default.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force/number_of_failed_logins_per_user.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="708">
+              <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/test_data/rec-center-hourly.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>kw_energy_consumption</find>
+      <find>v</find>
+      <find>consumption</find>
+      <find>tempo</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
@@ -65,6 +118,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force/number_of_failed_logins_per_user.py" />
         <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
       </list>
     </option>
@@ -99,11 +153,47 @@
               <item name="services" type="462c0819:PsiDirectoryNode" />
               <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="data_models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="data_models" type="462c0819:PsiDirectoryNode" />
+              <item name="brute_force" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="test_data" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/services/metrics_analyzer/data_models" />
+      <recent name="$PROJECT_DIR$/services/metrics_analyzer/test_data" />
+      <recent name="$PROJECT_DIR$/services/metrics_analyzer" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force" />
+      <recent name="$PROJECT_DIR$/services/metrics_analyzer" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -162,13 +252,13 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24841772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24841772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32930845" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.467618" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956093" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -184,15 +274,74 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <condition expression="anomalyScore&lt;1 and anomalyScore &gt; 0" language="Python" />
+          <url>file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>anomalyScore&lt;1 and anomalyScore &gt; 0</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>result</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/model_params.py" />
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/support/configuration_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6018">
+          <caret line="54" column="45" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/socket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="227" selection-start-line="227" selection-end-line="227" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/test_data/rec-center-hourly.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force/number_of_failed_logins_per_user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="708">
+          <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_models/default.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+        <state relative-caret-position="576">
+          <caret line="59" column="79" selection-start-line="59" selection-start-column="79" selection-end-line="59" selection-end-column="79" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1538746970709" expanded="true" signature="63:231" ph="..." />
-            <marker date="1538746970709" expanded="true" signature="147:174" ph="..." />
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1540381110514" expanded="true" signature="3226:3227" ph="..." />
           </folding>
         </state>
       </provider>
