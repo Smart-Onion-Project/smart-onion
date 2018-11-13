@@ -35,3 +35,6 @@ The project's architecture is based on the microservices paradigm: <br />
 
 For more resources on this project see this folder in Google drive (contains relevant information about Numenta's nupic library and few VMs that will be needed to get you started):
 https://drive.google.com/open?id=1uol2G02WjjUFv614DC3KC6wPoMR6qUZm
+
+For an interactive architectural diagram with more details see this Prezi presentation here:
+https://prezi.com/p/sehmdjyc4-kv/
