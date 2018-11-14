@@ -12,17 +12,27 @@ The project's architecture is based on the microservices paradigm: <br />
 <pre>
 <b>+ backend</b> - Contains all the backend services and components
 <b>|    |</b>
-<b>|    +---+ services</b> - Contains all the background services
+<b>|    +---+ python2_7</b> - Contains all the backend components that MUST run under Python 2.7 (Only services that use the nupic framework)
+<b>|    |</b>        <b>|</b>
+<b>|    |        +---+ services</b> - Contains all the background services that MUST run under Python 2.7
+<b>|    |</b>                 <b>|</b>
+<b>|    |                 +--- alerter</b> - The alerter service is responsible for filtering alerts and aggregating alerts and anomalies into Cyber events
+<b>|    |</b>                 <b>|</b>
+<b>|    |                 +--- configurator</b> - The configurator service is responsible of allowing the various services to get and set their config as well as configuring the scheduler of the system (Zabbix)
+<b>|    |</b>                 <b>|</b>
+<b>|    |                 +--- metrics_analyzer</b> - The metrics analyser service should use ML, deep learning, NLP as well as biologically constrained machine learning (nupic) and statistical algorithms to detect anomalies or indications of unexpected behaviour (either human or network or other) and return the probability for an anomaly in a given metric
+<b>|    |</b>
+<b>|    +---+ python3_5</b> - Contains all the backend components that run under Python 3.5
 <b>|</b>             <b>|</b>
-<b>|             +--- alerter</b> - The alerter service is responsible for filtering alerts and aggregating alerts and anomalies into Cyber events
-<b>|</b>             <b>|</b>
-<b>|             +--- configurator</b> - The configurator service is responsible of allowing the various services to get and set their config as well as configuring the scheduler of the system (Zabbix)
-<b>|</b>             <b>|</b>
-<b>|             +--- metrics_analyzer</b> - The metrics analyser service should use ML, deep learning, NLP as well as biologically constrained machine learning (nupic) and statistical algorithms to detect anomalies or indications of unexpected behaviour (either human or network or other) and return the probability for an anomaly in a given metric 
-<b>|</b>             <b>|</b>
-<b>|             +--- metrics_collector</b> - The metrics collector (a.k.a sampler) service is responsible for querying the raw data (from Security Onion's elasticsearch cluster and from helper DB instances if needed) and create metrics and also allow usage of threshold based alerts
+<b>|             +---+ services</b> - Contains all the background services that run under Python 3.5
+<b>|</b>                 <b>|</b>
+<b>|                 +--- metrics_collector</b> - The metrics collector (a.k.a sampler) service is responsible for querying the raw data (from Security Onion's elasticsearch cluster and from helper DB instances if needed) and create metrics and also allow usage of threshold based alerts
 <b>|</b>  
-<b>+ frontend</b> - Contains all the frontend services responsible for the UX <br />
+<b>+ frontend</b> - Contains all the frontend services responsible for the UX
+<b>|    |</b>
+<b>|    +---+ ux - Contains all the different components that make up the WebUI of the system (Written in React)</b>
+<b>|    |</b>
+<b>|    +---+ ux_svc - Contains a service that connects the WebUI to the Backend services and serves as an API to the system</b>
 </pre>
 
 + Each such service will have its own HTTP listener using the Bottle framework.
