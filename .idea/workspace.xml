@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Fixed an issue with the metrics analyzer. (now, if it cannot find a module parameters for the metric family it will use a default one)">
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/__init__.py" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Updates the project structure and readme">
+      <change afterPath="$PROJECT_DIR$/code/frontend/ux/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/frontend/ux/sample_ui.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/test_data/rec-center-hourly.csv" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/test_data/rec-center-hourly.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/alerter/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/configurator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,53 +54,58 @@
     <session id="371866572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="33" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="3" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="4" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.8" value="9" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="33" />
+          <entry key="project.open.time.8" value="10" />
+          <entry key="project.open.time.9" value="3" />
+          <entry key="project.opened" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="html" value="1" />
           <entry key="json" value="6" />
-          <entry key="md" value="1" />
+          <entry key="md" value="2" />
           <entry key="py" value="4" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="HTML" value="1" />
           <entry key="JSON" value="6" />
-          <entry key="Markdown" value="1" />
+          <entry key="Markdown" value="2" />
           <entry key="Python" value="4" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="html" value="730" />
           <entry key="json" value="86" />
-          <entry key="md" value="884" />
+          <entry key="md" value="3979" />
           <entry key="py" value="857" />
-          <entry key="txt" value="962" />
+          <entry key="txt" value="1007" />
           <entry key="xml" value="1215" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="HTML" value="730" />
           <entry key="JSON" value="86" />
-          <entry key="Markdown" value="884" />
-          <entry key="PLAIN_TEXT" value="962" />
+          <entry key="Markdown" value="3979" />
+          <entry key="PLAIN_TEXT" value="1007" />
           <entry key="Python" value="857" />
           <entry key="XML" value="1215" />
         </counts>
@@ -125,12 +126,33 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="482">
+              <first_editor relative-caret-position="612">
                 <caret line="34" column="128" selection-start-line="34" selection-start-column="128" selection-end-line="34" selection-end-column="128" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/frontend/ux/sample_ui.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/frontend/ux/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SECOND">
+              <first_editor relative-caret-position="306">
+                <caret line="17" selection-start-line="17" selection-end-line="17" />
               </first_editor>
               <second_editor />
             </state>
@@ -152,6 +174,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -195,6 +218,8 @@
         <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/code/frontend/ux/sample_ui.html" />
+        <option value="$PROJECT_DIR$/code/frontend/ux/README.md" />
       </list>
     </option>
   </component>
@@ -263,6 +288,13 @@
               <item name="code" type="462c0819:PsiDirectoryNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="ux" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -270,6 +302,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../python3.5_venv" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -520,7 +553,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542133495415</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Updates the project structure and readme">
+      <created>1542179067107</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1542179067107</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -546,10 +586,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.48945147" visible="true" weight="0.2151482" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.48734176" visible="true" weight="0.2151482" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49367088" weight="0.3413831" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51054853" side_tool="true" visible="true" weight="0.2151482" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51265824" side_tool="true" visible="true" weight="0.2151482" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -596,7 +636,8 @@
     <MESSAGE value="Completed the Zabbix template (and fixed a tiny typo in the queries file)" />
     <MESSAGE value="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in." />
     <MESSAGE value="Fixed an issue with the metrics analyzer. (now, if it cannot find a module parameters for the metric family it will use a default one)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with the metrics analyzer. (now, if it cannot find a module parameters for the metric family it will use a default one)" />
+    <MESSAGE value="Updates the project structure and readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates the project structure and readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -801,15 +842,6 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="2887" column="38" lean-forward="true" selection-start-line="2887" selection-start-column="38" selection-end-line="2887" selection-end-column="38" />
-          <folding>
-            <element signature="n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#applications#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="e#76237#76243#0" expanded="true" />
-            <element signature="e#76254#76260#0" expanded="true" />
-            <element signature="e#76262#76268#0" expanded="true" />
-            <element signature="e#76270#76276#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -834,11 +866,28 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/frontend/ux/sample_ui.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="482">
+          <first_editor relative-caret-position="612">
             <caret line="34" column="128" selection-start-line="34" selection-start-column="128" selection-end-line="34" selection-end-column="128" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/frontend/ux/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SECOND">
+          <first_editor relative-caret-position="306">
+            <caret line="17" selection-start-line="17" selection-end-line="17" />
           </first_editor>
           <second_editor />
         </state>
