@@ -1,4 +1,18 @@
 #!/usr/bin/python3.5
+##########################################################################
+# Metrics Collector                                                      #
+# -----------------                                                      #
+#                                                                        #
+# This service is part of the Smart-Onion package. This micro-service is #
+# responsible for collecting and aggregating information from the        #
+# Security Onion ELK. The aggregated and collected data is being used by #
+# the service to create metrics like this:                               #
+# metric.name.hierarchy value timestamp_in_unix_ms)                      #
+#                                                                        #
+#                                                                        #
+##########################################################################
+
+
 import sys
 from bottle import route, run, template, get, request
 import datetime

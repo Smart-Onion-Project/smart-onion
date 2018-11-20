@@ -9,12 +9,32 @@
         }
         #logo {
             display: block;
-            width: 300px;
+            width: 800px;
             height: 100px;
             position: fixed;
             top: 0px;
             left: 0px;
             border: 1px solid white;
+            text-align: left;
+            vertical-align: middle;
+            color: white;
+            font-family: Arial;
+            font-size: 3em;
+            line-height: 100px;
+            padding-left: 0.5em;
+            text-shadow: 2px 2px grey;
+        }
+        #logo_sub_header {
+            display: inline;
+            position: relative;
+            text-align: left;
+            text-align: left;
+            vertical-align: middle;
+            color: white;
+            width: 500px;
+            font-family: Arial;
+            font-size: 0.5em;
+            line-height: 100px;
         }
         #clock {
             display: block;
@@ -23,25 +43,66 @@
             position: fixed;
             top: 0px;
             right: 0px;
-            border: 1px solid white;
-        }
-        #questions {
-            position: fixed;
-            display: block;
-            top: 101px;
-            right: 0px;
-            height: 630px;
-            width: 20%;
-            border: 1px solid red;
+            border: 1px solid lightgreen;
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            font-family: Arial;
+            line-height: 50px;
         }
         #cases {
             position: fixed;
             display: block;
-            top: 101px;
+            top: 104px;
+            right: 0px;
+            height: 627px;
+            width: 23em;
+            border: 1px solid red;
+        }
+        #cases_header {
+            position: absolute;
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            font-family: Arial;
+            line-height: 50px;
+            height: 50px;
+            width: 627px;
+            top: 288px;
+            left: -290px;
+
+            /* Safari */
+            -webkit-transform: rotate(-90deg);
+
+            /* Firefox */
+            -moz-transform: rotate(-90deg);
+
+            /* IE */
+            -ms-transform: rotate(-90deg);
+
+            /* Opera */
+            -o-transform: rotate(-90deg);
+
+            /* Internet Explorer */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        }
+        #main_game {
+            position: fixed;
+            display: block;
+            top: 104px;
             left: 0px;
-            width: 80%;
-            height: 630px;
+            width: 96.5em;
+            height: 627px;
             border: 1px solid blue;
+        }
+        #main_game_header {
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            font-family: Arial;
+            line-height: 50px;
+            height: 50px;
+            width: 100%;
         }
         #health_metrics {
             position: fixed;
@@ -53,23 +114,39 @@
             margin: 0 0 0 0;
             border: 1px solid yellow;
         }
+        #health_metrics_header {
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            font-family: Arial;
+            line-height: 50px;
+            height: 50px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <div id="logo">
-        &nbsp;
+        Smart-Onion <div id="logo_sub_header">- Be smarter about your network</div>
     </div>
     <div id="clock">
-        &nbsp;
-    </div>
-    <div id="questions">
-        &nbsp;
+        15:55<br />
+        19 Nov '18
     </div>
     <div id="cases">
-        &nbsp;
+        <div id="cases_header">
+            Cases
+        </div>
+    </div>
+    <div id="main_game">
+        <div id="main_game_header">
+            Build your network
+        </div>
     </div>
     <div id="health_metrics">
-        &nbsp;
+        <div id="health_metrics_header">
+            Health Metrics
+        </div>
     </div>
 </body>
 </html>
