@@ -53,7 +53,7 @@
     <session id="371866572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="37" />
+          <entry key="project.closed" value="41" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="2" />
@@ -66,9 +66,9 @@
           <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.8" value="12" />
-          <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="41" />
+          <entry key="project.open.time.8" value="15" />
+          <entry key="project.open.time.9" value="6" />
+          <entry key="project.opened" value="45" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -76,7 +76,7 @@
           <entry key="html" value="1" />
           <entry key="json" value="6" />
           <entry key="md" value="2" />
-          <entry key="py" value="11" />
+          <entry key="py" value="12" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
@@ -85,7 +85,7 @@
           <entry key="HTML" value="1" />
           <entry key="JSON" value="6" />
           <entry key="Markdown" value="2" />
-          <entry key="Python" value="11" />
+          <entry key="Python" value="12" />
           <entry key="XML" value="3" />
         </counts>
       </usages-collector>
@@ -95,7 +95,7 @@
           <entry key="html" value="1455" />
           <entry key="json" value="86" />
           <entry key="md" value="3979" />
-          <entry key="py" value="1480" />
+          <entry key="py" value="2181" />
           <entry key="txt" value="1223" />
           <entry key="xml" value="1215" />
         </counts>
@@ -106,7 +106,7 @@
           <entry key="JSON" value="86" />
           <entry key="Markdown" value="3979" />
           <entry key="PLAIN_TEXT" value="1242" />
-          <entry key="Python" value="1480" />
+          <entry key="Python" value="2181" />
           <entry key="XML" value="1215" />
         </counts>
       </usages-collector>
@@ -150,8 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector-original-script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="72">
+              <caret line="259" column="7" selection-start-line="259" selection-start-column="7" selection-end-line="259" selection-end-column="7" />
               <folding>
                 <element signature="e#19#36#0" expanded="true" />
               </folding>
@@ -159,13 +159,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="358">
+              <caret line="255" column="26" selection-start-line="255" selection-start-column="26" selection-end-line="255" selection-end-column="26" />
               <folding>
-                <element signature="e#922#939#0" expanded="true" />
+                <element signature="e#941#955#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,8 +174,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state>
+              <caret column="20" selection-start-column="20" selection-end-column="20" />
               <folding>
                 <element signature="e#21#31#0" expanded="true" />
               </folding>
@@ -186,7 +186,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="198">
               <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
               <folding>
                 <element signature="e#21#31#0" expanded="true" />
@@ -195,11 +195,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="2" column="74" lean-forward="true" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
+            <state relative-caret-position="1222">
+              <caret line="784" column="23" selection-start-line="784" selection-start-column="23" selection-end-line="784" selection-end-column="23" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -273,7 +273,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -384,6 +383,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,7 +417,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.homoglyphs_test">
+  <component name="RunManager" selected="Python.anomaly_detector">
+    <configuration name="anomaly_detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="smart-onion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="homoglyphs_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="smart-onion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -485,9 +506,11 @@
       <item itemvalue="Python.test_text2image" />
       <item itemvalue="Python.sampler" />
       <item itemvalue="Python.homoglyphs_test" />
+      <item itemvalue="Python.anomaly_detector" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.anomaly_detector" />
         <item itemvalue="Python.homoglyphs_test" />
         <item itemvalue="Python.sampler" />
         <item itemvalue="Python.test_text2image" />
@@ -659,7 +682,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542713492720</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Added header with details on each module.&#10;Added the basic code for the AnomalyDetector">
+      <created>1542725216850</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1542725216850</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -674,20 +704,20 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.19620253" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.19620253" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32930845" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49736288" visible="true" weight="0.32930845" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.83175105" weight="0.39956093" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.48523206" visible="true" weight="0.2151482" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4836498" weight="0.21420765" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994726" weight="0.32930845" />
       <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49367088" weight="0.3413831" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51476794" side_tool="true" visible="true" weight="0.2151482" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50263715" side_tool="true" visible="true" weight="0.32930845" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -761,17 +791,6 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="value_to_compare" />
-        <watch expression="cur_value_to_compare_to" />
-        <watch expression="cur_value_to_compare_to[idx]" />
-        <watch expression="value_to_compare[idx]" />
-        <watch expression="match_rate" />
-        <watch expression="len(cur_value_to_compare_to)" />
-        <watch expression="matched_chars" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
@@ -931,6 +950,23 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/frontend/ux/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SECOND">
+          <first_editor relative-caret-position="306">
+            <caret line="17" selection-start-line="17" selection-end-line="17" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6354">
@@ -955,19 +991,19 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/frontend/ux/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="306">
-            <caret line="17" selection-start-line="17" selection-end-line="17" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#21#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="198">
           <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
           <folding>
             <element signature="e#21#31#0" expanded="true" />
@@ -975,49 +1011,39 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#21#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#922#939#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector-original-script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="72">
+          <caret line="259" column="7" selection-start-line="259" selection-start-column="7" selection-end-line="259" selection-end-column="7" />
           <folding>
             <element signature="e#19#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/bottle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="1739" selection-start-line="1739" selection-end-line="1739" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="2" column="74" lean-forward="true" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
+        <state relative-caret-position="1222">
+          <caret line="784" column="23" selection-start-line="784" selection-start-column="23" selection-end-line="784" selection-end-column="23" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="255" column="26" selection-start-line="255" selection-start-column="26" selection-end-line="255" selection-end-column="26" />
+          <folding>
+            <element signature="e#941#955#0" expanded="true" />
           </folding>
         </state>
       </provider>
