@@ -691,7 +691,7 @@
     "max_list_size": 50
   },
   "org_dhcp_servers": {
-    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:67 AND connection_state:\"SF\"",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "DHCP_SERVER",
@@ -701,7 +701,7 @@
     "max_list_size": 50
   },
   "org_ssh_servers": {
-    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:22 AND connection_state:\"SF\"",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "SSH_SERVER",
@@ -711,7 +711,7 @@
     "max_list_size": 50
   },
   "org_http_verbs": {
-    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_http AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND _exists_:method AND NOT method:\"-\"",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "method.keyword",
     "zabbix_macro": "HTTP_VERB",
@@ -721,7 +721,7 @@
     "max_list_size": 50
   },
   "ext_http_verbs": {
-    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_http AND NOT (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND _exists_:method AND NOT method:\"-\"",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "method.keyword",
     "zabbix_macro": "HTTP_VERB",
@@ -753,7 +753,7 @@
     "max_list_size": 50
   },
   "org_web_servers": {
-    "query": "(source_ip:172.169.1.* OR source_ip:172.168.1.*) AND event_type:bro_conn AND (destination_ip:172.169.1.* OR destination_ip:172.168.1.*) AND destination_port:(80 8080) AND connection_state:\"SF\"",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "SERVER_IP",
@@ -772,7 +772,7 @@
     "list_order": "desc"
   },
   "dst_workstations_dst_ports": {
-    "query": "event_type:bro_conn AND destination_ip:172.168.1.* AND connection_state:(\"SF\" \"RSTO\")",
+    "query": "event_type:bro_conn AND destination_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND connection_state:(\"SF\" \"RSTO\")",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "destination_ip.keyword,destination_port",
     "zabbix_macro": "WKSTA_IP,DPORT",
@@ -801,7 +801,7 @@
     "max_list_size": 50
   },
   "websites_ports": {
-    "query": "event_type:bro_http AND (source_ip:172.169.1.* OR source_ip:172.168.1.*)",
+    "query": "event_type:bro_http AND (source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "virtual_host.keyword,destination_port",
     "zabbix_macro": "WEBSITE,WEBPORT",

@@ -25,5 +25,8 @@ class SmartOnionAlerter:
         #This method should then search for relevant details for the specific alert that has been triggered and decide whether or not to create a case for
         #the relevant event.
         #
-        #Cases will be managed with Xplico
+        #Score = highest_base_family_score + pattern_predictability_as_true_positive - pattern_predictability_by_htm - pattern_predictability_as_false_positive
+        #Algorithm for detecting priority for each event - Should run after each event is added to the list:
+        # - Divide the highest score on the list by 5 => x
+        # - Divide each event's score by x => event_priority
         pass

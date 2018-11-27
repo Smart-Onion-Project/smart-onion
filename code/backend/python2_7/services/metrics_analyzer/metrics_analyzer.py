@@ -19,6 +19,7 @@ import os
 import socket
 import threading
 import importlib
+import statsd
 from threading import Lock
 from os.path import dirname
 from datetime import datetime
@@ -64,6 +65,7 @@ class MetricsRealtimeAnalyzer:
     create_model_thread_lock = Lock()
     create_anomaly_likelihood_calc_thread_lock = Lock()
     anomaly_likelihood_calculator_filename = "anomaly_likelihood_calculator"
+    metrics_prefix = "smart-onion.anomaly_score.metrics_analyzer"
 
     def __init__(self):
         pass
@@ -253,13 +255,25 @@ class MetricsRealtimeAnalyzer:
             )
 
             anomalyReported = False
+            anomaly_direction = 0
             if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
                 if prediction > metric["metric_value"]:
                     anomaly_direction = 1
                 else:
                     anomaly_direction = -1
-                self.report_anomaly(metric=metric, anomaly_info={"anomaly_score": anomalyScore, "anomaly_likelihood": anomalyLikelihood, "anomaly_direction": anomaly_direction})
-                anomalyReported = True
+
+            try:
+                self.statsd_client.gauge(self.metrics_prefix + ".anomaly_score." + metric["metric_name"], anomalyScore)
+                self.statsd_client.gauge(self.metrics_prefix + ".anomaly_likelihood." + metric["metric_name"], anomalyLikelihood)
+                self.statsd_client.gauge(self.metrics_prefix + ".anomaly_direction." + metric["metric_name"], anomaly_direction)
+            except:
+                pass
+
+            if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
+                self.report_anomaly(metric=metric, anomaly_info={"htm_anomaly_score": anomalyScore,
+                                                                 "htm_anomaly_likelihood": anomalyLikelihood,
+                                                                 "anomaly_score": anomalyLikelihood * anomaly_direction * 100})
+            anomalyReported = True
 
             print(
                     "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +

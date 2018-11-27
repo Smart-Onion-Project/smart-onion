@@ -12,23 +12,26 @@
 #                                                                        #
 ##########################################################################
 
-#import subprocess
 import whisper
-import datetime
 import time
-import json
 import sys
 import os
 import re
-from bottle import route, run, template, get, post, request
+import glob
+import json
+import threading
+import statsd
+from bottle import run, get, request
 
 DEBUG = True
 REFERENCE_PAST_SAMPLES = '7,14,21'
 METRIC_PATH = '/var/lib/graphite/whisper/'
-METRIC_PATH = '/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files'
+METRIC_PATH = '/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/'
 TIMESPAN_IN_SEC = 86400
 PERCENT_MODE = True
-
+METRICS_CACHE = {}
+DISCOVERY_CURRENTLY_RUNNING = {}
+metrics_prefix = "smart-onion.anomaly_score.anomaly_detector"
 
 
 class NormalizedDataSet:
@@ -39,7 +42,7 @@ class NormalizedDataSet:
     def __init__(self, rawData):
         self.data = list(rawData)
 
-    def MaxOf(self, num):
+    def max_of(self, num):
         if (len(self.data) > 0 and len(self.data) >= num):
             max = self.data[0]
             for i in range(num - 1, -1, -1):
@@ -49,7 +52,7 @@ class NormalizedDataSet:
         else:
             return None
 
-    def MinOf(self, num):
+    def min_of(self, num):
         if (len(self.data) > 0 and len(self.data) >= num):
             min = self.data[0]
             for i in range(num - 1, -1, -1):
@@ -59,7 +62,7 @@ class NormalizedDataSet:
         else:
             return None
 
-    def AverageOf(self, num):
+    def average_of(self, num):
         if (len(self.data) > 0 and len(self.data) >= num):
             sum = 0
             for i in range(num - 1, -1, -1):
@@ -68,23 +71,24 @@ class NormalizedDataSet:
         else:
             return None
 
-    def Max(self):
-        return self.MaxOf(len(self.data))
+    def max(self):
+        return self.max_of(len(self.data))
 
-    def Min(self):
-        return self.MinOf(len(self.data))
+    def min(self):
+        return self.min_of(len(self.data))
 
-    def Average(self):
-        return self.AverageOf(len(self.data))
+    def average(self):
+        return self.average_of(len(self.data))
 
-    def Count(self):
+    def count(self):
         return len(self.data)
 
-    def Last(self):
+    def last(self):
         return self.data[len(self.data) - 1]
 
 
 class AnomalyDetector:
+    statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self):
        pass
@@ -95,44 +99,47 @@ class AnomalyDetector:
         else:
            run(host=listen_ip, port=listen_port, server="gunicorn", workers=32)
 
-    def NormalizeData(self, rawData):
-        lastDataAt = -1
-        dataPointsToFill = 0
-        tmpRes = rawData
-        for i in range(0, len(tmpRes)):
-            # print "+ BEFORE: [" + str(i) + "]" + str(tmpRes[i])
-            if not (tmpRes[i] is None):
-                if (lastDataAt >= 0):
-                    # print "+ " + str(dataPointsToFill) + " empty datapoints between idx " + str(lastDataAt) + " [" + str(tmpRes[lastDataAt]) + "] and " + str(i) + " [" + str(tmpRes[i]) + "]: Filling them up..."
-                    for j in range(lastDataAt + 1, i):
-                        # print "+ Filling datapoint at idx " + str(j) + " with value of " + str(tmpRes[j - 1]) + " + ((" + str(tmpRes[i]) + " - " + str(tmpRes[lastDataAt]) + ") / " + str(dataPointsToFill) + " + 1))"
-                        tmpRes[j] = tmpRes[j - 1] + ((tmpRes[i] - tmpRes[lastDataAt]) / dataPointsToFill + 1)
-                lastDataAt = i
+    def report_anomaly(self, metric, anomaly_info):
+        pass
 
-                dataPointsToFill = 0
+    def normalize_data(self, raw_data):
+        last_data_at = -1
+        data_points_to_fill = 0
+        tmp_res = raw_data
+        for i in range(0, len(tmp_res)):
+            # print "+ BEFORE: [" + str(i) + "]" + str(tmpRes[i])
+            if not (tmp_res[i] is None):
+                if (last_data_at >= 0):
+                    # print "+ " + str(dataPointsToFill) + " empty datapoints between idx " + str(lastDataAt) + " [" + str(tmpRes[lastDataAt]) + "] and " + str(i) + " [" + str(tmpRes[i]) + "]: Filling them up..."
+                    for j in range(last_data_at + 1, i):
+                        # print "+ Filling datapoint at idx " + str(j) + " with value of " + str(tmpRes[j - 1]) + " + ((" + str(tmpRes[i]) + " - " + str(tmpRes[lastDataAt]) + ") / " + str(dataPointsToFill) + " + 1))"
+                        tmp_res[j] = tmp_res[j - 1] + ((tmp_res[i] - tmp_res[last_data_at]) / data_points_to_fill + 1)
+                last_data_at = i
+
+                data_points_to_fill = 0
             else:
-                dataPointsToFill = dataPointsToFill + 1
+                data_points_to_fill = data_points_to_fill + 1
 
         res = []
-        trimmedFromStart = 0
-        trimmedToEnd = 0
-        dataStartedAt = -1
-        for i in range(0, len(tmpRes)):
-            if not (tmpRes[i] is None):
-                res.append(tmpRes[i])
-                if (dataStartedAt == -1):
-                    dataStartedAt = i
+        trimmed_from_start = 0
+        trimmed_to_end = 0
+        data_started_at = -1
+        for i in range(0, len(tmp_res)):
+            if not (tmp_res[i] is None):
+                res.append(tmp_res[i])
+                if (data_started_at == -1):
+                    data_started_at = i
             else:
-                if (dataStartedAt == -1):
-                    trimmedFromStart = trimmedFromStart + 1
+                if (data_started_at == -1):
+                    trimmed_from_start = trimmed_from_start + 1
                 else:
-                    trimmedToEnd = trimmedToEnd + 1
+                    trimmed_to_end = trimmed_to_end + 1
 
         # Returning the un-trimmed version of the array to allow the calling code to trim it as it sees fit
-        resObj = NormalizedDataSet(tmpRes)
-        resObj.trimmedFromStart = trimmedFromStart
-        resObj.trimmedToEnd = trimmedToEnd
-        return resObj
+        res_obj = NormalizedDataSet(tmp_res)
+        res_obj.trimmedFromStart = trimmed_from_start
+        res_obj.trimmedToEnd = trimmed_to_end
+        return res_obj
 
     def ArrContains(self, arr1, arr2):
         # arr1 - Array to be searched
@@ -157,71 +164,111 @@ class AnomalyDetector:
         referencePastPeriods = REFERENCE_PAST_SAMPLES.split(",")
         for i in range(0, len(referencePastData)):
             # R1 - Current vs. reference period's max
-            if (nowData.Last() > referencePastData[i].Max()):
-                R = R + ((nowData.Last() - referencePastData[i].Max()) / float(referencePastPeriods[i]))
-                R1 = R1 + ((nowData.Last() - referencePastData[i].Max()) / float(referencePastPeriods[i]))
+            if (nowData.last() > referencePastData[i].max()):
+                R = R + ((nowData.last() - referencePastData[i].max()) / float(referencePastPeriods[i]))
+                R1 = R1 + ((nowData.last() - referencePastData[i].max()) / float(referencePastPeriods[i]))
             # R2 - Current vs. reference period's min
-            if (nowData.Last() < referencePastData[i].Min()):
-                R = R + ((nowData.Last() - referencePastData[i].Min()) / float(referencePastPeriods[i]))
-                R2 = R2 + ((nowData.Last() - referencePastData[i].Min()) / float(referencePastPeriods[i]))
+            if (nowData.last() < referencePastData[i].min()):
+                R = R + ((nowData.last() - referencePastData[i].min()) / float(referencePastPeriods[i]))
+                R2 = R2 + ((nowData.last() - referencePastData[i].min()) / float(referencePastPeriods[i]))
             # R3 - Current vs. reference period's average
-            R = R + ((nowData.Last() - referencePastData[i].Average()) / float(referencePastPeriods[i]))
-            R3 = R3 + ((nowData.Last() - referencePastData[i].Average()) / float(referencePastPeriods[i]))
+            R = R + ((nowData.last() - referencePastData[i].average()) / float(referencePastPeriods[i]))
+            R3 = R3 + ((nowData.last() - referencePastData[i].average()) / float(referencePastPeriods[i]))
             # R4 - Current vs. reference period's last
-            R = R + ((nowData.Last() - referencePastData[i].Last()) / float(referencePastPeriods[i]))
-            R4 = R4 + ((nowData.Last() - referencePastData[i].Last()) / float(referencePastPeriods[i]))
+            R = R + ((nowData.last() - referencePastData[i].last()) / float(referencePastPeriods[i]))
+            R4 = R4 + ((nowData.last() - referencePastData[i].last()) / float(referencePastPeriods[i]))
             # R5 - Compare the current data's range (i.e max - min) to the past data
             if (R < 0):
-                R = R - ((abs(nowData.MaxOf(60) - nowData.MinOf(60)) - abs(
-                    referencePastData[i].MaxOf(60) - referencePastData[i].MinOf(60))) / float(referencePastPeriods[i]))
-                R5 = R5 - ((abs(nowData.MaxOf(60) - nowData.MinOf(60)) - abs(
-                    referencePastData[i].MaxOf(60) - referencePastData[i].MinOf(60))) / float(referencePastPeriods[i]))
+                R = R - ((abs(nowData.max_of(60) - nowData.min_of(60)) - abs(
+                    referencePastData[i].max_of(60) - referencePastData[i].min_of(60))) / float(referencePastPeriods[i]))
+                R5 = R5 - ((abs(nowData.max_of(60) - nowData.min_of(60)) - abs(
+                    referencePastData[i].max_of(60) - referencePastData[i].min_of(60))) / float(referencePastPeriods[i]))
             # R6 - Compare the current data's range (i.e max - min) to the past data
             if (R > 0):
-                R = R + ((abs(nowData.MaxOf(60) - nowData.MinOf(60)) - abs(
-                    referencePastData[i].MaxOf(60) - referencePastData[i].MinOf(60))) / float(referencePastPeriods[i]))
-                R6 = R6 + ((abs(nowData.MaxOf(60) - nowData.MinOf(60)) - abs(
-                    referencePastData[i].MaxOf(60) - referencePastData[i].MinOf(60))) / float(referencePastPeriods[i]))
+                R = R + ((abs(nowData.max_of(60) - nowData.min_of(60)) - abs(
+                    referencePastData[i].max_of(60) - referencePastData[i].min_of(60))) / float(referencePastPeriods[i]))
+                R6 = R6 + ((abs(nowData.max_of(60) - nowData.min_of(60)) - abs(
+                    referencePastData[i].max_of(60) - referencePastData[i].min_of(60))) / float(referencePastPeriods[i]))
 
         for i in range(0, len(referencePastData)):
-            rMAX = rMAX + ((referencePastData[i].Max() / float(referencePastPeriods[i])))
+            rMAX = rMAX + ((referencePastData[i].max() / float(referencePastPeriods[i])))
 
         if (PERCENT_MODE):
-            return R / rMAX * 100
+            RES = R / rMAX * 100
+            if RES > 300:
+                RES = 300
+            if RES < -300:
+                RES = -300
+
+            # "Normalize" the response to -100 - 100 range
+            RES = RES / 3
+            return RES
         else:
             return R
 
-    def fetch_raw_data(self):
-        pass
+    def metrics_discoverer(self, metrics_pattern):
+        if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
+            return
+
+        else:
+            DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = True
+
+        metrics_pattern_real_path = os.path.join(METRIC_PATH, metrics_pattern.replace(".", "/")) + ".wsp"
+
+        raw_metrics_list = glob.glob(metrics_pattern_real_path, recursive=True)
+        res = []
+        for metric_file in raw_metrics_list:
+            metric_base_path = METRIC_PATH
+            if not metric_base_path.endswith("/"):
+                metric_base_path = metric_base_path + "/"
+            res.append(metric_file.replace(metric_base_path, "").replace("/", "."))
+
+        METRICS_CACHE[metrics_pattern] = res
+        DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
 
     @get('/smart-onion/get-anomaly-score/<metric_name>')
     def get_anomaly_score(metric_name, cur_time=None, ref_periods=None):
+        res = 0
+
+        if "cur_time" in request.query:
+            try:
+                cur_time = int(request.query["cur_time"])
+            except:
+                pass
+
+        if "ref_periods" in request.query:
+            ref_periods = request.query["ref_periods"]
+
         anomaly_detector = AnomalyDetector()
 
         metric_phys_path = os.path.join(METRIC_PATH, (metric_name.replace(".", "/")) + ".wsp")
-        if cur_time is None:
+        if cur_time is None or cur_time <= 0:
             cur_time_epoch = int(time.time())
         else:
             cur_time_epoch = cur_time
+
+        if ref_periods is None or not re.match("^([0-9][0-9\,]+[0-9]|[0-9]+)$", ref_periods):
+            reference_past_periods = ref_periods.split(",")
+        else:
+            reference_past_periods = REFERENCE_PAST_SAMPLES.split(",")
 
         now_end_epoch = cur_time_epoch
         now_start_epoch = now_end_epoch - TIMESPAN_IN_SEC
 
         # Verifying that the whisper file at the given location actually exists
-        if (not os.path.isfile(metric_phys_path)):
+        if not os.path.isfile(metric_phys_path):
             raise Exception("Could not find a metric file by the name specified.")
 
         now_raw_data = whisper.fetch(path=metric_phys_path, fromTime=now_start_epoch, untilTime=now_end_epoch)
-        now_data = anomaly_detector.NormalizeData(now_raw_data[1])
+        now_data = anomaly_detector.normalize_data(now_raw_data[1])
 
         # Getting reference past data and normalizing it (that is, filling the blanks with calculated values and marking the beginning and end of the data)
-        reference_past_periods = REFERENCE_PAST_SAMPLES.split(",")
         reference_past_data = []
         for i in range(0, len(reference_past_periods)):
             cur_ref_point_ends = cur_time_epoch - (TIMESPAN_IN_SEC * int(reference_past_periods[i]))
             cur_ref_point_starts = cur_ref_point_ends - TIMESPAN_IN_SEC
             cur_ref_point_raw_data = whisper.fetch(path=metric_phys_path, fromTime=cur_ref_point_starts, untilTime=cur_ref_point_ends)
-            cur_ref_point_data = anomaly_detector.NormalizeData(cur_ref_point_raw_data)
+            cur_ref_point_data = anomaly_detector.normalize_data(cur_ref_point_raw_data)
             reference_past_data.append(cur_ref_point_data)
 
         # Calculating the amount of datapoints that should be discarded from the end and beginning of all datasets
@@ -237,23 +284,50 @@ class AnomalyDetector:
         if now_data.trimmedToEnd > trim_all_ends_to:
             trim_all_ends_to = now_data.trimmedToEnd
 
-        if now_data.Count() == 0:
-            return "@@RES: -1.111111"
+        if now_data.count() == 0:
+            res = -1.111111
 
-        # Trimming all the datasets to the same size according to what has been calculated earlier
-        for i in range(0, len(reference_past_data)):
-            del reference_past_data[i].data[(len(reference_past_data[i].data) - trim_all_ends_to):]
-            del reference_past_data[i].data[:trim_all_starts_to]
-        del now_data.data[(len(now_data.data) - trim_all_ends_to):]
-        del now_data.data[:trim_all_starts_to]
+        if res == 0:
+            # Trimming all the datasets to the same size according to what has been calculated earlier
+            for i in range(0, len(reference_past_data)):
+                del reference_past_data[i].data[(len(reference_past_data[i].data) - trim_all_ends_to):]
+                del reference_past_data[i].data[:trim_all_starts_to]
+            del now_data.data[(len(now_data.data) - trim_all_ends_to):]
+            del now_data.data[:trim_all_starts_to]
 
-        # Break here if there's no past data available
-        reference_past_periods = REFERENCE_PAST_SAMPLES.split(",")
-        for i in range(0, len(reference_past_data)):
-            if reference_past_data[i].Count() < now_data.Count() or reference_past_data[i].Count() == 0:
-                return "@@RES: -1.222222"
+            # Break here if there's no past data available
+            reference_past_periods = REFERENCE_PAST_SAMPLES.split(",")
+            for i in range(0, len(reference_past_data)):
+                if reference_past_data[i].count() < now_data.count() or reference_past_data[i].count() == 0:
+                    res = -1.222222
+                    break
 
-        return "@@RES: " + str(anomaly_detector.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data))
+        if res == 0:
+            res = anomaly_detector.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
+            if res > 90:
+                anomaly_detector.report_anomaly(metric=metric_name, anomaly_info={"anomaly_score": res})
+
+        try:
+            AnomalyDetector().statsd_client.gauge(metrics_prefix + "." + metric_name, res)
+        except:
+            pass
+        
+        return "@@RES: " + str(res)
+
+    @get('/smart-onion/discover-metrics/<metric_pattern>')
+    def discover_metrics(metric_pattern):
+        anomaly_detector = AnomalyDetector()
+        metrics_discoverer_thread = threading.Thread(target=anomaly_detector.metrics_discoverer, args=[metric_pattern])
+        metrics_discoverer_thread.start()
+
+        if metric_pattern in METRICS_CACHE:
+            res = {
+                "data": METRICS_CACHE[metric_pattern]
+            }
+            return '@@RES: ' + json.dumps(res)
+        else:
+            return '@@RES: {"data":[]}'
+        pass
 
 
 

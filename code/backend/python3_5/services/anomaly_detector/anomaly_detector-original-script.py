@@ -315,7 +315,7 @@ if (VERBOSE):
                                                                                                          "-" * 15)
     print
     "+{0:<50} | {1:<15} | {2:<15} | {3:<15} | {4:<15} | {5:<15} | {6:<15} | {7:<15} | {8:<15} | {9:<15} |".format(
-        "Ref#", "Max", "Min", "Avg", "Max(60)", "Min(60)", "Avg(60)", "Count", "Last", "HourRange")
+        "Ref#", "max", "min", "Avg", "max(60)", "min(60)", "Avg(60)", "count", "last", "HourRange")
     for i in range(0, len(referencePastData)):
         print
         "+{0:<50} | {1:15} | {2:15} | {3:15} | {4:15} | {5:15} | {6:15} | {7:15} | {8:15} | {9:15} |".format(
