@@ -19,6 +19,8 @@ import os
 import socket
 import threading
 import importlib
+import json
+import urllib
 import statsd
 from threading import Lock
 from os.path import dirname
@@ -400,6 +402,7 @@ class MetricsRealtimeAnalyzer:
             if clientsocket:
                 clientsocket.close()
 
+
 ip = ''
 port = 3000
 proto = "TCP"
@@ -408,6 +411,39 @@ save_interval=60
 models_save_base_path=None
 models_params_base_path=None
 anomaly_likelihood_detectors_save_base_path=None
+
+script_path = os.path.dirname(os.path.realpath(__file__))
+config_file_default_path = "/etc/smart-onion/"
+settings_file_name = "metrics_analyzer_settings.json"
+settings_file = os.path.join(config_file_default_path, settings_file_name)
+settings = None
+try:
+    with open(settings_file, "r") as settings_file_obj:
+        settings = json.loads(settings_file_obj.read())
+
+    configurator_host = settings["smart-onion.config.architecture.configurator.listening-host"]
+    configurator_port = int(settings["smart-onion.config.architecture.configurator.listening-port"])
+    configurator_proto = settings["smart-onion.config.architecture.configurator.protocol"]
+except:
+    configurator_host = "127.0.0.1"
+    configurator_port = 9003
+    configurator_proto = "http"
+
+try:
+    # Contact configurator to fetch all of our config and configure listen-ip and port
+    configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
+    configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
+    configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
+    config_copy = json.loads(configurator_response)
+    listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host"]
+    listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics_analyzer.listening-port"]
+    proto = config_copy["smart-onion.config.architecture.internal_services.backend.metrics_analyzer.protocol"]
+    connections_backlog = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.connection-backlog"])
+    save_interval = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.save_interval"])
+except:
+    listen_ip = "127.0.0.1"
+    listen_port = 9004
+
 utils = Utils()
 
 try:

@@ -1,0 +1,21 @@
+# These are the python2.7 packages that are required by this project
+sys
+bottle
+urllib
+datetime
+json
+base64
+elasticsearch
+re
+os
+statsd
+dateutil
+hashlib
+editdistance
+nltk
+PIL
+imagehash
+homoglyphs
+whisper
+glob
+threading

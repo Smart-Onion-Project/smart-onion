@@ -48,3 +48,20 @@ https://drive.google.com/open?id=1uol2G02WjjUFv614DC3KC6wPoMR6qUZm
 
 For an interactive architectural diagram with more details see this Prezi presentation here:
 https://prezi.com/p/sehmdjyc4-kv/
+
+# Setup
+To install the smart-onion you'll need to following steps (at the moment the system can be installed on a single server only):
+0. Install an Ubuntu 16.04 server (Create disks for OS, swap, /tmp, /var/log, metrics, models & model_params & anomaly_likelihood_calcs. Preferably store metrics and models and anomaly_likelihood_calcs on fast dists such as SSDs)
+1. Install Zabbix from https://www.zabbix.com/
+2. Install Python3.5 and Python2.7
+3. Install Git
+4. Install Graphite
+5. Install StatsD
+6. Install Kafka (will be needed in future versions)
+7. Install python2.7 requirements file using pip
+8. Install python3.5 requirements file using pip
+9. Clone git repo
+10. Create systemD unit files for the various services and enable them (add them to the project \-; )
+11. Reboot or start the services (configure whatever needed via the configurator hard-coded config)
+12. Put your knees together and pray... <-;
+

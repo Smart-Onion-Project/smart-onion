@@ -1,0 +1,18 @@
+# These are the python2.7 packages that are required by this project
+nupic
+yaml
+time
+os
+socket
+threading
+importlib
+json
+urllib
+statsd
+threading
+datetime
+whisper
+re
+glob
+bottle
+base64

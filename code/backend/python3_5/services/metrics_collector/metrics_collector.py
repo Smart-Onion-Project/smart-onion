@@ -14,7 +14,8 @@
 
 
 import sys
-from bottle import route, run, template, get, request
+from bottle import Bottle, request
+from urllib import request as urllib_req
 import datetime
 import json
 import base64
@@ -35,6 +36,7 @@ import homoglyphs
 DEBUG = True
 elasticsearch_server = "127.0.0.1"
 metrics_prefix = "smart-onion"
+config_copy = {}
 
 class QueryNameNotFoundOrOfWrongType(Exception):
     pass
@@ -283,21 +285,37 @@ class Utils:
         return homoglyphs_found / len(cur_value_to_compare_to) * 100
 
 
-class SmartOnionSampler:
+class MetricsCollector:
     queries = {}
     es = Elasticsearch(hosts=[elasticsearch_server], timeout=30)
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
+    _learned_net_info = None
 
-    def __init__(self):
-       pass
+    def __init__(self, listen_ip, listen_port, learned_net_info):
+        self._host = listen_ip
+        self._port = listen_port
+        self._learned_net_info = learned_net_info
+        self._app = Bottle()
+        self._route()
 
-    def run(self, listen_ip, listen_port, config_file):
+    def _route(self):
+        self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
+        self._app.route('/smart-onion/test-similarity/<queryname>', method="GET", callback=self.get_similarity)
+        self._app.route('/smart-onion/get-length/<queryname>', method="GET", callback=self.get_length)
+        self._app.route('/smart-onion/get-length_b64/<queryname>', method="GET", callback=self.get_length_b64)
+        self._app.route('/smart-onion/query-count/<queryname>', method="GET", callback=self.queryCount)
+        self._app.route('/smart-onion/list-hash/<queryname>', method="GET", callback=self.list_hash)
+        self._app.route('/smart-onion/discover/<queryname>', method="GET", callback=self.discover)
+        self._app.route('/smart-onion/dump_queries', method="GET", callback=self.dump_queries)
+        self._app.route('/test/similarity/<algo>/<s1>/<s2>', method="GET", callback=self.test_similarity)
+
+    def run(self, config_file):
         with open(config_file, 'r') as config_file_obj:
-            SmartOnionSampler.queries = json.load(config_file_obj)
+            self.queries = json.load(config_file_obj)
         if DEBUG:
-           run(host=listen_ip, port=listen_port)
+            self._app.run(host=self._host, port=self._port)
         else:
-           run(host=listen_ip, port=listen_port, server="gunicorn", workers=32)
+            self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
 
     def GetQueryTimeRange(self, query_details):
         if DEBUG:
@@ -319,13 +337,38 @@ class SmartOnionSampler:
             "time_range": time_range
         }
 
-    @get('/smart-onion/field-query/<queryname>')
-    def fieldQuery(queryname):
-        query_details = SmartOnionSampler.queries[queryname]
+    def resolve_placeholders_in_query(self, raw_query):
+        mode = 0
+        res_str = ""
+        cur_conf_item = ""
+        for char in raw_query:
+            if char == "{":
+                mode = 1
+            elif char == "#" and mode == 1:
+                mode = 2
+                continue
+            elif char == "}" and mode == 2:
+                mode = 0
+                if cur_conf_item in self._learned_net_info:
+                    if isinstance(self._learned_net_info[cur_conf_item], list):
+                        res_str = res_str + " ".join(str(x) for x in self._learned_net_info[cur_conf_item])
+                    else:
+                        res_str = res_str + str(self._learned_net_info[cur_conf_item])
+                cur_conf_item = ""
+            elif mode == 0:
+                res_str = res_str + char
+
+            if mode == 2:
+                cur_conf_item = cur_conf_item + char
+
+        return res_str
+
+    def fieldQuery(self, queryname):
+        query_details = self.queries[queryname]
         if query_details["type"] != "FIELD_QUERY":
             raise QueryNameNotFoundOrOfWrongType()
 
-        now, time_range, yesterday = SmartOnionSampler().GetQueryTimeRange(query_details)
+        now, time_range, yesterday = self.GetQueryTimeRange(query_details)
         metric_name = query_details["metric_name"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
         metric_name = metric_name.replace("{{#query_name}}", queryname)
         query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
@@ -349,13 +392,13 @@ class SmartOnionSampler:
         query_body = {
                     "query":{
                         "query_string": {
-                            "query": query_string
+                            "query": self.resolve_placeholders_in_query(query_string)
                         }
                     }
                 }
 
         try:
-            res = SmartOnionSampler().es.search(
+            res = self.es.search(
                 index=query_index,
                 body=query_body,
                 size=1
@@ -367,19 +410,18 @@ class SmartOnionSampler:
 
         if Utils().is_number(raw_res):
             try:
-                metric_object = SmartOnionSampler().statsd_client.gauge(metric_name, raw_res)
+                metric_object = self.statsd_client.gauge(metric_name, raw_res)
             except:
                 pass
 
         return res
 
-    @get('/smart-onion/test-similarity/<queryname>')
-    def get_similarity(queryname):
-        query_details = SmartOnionSampler.queries[queryname]
+    def get_similarity(self, queryname):
+        query_details = self.queries[queryname]
         if query_details["type"] != "SIMILARITY_TEST":
             raise QueryNameNotFoundOrOfWrongType()
 
-        time_range_args = SmartOnionSampler().GetQueryTimeRange(query_details)
+        time_range_args = self.GetQueryTimeRange(query_details)
         yesterday = time_range_args["yesterday"]
         now = time_range_args["now"]
         last_month = time_range_args["last_month"]
@@ -416,7 +458,7 @@ class SmartOnionSampler:
             "size": 0,
             "query": {
                 "query_string": {
-                    "query": query_list_to_test_similarity_to
+                    "query": self.resolve_placeholders_in_query(query_list_to_test_similarity_to)
                 }
             },
             "aggs": {
@@ -436,7 +478,7 @@ class SmartOnionSampler:
         try:
             print("Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'")
             raw_res = ""
-            res = SmartOnionSampler().es.search(
+            res = self.es.search(
                 index=query_index,
                 body=query_list_to_test_similarity_to_query_body
             )
@@ -483,21 +525,18 @@ class SmartOnionSampler:
 
         return res
 
-    @get('/smart-onion/get-length/<queryname>')
-    def get_length(queryname):
+    def get_length(self, queryname):
         return str(len(queryname))
 
-    @get('/smart-onion/get-length_b64/<queryname>')
-    def get_length_b64(queryname):
+    def get_length_b64(self, queryname):
         return str(len(base64.b64decode(queryname.encode("utf-8")).decode("utf-8")))
 
-    @get('/smart-onion/query-count/<queryname>')
-    def queryCount(queryname):
-        query_details = SmartOnionSampler.queries[queryname]
+    def queryCount(self, queryname):
+        query_details = self.queries[queryname]
         if query_details["type"] != "QUERY_COUNT":
             raise QueryNameNotFoundOrOfWrongType()
 
-        time_range_args = SmartOnionSampler().GetQueryTimeRange(query_details)
+        time_range_args = self.GetQueryTimeRange(query_details)
         yesterday = time_range_args["yesterday"]
         now = time_range_args["now"]
         time_range = time_range_args["time_range"]
@@ -527,7 +566,7 @@ class SmartOnionSampler:
         query_body = {
                     "query":{
                         "query_string": {
-                            "query": query_string
+                            "query": self.resolve_placeholders_in_query(query_string)
                         }
                     }
             }
@@ -543,7 +582,7 @@ class SmartOnionSampler:
                 },
                 "query": {
                     "query_string": {
-                        "query": query_string
+                        "query": self.resolve_placeholders_in_query(query_string)
                     }
                 }
 
@@ -553,13 +592,13 @@ class SmartOnionSampler:
             print("Running query: `" + json.dumps(query_body) + "'")
             raw_res = ""
             if count_unique_values_in != None:
-                res = SmartOnionSampler().es.search(
+                res = self.es.search(
                     index=query_index,
                     body=query_body
                 )
                 raw_res = res['aggregations']["unique_count"]["value"]
             else:
-                res = SmartOnionSampler().es.count(
+                res = self.es.count(
                     index=query_index,
                     body=query_body
                 )
@@ -571,19 +610,18 @@ class SmartOnionSampler:
 
         if Utils().is_number(raw_res):
             try:
-                metric_object = SmartOnionSampler().statsd_client.gauge(metric_name, raw_res)
+                metric_object = self.statsd_client.gauge(metric_name, raw_res)
             except:
                 pass
 
         return res
 
-    @get('/smart-onion/list-hash/<queryname>')
-    def list_hash(queryname):
-        query_details = SmartOnionSampler.queries[queryname]
+    def list_hash(self, queryname):
+        query_details = self.queries[queryname]
         if query_details["type"] != "LIST_HASH":
             raise QueryNameNotFoundOrOfWrongType()
 
-        time_range_args = SmartOnionSampler().GetQueryTimeRange(query_details)
+        time_range_args = self.GetQueryTimeRange(query_details)
         yesterday = time_range_args["yesterday"]
         now = time_range_args["now"]
         time_range = time_range_args["time_range"]
@@ -611,7 +649,7 @@ class SmartOnionSampler:
                     "size": 0,
                     "query":{
                         "query_string": {
-                            "query": query_string
+                            "query": self.resolve_placeholders_in_query(query_string)
                         }
                     },
                     "aggs":{
@@ -633,7 +671,7 @@ class SmartOnionSampler:
             agg = agg["field_values" + str(i)]["aggs"]
 
         try:
-            res = SmartOnionSampler().es.search(
+            res = self.es.search(
                 index=query_index,
                 body=query_body
             )
@@ -647,13 +685,12 @@ class SmartOnionSampler:
 
         return res
 
-    @get('/smart-onion/discover/<queryname>')
-    def discover(queryname):
-        query_details = SmartOnionSampler.queries[queryname]
+    def discover(self, queryname):
+        query_details = self.queries[queryname]
         if query_details["type"] != "LLD":
             raise QueryNameNotFoundOrOfWrongType()
 
-        time_range_args = SmartOnionSampler().GetQueryTimeRange(query_details)
+        time_range_args = self.GetQueryTimeRange(query_details)
         yesterday = time_range_args["yesterday"]
         now = time_range_args["now"]
         time_range = time_range_args["time_range"]
@@ -683,7 +720,6 @@ class SmartOnionSampler:
             else:
                 break
 
-
         query_string = "(" + query_base + ") AND @timestamp:[" + time_range + "]"
         agg_on_field_list = str.split(agg_on_field, ",")
 
@@ -691,7 +727,7 @@ class SmartOnionSampler:
                     "size": 0,
                     "query":{
                         "query_string": {
-                            "query": query_string
+                            "query": self.resolve_placeholders_in_query(query_string)
                         }
                     },
                     "aggs":{
@@ -713,7 +749,7 @@ class SmartOnionSampler:
             agg = agg["field_values" + str(i)]["aggs"]
 
         try:
-            res = SmartOnionSampler().es.search(
+            res = self.es.search(
                 index=query_index,
                 body=query_body
             )
@@ -730,12 +766,10 @@ class SmartOnionSampler:
 
         return res
 
-    @get('/smart-onion/dump_queries')
-    def dump_queries():
-        return "@@RES: " + json.dumps(SmartOnionSampler.queries)
+    def dump_queries(self):
+        return "@@RES: " + json.dumps(self.queries)
 
-    @get('/test/similarity/<algo>/<s1>/<s2>')
-    def test_similarity(algo, s1, s2):
+    def test_similarity(self, algo, s1, s2):
         utils = Utils()
         res = "ERROR_UNKNOWN_ALGO"
         try:
@@ -755,11 +789,36 @@ class SmartOnionSampler:
             return "@@EX: " + str(ex)
 
 script_path = os.path.dirname(os.path.realpath(__file__))
-listen_ip = "127.0.0.1"
-listen_port = 8080
 config_file_name = "queries.json"
 config_file_default_path = "/etc/smart-onion/"
 config_file = os.path.join(config_file_default_path, config_file_name)
+settings_file_name = "metrics_collector_settings.json"
+settings_file = os.path.join(config_file_default_path, settings_file_name)
+settings = None
+try:
+    with open(settings_file, "r") as settings_file_obj:
+        settings = json.loads(settings_file_obj.read())
+
+    configurator_host = settings["smart-onion.config.architecture.configurator.listening-host"]
+    configurator_port = int(settings["smart-onion.config.architecture.configurator.listening-port"])
+    configurator_proto = settings["smart-onion.config.architecture.configurator.protocol"]
+except:
+    configurator_host = "127.0.0.1"
+    configurator_port = 9003
+    configurator_proto = "http"
+
+try:
+    # Contact configurator to fetch all of our config and configure listen-ip and port
+    configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
+    configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
+    configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+    config_copy = json.loads(configurator_response)
+    listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-host"]
+    listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-port"]
+except:
+    listen_ip = "127.0.0.1"
+    listen_port = 9000
+
 config_file_specified_on_cmd = False
 if len(sys.argv) > 1:
     for arg in sys.argv:
@@ -775,7 +834,7 @@ if len(sys.argv) > 1:
 
             if arg_name == "--elasticsearch_server":
                 if not re.match("[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+", arg_value):
-                    print("EEROR: The --listen-ip must be a valid IPv4 address.  Using default of " + str(elasticsearch_server) + " (hardcoded)")
+                    print("ERROR: The --listen-ip must be a valid IPv4 address.  Using default of " + str(elasticsearch_server) + " (hardcoded)")
                 else:
                     elasticsearch_server = arg_value
 
@@ -807,6 +866,15 @@ if not os.path.isfile(config_file):
     print ("ERROR: Failed to find the config file in both " + config_file_default_path + " and " + script_path + " (script location)")
     quit(9)
 
+learned_net_info = None
+while learned_net_info is None:
+    try:
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.dynamic.learned.*"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        learned_net_info = json.loads(configurator_response)
+    except:
+        print("WARN: Waiting (indefinetly) for the Configurator service to become available...")
+
 sys.argv = [sys.argv[0]]
-SmartOnionSampler().run(listen_ip=listen_ip, listen_port=listen_port, config_file=config_file)
+MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info).run(config_file=config_file)
 

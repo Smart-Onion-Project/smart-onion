@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../.idea/dictionaries/yuval.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../python3_5/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user__OLD__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/test_data/rec-center-hourly.csv" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/test_data/rec-center-hourly.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector-original-script.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector-original-script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../docs/Edit_distance_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docs/Edit_distance_Wiki.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../docs/overview-of-text-similarity-metrics-3397c4601f50.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docs/overview-of-text-similarity-metrics-3397c4601f50.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/docs/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/zbx_sampling_template.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,77 +25,34 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-993061676">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="36" />
-          <entry key="project.open.time.0" value="4" />
-          <entry key="project.open.time.1" value="3" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.5" value="8" />
-          <entry key="project.open.time.6" value="12" />
-          <entry key="project.open.time.7" value="11" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="40" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="createModel" value="2" />
-          <entry key="csv" value="1" />
-          <entry key="py" value="37" />
-          <entry key="pyi" value="1" />
-          <entry key="yaml" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="39" />
-          <entry key="PythonStub" value="1" />
-          <entry key="YAML" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="dummy" value="52" />
-          <entry key="py" value="10818" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="52" />
-          <entry key="Python" value="10818" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-378">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="5122">
+              <caret line="408" column="24" selection-start-line="408" selection-start-column="24" selection-end-line="408" selection-end-column="24" />
+              <folding>
+                <element signature="e#922#932#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/services/alerter/alerter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py">
+        <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="828">
-              <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/frameworks/opf/htm_prediction_model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3258">
-              <caret line="204" column="12" selection-start-line="204" selection-start-column="12" selection-end-line="204" selection-end-column="12" />
+            <state relative-caret-position="585">
+              <caret line="49" column="98" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -129,13 +93,15 @@
         <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/default.yaml" />
         <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.yaml" />
         <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py" />
+        <option value="$PROJECT_DIR$/services/configurator/configurator.py" />
+        <option value="$PROJECT_DIR$/services/alerter/alerter.py" />
         <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="1910" />
+    <option name="width" value="1900" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -161,43 +127,19 @@
               <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
               <item name="python2_7" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="alerter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="configurator" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
               <item name="python2_7" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
               <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="anomaly_likelihood_calculators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="data_model_params" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="data_model_params" type="462c0819:PsiDirectoryNode" />
-              <item name="brute_force" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="data_models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
-              <item name="test_data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -278,13 +220,13 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24841772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25105485" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34906697" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956093" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34868422" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -296,12 +238,40 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24841772" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34868422" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3991228" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py</url>
+          <line>482</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py</url>
+          <line>420</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -428,13 +398,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user__OLD__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user__OLD__.py" />
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
@@ -498,13 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
@@ -516,6 +473,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3258">
           <caret line="204" column="12" selection-start-line="204" selection-start-column="12" selection-end-line="204" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/alerter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5122">
+          <caret line="408" column="24" selection-start-line="408" selection-start-column="24" selection-end-line="408" selection-end-column="24" />
+          <folding>
+            <element signature="e#922#932#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="49" column="98" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/alerter/alerter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
         </state>
       </provider>
     </entry>
