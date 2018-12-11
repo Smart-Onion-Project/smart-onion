@@ -62,6 +62,9 @@ To install the smart-onion you'll need to following steps (at the moment the sys
 8. Install python3.5 requirements file using pip
 9. Clone git repo
 10. Create systemD unit files for the various services and enable them (add them to the project \-; )
-11. Reboot or start the services (configure whatever needed via the configurator hard-coded config)
-12. Put your knees together and pray... <-;
+11. Configure StatsD
+12. Import Zabbix template and assign it to the local server
+13. Configure whatever needed via the configurator hard-coded config
+14. Reboot or start the services
+15. Put your knees together and pray... <-;
 
