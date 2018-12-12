@@ -1,0 +1,12 @@
+[Unit]
+Description=Smart-Onion Alerter Service
+After=smart-onion-configurator.service
+
+[Service]
+Type=simple
+User=smartonion_services
+Group=smartonion_services
+ExecStart=/opt/smart-onion/code/backend/python2_7/services/alerter/alerter.py
+
+[Install]
+WantedBy=multi-user.target

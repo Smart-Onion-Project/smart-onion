@@ -1,0 +1,12 @@
+[Unit]
+Description=Smart-Onion Anomaly-Detector Service
+After=smart-onion-configuration.service
+
+[Service]
+Type=simple
+User=smartonion_services
+Group=smartonion_services
+ExecStart=/opt/smart-onion/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py
+
+[Install]
+WantedBy=multi-user.target

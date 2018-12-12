@@ -1,0 +1,16 @@
+# This is /etc/systemd/system/graphite-api.service
+[Unit]
+Description=Graphite-API service
+Requires=graphite-api.socket
+
+[Service]
+ExecStart=/usr/bin/gunicorn -w2 graphite_api.app:app
+Restart=on-failure
+User=graphite
+Group=graphite
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

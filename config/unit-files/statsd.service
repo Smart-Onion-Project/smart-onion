@@ -1,0 +1,11 @@
+[Unit]
+Description=network daemon to collect metrics
+
+[Service]
+User=statsd
+Type=simple
+ExecStart=/usr/bin/node /opt/statsd/stats.js /opt/statsd/config.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.targe

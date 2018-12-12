@@ -1,0 +1,12 @@
+[Unit]
+Description=Smart-Onion Metrics-Collector Service
+After=smart-onion-configurator.service
+
+[Service]
+Type=simple
+User=smartonion_services
+Group=smartonion_services
+ExecStart=/opt/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py --elasticsearch_server=10.253.0.172
+
+[Install]
+WantedBy=multi-user.target

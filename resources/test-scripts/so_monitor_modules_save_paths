@@ -1,0 +1,3 @@
+#!/bin/bash
+
+watch "du -x -h -d1 ~/MYTREE_ext_disk/Programming\ Projects/Python\ Projects/smart-onion/code/backend/python2_7/services/metrics_analyzer/ | sed 's/\/home\/yuval\/MYTREE_ext_disk\/Programming Projects\/Python Projects\/smart\-onion\/code\/backend\/python2_7\/services\/metrics_analyzer\///g' | grep -E '(data_model_params|data_models|anomaly_likelihood_calculators)'"

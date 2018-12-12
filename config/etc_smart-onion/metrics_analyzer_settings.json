@@ -1,0 +1,5 @@
+{
+	"smart-onion.config.architecture.configurator.listening-host": "127.0.0.1",
+	"smart-onion.config.architecture.configurator.listening-port": 9003,
+	"smart-onion.config.architecture.configurator.protocol": "http"
+}

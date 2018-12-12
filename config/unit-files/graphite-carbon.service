@@ -1,0 +1,14 @@
+[Unit]
+Description=Graphite Carbon Server
+After=network.target
+
+[Service]
+Type = forking
+GuessMainPID = false
+PIDFile = /var/run/graphite/carbon-cache-a.pid
+ExecStart = /opt/graphite/bin/carbon-cache.py --config=/opt/graphite/conf/carbon.conf start
+User = graphite
+Group = graphite
+
+[Install]
+WantedBy = multi-user.target

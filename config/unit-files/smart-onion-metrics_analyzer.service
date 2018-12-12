@@ -1,0 +1,12 @@
+[Unit]
+Description=Smart-Onion Metrics-Analyzer Service
+After=smart-onion-configurator.service
+
+[Service]
+Type=simple
+User=smartonion_services
+Group=smartonion_services
+ExecStart=/opt/smart-onion/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py --models-save-base-path=/metrics/nupic/models/ --models-params-base-path=/metrics/nupic/model_params/ --anomaly_likelihood_detectors_save_base_path=/metrics/nupic/anomaly_likelihood_calcs/
+
+[Install]
+WantedBy=multi-user.target

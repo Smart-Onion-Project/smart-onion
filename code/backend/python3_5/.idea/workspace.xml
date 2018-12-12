@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/alerter.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/anomaly_detector.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/metrics_analyzer_settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/metrics_collector.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/queries.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/graphite-api.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/graphite-api.socket" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/graphite-carbon.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/kafka-server.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-alerter.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-anomaly_detector.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-configurator.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_analyzer.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/statsd.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/zbx_sampling_template.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +120,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1900" height="1053" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24466951" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/yuval.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python3_5/requirements.txt" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Added unit files and sample configs">
+      <change afterPath="$PROJECT_DIR$/config/etc_smart-onion/alerter.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/etc_smart-onion/anomaly_detector.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/etc_smart-onion/metrics_analyzer_settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/etc_smart-onion/metrics_collector.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/etc_smart-onion/queries.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/graphite-api.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/graphite-api.socket" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/graphite-carbon.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/kafka-server.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/smart-onion-alerter.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/smart-onion-anomaly_detector.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/smart-onion-configurator.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/unit-files/statsd.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/smart-onion-architecture.jpg/untitled_page.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/smart-onion.epgz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so_monitor_modules_save_paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so_monitor_port" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so_send_data" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user__OLD__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/test_data/rec-center-hourly.csv" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/test_data/rec-center-hourly.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/zbx_sampling_template.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1794">
-              <caret line="138" column="54" selection-start-line="138" selection-start-column="3" selection-end-line="138" selection-end-column="54" />
+            <state relative-caret-position="507">
+              <caret line="150" column="21" lean-forward="true" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -43,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="65">
-              <caret line="5" column="74" lean-forward="true" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
+              <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
               </folding>
@@ -64,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="429">
-              <caret line="33" column="17" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="33" selection-end-column="17" />
+              <caret line="33" column="17" selection-start-line="15" selection-start-column="7" selection-end-line="33" selection-end-column="17" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -75,57 +83,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="1881" column="24" selection-start-line="1881" selection-start-column="24" selection-end-line="1881" selection-end-column="24" />
-              <folding>
-                <element signature="n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#applications#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="e#1221#1227#0" expanded="true" />
-                <element signature="e#1238#1244#0" expanded="true" />
-                <element signature="e#1246#1252#0" expanded="true" />
-                <element signature="e#1254#1260#0" expanded="true" />
-                <element signature="e#2741#20038#0" />
-                <element signature="e#3102#3108#0" expanded="true" />
-                <element signature="e#3119#3125#0" expanded="true" />
-                <element signature="e#3127#3133#0" expanded="true" />
-                <element signature="e#3135#3141#0" expanded="true" />
-                <element signature="e#4222#6415#0" />
-                <element signature="e#4609#4615#0" expanded="true" />
-                <element signature="e#4626#4632#0" expanded="true" />
-                <element signature="e#4634#4640#0" expanded="true" />
-                <element signature="e#4642#4648#0" expanded="true" />
-                <element signature="e#9078#9084#0" expanded="true" />
-                <element signature="e#9086#9092#0" expanded="true" />
-                <element signature="e#20055#23941#0" />
-                <element signature="e#23958#39086#0" />
-                <element signature="e#37067#37073#0" expanded="true" />
-                <element signature="e#39103#47419#0" />
-                <element signature="e#43144#43150#0" expanded="true" />
-                <element signature="e#47436#62628#0" />
-                <element signature="e#49255#49261#0" expanded="true" />
-                <element signature="e#49272#49278#0" expanded="true" />
-                <element signature="e#49280#49286#0" expanded="true" />
-                <element signature="e#49288#49294#0" expanded="true" />
-                <element signature="e#51490#51496#0" expanded="true" />
-                <element signature="e#75851#75856#0" expanded="true" />
-                <element signature="e#78130#78135#0" expanded="true" />
-                <element signature="e#78169#78175#0" expanded="true" />
-                <element signature="e#78186#78192#0" expanded="true" />
-                <element signature="e#78194#78200#0" expanded="true" />
-                <element signature="e#78202#78208#0" expanded="true" />
-                <element signature="e#87062#88746#0" />
-              </folding>
+            <state relative-caret-position="269">
+              <caret line="1749" column="32" lean-forward="true" selection-start-line="1749" selection-start-column="32" selection-end-line="1749" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="600">
-                <caret line="59" column="51" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+              <first_editor relative-caret-position="691">
+                <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
               </first_editor>
               <second_editor />
             </state>
@@ -212,10 +181,10 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/requirements.txt" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
       </list>
     </option>
   </component>
@@ -342,16 +311,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/config/etc_smart-onion" />
+      <recent name="$PROJECT_DIR$/config/unit-files" />
+      <recent name="$PROJECT_DIR$/code/fonts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/code/backend/python2_7/services" />
       <recent name="$PROJECT_DIR$/code/backend/python3_5" />
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/code/backend/services" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/code/fonts" />
-      <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -675,7 +646,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543345352832</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions">
+      <created>1544504761139</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1544504761139</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions">
+      <created>1544504932303</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1544504932303</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
@@ -689,7 +674,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.19831224" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -786,7 +770,9 @@
     <MESSAGE value="Added header with details on each module.&#10;Added the basic code for the AnomalyDetector" />
     <MESSAGE value="Built the anomaly-detector micro-service" />
     <MESSAGE value="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders" />
-    <option name="LAST_COMMIT_MESSAGE" value="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders" />
+    <MESSAGE value="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions" />
+    <MESSAGE value="Added unit files and sample configs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added unit files and sample configs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1038,59 +1024,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1794">
-          <caret line="138" column="54" selection-start-line="138" selection-start-column="3" selection-end-line="138" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="1881" column="24" selection-start-line="1881" selection-start-column="24" selection-end-line="1881" selection-end-column="24" />
-          <folding>
-            <element signature="n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#applications#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="e#1221#1227#0" expanded="true" />
-            <element signature="e#1238#1244#0" expanded="true" />
-            <element signature="e#1246#1252#0" expanded="true" />
-            <element signature="e#1254#1260#0" expanded="true" />
-            <element signature="e#2741#20038#0" />
-            <element signature="e#3102#3108#0" expanded="true" />
-            <element signature="e#3119#3125#0" expanded="true" />
-            <element signature="e#3127#3133#0" expanded="true" />
-            <element signature="e#3135#3141#0" expanded="true" />
-            <element signature="e#4222#6415#0" />
-            <element signature="e#4609#4615#0" expanded="true" />
-            <element signature="e#4626#4632#0" expanded="true" />
-            <element signature="e#4634#4640#0" expanded="true" />
-            <element signature="e#4642#4648#0" expanded="true" />
-            <element signature="e#9078#9084#0" expanded="true" />
-            <element signature="e#9086#9092#0" expanded="true" />
-            <element signature="e#20055#23941#0" />
-            <element signature="e#23958#39086#0" />
-            <element signature="e#37067#37073#0" expanded="true" />
-            <element signature="e#39103#47419#0" />
-            <element signature="e#43144#43150#0" expanded="true" />
-            <element signature="e#47436#62628#0" />
-            <element signature="e#49255#49261#0" expanded="true" />
-            <element signature="e#49272#49278#0" expanded="true" />
-            <element signature="e#49280#49286#0" expanded="true" />
-            <element signature="e#49288#49294#0" expanded="true" />
-            <element signature="e#51490#51496#0" expanded="true" />
-            <element signature="e#75851#75856#0" expanded="true" />
-            <element signature="e#78130#78135#0" expanded="true" />
-            <element signature="e#78169#78175#0" expanded="true" />
-            <element signature="e#78186#78192#0" expanded="true" />
-            <element signature="e#78194#78200#0" expanded="true" />
-            <element signature="e#78202#78208#0" expanded="true" />
-            <element signature="e#87062#88746#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
@@ -1124,20 +1057,10 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="33" column="17" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="33" selection-end-column="17" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
-          <caret line="5" column="74" lean-forward="true" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
+          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
           <folding>
             <element signature="e#922#936#0" expanded="true" />
           </folding>
@@ -1154,10 +1077,43 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="600">
-            <caret line="59" column="51" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+          <first_editor relative-caret-position="691">
+            <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/graphite-api.service">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/etc_smart-onion/alerter.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/etc_smart-onion/metrics_collector.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="33" column="17" selection-start-line="15" selection-start-column="7" selection-end-line="33" selection-end-column="17" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="1749" column="32" lean-forward="true" selection-start-line="1749" selection-start-column="32" selection-end-line="1749" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="150" column="21" lean-forward="true" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
         </state>
       </provider>
     </entry>

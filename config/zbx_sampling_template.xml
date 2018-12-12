@@ -1729,7 +1729,7 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 -->
-                <!------------------------------------->
+                <!--UPDATED UNTIL HERE - YK - 2018-12-11-->
                 <discovery_rule>
                     <name>4.Discover URLs most frequently accessed from the inside</name>
                     <type>0</type>
