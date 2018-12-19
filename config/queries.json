@@ -568,6 +568,25 @@
     "base_64_used": false,
     "tags": ""
   },
+  "number_of_clients_per_dns_class_name": {
+    "query": "event_type:bro_dns AND query_class_name:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_class_name.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_class_name": {
+    "query": "event_type:bro_dns AND query_class_name:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_class_name.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
   "number_of_internal_ips_connected_to_sites_signed_by_issuer": {
     "query": "event_type:bro_x509 AND certificate_issuer:{{#arg1}}",
     "index_pattern": "logstash-*",
