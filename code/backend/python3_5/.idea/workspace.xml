@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/alerter.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/anomaly_detector.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/metrics_analyzer_settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/metrics_collector.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/etc_smart-onion/queries.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/graphite-api.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/graphite-api.socket" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/graphite-carbon.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/kafka-server.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-alerter.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-anomaly_detector.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-configurator.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_analyzer.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../config/unit-files/statsd.service" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/zbx_sampling_template.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,9 +40,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="1900" />
+    <option name="width" value="1910" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -65,7 +51,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -88,6 +73,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -119,9 +105,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1900" height="1053" extended-state="0" />
+    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24466951" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2441983" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
