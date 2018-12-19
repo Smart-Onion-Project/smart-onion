@@ -2277,11 +2277,11 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Number of external source hosts connecting to {#PUB_IP}</name>
+                            <name>Number of external source hosts connecting to internet facing servers via {#PORT}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_external_ips_connections_to_host?arg1={#PUB_IP},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_external_ips_connections_via_port?arg1={#PORT},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2361,7 +2361,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_qry_flag?arg1={#DNS_QRY_FLAG},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_qry_flag?arg1={#DNS_QRY_FLAG}&amp;comment=frequent_dns_flag,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2403,7 +2403,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_qry_flag?arg1={#DNS_QRY_FLAG},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_qry_flag?arg1={#DNS_QRY_FLAG}&amp;comment=frequent_dns_flag,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2483,7 +2483,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_qry?arg1={#DNS_REC},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_qry?arg1={#DNS_REC}&amp;comment=frequent_dns_qry,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2525,7 +2525,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_qry?arg1={#DNS_REC},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_qry?arg1={#DNS_REC}&amp;comment=frequent_dns_qry,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2605,7 +2605,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_qry?arg1={#DNS_REC},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_qry?arg1={#DNS_REC}&amp;comment=rare_dns_qry,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2647,7 +2647,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_fqdn?arg1={#DNS_REC},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_fqdn?arg1={#DNS_REC}&amp;comment=rare_dns_qry,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2689,7 +2689,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_qry?arg1={#DNS_REC},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_qry?arg1={#DNS_REC}&amp;comment=rare_dns_qry,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2769,7 +2769,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_subdomain?arg1={#DNS_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_subdomain?arg1={#DNS_SUBDOMAIN}&amp;comment=frequent_dns_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2811,7 +2811,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_subdomain?arg1={#DNS_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_subdomain?arg1={#DNS_SUBDOMAIN}&amp;comment=frequent_dns_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2891,7 +2891,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_subdomain?arg1={#DNS_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_subdomain?arg1={#DNS_SUBDOMAIN}&amp;comment=rare_dns_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2933,7 +2933,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_subdomain?arg1={#DNS_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_subdomain?arg1={#DNS_SUBDOMAIN}&amp;comment=rare_dns_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2975,7 +2975,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_subdomain?arg1={#DNS_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_subdomain?arg1={#DNS_SUBDOMAIN}&amp;comment=rare_dns_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3055,7 +3055,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld?arg1={#DNS_TLD},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld?arg1={#DNS_TLD}&amp;comment=frequent_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3097,7 +3097,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld?arg1={#DNS_TLD},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld?arg1={#DNS_TLD}&amp;comment=frequent_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3173,11 +3173,11 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Highest similarity rating of the DNS TLD query {#DNS_SUBDOMAIN} to any of the most frequently queried TLDs</name>
+                            <name>Highest similarity rating of the DNS TLD query {#DNS_TLD} to any of the most frequently queried TLDs</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_tld?arg1={#DNS_TLD},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_tld?arg1={#DNS_TLD}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3219,7 +3219,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld?arg1={#DNS_TLD},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld?arg1={#DNS_TLD}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3261,7 +3261,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld?arg1={#DNS_TLD},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld?arg1={#DNS_TLD}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3341,7 +3341,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN}&amp;comment=frequent_dns_tld_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3383,7 +3383,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN}&amp;comment=frequent_dns_tld_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3463,7 +3463,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_tld_subdomains?arg1={#DNS_TLD_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_tld_subdomains?arg1={#DNS_TLD_SUBDOMAIN}&amp;comment=rare_dns_tld_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3505,7 +3505,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN}&amp;comment=rare_dns_tld_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3547,7 +3547,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld_subdomain?arg1={#DNS_TLD_SUBDOMAIN}&amp;comment=rare_dns_tld_subdomain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3623,11 +3623,11 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Number of source hosts that used the DNS TLD subdomain{#DNS_TLD_SUBDOMAIN}</name>
+                            <name>Number of source hosts that used the DNS parent domain {#DNS_PARENT_DOMAIN}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN}&amp;comment=frequent_dns_parent_domain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3665,11 +3665,11 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Number of queries that used the DNS TLD subdomain {#DNS_TLD_SUBDOMAIN}</name>
+                            <name>Number of queries that used the DNS parent domain {#DNS_PARENT_DOMAIN}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN}&amp;comment=frequent_dns_parent_domain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3749,7 +3749,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_parent_domains?arg1={#DNS_PARENT_DOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_parent_domains?arg1={#DNS_PARENT_DOMAIN}&amp;comment=rare_dns_parent_domain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3787,11 +3787,11 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Number of source hosts that used the DNS TLD subdomain{#DNS_TLD_SUBDOMAIN}</name>
+                            <name>Number of source hosts that used the DNS parent domain {#DNS_PARENT_DOMAIN}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN}&amp;comment=rare_dns_parent_domain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3829,11 +3829,255 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Number of queries that used the DNS TLD subdomain {#DNS_TLD_SUBDOMAIN}</name>
+                            <name>Number of queries that used the DNS parent domain {#DNS_PARENT_DOMAIN}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_parent_domain?arg1={#DNS_PARENT_DOMAIN}&amp;comment=rare_dns_parent_domain,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes/>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>20.Discover most frequently queried class names</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <delay>1h</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Number of source hosts that used the DNS class name{#DNS_QRY_CLASS}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_class_name?arg1={#DNS_QRY_CLASS}&amp;comment=frequent_dns_classname,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Number of queries that used the DNS class name {#DNS_QRY_CLASS}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_class_name?arg1={#DNS_QRY_CLASS}&amp;comment=frequent_dns_classname,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes/>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>20.Discover most rarely queried class names</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <delay>1h</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Number of source hosts that used the DNS class name{#DNS_QRY_CLASS}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_class_name?arg1={#DNS_QRY_CLASS}&amp;comment=rare_dns_classname,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Number of queries that used the DNS class name {#DNS_QRY_CLASS}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_class_name?arg1={#DNS_QRY_CLASS}&amp;comment=rare_dns_classname,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3878,82 +4122,6 @@
                 </discovery_rule>
                 <!--UPDATED UNTIL HERE - YK - 2018-12-16-->
                 <!--
-                <discovery_rule>
-                    <name>20.Discover most frequently queried class names</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>20.Discover most rarely queried class names</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
                 <discovery_rule>
                     <name>21.Discover event types</name>
                     <type>0</type>
@@ -4149,44 +4317,6 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>Discover websites virtual hosts</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_website_vhost,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
                     <name>Discover websites uris</name>
                     <type>0</type>
                     <snmp_community/>
@@ -4339,462 +4469,6 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>Discover top n most frequently queried fqdns</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_fqdns,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most rarely queried fqdns</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_fqdns,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most frequently queried subdomains</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most rarely queried subdomains</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most frequently queried tlds</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_tlds,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most rarely queried tlds</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_tlds,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most frequently queried tlds subdomains</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_tld_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most rarely queried tlds subdomains</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_tld_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most frequently queried class names</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most rarely queried class names</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most frequently queried parent domains</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_parent_domains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover top n most rarely queried parent domains</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_parent_domains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
                     <name>Discover organization DNS server</name>
                     <type>0</type>
                     <snmp_community/>
@@ -4838,44 +4512,6 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_dns_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover DNS query flags</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_dns_query_flags,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
