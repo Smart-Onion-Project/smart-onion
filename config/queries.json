@@ -9,7 +9,8 @@
     "field_name": "type",
     "convert_timestamp_to_epoch": false,
     "type": "FIELD_QUERY",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "grokparsefailure_count": {
     "query": "tags:_grokparsefailure",
@@ -17,7 +18,8 @@
     "time_range": 360,
     "metric_name": "health._global.grokparsefailure_count",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "events_per_type": {
     "query": "event_type:\"{{#arg1}}\"",
@@ -25,7 +27,8 @@
     "time_range": 300,
     "metric_name": "health._global.number_of_events_per_type.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "events_per_vhost": {
     "query": "virtual_host:\"{{#arg1}}\"",
@@ -33,7 +36,8 @@
     "time_range": 300,
     "metric_name": "health._global.number_of_events_per_vhost.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "_________________________________________FIELD_QUERY_________________________________________": {
     "type": "COMMENT"
@@ -57,7 +61,8 @@
     "time_range": 3600,
     "metric_name": "host_behaviour.events_count_on_host.{{#arg1}}.{{#arg2}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "drops_per_internal_dstip": {
     "comment": "TODO: Add IPTABLES firewall logs to the elastic and then configure this metric again",
@@ -66,7 +71,8 @@
     "time_range": 300,
     "metric_name": "host_behaviour.drops_per_internal_dstip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "drops_per_internal_srcip": {
     "comment": "TODO: Add IPTABLES firewall logs to the elastic and then configure this metric again",
@@ -75,7 +81,8 @@
     "time_range": 300,
     "metric_name": "host_behaviour.drops_per_internal_srcip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_drops_per_policy": {
     "comment": "TODO: Add IPTABLES firewall logs to the elastic and then configure this metric again",
@@ -84,7 +91,8 @@
     "time_range": 300,
     "metric_name": "network_behaviour.drops_per_fw_policy.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_handle_manipulation_and_audit_events_per_host": {
     "comment": "TODO: Add events (from nxlog for example) and configure this metric again",
@@ -93,7 +101,8 @@
     "time_range": 300,
     "metric_name": "host_behaviour.number_of_handle_manipulation_and_audit_events_per_host.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_iis_log_reports_for_host_on_port": {
     "comment": "TODO: Add IIS events (from nxlog for example) and configure this metric again",
@@ -102,7 +111,8 @@
     "time_range": 300,
     "metric_name": "host_behaviour.number_of_iis_log_reports_for_host_on_port.{{#arg1}}.{{#arg3}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_iis_log_reports": {
     "comment": "TODO: Add IIS events (from nxlog for example) and configure this metric again",
@@ -111,7 +121,8 @@
     "time_range": 300,
     "metric_name": "host_behaviour.number_of_iis_log_reports.{{#arg1}}.{{#arg3}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_eicar_test_file": {
     "comment": "TODO: Add Anti-Virus logs and add script for creating the eicar file periodically and configure this metric again",
@@ -120,7 +131,8 @@
     "time_range": 300,
     "metric_name": "network_behaviour.number_of_eicar_test_file_alerts",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "_______________________________________SIMILARITY_TEST_______________________________________": {
     "type": "COMMENT"
@@ -134,7 +146,8 @@
     "type": "SIMILARITY_TEST",
     "list_order": "desc",
     "max_list_size": 50,
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "highest_similarity_to_any_top_searched_virtual_host": {
     "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_searched_virtual_host.{{#arg1}}",
@@ -145,7 +158,92 @@
     "type": "SIMILARITY_TEST",
     "list_order": "desc",
     "max_list_size": 50,
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_searched_uri": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_url.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "uri.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_accessed_cert": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_cert.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_x509",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "certificate_common_name.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_accessed_fqdn": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_fqdn.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "query.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_accessed_subdomain": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_subdomain.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "subdomain.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_accessed_tld": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_tld.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "top_level_domain.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_accessed_tld_subdomain": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_tld_subdomain.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "tld.subdomain.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
+  },
+  "highest_similarity_to_any_top_accessed_parent_domain": {
+    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_parent_domain.{{#arg1}}",
+    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "parent_domain.keyword",
+    "time_range": 86400,
+    "type": "SIMILARITY_TEST",
+    "list_order": "desc",
+    "max_list_size": 50,
+    "base_64_used": false,
+    "tags": ""
   },
   "___________________________________________METRICS___________________________________________": {
     "type": "COMMENT"
@@ -156,7 +254,8 @@
     "time_range": 300,
     "metric_name": "host_behaviour.ids_alerts_for_host.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "ids_attacks_for_host": {
     "query": "(event_type:snort AND (destination_ip:{{#arg1}} OR source_ip:{{#arg1}}) AND _exists_:priority AND priority:2) OR (event_type:bro_notice AND (destination_ip:{{#arg1}} OR source_ip:{{#arg1}}))",
@@ -164,7 +263,17 @@
     "time_range": 300,
     "metric_name": "host_behaviour.ids_attacks_for_host.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
+  },
+  "events_per_url": {
+    "query": "uri:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "health._global.number_of_events_per_uri.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
   },
   "events_per_source_ip": {
     "query": "source_ip:\"{{#arg1}}\"",
@@ -172,7 +281,8 @@
     "time_range": 300,
     "metric_name": "health._global.number_of_events_per_source_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "events_per_destination_ip": {
     "query": "destination_ip:\"{{#arg1}}\"",
@@ -180,7 +290,8 @@
     "time_range": 300,
     "metric_name": "health._global.number_of_events_per_destination_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "events_per_useragent": {
     "query": "useragent:\"{{#arg1}}\"",
@@ -188,7 +299,8 @@
     "time_range": 3600,
     "metric_name": "health._global.number_of_events_per_useragent.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": true
+    "base_64_used": true,
+    "tags": ""
   },
   "source_hosts_per_useragent": {
     "query": "useragent:\"{{#arg1}}\"",
@@ -197,7 +309,28 @@
     "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_useragent.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "source_ip"
+    "count_unique_values_in": "source_ip",
+    "tags": ""
+  },
+  "source_hosts_per_tcp_dst_port": {
+    "query": "protocol:tcp AND destination_port:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip",
+    "tags": ""
+  },
+  "source_hosts_per_udp_dst_port": {
+    "query": "protocol:udp AND destination_port:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_udp_destination_port.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip",
+    "tags": ""
   },
   "useragents_per_source_host": {
     "query": "source_ip:\"{{#arg1}}\" AND _exists_:useragent",
@@ -206,7 +339,8 @@
     "metric_name": "smart-onion.metrics.command_and_control.useragents_per_source_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "useragent"
+    "count_unique_values_in": "useragent",
+    "tags": ""
   },
   "destination_hosts_per_useragent": {
     "query": "useragent:\"{{#arg1}}\"",
@@ -215,7 +349,8 @@
     "metric_name": "smart-onion.metrics.command_and_control.destinaion_ips_per_useragent.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "destination_ip"
+    "count_unique_values_in": "destination_ip",
+    "tags": ""
   },
   "pings_from_host": {
     "query": "event_type:bro_conn AND protocol:icmp AND source_ip:{{#arg1}}",
@@ -223,7 +358,8 @@
     "time_range": 3600,
     "metric_name": "health._global.pings_from_host.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "orphan_syn_messages_from_host": {
     "query": "event_type:bro_conn AND connection_state:(\"RSTOS0\" \"S0\" \"SH\") AND source_ip:{{#arg1}}",
@@ -231,7 +367,8 @@
     "time_range": 3600,
     "metric_name": "health._global.orphan_syn_messages_from_host.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "events_per_day": {
     "query": "*",
@@ -239,7 +376,8 @@
     "time_range": 86400,
     "metric_name": "health._global.number_of_events_per_day",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "ports_used_by_host": {
     "query": "event_type:bro_conn AND source_ip:{{#arg1}}",
@@ -248,7 +386,8 @@
     "metric_name": "smart-onion.metrics.reconnaissance.ports_attempted_by_ext_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "destination_port"
+    "count_unique_values_in": "destination_port",
+    "tags": ""
   },
   "ports_used_to_host": {
     "query": "event_type:bro_conn AND destination_ip:{{#arg1}}",
@@ -257,7 +396,8 @@
     "metric_name": "smart-onion.metrics.reconnaissance.ports_attempted_to_pub_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "destination_port"
+    "count_unique_values_in": "destination_port",
+    "tags": ""
   },
   "pings_to_pub_ip": {
     "query": "event_type:bro_conn AND protocol:icmp AND destination_ip:{{#arg1}}",
@@ -266,7 +406,8 @@
     "metric_name": "smart-onion.metrics.reconnaissance.pings_to_pub_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "destination_port"
+    "count_unique_values_in": "destination_port",
+    "tags": ""
   },
   "dns_tcp_requests_per_source_ip": {
     "query": "event_type:bro_conn AND protocol:tcp AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND source_ip:{{#arg1}}",
@@ -274,7 +415,8 @@
     "time_range": 600,
     "metric_name": "smart-onion.metrics.reconnaissance.dns_tcp_requests.per_source_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "dns_tcp_requests": {
     "query": "event_type:bro_conn AND protocol:tcp AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns})",
@@ -282,7 +424,8 @@
     "time_range": 600,
     "metric_name": "smart-onion.metrics.reconnaissance.dns_tcp_requests_in_10mins",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "dns_queries_to_ip": {
     "query": "event_type:bro_dns AND destination_ip:{{#arg1}}",
@@ -290,7 +433,8 @@
     "time_range": 600,
     "metric_name": "smart-onion.metrics.network.general_health.dns_queries_to_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "dns_nxdomain_queries_to_ip": {
     "query": "event_type:bro_dns AND rcode_name:NXDOMAIN AND destination_ip:{{#arg1}}",
@@ -298,7 +442,8 @@
     "time_range": 600,
     "metric_name": "smart-onion.metrics.dga.number_of_dns_queries_responded_with_nxdmomain_per_server.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "dns_nxdomain_queries_from_ip": {
     "query": "event_type:bro_dns AND rcode_name:NXDOMAIN AND source_ip:{{#arg1}}",
@@ -306,7 +451,8 @@
     "time_range": 600,
     "metric_name": "smart-onion.metrics.dga.number_of_dns_queries_responded_with_nxdmomain_per_client.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_clients_per_dns_qry_flag": {
     "query": "event_type:bro_dns AND query_type_name:{{#arg1}}",
@@ -315,7 +461,112 @@
     "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_qry_flag.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "source_ip.keyword"
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_qry_flag": {
+    "query": "event_type:bro_dns AND query_type_name:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_qry_flag.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_clients_per_dns_qry": {
+    "query": "event_type:bro_dns AND query:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_qry.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_qry": {
+    "query": "event_type:bro_dns AND query:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_qry.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_clients_per_dns_subdomain": {
+    "query": "event_type:bro_dns AND subdomain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_subdomain.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_subdomain": {
+    "query": "event_type:bro_dns AND subdomain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_subdomain.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_clients_per_dns_tld": {
+    "query": "event_type:bro_dns AND top_level_domain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_tld.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_tld": {
+    "query": "event_type:bro_dns AND top_level_domain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_tld.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_clients_per_dns_tld_subdomain": {
+    "query": "event_type:bro_dns AND tld.subdomain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_tld_subdomain.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_tld_subdomain": {
+    "query": "event_type:bro_dns AND tld.subdomain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_tld_subdomain.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_clients_per_dns_parent_domain": {
+    "query": "event_type:bro_dns AND parent_domain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_parent_domain.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
+  },
+  "number_of_queries_per_dns_parent_domain": {
+    "query": "event_type:bro_dns AND parent_domain:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_parent_domain.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_internal_ips_connected_to_sites_signed_by_issuer": {
     "query": "event_type:bro_x509 AND certificate_issuer:{{#arg1}}",
@@ -324,7 +575,8 @@
     "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_issuer.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": true,
-    "count_unique_values_in": "source_ip.keyword"
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
   },
   "number_of_internal_ips_connected_to_sites_signed_by_cert_cn": {
     "query": "event_type:bro_x509 AND certificate_common_name:{{#arg1}}",
@@ -333,7 +585,8 @@
     "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": true,
-    "count_unique_values_in": "source_ip.keyword"
+    "count_unique_values_in": "source_ip.keyword",
+    "tags": ""
   },
   "number_of_requests_per_verb_per_website": {
     "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
@@ -341,7 +594,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_requests_per_url": {
     "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg2}} AND method:{{#arg3}} AND destination_port:{{#arg4}}",
@@ -349,7 +603,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg3}}.{{#arg1}}.{{#arg4}}.{{#arg2}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "source_hosts_per_vhost": {
     "query": "virtual_host:\"{{#arg1}}\"",
@@ -358,7 +613,8 @@
     "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_vhost.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "source_ip"
+    "count_unique_values_in": "source_ip",
+    "tags": ""
   },
   "destination_hosts_per_vhost": {
     "query": "virtual_host:\"{{#arg1}}\"",
@@ -367,7 +623,8 @@
     "metric_name": "smart-onion.metrics.command_and_control.destination_ips_per_vhost.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "count_unique_values_in": "destination_ip"
+    "count_unique_values_in": "destination_ip",
+    "tags": ""
   },
   "number_of_connections_to_ext_ip": {
     "query": "event_type:bro_conn AND destination_ip:{{#arg1}}",
@@ -375,7 +632,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.command_and_control.number_of_internal_ips_connected_to_ext_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_connections_to_port": {
     "query": "event_type:bro_conn AND destination_port:{{#arg1}}",
@@ -383,7 +641,26 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.weird_behaviour.number_of_connections_to_port.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_external_ips_connections_to_host": {
+    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:{{#arg1}})",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.weird_behaviour.number_of_external_ips_connections_to_host.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_external_ips_connections_via_port": {
+    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_port:{{#arg1}})",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.weird_behaviour.number_of_external_ips_connections_via_port.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_connections_to_workstations_for_server": {
     "query": "event_type:bro_conn AND destination_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND source_ip:{{#arg1}}",
@@ -391,7 +668,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.lateral_movement.number_of_connections_to_workstations_for_server.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_connections_to_workstations_for_workstation": {
     "query": "event_type:bro_conn AND destination_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND source_ip:{{#arg1}}",
@@ -399,7 +677,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.lateral_movement.number_of_connections_to_workstations_for_workstation.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_connections_from_workstations_to_ext_ip": {
     "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}}",
@@ -407,7 +686,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.command_and_control.number_of_workstations_connected_to_ext_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "number_of_connections_from_servers_to_ext_ip": {
     "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_ip:{{#arg1}}",
@@ -415,7 +695,8 @@
     "time_range": 3600,
     "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connected_to_ext_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
-    "base_64_used": false
+    "base_64_used": false,
+    "tags": ""
   },
   "___________________________________________LIST_HASH___________________________________________": {
     "type": "COMMENT"
@@ -526,6 +807,38 @@
     "index_pattern": "logstash-bro-*",
     "agg_on_field": "destination_geo.city_name.keyword",
     "zabbix_macro": "EXT_DEST_CONTINENT",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "tcp_ports_used_from_org": {
+    "query": "protocol:tcp AND source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_port.keyword",
+    "zabbix_macro": "PORT",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "external_public_ips": {
+    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_ip.keyword",
+    "zabbix_macro": "PUB_IP",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "ports_used_to_connect_to_external_public_ips": {
+    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_port.keyword",
+    "zabbix_macro": "PORT",
+    "time_range": 86400,
+    "type": "LLD"
+  },
+  "udp_ports_used_from_org": {
+    "query": "protocol:udp AND source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "destination_port.keyword",
+    "zabbix_macro": "PORT",
     "time_range": 86400,
     "type": "LLD"
   },
@@ -822,6 +1135,28 @@
     "time_range": 86400,
     "type": "LLD",
     "list_order": "desc",
+    "use_base64": true,
+    "max_list_size": 50
+  },
+  "most_frequently_accessed_certs_cn": {
+    "query": "event_type:bro_x509",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "certificate_common_name.keyword",
+    "zabbix_macro": "CERT_CN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "desc",
+    "use_base64": true,
+    "max_list_size": 50
+  },
+  "most_rarely_accessed_certs_cn": {
+    "query": "event_type:bro_x509",
+    "index_pattern": "logstash-bro-*",
+    "agg_on_field": "certificate_common_name.keyword",
+    "zabbix_macro": "CERT_CN",
+    "time_range": 86400,
+    "type": "LLD",
+    "list_order": "asc",
     "use_base64": true,
     "max_list_size": 50
   },
