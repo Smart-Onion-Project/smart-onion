@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
@@ -19,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="1611" column="4" lean-forward="true" selection-start-line="1611" selection-start-column="4" selection-end-line="1611" selection-end-column="4" />
+            <state relative-caret-position="363">
+              <caret line="1680" column="19" selection-start-line="1680" selection-start-column="3" selection-end-line="1680" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -61,18 +61,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="9655" column="122" selection-start-line="9655" selection-start-column="96" selection-end-line="9655" selection-end-column="122" />
+            <state relative-caret-position="246">
+              <caret line="1305" column="51" selection-start-line="1305" selection-start-column="35" selection-end-line="1305" selection-end-column="51" />
               <folding>
                 <element signature="n#discovery_rule#1;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
                 <element signature="n#discovery_rule#2;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
                 <element signature="n#discovery_rule#3;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#item_prototypes#0;n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#item_prototype#0;n#item_prototypes#0;n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
                 <element signature="e#64525#64530#0" expanded="true" />
                 <element signature="e#64580#64586#0" expanded="true" />
                 <element signature="e#64597#64603#0" expanded="true" />
@@ -924,6 +921,38 @@
                 <element signature="e#501338#501344#0" expanded="true" />
                 <element signature="e#501346#501352#0" expanded="true" />
                 <element signature="e#501354#501360#0" expanded="true" />
+                <element signature="e#503717#503723#0" expanded="true" />
+                <element signature="e#503734#503740#0" expanded="true" />
+                <element signature="e#503742#503748#0" expanded="true" />
+                <element signature="e#503750#503756#0" expanded="true" />
+                <element signature="e#505249#505254#0" expanded="true" />
+                <element signature="e#505293#505299#0" expanded="true" />
+                <element signature="e#505310#505316#0" expanded="true" />
+                <element signature="e#505318#505324#0" expanded="true" />
+                <element signature="e#505326#505332#0" expanded="true" />
+                <element signature="e#507530#507535#0" expanded="true" />
+                <element signature="e#507574#507580#0" expanded="true" />
+                <element signature="e#507591#507597#0" expanded="true" />
+                <element signature="e#507599#507605#0" expanded="true" />
+                <element signature="e#507607#507613#0" expanded="true" />
+                <element signature="e#509940#509946#0" expanded="true" />
+                <element signature="e#509957#509963#0" expanded="true" />
+                <element signature="e#509965#509971#0" expanded="true" />
+                <element signature="e#509973#509979#0" expanded="true" />
+                <element signature="e#511505#511510#0" expanded="true" />
+                <element signature="e#511527#511532#0" expanded="true" />
+                <element signature="e#511544#511549#0" expanded="true" />
+                <element signature="e#511586#511592#0" expanded="true" />
+                <element signature="e#511603#511609#0" expanded="true" />
+                <element signature="e#511611#511617#0" expanded="true" />
+                <element signature="e#511619#511625#0" expanded="true" />
+                <element signature="e#513858#513863#0" expanded="true" />
+                <element signature="e#513880#513885#0" expanded="true" />
+                <element signature="e#513897#513902#0" expanded="true" />
+                <element signature="e#513939#513945#0" expanded="true" />
+                <element signature="e#513956#513962#0" expanded="true" />
+                <element signature="e#513964#513970#0" expanded="true" />
+                <element signature="e#513972#513978#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -962,16 +991,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>top_n_most_frequently_accessed_external_website_uri</find>
-      <find>top_n_most_rarely_accessed_external_website_uri</find>
-      <find>highest_similarity_to_any_top_searched</find>
-      <find>external_destination_continents_from_org</find>
-      <find>EXT_WEB_URI</find>
-      <find>external_destination_countries_from_org</find>
-      <find>derstination</find>
-      <find>{$METRIC_COLLECTOR_PORT}</find>
-      <find>external_destination_cities_from_org</find>
-      <find>org_dns_servers</find>
       <find>events_per_</find>
       <find>external_dns_servers</find>
       <find>lan_servers_ips</find>
@@ -991,7 +1010,17 @@
       <find>org_web_servers</find>
       <find>number_of_connections_to_ip</find>
       <find>webservers_webmethods</find>
+      <find>dst_workstations_dst_ports</find>
       <find>.*per.*per.*</find>
+      <find>arg2</find>
+      <find>page</find>
+      <find>uri</find>
+      <find>arg4</find>
+      <find>website_files</find>
+      <find>websites_ports</find>
+      <find>website_pages</find>
+      <find>downloaded_files</find>
+      <find>[^&lt;/]item_prototype[^&gt;]</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -1523,7 +1552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545244814543</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml">
+      <created>1545721024410</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1545721024410</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1537,6 +1573,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.50181377" side_tool="true" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" sideWeight="0.4981862" visible="true" weight="0.25" />
@@ -1637,7 +1674,8 @@
     <MESSAGE value="Added unit files and sample configs" />
     <MESSAGE value="Pycharm files" />
     <MESSAGE value="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names" />
+    <MESSAGE value="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1951,13 +1989,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
@@ -1968,17 +1999,28 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="1680" column="19" selection-start-line="1680" selection-start-column="3" selection-end-line="1680" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="9655" column="122" selection-start-line="9655" selection-start-column="96" selection-end-line="9655" selection-end-column="122" />
+        <state relative-caret-position="246">
+          <caret line="1305" column="51" selection-start-line="1305" selection-start-column="35" selection-end-line="1305" selection-end-column="51" />
           <folding>
             <element signature="n#discovery_rule#1;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
             <element signature="n#discovery_rule#2;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
             <element signature="n#discovery_rule#3;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#item_prototypes#0;n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#item_prototype#0;n#item_prototypes#0;n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
             <element signature="e#64525#64530#0" expanded="true" />
             <element signature="e#64580#64586#0" expanded="true" />
             <element signature="e#64597#64603#0" expanded="true" />
@@ -2830,14 +2872,39 @@ hashlib.algorithms_available</expression-string>
             <element signature="e#501338#501344#0" expanded="true" />
             <element signature="e#501346#501352#0" expanded="true" />
             <element signature="e#501354#501360#0" expanded="true" />
+            <element signature="e#503717#503723#0" expanded="true" />
+            <element signature="e#503734#503740#0" expanded="true" />
+            <element signature="e#503742#503748#0" expanded="true" />
+            <element signature="e#503750#503756#0" expanded="true" />
+            <element signature="e#505249#505254#0" expanded="true" />
+            <element signature="e#505293#505299#0" expanded="true" />
+            <element signature="e#505310#505316#0" expanded="true" />
+            <element signature="e#505318#505324#0" expanded="true" />
+            <element signature="e#505326#505332#0" expanded="true" />
+            <element signature="e#507530#507535#0" expanded="true" />
+            <element signature="e#507574#507580#0" expanded="true" />
+            <element signature="e#507591#507597#0" expanded="true" />
+            <element signature="e#507599#507605#0" expanded="true" />
+            <element signature="e#507607#507613#0" expanded="true" />
+            <element signature="e#509940#509946#0" expanded="true" />
+            <element signature="e#509957#509963#0" expanded="true" />
+            <element signature="e#509965#509971#0" expanded="true" />
+            <element signature="e#509973#509979#0" expanded="true" />
+            <element signature="e#511505#511510#0" expanded="true" />
+            <element signature="e#511527#511532#0" expanded="true" />
+            <element signature="e#511544#511549#0" expanded="true" />
+            <element signature="e#511586#511592#0" expanded="true" />
+            <element signature="e#511603#511609#0" expanded="true" />
+            <element signature="e#511611#511617#0" expanded="true" />
+            <element signature="e#511619#511625#0" expanded="true" />
+            <element signature="e#513858#513863#0" expanded="true" />
+            <element signature="e#513880#513885#0" expanded="true" />
+            <element signature="e#513897#513902#0" expanded="true" />
+            <element signature="e#513939#513945#0" expanded="true" />
+            <element signature="e#513956#513962#0" expanded="true" />
+            <element signature="e#513964#513970#0" expanded="true" />
+            <element signature="e#513972#513978#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="1611" column="4" lean-forward="true" selection-start-line="1611" selection-start-column="4" selection-end-line="1611" selection-end-column="4" />
         </state>
       </provider>
     </entry>

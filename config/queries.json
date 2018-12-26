@@ -329,6 +329,15 @@
     "base_64_used": false,
     "tags": ""
   },
+  "events_per_destination_ip_per_destination_port": {
+    "query": "destination_ip:\"{{#arg1}}\" AND protocol:tcp AND destination_port:\"{{#arg2}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 300,
+    "metric_name": "health._global.number_of_events_per_destination_ip.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "tags": ""
+  },
   "events_per_useragent": {
     "query": "useragent:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
@@ -350,6 +359,16 @@
   },
   "source_hosts_per_tcp_dst_port": {
     "query": "protocol:tcp AND destination_port:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "time_range": 86400,
+    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip",
+    "tags": ""
+  },
+  "source_hosts_per_dst_host_per_tcp_dst_port": {
+    "query": "destination_ip:\"{{#arg1}}\" AND protocol:tcp AND destination_port:\"{{#arg2}}\"",
     "index_pattern": "logstash-*",
     "time_range": 86400,
     "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
@@ -777,6 +796,16 @@
     "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg3}}.{{#arg1}}.{{#arg4}}.{{#arg2}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
+    "tags": ""
+  },
+  "number_of_source_hosts_per_url": {
+    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg2}} AND method:{{#arg3}} AND destination_port:{{#arg4}}",
+    "index_pattern": "logstash-*",
+    "time_range": 3600,
+    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg3}}.{{#arg1}}.{{#arg4}}.{{#arg2}}",
+    "type": "QUERY_COUNT",
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip",
     "tags": ""
   },
   "source_hosts_per_vhost": {
@@ -1622,8 +1651,8 @@
   "website_pages": {
     "query": "event_type:bro_http",
     "index_pattern": "logstash-bro-*",
-    "agg_on_field": "virtual_host.keyword,uri.keyword",
-    "zabbix_macro": "VIRT_HOST,URL",
+    "agg_on_field": "virtual_host.keyword,method.keyword,destination_port,uri.keyword",
+    "zabbix_macro": "VIRT_HOST,HTTP_VERB,PORT,URL",
     "time_range": 86400,
     "type": "LLD",
     "list_order": "desc",

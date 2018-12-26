@@ -4987,6 +4987,7 @@
                             <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
+                    </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
                     <host_prototypes/>
@@ -9075,7 +9076,7 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    00<name>Discover certificates issuers</name>
+                    <name>Discover certificates issuers</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -9646,8 +9647,6 @@
                     <host_prototypes/>
                     <jmx_endpoint/>
                 </discovery_rule>
-                <!--UPDATED UNTIL HERE - YK - 2018-12-23-->
-                <!--
                 <discovery_rule>
                     <name>Discover workstations destination ports</name>
                     <type>0</type>
@@ -9680,6 +9679,90 @@
                     <lifetime>30d</lifetime>
                     <description/>
                     <item_prototypes>
+                        <item_prototype>
+                            <name>Number of source hosts connecting to {#WKSTA_IP} via port {#DPORT}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/source_hosts_per_dst_host_per_tcp_dst_port?arg1={#WKSTA_IP}&amp;arg2={#DPORT},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Number of events related to {#WKSTA_IP} via port {#DPORT}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/events_per_destination_ip_per_destination_port?arg1={#WKSTA_IP}&amp;arg2={#DPORT},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
@@ -9718,6 +9801,131 @@
                     <lifetime>30d</lifetime>
                     <description/>
                     <item_prototypes>
+                        <item_prototype>
+                            <name>Number of events related to connections to {#WKSTA_IP} via port {#DPORT} with HTTP verb {#HTTP_VERB} to url {#URL}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_requests_per_url?arg1={#VIRT_HOST}&amp;arg2={#HTTP_VERB}&amp;arg3={#PORT}&amp;arg4={#URL},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Number of source hosts connected to {#WKSTA_IP} via port {#DPORT} with HTTP verb {#HTTP_VERB} to url {#URL}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_source_hosts_per_url?arg1={#VIRT_HOST}&amp;arg2={#HTTP_VERB}&amp;arg3={#PORT}&amp;arg4={#URL},{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <delay>5m</delay>
+                            <history>28d</history>
+                            <trends>60d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>health._general</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes/>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                </discovery_rule>
+                <!--UPDATED UNTIL HERE - YK - 2018-12-23-->
+                <!--
+                <discovery_rule>
+                    <name>Discover downloaded files</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_downloaded_files,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <delay>1h</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                    Perhaps create a service backed by a relational DB with signatures, esp. file hashes, and compare the hashes to it.
                     </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
@@ -9756,82 +9964,7 @@
                     <lifetime>30d</lifetime>
                     <description/>
                     <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover website ports</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_websites_ports,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>Discover downloaded files</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_downloaded_files,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    <item_prototypes>
+                    Perhaps create a service backed by a relational DB with all the URLs and the files' hashes and look for a change in files' matches (may indicate a defacement attack)
                     </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
