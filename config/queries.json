@@ -715,7 +715,7 @@
     "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connected_to_ext_ip.{{#arg1}}",
     "type": "QUERY_COUNT",
     "base_64_used": false,
-    "tags": ""
+    "tags": "malicious_downloader,miner,external_malicious_proxy,"
   },
   "___________________________________________LIST_HASH___________________________________________": {
     "type": "COMMENT"
