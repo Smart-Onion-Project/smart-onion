@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/classify_queries/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../../resources/classify_queries/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +174,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
