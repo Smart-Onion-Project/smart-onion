@@ -19,13 +19,253 @@
             </groups>
             <applications>
                 <application>
-                    <name>C2</name>
+                    <name>dip:misbehaving_external_host</name>
                 </application>
                 <application>
-                    <name>DGA</name>
+                    <name>dip:misbehaving_internal_host</name>
                 </application>
                 <application>
-                    <name>health._general</name>
+                    <name>dip:client_of_new_service</name>
+                </application>
+                <application>
+                    <name>dip:new_url</name>
+                </application>
+                <application>
+                    <name>dip:website_modified</name>
+                </application>
+                <application>
+                    <name>dip:defacement</name>
+                </application>
+                <application>
+                    <name>dip:new_service</name>
+                </application>
+                <application>
+                    <name>dip:new_client_app</name>
+                </application>
+                <application>
+                    <name>dip:phishing</name>
+                </application>
+                <application>
+                    <name>dip:new_workstation</name>
+                </application>
+                <application>
+                    <name>dip:new_host</name>
+                </application>
+                <application>
+                    <name>dip:new_server</name>
+                </application>
+                <application>
+                    <name>dip:web_app_scanning</name>
+                </application>
+                <application>
+                    <name>dip:lateral_movement</name>
+                </application>
+                <application>
+                    <name>dip:execution</name>
+                </application>
+                <application>
+                    <name>dip:penetration</name>
+                </application>
+                <application>
+                    <name>dip:reconnaissance</name>
+                </application>
+                <application>
+                    <name>dip:dns_zone_transfer</name>
+                </application>
+                <application>
+                    <name>dip:dns_killswitch</name>
+                </application>
+                <application>
+                    <name>dip:command_and_control</name>
+                </application>
+                <application>
+                    <name>dip:denial_of_service</name>
+                </application>
+                <application>
+                    <name>dip:DGA</name>
+                </application>
+                <application>
+                    <name>dip:security_equipment_reports</name>
+                </application>
+                <application>
+                    <name>dip:system_health</name>
+                </application>
+                <application>
+                    <name>dip:traffic_hijacking</name>
+                </application>
+                <application>
+                    <name>dip:service_offline_or_becoming_unused</name>
+                </application>
+                <application>
+                    <name>dip:server_offline_or_becoming_unused</name>
+                </application>
+                <application>
+                    <name>peak:brute_force</name>
+                </application>
+                <application>
+                    <name>peak:dictionary_attack</name>
+                </application>
+                <application>
+                    <name>peak:brute_force</name>
+                </application>
+                <application>
+                    <name>peak:privilege_escalation</name>
+                </application>
+                <application>
+                    <name>peak:dhcp_starvation</name>
+                </application>
+                <application>
+                    <name>peak:servers_with_dynamic_addresses</name>
+                </application>
+                <application>
+                    <name>peak:misbehaving_external_host</name>
+                </application>
+                <application>
+                    <name>peak:misbehaving_internal_host</name>
+                </application>
+                <application>
+                    <name>peak:client_of_new_service</name>
+                </application>
+                <application>
+                    <name>peak:new_url</name>
+                </application>
+                <application>
+                    <name>peak:website_modified</name>
+                </application>
+                <application>
+                    <name>peak:defacement</name>
+                </application>
+                <application>
+                    <name>peak:new_service</name>
+                </application>
+                <application>
+                    <name>peak:new_client_app</name>
+                </application>
+                <application>
+                    <name>peak:phishing</name>
+                </application>
+                <application>
+                    <name>peak:new_workstation</name>
+                </application>
+                <application>
+                    <name>peak:new_host</name>
+                </application>
+                <application>
+                    <name>peak:new_server</name>
+                </application>
+                <application>
+                    <name>peak:web_app_scanning</name>
+                </application>
+                <application>
+                    <name>peak:lateral_movement</name>
+                </application>
+                <application>
+                    <name>peak:execution</name>
+                </application>
+                <application>
+                    <name>peak:penetration</name>
+                </application>
+                <application>
+                    <name>peak:reconnaissance</name>
+                </application>
+                <application>
+                    <name>peak:dns_zone_transfer</name>
+                </application>
+                <application>
+                    <name>peak:dns_killswitch</name>
+                </application>
+                <application>
+                    <name>peak:command_and_control</name>
+                </application>
+                <application>
+                    <name>peak:denial_of_service</name>
+                </application>
+                <application>
+                    <name>peak:DGA</name>
+                </application>
+                <application>
+                    <name>peak:security_equipment_reports</name>
+                </application>
+                <application>
+                    <name>peak:system_health</name>
+                </application>
+                <application>
+                    <name>peak:traffic_hijacking</name>
+                </application>
+                <application>
+                    <name>both:misbehaving_external_host</name>
+                </application>
+                <application>
+                    <name>both:misbehaving_internal_host</name>
+                </application>
+                <application>
+                    <name>both:client_of_new_service</name>
+                </application>
+                <application>
+                    <name>both:new_url</name>
+                </application>
+                <application>
+                    <name>both:website_modified</name>
+                </application>
+                <application>
+                    <name>both:defacement</name>
+                </application>
+                <application>
+                    <name>both:new_service</name>
+                </application>
+                <application>
+                    <name>both:new_client_app</name>
+                </application>
+                <application>
+                    <name>both:phishing</name>
+                </application>
+                <application>
+                    <name>both:new_workstation</name>
+                </application>
+                <application>
+                    <name>both:new_host</name>
+                </application>
+                <application>
+                    <name>both:new_server</name>
+                </application>
+                <application>
+                    <name>both:web_app_scanning</name>
+                </application>
+                <application>
+                    <name>both:lateral_movement</name>
+                </application>
+                <application>
+                    <name>both:execution</name>
+                </application>
+                <application>
+                    <name>both:penetration</name>
+                </application>
+                <application>
+                    <name>both:reconnaissance</name>
+                </application>
+                <application>
+                    <name>both:dns_zone_transfer</name>
+                </application>
+                <application>
+                    <name>both:dns_killswitch</name>
+                </application>
+                <application>
+                    <name>both:command_and_control</name>
+                </application>
+                <application>
+                    <name>both:denial_of_service</name>
+                </application>
+                <application>
+                    <name>both:DGA</name>
+                </application>
+                <application>
+                    <name>both:security_equipment_reports</name>
+                </application>
+                <application>
+                    <name>both:system_health</name>
+                </application>
+                <application>
+                    <name>both:traffic_hijacking</name>
                 </application>
             </applications>
             <items>
@@ -136,7 +376,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_external_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -178,7 +418,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
+                                </application>
+                                <application>
+                                    <name>peak:misbehaving_external_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -220,7 +463,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
+                                </application>
+                                <application>
+                                    <name>peak:misbehaving_external_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -262,7 +508,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>peak:misbehaving_external_host</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -304,7 +556,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:misbehaving_external_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -346,7 +601,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_service</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -388,7 +643,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -468,7 +723,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -548,7 +803,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
+                                </application>
+                                <application>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -590,7 +854,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
+                                </application>
+                                <application>
+                                    <name>peak:misbehaving_external_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -632,7 +899,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
+                                </application>
+                                <application>
+                                    <name>peak:misbehaving_external_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -674,7 +944,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -716,7 +986,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -758,7 +1028,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -838,7 +1108,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
+                                </application>
+                                <application>
+                                    <name>peak:execution</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -880,7 +1156,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
+                                </application>
+                                <application>
+                                    <name>peak:execution</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -922,7 +1204,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
+                                </application>
+                                <application>
+                                    <name>peak:execution</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1002,7 +1290,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1044,7 +1332,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
+                                </application>
+                                <application>
+                                    <name>peak:execution</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1086,9 +1380,21 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
                                 </application>
-                            </applications>
+                                <application>
+                                    <name>peak:execution</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                 <application>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                 <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                           </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -1128,7 +1434,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_zone_transfer</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1170,7 +1479,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1212,10 +1521,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:execution</name>
                                 </application>
                                 <application>
-                                    <name>DGA</name>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
+                                </application>
+                                <application>
+                                    <name>peak:DGA</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1232,7 +1547,7 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>2.Discover external websites virtual host</name>
+                    <name>2.Discover external frequently accessed websites virtual hosts</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -1295,7 +1610,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1337,9 +1652,9 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
-                            </applications>
+                             </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -1379,9 +1694,9 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
-                            </applications>
+                             </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -1421,7 +1736,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1463,7 +1778,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1505,7 +1820,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1547,7 +1862,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1589,7 +1904,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1631,7 +1946,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1648,7 +1963,7 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>2.Discover external websites virtual host</name>
+                    <name>2.Discover external rarely accessed websites virtual hosts</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -1711,7 +2026,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1753,7 +2071,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1795,7 +2116,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1837,7 +2158,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1879,7 +2200,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1921,7 +2242,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -1963,7 +2284,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2005,7 +2326,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2047,7 +2368,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2089,7 +2410,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2167,7 +2488,11 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications/>
+                            <applications>
+                                <application>
+                                    <name>both:system_health</name>
+                                </application>
+                            </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -2181,46 +2506,6 @@
                     <host_prototypes/>
                     <jmx_endpoint/>
                 </discovery_rule>
-                <!--
-                Not enough data yet
-                <discovery_rule>
-                    <name>3.Discover internal users</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_3_internal_users,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                    <delay>1h</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>30d</lifetime>
-                    <description/>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                -->
                 <discovery_rule>
                     <name>4.Discover URLs most frequently accessed from the inside</name>
                     <type>0</type>
@@ -2285,7 +2570,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2365,7 +2653,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:phishing</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2445,7 +2736,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2525,7 +2816,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2605,7 +2899,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2685,7 +2982,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijackinge</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2765,7 +3065,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijackinge</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2775,7 +3078,7 @@
                             <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
-                     </item_prototypes>
+                    </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
                     <host_prototypes/>
@@ -2845,7 +3148,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:misbehaving_internal_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2887,7 +3190,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:dns_killswitch</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -2967,7 +3270,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3009,7 +3312,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3089,7 +3392,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3131,7 +3434,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3173,7 +3476,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3253,7 +3556,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3295,7 +3598,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3375,7 +3678,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3417,7 +3720,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3459,7 +3762,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3539,7 +3842,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3581,7 +3884,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3661,7 +3964,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3703,7 +4006,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3745,7 +4048,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3825,7 +4128,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3867,7 +4170,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3947,7 +4250,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3989,7 +4292,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4031,7 +4334,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4111,7 +4414,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4153,7 +4456,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4233,7 +4536,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4275,7 +4578,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4317,7 +4620,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4397,7 +4700,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4439,7 +4742,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4519,7 +4822,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4561,7 +4864,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4578,7 +4881,7 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>Discover websites uris</name>
+                    <name>Discover most frequently accessed websites uris</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -4641,7 +4944,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4683,7 +4986,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4725,7 +5028,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4767,7 +5070,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4809,7 +5112,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4851,7 +5154,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>both:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4893,7 +5196,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>both:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4935,7 +5238,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>both:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4977,7 +5280,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>both:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -4994,7 +5297,7 @@
                     <jmx_endpoint/>
                 </discovery_rule>
                 <discovery_rule>
-                    <name>Discover websites uris</name>
+                    <name>Discover most rarely accessed websites uris</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -5057,7 +5360,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5099,7 +5402,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5141,7 +5444,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5183,7 +5486,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5225,7 +5528,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5267,7 +5570,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5309,7 +5612,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5351,7 +5654,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5393,7 +5696,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5435,7 +5738,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:phishing</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5515,7 +5818,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5595,7 +5898,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5642,6 +5945,7 @@
                     </filter>
                     <lifetime>30d</lifetime>
                     <description/>
+                    <item_prototypes>
                         <item_prototype>
                             <name>Number of events per destination city {#EXT_DEST_CITY}</name>
                             <type>0</type>
@@ -5674,7 +5978,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5684,7 +5988,6 @@
                             <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
-                    <item_prototypes>
                     </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
@@ -5755,7 +6058,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:server_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5797,7 +6109,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5844,8 +6165,9 @@
                     </filter>
                     <lifetime>30d</lifetime>
                     <description/>
+                    <item_prototypes>
                         <item_prototype>
-                            <name>Number of unique source hosts per internal DNS server {#DNS_IP}</name>
+                            <name>Number of unique source hosts per external DNS server {#DNS_IP}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -5876,7 +6198,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>C2</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5918,7 +6249,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -5928,7 +6268,6 @@
                             <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
-                    <item_prototypes>
                     </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
@@ -5999,7 +6338,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:server_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6041,7 +6383,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:DGA</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6083,7 +6434,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6125,7 +6476,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6167,7 +6518,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6178,7 +6529,7 @@
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Number pings sent per server {#SERVER_IP}</name>
+                            <name>Number of pings sent per server {#SERVER_IP}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -6209,7 +6560,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6251,7 +6608,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6293,7 +6656,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6335,7 +6701,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6377,7 +6749,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6419,7 +6797,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6499,7 +6877,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6541,7 +6919,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6583,7 +6961,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6625,7 +7003,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6667,7 +7045,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6709,7 +7087,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6751,7 +7135,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6793,7 +7183,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6835,7 +7231,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_service</name>
+                                </application>
+                                <application>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6877,7 +7282,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6919,7 +7330,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -6999,7 +7413,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
+                                </application>
+                                <application>
+                                    <name>dip:server_offline_or_becoming_unused</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7041,7 +7461,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:misbehaving_internal_host</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:peak:dns_killswitch</name>
+                                </application>
+                                <application>
+                                    <name>peak:DGA</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7083,7 +7512,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7125,7 +7554,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:security_equipment_reports</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7167,7 +7596,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:new_client_app</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7209,7 +7638,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7251,7 +7686,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:command_and_control</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7293,7 +7734,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7335,7 +7779,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7377,7 +7827,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:DGA</name>
+                                </application>
+                                <application>
+                                    <name>peak:dns_killswitch</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7419,7 +7872,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7499,7 +7955,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7541,7 +8006,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7583,7 +8057,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:penetration</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7663,7 +8140,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7705,7 +8191,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7747,9 +8242,12 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
-                            </applications>
+                                <application>
+                                    <name>peak:penetration</name>
+                                </application>
+                             </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -7827,7 +8325,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7869,7 +8376,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -7911,9 +8427,12 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
-                            </applications>
+                                <application>
+                                    <name>peak:penetration</name>
+                                </application>
+                             </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -7991,7 +8510,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8033,7 +8561,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8075,9 +8612,12 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
-                            </applications>
+                                <application>
+                                    <name>peak:penetration</name>
+                                </application>
+                             </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -8155,7 +8695,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8197,7 +8746,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8239,9 +8797,12 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
-                            </applications>
+                                <application>
+                                    <name>peak:penetration</name>
+                                </application>
+                             </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -8319,7 +8880,19 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:privilege_escalation</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8361,7 +8934,19 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:privilege_escalation</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8403,7 +8988,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:privilege_escalation</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:penetration</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8483,7 +9083,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:dhcp_starvation</name>
+                                </application>
+                                <application>
+                                    <name>peak:servers_with_dynamic_addresses</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8525,7 +9131,13 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:dhcp_starvation</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8567,7 +9179,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:penetration</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8647,7 +9262,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8689,7 +9313,16 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8731,7 +9364,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
+                                </application>
+                                <application>
+                                    <name>peak:penetration</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8811,7 +9447,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8853,7 +9492,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8895,7 +9537,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -8975,7 +9617,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9017,7 +9659,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:command_and_control</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9059,7 +9701,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:reconnaissance</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9139,7 +9781,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9181,7 +9823,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9189,7 +9831,7 @@
                             <preprocessing/>
                             <jmx_endpoint/>
                             <application_prototypes/>
-                            <master_item_prototype/>
+                            <master_item_prototype/>1
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes/>
@@ -9261,7 +9903,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9303,7 +9945,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9383,7 +10025,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9425,7 +10082,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9467,7 +10139,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9547,7 +10234,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9589,7 +10291,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9631,7 +10348,22 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:dictionary_attack</name>
+                                </application>
+                                <application>
+                                    <name>peak:brute_force</name>
+                                </application>
+                                <application>
+                                    <name>peak:denial_of_service</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
+                                </application>
+                                <application>
+                                    <name>dip:service_offline_or_becoming_unused</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9711,7 +10443,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9753,7 +10485,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>peak:lateral_movement</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9833,7 +10565,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9875,7 +10610,10 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>health._general</name>
+                                    <name>both:system_health</name>
+                                </application>
+                                <application>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -9965,6 +10703,46 @@
                     <description/>
                     <item_prototypes>
                     Perhaps create a service backed by a relational DB with all the URLs and the files' hashes and look for a change in files' matches (may indicate a defacement attack)
+                    </item_prototypes>
+                    <trigger_prototypes/>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                </discovery_rule>
+                -->
+                <!--
+                Not enough data yet
+                <discovery_rule>
+                    <name>3.Discover internal users</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_3_internal_users,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <delay>1h</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
                     </item_prototypes>
                     <trigger_prototypes/>
                     <graph_prototypes/>
