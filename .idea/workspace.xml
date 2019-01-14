@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once.">
-      <change afterPath="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="test_service_status.sh:&#10;- Added the ability to restart the services">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+            <state relative-caret-position="195">
+              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -714,7 +712,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547483335151</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once.">
+      <created>1547483528060</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1547483528060</updated>
+    </task>
+    <task id="LOCAL-00039" summary="test_service_status.sh:&#10;- Added the ability to restart the services">
+      <created>1547483963837</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1547483963837</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -728,6 +740,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17246835" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -789,7 +802,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Redesigned the directory structure" />
     <MESSAGE value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
     <MESSAGE value="Added resources and a Zabbix template" />
     <MESSAGE value="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template" />
@@ -814,7 +826,8 @@
     <MESSAGE value="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)" />
     <MESSAGE value="queries.json:&#10;- Removed old unnecessary file." />
     <MESSAGE value="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once." />
+    <MESSAGE value="test_service_status.sh:&#10;- Added the ability to restart the services" />
+    <option name="LAST_COMMIT_MESSAGE" value="test_service_status.sh:&#10;- Added the ability to restart the services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1164,6 +1177,13 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="1142" column="25" selection-start-line="1142" selection-start-column="25" selection-end-line="1142" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -1174,17 +1194,10 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="1142" column="25" selection-start-line="1142" selection-start-column="25" selection-end-line="1142" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        <state relative-caret-position="195">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
         </state>
       </provider>
     </entry>
