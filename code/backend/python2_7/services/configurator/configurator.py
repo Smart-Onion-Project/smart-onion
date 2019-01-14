@@ -4,9 +4,20 @@ from bottle import Bottle
 import datetime
 import json
 import base64
+import os
 
 
 DEBUG = True
+config_file_name = "queries.json"
+config_file_default_path = "/etc/smart-onion/"
+config_file = os.path.join(config_file_default_path, config_file_name)
+
+
+class ConfigFileCannotBeRead_Exception(Exception):
+
+    def __init__(self, message, base_exception = None):
+        self.message = message
+        self.base_exception = base_exception
 
 
 class Utils:
@@ -33,6 +44,7 @@ class Utils:
             raise Exception("Argument not found.")
         else:
             return None
+
 
 class SmartOnionConfigurator:
     config = {
@@ -84,11 +96,16 @@ class SmartOnionConfigurator:
         "smart-onion.config.dynamic.metric_statistical_anomaly_score_threshold": 90
     }
 
-    def __init__(self, listen_ip, listen_port):
+    def __init__(self, listen_ip, listen_port, config_filename):
         self._host = listen_ip
         self._port = listen_port
         self._app = Bottle()
         self._route()
+        try:
+            with open(config_filename, 'r') as config_file_obj:
+                self.config["smart-onion.config.queries"] = json.load(config_file_obj)
+        except Exception as ex:
+            raise ConfigFileCannotBeRead_Exception(message="Config file could not be read. CANNOT CONTINUE!", base_exception=ex)
 
     def _route(self):
         self._app.route('/smart-onion/configurator/get_config/<config_name>', method="GET", callback=self.get_config)
@@ -118,6 +135,7 @@ class SmartOnionConfigurator:
 
 ip = '127.0.0.1'
 port = 9003
+config_filename = '/etc/smart-onion/queries.json'
 utils = Utils()
 
 try:
@@ -129,5 +147,9 @@ try:
         port = int(utils.extract_args("listen-port"))
 except:
     pass
+try:
+    config_filename = utils.extract_args("config-file")
+except:
+    pass
 
-SmartOnionConfigurator(listen_ip=ip, listen_port=port).run()
+SmartOnionConfigurator(listen_ip=ip, listen_port=port, config_filename=config_filename).run()

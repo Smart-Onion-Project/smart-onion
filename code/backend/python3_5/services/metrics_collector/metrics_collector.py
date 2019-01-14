@@ -14,6 +14,7 @@
 
 
 import sys
+from builtins import len, quit, Exception
 from bottle import Bottle, request
 from urllib import request as urllib_req
 import datetime
@@ -31,6 +32,7 @@ from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
 import imagehash
+import time
 import homoglyphs
 
 DEBUG = True
@@ -291,12 +293,13 @@ class MetricsCollector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
     _learned_net_info = None
 
-    def __init__(self, listen_ip, listen_port, learned_net_info):
+    def __init__(self, listen_ip, listen_port, learned_net_info, queries_config):
         self._host = listen_ip
         self._port = listen_port
         self._learned_net_info = learned_net_info
         self._app = Bottle()
         self._route()
+        self.queries = queries_config
 
     def _route(self):
         self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
@@ -309,9 +312,7 @@ class MetricsCollector:
         self._app.route('/smart-onion/dump_queries', method="GET", callback=self.dump_queries)
         self._app.route('/test/similarity/<algo>/<s1>/<s2>', method="GET", callback=self.test_similarity)
 
-    def run(self, config_file):
-        with open(config_file, 'r') as config_file_obj:
-            self.queries = json.load(config_file_obj)
+    def run(self):
         if DEBUG:
             self._app.run(host=self._host, port=self._port)
         else:
@@ -873,8 +874,20 @@ while learned_net_info is None:
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         learned_net_info = json.loads(configurator_response)
     except:
-        print("WARN: Waiting (indefinetly) for the Configurator service to become available...")
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for learned net info)...")
+        time.sleep(10)
+
+queries_conf = None
+while queries_conf is None:
+    try:
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.queries"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        queries_conf = json.loads(configurator_response)
+    except:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
+        time.sleep(10)
+
 
 sys.argv = [sys.argv[0]]
-MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info).run(config_file=config_file)
+MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info, queries_config=queries_conf).run()
 

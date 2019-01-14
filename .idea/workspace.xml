@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Added unit files and sample configs">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/zbx_sampling_template.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/classify_queries/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/classify_queries/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,281 +26,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="235" column="55" selection-start-line="235" selection-start-column="3" selection-end-line="235" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
-              <folding>
-                <element signature="e#922#936#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/backend/python3_5/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="33" column="17" selection-start-line="15" selection-end-line="33" selection-end-column="17" />
-              <folding>
-                <element signature="e#923#933#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="378">
+              <caret line="1142" column="25" selection-start-line="1142" selection-start-column="25" selection-end-line="1142" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
+        <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2130">
-              <caret line="3773" column="35" lean-forward="true" selection-start-line="3773" selection-start-column="35" selection-end-line="3773" selection-end-column="35" />
+            <state relative-caret-position="449">
+              <caret line="891" column="120" lean-forward="true" selection-start-line="891" selection-start-column="120" selection-end-line="891" selection-end-column="120" />
               <folding>
-                <element signature="n#discovery_rule#1;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#discovery_rule#2;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#discovery_rule#3;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#discovery_rule#4;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="e#71289#71294#0" expanded="true" />
-                <element signature="e#71328#71334#0" expanded="true" />
-                <element signature="e#71345#71351#0" expanded="true" />
-                <element signature="e#71353#71359#0" expanded="true" />
-                <element signature="e#71361#71367#0" expanded="true" />
-                <element signature="e#73567#73572#0" expanded="true" />
-                <element signature="n#discovery_rule#6;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-                <element signature="e#85076#85082#0" expanded="true" />
-                <element signature="e#85093#85099#0" expanded="true" />
-                <element signature="e#85101#85107#0" expanded="true" />
-                <element signature="e#85109#85115#0" expanded="true" />
-                <element signature="e#86570#86576#0" expanded="true" />
-                <element signature="e#86587#86593#0" expanded="true" />
-                <element signature="e#86595#86601#0" expanded="true" />
-                <element signature="e#86603#86609#0" expanded="true" />
-                <element signature="e#88422#90144#0" />
-                <element signature="e#90540#90546#0" expanded="true" />
-                <element signature="e#90557#90563#0" expanded="true" />
-                <element signature="e#90565#90571#0" expanded="true" />
-                <element signature="e#90573#90579#0" expanded="true" />
-                <element signature="e#92030#92036#0" expanded="true" />
-                <element signature="e#92047#92053#0" expanded="true" />
-                <element signature="e#92055#92061#0" expanded="true" />
-                <element signature="e#92063#92069#0" expanded="true" />
-                <element signature="e#94454#94460#0" expanded="true" />
-                <element signature="e#94471#94477#0" expanded="true" />
-                <element signature="e#94479#94485#0" expanded="true" />
-                <element signature="e#94487#94493#0" expanded="true" />
-                <element signature="e#95987#95992#0" expanded="true" />
-                <element signature="e#96030#96036#0" expanded="true" />
-                <element signature="e#96047#96053#0" expanded="true" />
-                <element signature="e#96055#96061#0" expanded="true" />
-                <element signature="e#96063#96069#0" expanded="true" />
-                <element signature="e#98405#98411#0" expanded="true" />
-                <element signature="e#98422#98428#0" expanded="true" />
-                <element signature="e#98430#98436#0" expanded="true" />
-                <element signature="e#98438#98444#0" expanded="true" />
-                <element signature="e#99974#99980#0" expanded="true" />
-                <element signature="e#99991#99997#0" expanded="true" />
-                <element signature="e#99999#100005#0" expanded="true" />
-                <element signature="e#100007#100013#0" expanded="true" />
-                <element signature="e#102393#102399#0" expanded="true" />
-                <element signature="e#102410#102416#0" expanded="true" />
-                <element signature="e#102418#102424#0" expanded="true" />
-                <element signature="e#102426#102432#0" expanded="true" />
-                <element signature="e#103915#103921#0" expanded="true" />
-                <element signature="e#103932#103938#0" expanded="true" />
-                <element signature="e#103940#103946#0" expanded="true" />
-                <element signature="e#103948#103954#0" expanded="true" />
-                <element signature="e#106347#106353#0" expanded="true" />
-                <element signature="e#106364#106370#0" expanded="true" />
-                <element signature="e#106372#106378#0" expanded="true" />
-                <element signature="e#106380#106386#0" expanded="true" />
-                <element signature="e#107869#107875#0" expanded="true" />
-                <element signature="e#107886#107892#0" expanded="true" />
-                <element signature="e#107894#107900#0" expanded="true" />
-                <element signature="e#107902#107908#0" expanded="true" />
-                <element signature="e#110249#110255#0" expanded="true" />
-                <element signature="e#110266#110272#0" expanded="true" />
-                <element signature="e#110274#110280#0" expanded="true" />
-                <element signature="e#110282#110288#0" expanded="true" />
-                <element signature="e#111794#111800#0" expanded="true" />
-                <element signature="e#111811#111817#0" expanded="true" />
-                <element signature="e#111819#111825#0" expanded="true" />
-                <element signature="e#111827#111833#0" expanded="true" />
-                <element signature="e#114252#114258#0" expanded="true" />
-                <element signature="e#114269#114275#0" expanded="true" />
-                <element signature="e#114277#114283#0" expanded="true" />
-                <element signature="e#114285#114291#0" expanded="true" />
-                <element signature="e#115797#115803#0" expanded="true" />
-                <element signature="e#115814#115820#0" expanded="true" />
-                <element signature="e#115822#115828#0" expanded="true" />
-                <element signature="e#115830#115836#0" expanded="true" />
-                <element signature="e#118182#118188#0" expanded="true" />
-                <element signature="e#118199#118205#0" expanded="true" />
-                <element signature="e#118207#118213#0" expanded="true" />
-                <element signature="e#118215#118221#0" expanded="true" />
-                <element signature="e#119737#119743#0" expanded="true" />
-                <element signature="e#119754#119760#0" expanded="true" />
-                <element signature="e#119762#119768#0" expanded="true" />
-                <element signature="e#119770#119776#0" expanded="true" />
-                <element signature="e#121997#122003#0" expanded="true" />
-                <element signature="e#122014#122020#0" expanded="true" />
-                <element signature="e#122022#122028#0" expanded="true" />
-                <element signature="e#122030#122036#0" expanded="true" />
-                <element signature="e#124400#124406#0" expanded="true" />
-                <element signature="e#124417#124423#0" expanded="true" />
-                <element signature="e#124425#124431#0" expanded="true" />
-                <element signature="e#124433#124439#0" expanded="true" />
-                <element signature="e#125955#125961#0" expanded="true" />
-                <element signature="e#125972#125978#0" expanded="true" />
-                <element signature="e#125980#125986#0" expanded="true" />
-                <element signature="e#125988#125994#0" expanded="true" />
-                <element signature="e#128215#128221#0" expanded="true" />
-                <element signature="e#128232#128238#0" expanded="true" />
-                <element signature="e#128240#128246#0" expanded="true" />
-                <element signature="e#128248#128254#0" expanded="true" />
-                <element signature="e#130578#130584#0" expanded="true" />
-                <element signature="e#130595#130601#0" expanded="true" />
-                <element signature="e#130603#130609#0" expanded="true" />
-                <element signature="e#130611#130617#0" expanded="true" />
-                <element signature="e#132113#132119#0" expanded="true" />
-                <element signature="e#132130#132136#0" expanded="true" />
-                <element signature="e#132138#132144#0" expanded="true" />
-                <element signature="e#132146#132152#0" expanded="true" />
-                <element signature="e#134358#134364#0" expanded="true" />
-                <element signature="e#134375#134381#0" expanded="true" />
-                <element signature="e#134383#134389#0" expanded="true" />
-                <element signature="e#134391#134397#0" expanded="true" />
-                <element signature="e#134353#134359#0" expanded="true" />
-                <element signature="e#134370#134376#0" expanded="true" />
-                <element signature="e#134378#134384#0" expanded="true" />
-                <element signature="e#134386#134392#0" expanded="true" />
-                <element signature="e#136770#136776#0" expanded="true" />
-                <element signature="e#136787#136793#0" expanded="true" />
-                <element signature="e#136795#136801#0" expanded="true" />
-                <element signature="e#136803#136809#0" expanded="true" />
-                <element signature="e#138305#138311#0" expanded="true" />
-                <element signature="e#138322#138328#0" expanded="true" />
-                <element signature="e#138330#138336#0" expanded="true" />
-                <element signature="e#138338#138344#0" expanded="true" />
-                <element signature="e#140545#140551#0" expanded="true" />
-                <element signature="e#140562#140568#0" expanded="true" />
-                <element signature="e#140570#140576#0" expanded="true" />
-                <element signature="e#140578#140584#0" expanded="true" />
-                <element signature="e#142998#143004#0" expanded="true" />
-                <element signature="e#143015#143021#0" expanded="true" />
-                <element signature="e#143023#143029#0" expanded="true" />
-                <element signature="e#143031#143037#0" expanded="true" />
-                <element signature="e#144555#144561#0" expanded="true" />
-                <element signature="e#144572#144578#0" expanded="true" />
-                <element signature="e#144580#144586#0" expanded="true" />
-                <element signature="e#144588#144594#0" expanded="true" />
-                <element signature="e#149161#149167#0" expanded="true" />
-                <element signature="e#149178#149184#0" expanded="true" />
-                <element signature="e#149186#149192#0" expanded="true" />
-                <element signature="e#149194#149200#0" expanded="true" />
-                <element signature="e#146817#146823#0" expanded="true" />
-                <element signature="e#146834#146840#0" expanded="true" />
-                <element signature="e#146842#146848#0" expanded="true" />
-                <element signature="e#146850#146856#0" expanded="true" />
-                <element signature="e#153860#153866#0" expanded="true" />
-                <element signature="e#153877#153883#0" expanded="true" />
-                <element signature="e#153885#153891#0" expanded="true" />
-                <element signature="e#153893#153899#0" expanded="true" />
-                <element signature="e#155417#155423#0" expanded="true" />
-                <element signature="e#155434#155440#0" expanded="true" />
-                <element signature="e#155442#155448#0" expanded="true" />
-                <element signature="e#155450#155456#0" expanded="true" />
-                <element signature="e#157679#157685#0" expanded="true" />
-                <element signature="e#157696#157702#0" expanded="true" />
-                <element signature="e#157704#157710#0" expanded="true" />
-                <element signature="e#157712#157718#0" expanded="true" />
-                <element signature="e#160028#160034#0" expanded="true" />
-                <element signature="e#160045#160051#0" expanded="true" />
-                <element signature="e#160053#160059#0" expanded="true" />
-                <element signature="e#160061#160067#0" expanded="true" />
-                <element signature="e#161653#161659#0" expanded="true" />
-                <element signature="e#161670#161676#0" expanded="true" />
-                <element signature="e#161678#161684#0" expanded="true" />
-                <element signature="e#161686#161692#0" expanded="true" />
-                <element signature="e#161561#161567#0" expanded="true" />
-                <element signature="e#161578#161584#0" expanded="true" />
-                <element signature="e#161586#161592#0" expanded="true" />
-                <element signature="e#161594#161600#0" expanded="true" />
-                <element signature="e#163799#163805#0" expanded="true" />
-                <element signature="e#163816#163822#0" expanded="true" />
-                <element signature="e#163824#163830#0" expanded="true" />
-                <element signature="e#163832#163838#0" expanded="true" />
-                <element signature="e#168526#168532#0" expanded="true" />
-                <element signature="e#168543#168549#0" expanded="true" />
-                <element signature="e#168551#168557#0" expanded="true" />
-                <element signature="e#168559#168565#0" expanded="true" />
-                <element signature="e#170018#170024#0" expanded="true" />
-                <element signature="e#170035#170041#0" expanded="true" />
-                <element signature="e#170043#170049#0" expanded="true" />
-                <element signature="e#170051#170057#0" expanded="true" />
-                <element signature="e#172256#172262#0" expanded="true" />
-                <element signature="e#172273#172279#0" expanded="true" />
-                <element signature="e#172281#172287#0" expanded="true" />
-                <element signature="e#172289#172295#0" expanded="true" />
-                <element signature="e#174802#174808#0" expanded="true" />
-                <element signature="e#174819#174825#0" expanded="true" />
-                <element signature="e#174827#174833#0" expanded="true" />
-                <element signature="e#174835#174841#0" expanded="true" />
-                <element signature="e#176437#176443#0" expanded="true" />
-                <element signature="e#176454#176460#0" expanded="true" />
-                <element signature="e#176462#176468#0" expanded="true" />
-                <element signature="e#176470#176476#0" expanded="true" />
-                <element signature="e#176374#176380#0" expanded="true" />
-                <element signature="e#176391#176397#0" expanded="true" />
-                <element signature="e#176399#176405#0" expanded="true" />
-                <element signature="e#176407#176413#0" expanded="true" />
-                <element signature="e#178652#178658#0" expanded="true" />
-                <element signature="e#178669#178675#0" expanded="true" />
-                <element signature="e#178677#178683#0" expanded="true" />
-                <element signature="e#178685#178691#0" expanded="true" />
-                <element signature="e#183414#183420#0" expanded="true" />
-                <element signature="e#183431#183437#0" expanded="true" />
-                <element signature="e#183439#183445#0" expanded="true" />
-                <element signature="e#183447#183453#0" expanded="true" />
-                <element signature="e#184995#185001#0" expanded="true" />
-                <element signature="e#185012#185018#0" expanded="true" />
-                <element signature="e#185020#185026#0" expanded="true" />
-                <element signature="e#185028#185034#0" expanded="true" />
-                <element signature="e#187273#187279#0" expanded="true" />
-                <element signature="e#187290#187296#0" expanded="true" />
-                <element signature="e#187298#187304#0" expanded="true" />
-                <element signature="e#187306#187312#0" expanded="true" />
-                <element signature="e#189690#189696#0" expanded="true" />
-                <element signature="e#189707#189713#0" expanded="true" />
-                <element signature="e#189715#189721#0" expanded="true" />
-                <element signature="e#189723#189729#0" expanded="true" />
-                <element signature="e#191326#191332#0" expanded="true" />
-                <element signature="e#191343#191349#0" expanded="true" />
-                <element signature="e#191351#191357#0" expanded="true" />
-                <element signature="e#191359#191365#0" expanded="true" />
-                <element signature="e#191262#191268#0" expanded="true" />
-                <element signature="e#191279#191285#0" expanded="true" />
-                <element signature="e#191287#191293#0" expanded="true" />
-                <element signature="e#191295#191301#0" expanded="true" />
-                <element signature="e#193540#193546#0" expanded="true" />
-                <element signature="e#193557#193563#0" expanded="true" />
-                <element signature="e#193565#193571#0" expanded="true" />
-                <element signature="e#193573#193579#0" expanded="true" />
+                <element signature="e#923#933#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -317,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="26">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -335,41 +77,45 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>certificates_seen</find>
-      <find>cert</find>
-      <find>destination</find>
-      <find>types</find>
-      <find>ports_</find>
-      <find>ports_used_from_org</find>
-      <find>tcp</find>
-      <find>tcp_ports_used_from_org</find>
-      <find>external_public_ip</find>
-      <find>ports_used_to_connect_to_external_public_ips</find>
-      <find>external_public_ips</find>
-      <find>number_of_external_ips_connections_to_host</find>
-      <find>dns_</find>
-      <find>domain</find>
-      <find>&lt;item_prototypes/&gt;</find>
-      <find>flag</find>
-      <find>top_n_most_rarely_queried_fqdns</find>
-      <find>number_of_cl</find>
-      <find>top_n_most_frequently_queried_fqdns</find>
-      <find>top_n_most_frequently_queried_subdomains</find>
-      <find>top_n_most_frequently_queried_tlds</find>
-      <find>number_of_clients_per_dns_</find>
-      <find>&lt;/discovery_rule&gt;</find>
-      <find>tld_</find>
-      <find>top_n_most_frequently_queried_tld_subdomains</find>
-      <find>tld.subdomain</find>
-      <find>top_n_most_frequently_queried_parent_domains</find>
-      <find>number_of_queries_per_dns_tld</find>
-      <find>highest_similarity_to_any_top_accessed</find>
-      <find>highest_similarity_to_any_top_accessed_parent_domain</find>
+      <find>crown_jewels_ips</find>
+      <find>tftp</find>
+      <find>org_tftp_servers</find>
+      <find>MSSQL_SERVER</find>
+      <find>dhc</find>
+      <find>org_http_verbs</find>
+      <find>org_source_servers_per_http_verb</find>
+      <find>certs_issuers</find>
+      <find>number_of_connections_to_ext_ip</find>
+      <find>org_web_servers</find>
+      <find>number_of_connections_to_ip</find>
+      <find>webservers_webmethods</find>
+      <find>dst_workstations_dst_ports</find>
+      <find>.*per.*per.*</find>
+      <find>arg2</find>
+      <find>page</find>
+      <find>uri</find>
+      <find>arg4</find>
+      <find>website_files</find>
+      <find>websites_ports</find>
+      <find>[^&lt;/]item_prototype[^&gt;]</find>
+      <find>&lt;item_prototypes</find>
+      <find>downloaded_files</find>
+      <find>number_of_requests_per_verb_per_website</find>
+      <find>number_of_queries_per_dns_qry</find>
+      <find>web_technology</find>
+      <find>web_app</find>
+      <find>web_app&lt;</find>
+      <find>dip:traffic_hij</find>
+      <find>website_pages</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
       <replace>{$METRIC_COLLECTOR_HOST},smart-onion/</replace>
       <replace>&lt;params/&gt;</replace>
+      <replace>web_app</replace>
+      <replace>web_app_scanning</replace>
+      <replace>web_app_scanning&lt;</replace>
+      <replace>destination</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -392,20 +138,21 @@
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" />
         <option value="$PROJECT_DIR$/code/frontend/ux/games_items_info.md" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/requirements.txt" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/config/queries.json" />
+        <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
+        <option value="$PROJECT_DIR$/resources/classify_queries/classify_queries.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="1910" />
-    <option name="height" value="1053" />
+    <option name="width" value="1916" />
+    <option name="height" value="986" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -510,6 +257,24 @@
               <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="classify_queries" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="classify_queries" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -521,8 +286,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python3.5_venv" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/code/backend/python2_7" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -551,7 +316,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.metrics_collector">
+  <component name="RunManager" selected="Python.homoglyphs_test">
     <configuration name="anomaly_detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="smart-onion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -566,6 +331,27 @@
       <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="classify_queries" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="smart-onion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/resources/classify_queries" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/resources/classify_queries/classify_queries.py" />
+      <option name="PARAMETERS" value="&quot;$PROJECT_DIR$/config/zbx_sampling_template.xml&quot; &quot;$PROJECT_DIR$/config/queries.json&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -636,41 +422,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sampler" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="smart-onion" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code/sampler" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/sampler/sampler.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.sampler" />
       <item itemvalue="Python.homoglyphs_test" />
+      <item itemvalue="Python.metrics_collector" />
       <item itemvalue="Python.anomaly_detector" />
       <item itemvalue="Python.configurator" />
-      <item itemvalue="Python.metrics_collector" />
+      <item itemvalue="Python.classify_queries" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.metrics_collector" />
+        <item itemvalue="Python.classify_queries" />
         <item itemvalue="Python.configurator" />
         <item itemvalue="Python.anomaly_detector" />
+        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.homoglyphs_test" />
-        <item itemvalue="Python.sampler" />
       </list>
     </recent_temporary>
   </component>
@@ -881,7 +646,49 @@
       <option name="project" value="LOCAL" />
       <updated>1544597669454</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Pycharm files">
+      <created>1545219893795</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1545219893795</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names">
+      <created>1545244814543</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1545244814543</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml">
+      <created>1545721024410</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1545721024410</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added more metrics based on nested factors (virtual-host, http-verb, port, etc.)">
+      <created>1545808785845</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1545808785845</updated>
+    </task>
+    <task id="LOCAL-00033" summary="zbx_sampling_template: Completed the first batch of metrics to monitor and classifed all metrics.&#10;&#10;queries.json: Automatically classified all metrics based on the Zabbix template.">
+      <created>1547360632466</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1547360632466</updated>
+    </task>
+    <task id="LOCAL-00034" summary="zbx_sampling_template: Completed the first batch of metrics to monitor and classifed all metrics.&#10;&#10;queries.json: Automatically classified all metrics based on the Zabbix template.">
+      <created>1547363984295</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1547363984295</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView">
@@ -895,45 +702,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.50060457" side_tool="true" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" sideWeight="0.4993954" visible="true" weight="0.25" />
-      <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17246835" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49314347" weight="0.32930845" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75474685" weight="0.32930845" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8280591" weight="0.39956093" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4836498" weight="0.21420765" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994726" weight="0.32930845" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49367088" weight="0.3413831" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.17194092" side_tool="true" visible="true" weight="0.09320176" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" side_tool="true" visible="true" weight="0.19620253" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" sideWeight="0.5008183" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49314347" weight="0.32930845" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75474685" weight="0.32930845" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8280591" weight="0.39956093" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4836498" weight="0.21420765" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4994726" weight="0.32930845" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49367088" weight="0.3413831" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.17194092" side_tool="true" visible="true" weight="0.086622804" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -994,7 +781,13 @@
     <MESSAGE value="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders" />
     <MESSAGE value="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions" />
     <MESSAGE value="Added unit files and sample configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added unit files and sample configs" />
+    <MESSAGE value="Pycharm files" />
+    <MESSAGE value="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names" />
+    <MESSAGE value="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml" />
+    <MESSAGE value="Added more metrics based on nested factors (virtual-host, http-verb, port, etc.)" />
+    <MESSAGE value="zbx_sampling_template: Completed the first batch of metrics to monitor and classifed all metrics.&#10;&#10;queries.json: Automatically classified all metrics based on the Zabbix template." />
+    <MESSAGE value="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)" />
+    <option name="LAST_COMMIT_MESSAGE" value="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1011,27 +804,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>818</line>
+          <line>819</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>723</line>
+          <line>724</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>751</line>
+          <line>752</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>352</line>
+          <line>353</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>363</line>
+          <line>364</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
@@ -1061,47 +854,47 @@ hashlib.algorithms_available</expression-string>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>res_str + &quot; &quot;.join(str(x) for x in self._learned_net_info[cur_conf_item])</expression-string>
+        <expression-string>items</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>configurator_response</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart\-onion\/([a-z\/\-_]+)\?.*', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>configurator_final_url</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart\-onion\/([a-z\/\-_]+)\?.*,\{\$METRIC_COLLECTOR_PORT\},&amp;quot;@@RES: \(\.*\)&amp;quot;,,&amp;quot;\1&amp;quot;\]&lt;/key&gt;', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>glob.glob('/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/**/*.wsp', recursive=True)</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart\-onion\/([a-z\/\-]+)', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>glob.glob(metrics_pattern_real_path, recursive=True)</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart\-onion\/([a-z\/\-]+)\?.*', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>glob.glob('/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/**/*.wsp', recursive=True)</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\}\,smart\-onion\/([a-z\/\-]+)\?.*,\{\$METRIC_COLLECTOR_PORT\},&amp;quot;@@RES: \(\.*\)&amp;quot;,,&amp;quot;\1&amp;quot;\]&lt;/key&gt;', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>glob.glob('/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/carbon/**/*.wsp', recursive=True)</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart\-onion\/([a-z\/\-]+)\?.*,\{\$METRIC_COLLECTOR_PORT\},&amp;quot;@@RES: \(\.*\)&amp;quot;,,&amp;quot;\1&amp;quot;\]&lt;/key&gt;', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>glob.glob('/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/carbon/agents/*/*.wsp')</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart-onion\/([a-z\/\-]+)\?.*,\{\$METRIC_COLLECTOR_PORT\},&amp;quot;@@RES: \(\.*\)&amp;quot;,,&amp;quot;\1&amp;quot;\]&lt;/key&gt;', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>glob.glob('/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/carbon/**/cpuUsage.wsp')</expression-string>
+        <expression-string>re.findall(r'&lt;key&gt;web\.page\.regexp\[\{\$METRIC_COLLECTOR_HOST\},smart-onion/([a-z\/\-]+)\?.*,\{\$METRIC_COLLECTOR_PORT\},&amp;quot;@@RES: \(\.*\)&amp;quot;,,&amp;quot;\1&amp;quot;\]&lt;/key&gt;', line.strip())</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1233,9 +1026,6 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="259" column="7" selection-start-line="259" selection-start-column="7" selection-end-line="259" selection-end-column="7" />
-          <folding>
-            <element signature="e#19#36#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1250,9 +1040,6 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="68" column="51" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
-          <folding>
-            <element signature="e#21#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1264,21 +1051,6 @@ hashlib.algorithms_available</expression-string>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#21#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/graphite-api.service">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/etc_smart-onion/alerter.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/etc_smart-onion/metrics_collector.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/requirements.txt">
@@ -1288,13 +1060,36 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="33" column="17" selection-start-line="15" selection-end-line="33" selection-end-column="17" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="65">
+          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/io.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2229" />
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydevd_bundle/pydevconsole_code_for_ironpython.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/classify_queries/.idea/classify_queries.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1310,263 +1105,51 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="26">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
+    <entry file="file://$PROJECT_DIR$/resources/classify_queries/classify_queries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
+        <state relative-caret-position="819">
+          <caret line="84" column="18" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
           <folding>
-            <element signature="e#922#936#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="3165" column="98" selection-start-line="3165" selection-start-column="86" selection-end-line="3165" selection-end-column="98" />
+          <folding>
+            <element signature="n#groups#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#group#0;n#groups#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#group#0;n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#applications#0;n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#application#0;n#applications#0;n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="235" column="55" selection-start-line="235" selection-start-column="3" selection-end-line="235" selection-end-column="55" />
+        <state relative-caret-position="378">
+          <caret line="1142" column="25" selection-start-line="1142" selection-start-column="25" selection-end-line="1142" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2130">
-          <caret line="3773" column="35" lean-forward="true" selection-start-line="3773" selection-start-column="35" selection-end-line="3773" selection-end-column="35" />
+        <state relative-caret-position="449">
+          <caret line="891" column="120" lean-forward="true" selection-start-line="891" selection-start-column="120" selection-end-line="891" selection-end-column="120" />
           <folding>
-            <element signature="n#discovery_rule#1;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#discovery_rule#2;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#discovery_rule#3;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#discovery_rule#4;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#discovery_rule#5;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="e#71289#71294#0" expanded="true" />
-            <element signature="e#71328#71334#0" expanded="true" />
-            <element signature="e#71345#71351#0" expanded="true" />
-            <element signature="e#71353#71359#0" expanded="true" />
-            <element signature="e#71361#71367#0" expanded="true" />
-            <element signature="e#73567#73572#0" expanded="true" />
-            <element signature="n#discovery_rule#6;n#discovery_rules#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="e#85076#85082#0" expanded="true" />
-            <element signature="e#85093#85099#0" expanded="true" />
-            <element signature="e#85101#85107#0" expanded="true" />
-            <element signature="e#85109#85115#0" expanded="true" />
-            <element signature="e#86570#86576#0" expanded="true" />
-            <element signature="e#86587#86593#0" expanded="true" />
-            <element signature="e#86595#86601#0" expanded="true" />
-            <element signature="e#86603#86609#0" expanded="true" />
-            <element signature="e#88422#90144#0" />
-            <element signature="e#90540#90546#0" expanded="true" />
-            <element signature="e#90557#90563#0" expanded="true" />
-            <element signature="e#90565#90571#0" expanded="true" />
-            <element signature="e#90573#90579#0" expanded="true" />
-            <element signature="e#92030#92036#0" expanded="true" />
-            <element signature="e#92047#92053#0" expanded="true" />
-            <element signature="e#92055#92061#0" expanded="true" />
-            <element signature="e#92063#92069#0" expanded="true" />
-            <element signature="e#94454#94460#0" expanded="true" />
-            <element signature="e#94471#94477#0" expanded="true" />
-            <element signature="e#94479#94485#0" expanded="true" />
-            <element signature="e#94487#94493#0" expanded="true" />
-            <element signature="e#95987#95992#0" expanded="true" />
-            <element signature="e#96030#96036#0" expanded="true" />
-            <element signature="e#96047#96053#0" expanded="true" />
-            <element signature="e#96055#96061#0" expanded="true" />
-            <element signature="e#96063#96069#0" expanded="true" />
-            <element signature="e#98405#98411#0" expanded="true" />
-            <element signature="e#98422#98428#0" expanded="true" />
-            <element signature="e#98430#98436#0" expanded="true" />
-            <element signature="e#98438#98444#0" expanded="true" />
-            <element signature="e#99974#99980#0" expanded="true" />
-            <element signature="e#99991#99997#0" expanded="true" />
-            <element signature="e#99999#100005#0" expanded="true" />
-            <element signature="e#100007#100013#0" expanded="true" />
-            <element signature="e#102393#102399#0" expanded="true" />
-            <element signature="e#102410#102416#0" expanded="true" />
-            <element signature="e#102418#102424#0" expanded="true" />
-            <element signature="e#102426#102432#0" expanded="true" />
-            <element signature="e#103915#103921#0" expanded="true" />
-            <element signature="e#103932#103938#0" expanded="true" />
-            <element signature="e#103940#103946#0" expanded="true" />
-            <element signature="e#103948#103954#0" expanded="true" />
-            <element signature="e#106347#106353#0" expanded="true" />
-            <element signature="e#106364#106370#0" expanded="true" />
-            <element signature="e#106372#106378#0" expanded="true" />
-            <element signature="e#106380#106386#0" expanded="true" />
-            <element signature="e#107869#107875#0" expanded="true" />
-            <element signature="e#107886#107892#0" expanded="true" />
-            <element signature="e#107894#107900#0" expanded="true" />
-            <element signature="e#107902#107908#0" expanded="true" />
-            <element signature="e#110249#110255#0" expanded="true" />
-            <element signature="e#110266#110272#0" expanded="true" />
-            <element signature="e#110274#110280#0" expanded="true" />
-            <element signature="e#110282#110288#0" expanded="true" />
-            <element signature="e#111794#111800#0" expanded="true" />
-            <element signature="e#111811#111817#0" expanded="true" />
-            <element signature="e#111819#111825#0" expanded="true" />
-            <element signature="e#111827#111833#0" expanded="true" />
-            <element signature="e#114252#114258#0" expanded="true" />
-            <element signature="e#114269#114275#0" expanded="true" />
-            <element signature="e#114277#114283#0" expanded="true" />
-            <element signature="e#114285#114291#0" expanded="true" />
-            <element signature="e#115797#115803#0" expanded="true" />
-            <element signature="e#115814#115820#0" expanded="true" />
-            <element signature="e#115822#115828#0" expanded="true" />
-            <element signature="e#115830#115836#0" expanded="true" />
-            <element signature="e#118182#118188#0" expanded="true" />
-            <element signature="e#118199#118205#0" expanded="true" />
-            <element signature="e#118207#118213#0" expanded="true" />
-            <element signature="e#118215#118221#0" expanded="true" />
-            <element signature="e#119737#119743#0" expanded="true" />
-            <element signature="e#119754#119760#0" expanded="true" />
-            <element signature="e#119762#119768#0" expanded="true" />
-            <element signature="e#119770#119776#0" expanded="true" />
-            <element signature="e#121997#122003#0" expanded="true" />
-            <element signature="e#122014#122020#0" expanded="true" />
-            <element signature="e#122022#122028#0" expanded="true" />
-            <element signature="e#122030#122036#0" expanded="true" />
-            <element signature="e#124400#124406#0" expanded="true" />
-            <element signature="e#124417#124423#0" expanded="true" />
-            <element signature="e#124425#124431#0" expanded="true" />
-            <element signature="e#124433#124439#0" expanded="true" />
-            <element signature="e#125955#125961#0" expanded="true" />
-            <element signature="e#125972#125978#0" expanded="true" />
-            <element signature="e#125980#125986#0" expanded="true" />
-            <element signature="e#125988#125994#0" expanded="true" />
-            <element signature="e#128215#128221#0" expanded="true" />
-            <element signature="e#128232#128238#0" expanded="true" />
-            <element signature="e#128240#128246#0" expanded="true" />
-            <element signature="e#128248#128254#0" expanded="true" />
-            <element signature="e#130578#130584#0" expanded="true" />
-            <element signature="e#130595#130601#0" expanded="true" />
-            <element signature="e#130603#130609#0" expanded="true" />
-            <element signature="e#130611#130617#0" expanded="true" />
-            <element signature="e#132113#132119#0" expanded="true" />
-            <element signature="e#132130#132136#0" expanded="true" />
-            <element signature="e#132138#132144#0" expanded="true" />
-            <element signature="e#132146#132152#0" expanded="true" />
-            <element signature="e#134358#134364#0" expanded="true" />
-            <element signature="e#134375#134381#0" expanded="true" />
-            <element signature="e#134383#134389#0" expanded="true" />
-            <element signature="e#134391#134397#0" expanded="true" />
-            <element signature="e#134353#134359#0" expanded="true" />
-            <element signature="e#134370#134376#0" expanded="true" />
-            <element signature="e#134378#134384#0" expanded="true" />
-            <element signature="e#134386#134392#0" expanded="true" />
-            <element signature="e#136770#136776#0" expanded="true" />
-            <element signature="e#136787#136793#0" expanded="true" />
-            <element signature="e#136795#136801#0" expanded="true" />
-            <element signature="e#136803#136809#0" expanded="true" />
-            <element signature="e#138305#138311#0" expanded="true" />
-            <element signature="e#138322#138328#0" expanded="true" />
-            <element signature="e#138330#138336#0" expanded="true" />
-            <element signature="e#138338#138344#0" expanded="true" />
-            <element signature="e#140545#140551#0" expanded="true" />
-            <element signature="e#140562#140568#0" expanded="true" />
-            <element signature="e#140570#140576#0" expanded="true" />
-            <element signature="e#140578#140584#0" expanded="true" />
-            <element signature="e#142998#143004#0" expanded="true" />
-            <element signature="e#143015#143021#0" expanded="true" />
-            <element signature="e#143023#143029#0" expanded="true" />
-            <element signature="e#143031#143037#0" expanded="true" />
-            <element signature="e#144555#144561#0" expanded="true" />
-            <element signature="e#144572#144578#0" expanded="true" />
-            <element signature="e#144580#144586#0" expanded="true" />
-            <element signature="e#144588#144594#0" expanded="true" />
-            <element signature="e#149161#149167#0" expanded="true" />
-            <element signature="e#149178#149184#0" expanded="true" />
-            <element signature="e#149186#149192#0" expanded="true" />
-            <element signature="e#149194#149200#0" expanded="true" />
-            <element signature="e#146817#146823#0" expanded="true" />
-            <element signature="e#146834#146840#0" expanded="true" />
-            <element signature="e#146842#146848#0" expanded="true" />
-            <element signature="e#146850#146856#0" expanded="true" />
-            <element signature="e#153860#153866#0" expanded="true" />
-            <element signature="e#153877#153883#0" expanded="true" />
-            <element signature="e#153885#153891#0" expanded="true" />
-            <element signature="e#153893#153899#0" expanded="true" />
-            <element signature="e#155417#155423#0" expanded="true" />
-            <element signature="e#155434#155440#0" expanded="true" />
-            <element signature="e#155442#155448#0" expanded="true" />
-            <element signature="e#155450#155456#0" expanded="true" />
-            <element signature="e#157679#157685#0" expanded="true" />
-            <element signature="e#157696#157702#0" expanded="true" />
-            <element signature="e#157704#157710#0" expanded="true" />
-            <element signature="e#157712#157718#0" expanded="true" />
-            <element signature="e#160028#160034#0" expanded="true" />
-            <element signature="e#160045#160051#0" expanded="true" />
-            <element signature="e#160053#160059#0" expanded="true" />
-            <element signature="e#160061#160067#0" expanded="true" />
-            <element signature="e#161653#161659#0" expanded="true" />
-            <element signature="e#161670#161676#0" expanded="true" />
-            <element signature="e#161678#161684#0" expanded="true" />
-            <element signature="e#161686#161692#0" expanded="true" />
-            <element signature="e#161561#161567#0" expanded="true" />
-            <element signature="e#161578#161584#0" expanded="true" />
-            <element signature="e#161586#161592#0" expanded="true" />
-            <element signature="e#161594#161600#0" expanded="true" />
-            <element signature="e#163799#163805#0" expanded="true" />
-            <element signature="e#163816#163822#0" expanded="true" />
-            <element signature="e#163824#163830#0" expanded="true" />
-            <element signature="e#163832#163838#0" expanded="true" />
-            <element signature="e#168526#168532#0" expanded="true" />
-            <element signature="e#168543#168549#0" expanded="true" />
-            <element signature="e#168551#168557#0" expanded="true" />
-            <element signature="e#168559#168565#0" expanded="true" />
-            <element signature="e#170018#170024#0" expanded="true" />
-            <element signature="e#170035#170041#0" expanded="true" />
-            <element signature="e#170043#170049#0" expanded="true" />
-            <element signature="e#170051#170057#0" expanded="true" />
-            <element signature="e#172256#172262#0" expanded="true" />
-            <element signature="e#172273#172279#0" expanded="true" />
-            <element signature="e#172281#172287#0" expanded="true" />
-            <element signature="e#172289#172295#0" expanded="true" />
-            <element signature="e#174802#174808#0" expanded="true" />
-            <element signature="e#174819#174825#0" expanded="true" />
-            <element signature="e#174827#174833#0" expanded="true" />
-            <element signature="e#174835#174841#0" expanded="true" />
-            <element signature="e#176437#176443#0" expanded="true" />
-            <element signature="e#176454#176460#0" expanded="true" />
-            <element signature="e#176462#176468#0" expanded="true" />
-            <element signature="e#176470#176476#0" expanded="true" />
-            <element signature="e#176374#176380#0" expanded="true" />
-            <element signature="e#176391#176397#0" expanded="true" />
-            <element signature="e#176399#176405#0" expanded="true" />
-            <element signature="e#176407#176413#0" expanded="true" />
-            <element signature="e#178652#178658#0" expanded="true" />
-            <element signature="e#178669#178675#0" expanded="true" />
-            <element signature="e#178677#178683#0" expanded="true" />
-            <element signature="e#178685#178691#0" expanded="true" />
-            <element signature="e#183414#183420#0" expanded="true" />
-            <element signature="e#183431#183437#0" expanded="true" />
-            <element signature="e#183439#183445#0" expanded="true" />
-            <element signature="e#183447#183453#0" expanded="true" />
-            <element signature="e#184995#185001#0" expanded="true" />
-            <element signature="e#185012#185018#0" expanded="true" />
-            <element signature="e#185020#185026#0" expanded="true" />
-            <element signature="e#185028#185034#0" expanded="true" />
-            <element signature="e#187273#187279#0" expanded="true" />
-            <element signature="e#187290#187296#0" expanded="true" />
-            <element signature="e#187298#187304#0" expanded="true" />
-            <element signature="e#187306#187312#0" expanded="true" />
-            <element signature="e#189690#189696#0" expanded="true" />
-            <element signature="e#189707#189713#0" expanded="true" />
-            <element signature="e#189715#189721#0" expanded="true" />
-            <element signature="e#189723#189729#0" expanded="true" />
-            <element signature="e#191326#191332#0" expanded="true" />
-            <element signature="e#191343#191349#0" expanded="true" />
-            <element signature="e#191351#191357#0" expanded="true" />
-            <element signature="e#191359#191365#0" expanded="true" />
-            <element signature="e#191262#191268#0" expanded="true" />
-            <element signature="e#191279#191285#0" expanded="true" />
-            <element signature="e#191287#191293#0" expanded="true" />
-            <element signature="e#191295#191301#0" expanded="true" />
-            <element signature="e#193540#193546#0" expanded="true" />
-            <element signature="e#193557#193563#0" expanded="true" />
-            <element signature="e#193565#193571#0" expanded="true" />
-            <element signature="e#193573#193579#0" expanded="true" />
+            <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>

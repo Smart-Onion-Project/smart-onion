@@ -73,7 +73,12 @@ class MetricsRealtimeAnalyzer:
         pass
 
     def report_anomaly(self, metric, anomaly_info):
-        pass
+        res = urllib.urlopen(url=self.alerter_url, data={
+            "metric": metric,
+            "reporter": "metrics_analyzer",
+            "meta_data": anomaly_info
+        }, context={'Content-Type': 'application/json'}).read().decode('utf-8')
+
 
     def get_save_path(self, metric, path_element="model"):
         """
@@ -227,7 +232,7 @@ class MetricsRealtimeAnalyzer:
 
             if os.path.isfile(os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename)):
                 try:
-                    self.anomaly_likelihood_detectors[metric["metric_name"]] = self.createAnomalyLikelihoodCalcFromDisk(metric)
+                    self.anomaly_likelihood_detectors[metric["metric_name"]] = self.create_anomaly_likelihood_calc_from_disk(metric)
                     print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
                 except Exception as ex:
                     self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
@@ -256,7 +261,7 @@ class MetricsRealtimeAnalyzer:
                 timestamp=datetime.fromtimestamp(metric["metric_timestamp"])
             )
 
-            anomalyReported = False
+            anomaly_reported = False
             anomaly_direction = 0
             if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
                 if prediction > metric["metric_value"]:
@@ -272,10 +277,15 @@ class MetricsRealtimeAnalyzer:
                 pass
 
             if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
-                self.report_anomaly(metric=metric, anomaly_info={"htm_anomaly_score": anomalyScore,
-                                                                 "htm_anomaly_likelihood": anomalyLikelihood,
-                                                                 "anomaly_score": anomalyLikelihood * anomaly_direction * 100})
-            anomalyReported = True
+                self.report_anomaly(metric=metric, anomaly_info={
+                    "htm_anomaly_score": anomalyScore,
+                    "htm_anomaly_likelihood": anomalyLikelihood,
+                    "anomaly_score": anomalyLikelihood * anomaly_direction * 100,
+                    "timestamp: ": datetime.fromtimestamp(metric["metric_timestamp"]),
+                    "metric: ": metric["metric_name"],
+                    "value: ": metric["metric_value"]
+                })
+                anomaly_reported = True
 
             print(
                     "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
@@ -284,7 +294,7 @@ class MetricsRealtimeAnalyzer:
                     "Anomaly score: " + str(anomalyScore) + ", " +
                     "Prediction: " + str(prediction) + ", " +
                     "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
-                    "AnomalyReported: " + str(anomalyReported)
+                    "AnomalyReported: " + str(anomaly_reported)
             )
         else:
             print("ERROR: Could not load a model for " + str(metric))
@@ -292,7 +302,7 @@ class MetricsRealtimeAnalyzer:
         if self.EXIT_ALL_THREADS_FLAG:
             return
 
-    def createAnomalyLikelihoodCalcFromDisk(self, metric):
+    def create_anomaly_likelihood_calc_from_disk(self, metric):
         anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
         with open(
                 os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename),
@@ -343,7 +353,9 @@ class MetricsRealtimeAnalyzer:
                 #If the message is not an empty line send it to the parser. If it is an empty line just ignore it.
                 self.parse_metric_message(metric_line, client_address)
 
-    def run(self, ip='', port=3000, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None):
+    def run(self, ip='', port=3000, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
+        self.alerter_url = alerter_url
+
         # create an INET, STREAMing socket
         if proto == "UDP":
             serversocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -444,6 +456,18 @@ except:
     listen_ip = "127.0.0.1"
     listen_port = 9004
 
+alerter_url = None
+while alerter_url is None:
+    try:
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.alerter.*"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        alerter_info = json.loads(configurator_response)
+        alerter_url = alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
+    except:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for learned net info)...")
+        time.sleep(10)
+
+
 utils = Utils()
 
 try:
@@ -488,5 +512,6 @@ MetricsRealtimeAnalyzer().run(
     save_interval=save_interval,
     models_save_base_path=models_save_base_path,
     models_params_base_path=models_params_base_path,
-    anomaly_likelihood_detectors_save_base_path=anomaly_likelihood_detectors_save_base_path
+    anomaly_likelihood_detectors_save_base_path=anomaly_likelihood_detectors_save_base_path,
+    alerter_url=alerter_url
 )
