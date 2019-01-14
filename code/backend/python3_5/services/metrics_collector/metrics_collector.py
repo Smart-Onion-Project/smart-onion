@@ -34,6 +34,7 @@ from PIL import ImageDraw
 import imagehash
 import time
 import homoglyphs
+import syslog
 
 DEBUG = True
 elasticsearch_server = "127.0.0.1"
@@ -750,6 +751,7 @@ class MetricsCollector:
             agg = agg["field_values" + str(i)]["aggs"]
 
         try:
+            syslog.syslog("metrics_collector: INFO: Executing the following query: index=" + query_index + ", query_body=" + json.dumps(query_body))
             res = self.es.search(
                 index=query_index,
                 body=query_body
