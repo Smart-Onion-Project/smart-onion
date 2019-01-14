@@ -3,7 +3,7 @@
 ALL_UNIT_FILES=`ls -1 /etc/systemd/system/smart-onion*.service`
 COMMAND='status'
 
-if [ "$#" -gt 1 ]; then
+if [ "$#" -gt 0 ]; then
   COMMAND=$1
 fi
 
