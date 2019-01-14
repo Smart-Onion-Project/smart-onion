@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/classify_queries/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/classify_queries/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
