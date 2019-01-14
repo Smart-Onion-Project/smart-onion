@@ -8,6 +8,7 @@ from bottle import Bottle
 import datetime
 import json
 import base64
+import syslog
 
 
 DEBUG = True
@@ -39,7 +40,11 @@ class SmartOnionAlerter:
         #Algorithm for detecting priority for each event - Should run after each event is added to the list:
         # - Divide the highest score on the list by 5 => x
         # - Divide each event's score by x => event_priority
-        pass
+        try:
+            report_obj = request.json
+            syslog.syslog("SmartOnionAlerter: INFO: Received anomaly report from " + report_obj["reporter"] + ". Report contents is " + json.dumps(report_obj))
+        except:
+            syslog.syslog("SmartOnionAlerter: WARN: Received an anomaly report that was not structured properly. Cannot process it. DISCARDING")
 
 
 script_path = os.path.dirname(os.path.realpath(__file__))
