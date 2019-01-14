@@ -9,8 +9,8 @@ fi
 
 for svc_unit in $ALL_UNIT_FILES; do
   SERVICE_NAME=`/usr/bin/basename $svc_unit | sed -s 's/\.service//g'`
-  echo "Getting status of $SERVICE_NAME..."
-  systemctl --no-pager status $SERVICE_NAME | grep Active
+  echo "Getting/running $COMMAND of $SERVICE_NAME..."
+  systemctl --no-pager $COMMAND $SERVICE_NAME | grep Active
   systemctl --no-pager status $SERVICE_NAME | tail -n1
   echo
 done
