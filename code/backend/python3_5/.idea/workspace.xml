@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="753" column="146" selection-start-line="753" selection-start-column="146" selection-end-line="753" selection-end-column="146" />
+            <state relative-caret-position="344">
+              <caret line="335" column="35" lean-forward="true" selection-start-line="335" selection-start-column="35" selection-end-line="335" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -136,8 +136,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1916" height="986" extended-state="1" />
-    <editor active="true" />
+    <frame x="0" y="27" width="1916" height="986" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25052854" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -161,8 +160,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="753" column="146" selection-start-line="753" selection-start-column="146" selection-end-line="753" selection-end-column="146" />
+        <state relative-caret-position="344">
+          <caret line="335" column="35" lean-forward="true" selection-start-line="335" selection-start-column="35" selection-end-line="335" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
