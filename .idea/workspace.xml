@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="queries.json:&#10;- Removed old unnecessary file.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once.">
       <change afterPath="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
@@ -707,7 +707,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547479341345</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once.">
+      <created>1547483335150</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1547483335151</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -721,7 +728,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17246835" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -783,7 +789,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Preps" />
     <MESSAGE value="Redesigned the directory structure" />
     <MESSAGE value="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)" />
     <MESSAGE value="Added resources and a Zabbix template" />
@@ -808,7 +813,8 @@
     <MESSAGE value="zbx_sampling_template: Completed the first batch of metrics to monitor and classifed all metrics.&#10;&#10;queries.json: Automatically classified all metrics based on the Zabbix template." />
     <MESSAGE value="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)" />
     <MESSAGE value="queries.json:&#10;- Removed old unnecessary file." />
-    <option name="LAST_COMMIT_MESSAGE" value="queries.json:&#10;- Removed old unnecessary file." />
+    <MESSAGE value="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once." />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
