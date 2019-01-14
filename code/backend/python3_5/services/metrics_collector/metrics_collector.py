@@ -327,7 +327,7 @@ class MetricsCollector:
         # else:
         now = datetime.datetime.now()
         yesterday = datetime.date.today() - datetime.timedelta(1)
-        last_month = datetime.date.today() - datetime.timedelta(months=1)
+        last_month = datetime.date.today() - datetime.timedelta(days=30)
 
         time_range = (now - datetime.timedelta(
             seconds=query_details["time_range"])).isoformat() + " TO " + now.isoformat()
