@@ -320,14 +320,14 @@ class MetricsCollector:
             self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
 
     def GetQueryTimeRange(self, query_details):
-        if DEBUG:
-            now = dateutil.parser.parse("2018-06-12T08:00")
-            yesterday = dateutil.parser.parse("2018-06-11T08:00")
-            last_month = dateutil.parser.parse("2018-05-11T00:00")
-        else:
-            now = datetime.datetime.now()
-            yesterday = datetime.date.today() - datetime.timedelta(1)
-            last_month = datetime.date.today() - datetime.timedelta(months=1)
+        # if DEBUG:
+        #     now = dateutil.parser.parse("2018-06-12T08:00")
+        #     yesterday = dateutil.parser.parse("2018-06-11T08:00")
+        #     last_month = dateutil.parser.parse("2018-05-11T00:00")
+        # else:
+        now = datetime.datetime.now()
+        yesterday = datetime.date.today() - datetime.timedelta(1)
+        last_month = datetime.date.today() - datetime.timedelta(months=1)
 
         time_range = (now - datetime.timedelta(
             seconds=query_details["time_range"])).isoformat() + " TO " + now.isoformat()
