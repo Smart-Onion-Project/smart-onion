@@ -7,7 +7,7 @@
     "time_range": 86400,
     "agg_on_field": "top_level_domain.keyword",
     "zabbix_macro": "DNS_TLD",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -17,7 +17,7 @@
     "time_range": 86400,
     "agg_on_field": "query_class_name.keyword",
     "zabbix_macro": "DNS_QRY_CLASS",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -27,7 +27,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "DNS_IP",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -37,7 +37,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "MSSQL_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -47,7 +47,7 @@
     "time_range": 86400,
     "agg_on_field": "top_level_domain.keyword",
     "zabbix_macro": "DNS_TLD",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -57,7 +57,7 @@
     "time_range": 86400,
     "agg_on_field": "uri.keyword",
     "zabbix_macro": "URI",
-    "query": "event_type:bro_http AND (source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "event_type:bro_http AND (source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -66,7 +66,7 @@
     "time_range": 86400,
     "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "SERVER_IP",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network})",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network})",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -75,7 +75,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "MYSQL_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -85,7 +85,7 @@
     "time_range": 86400,
     "agg_on_field": "method.keyword",
     "zabbix_macro": "HTTP_VERB",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -95,7 +95,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "PGSQL_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -105,7 +105,7 @@
     "time_range": 86400,
     "agg_on_field": "tld.subdomain.keyword",
     "zabbix_macro": "DNS_TLD_SUBDOMAIN",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -115,7 +115,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "SERVER_IP",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -124,7 +124,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "EXT_IP",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -133,7 +133,7 @@
     "time_range": 86400,
     "agg_on_field": "parent_domain.keyword",
     "zabbix_macro": "DNS_PARENT_DOMAIN",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -143,7 +143,7 @@
     "time_range": 86400,
     "agg_on_field": "virtual_host.keyword",
     "zabbix_macro": "EXT_WEB_VHOST",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -153,7 +153,7 @@
     "time_range": 86400,
     "agg_on_field": "virtual_host.keyword",
     "zabbix_macro": "EXT_WEB_VHOST",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -163,7 +163,7 @@
     "time_range": 86400,
     "agg_on_field": "subdomain.keyword",
     "zabbix_macro": "DNS_SUBDOMAIN",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -182,7 +182,7 @@
     "time_range": 86400,
     "agg_on_field": "parent_domain.keyword",
     "zabbix_macro": "DNS_PARENT_DOMAIN",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -191,7 +191,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "PUB_IP",
-    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -208,7 +208,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_geo.country_code2.keyword",
     "zabbix_macro": "EXT_DEST_COUNTRY",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -216,7 +216,7 @@
     "time_range": 86400,
     "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "LAN_IP",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -224,7 +224,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_port.keyword",
     "zabbix_macro": "PORT",
-    "query": "protocol:tcp AND source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "protocol:tcp AND source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -232,7 +232,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_geo.continent_code.keyword",
     "zabbix_macro": "EXT_DEST_CONTINENT",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -241,7 +241,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "LDAP_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -261,7 +261,7 @@
     "time_range": 86400,
     "agg_on_field": "subdomain.keyword",
     "zabbix_macro": "DNS_SUBDOMAIN",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -270,7 +270,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_geo.city_name.keyword",
     "zabbix_macro": "EXT_DEST_CITY",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -278,7 +278,7 @@
     "time_range": 86400,
     "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "CROWN_JEWEL_IP",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.crown-jewels-ips})",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.crown-jewels-ips})",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -286,7 +286,7 @@
     "time_range": 86400,
     "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "WORKSTAION_IP",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network})",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network})",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -295,7 +295,7 @@
     "time_range": 86400,
     "agg_on_field": "query_type_name.keyword",
     "zabbix_macro": "DNS_QRY_FLAG",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query_type_name:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query_type_name:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -315,7 +315,7 @@
     "time_range": 86400,
     "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "SRC_IP",
-    "query": "(NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/) AND protocol:icmp",
+    "query": "(NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/) AND protocol:icmp",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -324,7 +324,7 @@
     "time_range": 86400,
     "agg_on_field": "query.keyword",
     "zabbix_macro": "DNS_REC",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -334,7 +334,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "SSH_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -344,7 +344,7 @@
     "time_range": 86400,
     "agg_on_field": "virtual_host.keyword,destination_port",
     "zabbix_macro": "WEBSITE,WEBPORT",
-    "query": "event_type:bro_http AND (source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "event_type:bro_http AND (source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -354,7 +354,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword,destination_port",
     "zabbix_macro": "WKSTA_IP,DPORT",
-    "query": "event_type:bro_conn AND destination_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND connection_state:(\"SF\" \"RSTO\")",
+    "query": "event_type:bro_conn AND destination_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND connection_state:(\"SF\" \"RSTO\")",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -363,7 +363,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "TFTP_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -373,7 +373,7 @@
     "time_range": 86400,
     "agg_on_field": "method.keyword",
     "zabbix_macro": "HTTP_VERB",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -394,7 +394,7 @@
     "time_range": 86400,
     "agg_on_field": "uri.keyword",
     "zabbix_macro": "EXT_WEB_URI",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
@@ -416,7 +416,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "FTP_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -425,7 +425,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_port.keyword",
     "zabbix_macro": "PORT",
-    "query": "protocol:udp AND source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "protocol:udp AND source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -433,7 +433,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "EXT_DEST_IP",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -442,7 +442,7 @@
     "time_range": 86400,
     "agg_on_field": "uri.keyword",
     "zabbix_macro": "URI",
-    "query": "event_type:bro_http AND (source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "event_type:bro_http AND (source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -452,7 +452,7 @@
     "time_range": 86400,
     "agg_on_field": "uri.keyword",
     "zabbix_macro": "EXT_WEB_URI",
-    "query": "source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
@@ -473,7 +473,7 @@
     "time_range": 86400,
     "agg_on_field": "tld.subdomain.keyword",
     "zabbix_macro": "DNS_TLD_SUBDOMAIN",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -492,7 +492,7 @@
     "time_range": 86400,
     "agg_on_field": "source_ip.keyword",
     "zabbix_macro": "SRC_IP",
-    "query": "(NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/)",
+    "query": "(NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/)",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -500,7 +500,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_port.keyword",
     "zabbix_macro": "PORT",
-    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
+    "query": "NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD"
   },
@@ -528,7 +528,7 @@
     "time_range": 86400,
     "agg_on_field": "query.keyword",
     "zabbix_macro": "DNS_REC",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -538,7 +538,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "DNS_IP",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND NOT (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -548,7 +548,7 @@
     "time_range": 86400,
     "agg_on_field": "query_class_name.keyword",
     "zabbix_macro": "DNS_QRY_CLASS",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -558,7 +558,7 @@
     "time_range": 86400,
     "agg_on_field": "destination_ip.keyword",
     "zabbix_macro": "DHCP_SERVER",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 50
@@ -571,7 +571,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -601,7 +601,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ip.keyword",
-    "query": "event_type:bro_x509 AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_issuer:{{#arg1}}",
+    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_issuer:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -610,7 +610,7 @@
     "tags": "peak:denial_of_service,dip:traffic_hijackinge",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_port:{{#arg1}})",
+    "query": "NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_port:{{#arg1}})",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -638,7 +638,7 @@
     "tags": "peak:command_and_control",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -647,7 +647,7 @@
     "tags": "peak:reconnaissance,peak:privilege_escalation,peak:brute_force,peak:dictionary_attack,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -666,7 +666,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ip.keyword",
-    "query": "event_type:bro_x509 AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_common_name:{{#arg1}}",
+    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_common_name:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -685,7 +685,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -704,7 +704,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network})) AND event_type:bro_http AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network})) AND event_type:bro_http AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -713,7 +713,7 @@
     "tags": "peak:reconnaissance,peak:privilege_escalation,peak:brute_force,peak:dictionary_attack,peak:penetration,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -749,7 +749,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -758,7 +758,7 @@
     "tags": "peak:lateral_movement,peak:reconnaissance",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND destination_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND source_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND destination_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND source_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -768,7 +768,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network})) AND event_type:bro_http AND (NOT destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network})) AND event_type:bro_http AND (NOT destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -778,7 +778,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network})) AND event_type:bro_http AND (NOT destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network})) AND event_type:bro_http AND (NOT destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -807,7 +807,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ip.keyword",
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}} AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}} AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -825,7 +825,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
+    "query": "event_type:bro_http AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -843,7 +843,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -862,7 +862,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ip.keyword",
-    "query": "event_type:bro_x509 AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_issuer:{{#arg1}}",
+    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_issuer:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -872,7 +872,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ip.keyword",
-    "query": "event_type:bro_x509 AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_common_name:{{#arg1}}",
+    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_common_name:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -930,7 +930,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -948,7 +948,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -995,7 +995,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1042,7 +1042,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1091,7 +1091,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ip.keyword",
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}} AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}} AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1147,7 +1147,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1156,7 +1156,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1174,7 +1174,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1201,7 +1201,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1239,7 +1239,7 @@
     "tags": "peak:command_and_control,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 300,
     "base_64_used": false,
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:\"{{#arg1}}\") AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ip:\"{{#arg1}}\") AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1275,7 +1275,7 @@
     "tags": "peak:reconnaissance,peak:privilege_escalation,peak:brute_force,peak:dictionary_attack,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1284,7 +1284,7 @@
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND NOT source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND NOT source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND NOT ({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1293,7 +1293,7 @@
     "tags": "peak:dhcp_starvation,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1302,7 +1302,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1311,7 +1311,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1330,7 +1330,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1377,7 +1377,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1405,7 +1405,7 @@
     "tags": "peak:lateral_movement,peak:reconnaissance",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND destination_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND source_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND destination_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND source_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1423,7 +1423,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
+    "query": "event_type:bro_http AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1432,7 +1432,7 @@
     "tags": "peak:command_and_control",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1460,7 +1460,7 @@
     "tags": "peak:dhcp_starvation,peak:servers_with_dynamic_addresses,peak:denial_of_service",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1470,7 +1470,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "(NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (NOT destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
+    "query": "(NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (NOT destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1479,7 +1479,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1488,7 +1488,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_conn AND source_ip:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "query": "event_type:bro_conn AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1498,7 +1498,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.servers-network})) AND event_type:bro_http AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network})) AND event_type:bro_http AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1517,7 +1517,7 @@
     "tags": "peak:denial_of_service,dip:traffic_hijackinge",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:{{#arg1}})",
+    "query": "NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:{{#arg1}})",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1527,7 +1527,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "(NOT source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (destination_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
+    "query": "(NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND method:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT"
   },
@@ -1582,7 +1582,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "virtual_host.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1594,7 +1594,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "query.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1606,7 +1606,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "query.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1618,7 +1618,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "subdomain.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1630,7 +1630,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "tld.subdomain.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1642,7 +1642,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "parent_domain.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1654,7 +1654,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "certificate_common_name.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_x509",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_x509",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1666,7 +1666,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "uri.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
@@ -1678,7 +1678,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "top_level_domain.keyword",
-    "query": "(source_ip:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 50
