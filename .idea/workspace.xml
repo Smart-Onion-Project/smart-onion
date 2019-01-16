@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10;- added debug message in discovery queries to be written to syslog">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="460" column="16" selection-start-line="460" selection-start-column="3" selection-end-line="460" selection-end-column="16" />
+            <state relative-caret-position="16024">
+              <caret line="1529" column="140" selection-start-line="1529" selection-start-column="140" selection-end-line="1529" selection-end-column="140" />
             </state>
           </provider>
         </entry>
@@ -180,12 +183,12 @@
         <option value="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/requirements.txt" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/resources/classify_queries/classify_queries.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/set_permissions.sh" />
+        <option value="$PROJECT_DIR$/config/queries.json" />
       </list>
     </option>
   </component>
@@ -801,7 +804,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547488585173</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)">
+      <created>1547488924248</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1547488924248</updated>
+    </task>
+    <task id="LOCAL-00044" summary="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)">
+      <created>1547489179180</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1547489179180</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -814,7 +831,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="0" y="27" width="1920" height="1053" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17246835" />
@@ -877,7 +894,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template" />
     <MESSAGE value="Pycharm settings changes" />
     <MESSAGE value="Removed large files" />
     <MESSAGE value="Moved all the nupic videos and the exported VMs to Google drive and added the address to the project's readme." />
@@ -902,7 +918,8 @@
     <MESSAGE value="test_service_status.sh:&#10;- Added the ability to restart the services" />
     <MESSAGE value="set_permissions.sh&#10;- Added to set the correct execute permissions on all the services" />
     <MESSAGE value="metrics_collector.py:&#10;- added debug message in discovery queries to be written to syslog" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10;- added debug message in discovery queries to be written to syslog" />
+    <MESSAGE value="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1278,8 +1295,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="460" column="16" selection-start-line="460" selection-start-column="3" selection-end-line="460" selection-end-column="16" />
+        <state relative-caret-position="16024">
+          <caret line="1529" column="140" selection-start-line="1529" selection-start-column="140" selection-end-line="1529" selection-end-column="140" />
         </state>
       </provider>
     </entry>
