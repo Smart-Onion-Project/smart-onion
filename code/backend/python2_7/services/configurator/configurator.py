@@ -48,7 +48,7 @@ class Utils:
 
 class SmartOnionConfigurator:
     config = {
-        "smart-onion.config.architecture.external_services.security-onion-elk.host": "127.0.0.1",
+        "smart-onion.config.architecture.external_services.security-onion-elk.host": "10.253.0.172",
         "smart-onion.config.architecture.external_services.security-onion-elk.port": 9200,
         "smart-onion.config.architecture.external_services.security-onion-elk.protocol": "http",
         "smart-onion.config.architecture.internal_services.backend.pipeline.statsd.host": "127.0.0.1",

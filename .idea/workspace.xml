@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,11 +37,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16024">
-              <caret line="1529" column="140" selection-start-line="1529" selection-start-column="140" selection-end-line="1529" selection-end-column="140" />
+            <state relative-caret-position="161">
+              <caret line="592" column="51" lean-forward="true" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="50" column="98" selection-start-line="50" selection-start-column="98" selection-end-line="50" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -76,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="888" column="38" selection-start-line="888" selection-start-column="38" selection-end-line="888" selection-end-column="38" />
+            <state relative-caret-position="145">
+              <caret line="293" column="33" lean-forward="true" selection-start-line="293" selection-start-column="33" selection-end-line="293" selection-end-column="33" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -118,9 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tftp</find>
-      <find>org_tftp_servers</find>
-      <find>MSSQL_SERVER</find>
       <find>dhc</find>
       <find>org_http_verbs</find>
       <find>org_source_servers_per_http_verb</find>
@@ -147,7 +153,10 @@
       <find>web_app&lt;</find>
       <find>dip:traffic_hij</find>
       <find>website_pages</find>
+      <find>destination_ip:({#</find>
+      <find>destination_ip.keyword</find>
       <find>org_dns_servers</find>
+      <find>number_of_clients_per_dns_qry</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -157,6 +166,8 @@
       <replace>web_app_scanning</replace>
       <replace>web_app_scanning&lt;</replace>
       <replace>destination</replace>
+      <replace>destination_ips:({#</replace>
+      <replace>destination_ips.keyword</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -178,7 +189,6 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" />
         <option value="$PROJECT_DIR$/code/frontend/ux/games_items_info.md" />
-        <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/requirements.txt" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/requirements.txt" />
@@ -189,6 +199,7 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/set_permissions.sh" />
         <option value="$PROJECT_DIR$/config/queries.json" />
+        <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
       </list>
     </option>
   </component>
@@ -818,7 +829,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547489179180</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="queries.json:&#10;- Replaced source_ip to source_ips and destination_ip to destination_ips to allow string based queries against them.">
+      <created>1547622554336</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1547622554336</updated>
+    </task>
+    <task id="LOCAL-00046" summary="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them.">
+      <created>1547623889667</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1547623889667</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TodoView">
@@ -831,8 +856,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17246835" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -894,8 +918,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Pycharm settings changes" />
-    <MESSAGE value="Removed large files" />
     <MESSAGE value="Moved all the nupic videos and the exported VMs to Google drive and added the address to the project's readme." />
     <MESSAGE value="Completed the Zabbix template (and fixed a tiny typo in the queries file)" />
     <MESSAGE value="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in." />
@@ -919,7 +941,9 @@
     <MESSAGE value="set_permissions.sh&#10;- Added to set the correct execute permissions on all the services" />
     <MESSAGE value="metrics_collector.py:&#10;- added debug message in discovery queries to be written to syslog" />
     <MESSAGE value="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)" />
+    <MESSAGE value="queries.json:&#10;- Replaced source_ip to source_ips and destination_ip to destination_ips to allow string based queries against them." />
+    <MESSAGE value="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them." />
+    <option name="LAST_COMMIT_MESSAGE" value="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1182,9 +1206,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1245,16 +1266,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="888" column="38" selection-start-line="888" selection-start-column="38" selection-end-line="888" selection-end-column="38" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
@@ -1293,10 +1304,34 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/statsd/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="293" column="33" lean-forward="true" selection-start-line="293" selection-start-column="33" selection-end-line="293" selection-end-column="33" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16024">
-          <caret line="1529" column="140" selection-start-line="1529" selection-start-column="140" selection-end-line="1529" selection-end-column="140" />
+        <state relative-caret-position="161">
+          <caret line="592" column="51" lean-forward="true" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="50" column="98" selection-start-line="50" selection-start-column="98" selection-end-line="50" selection-end-column="98" />
         </state>
       </provider>
     </entry>
