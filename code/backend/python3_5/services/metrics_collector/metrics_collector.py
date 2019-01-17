@@ -290,17 +290,17 @@ class Utils:
 
 class MetricsCollector:
     queries = {}
-    es = Elasticsearch(hosts=[elasticsearch_server], timeout=30)
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
     _learned_net_info = None
 
-    def __init__(self, listen_ip, listen_port, learned_net_info, queries_config):
+    def __init__(self, listen_ip, listen_port, learned_net_info, queries_config, elasticsearch_server):
         self._host = listen_ip
         self._port = listen_port
         self._learned_net_info = learned_net_info
         self._app = Bottle()
         self._route()
         self.queries = queries_config
+        self.es = Elasticsearch(hosts=[elasticsearch_server], timeout=30)
 
     def _route(self):
         self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
@@ -891,5 +891,5 @@ while queries_conf is None:
 
 
 sys.argv = [sys.argv[0]]
-MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info, queries_config=queries_conf).run()
+MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info, queries_config=queries_conf, elasticsearch_server=elasticsearch_server).run()
 
