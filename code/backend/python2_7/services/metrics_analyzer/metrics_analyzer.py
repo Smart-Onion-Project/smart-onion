@@ -461,7 +461,7 @@ while alerter_url is None:
     try:
         configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.alerter.*"
-        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
         alerter_info = json.loads(configurator_response)
         alerter_url = alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
     except:
