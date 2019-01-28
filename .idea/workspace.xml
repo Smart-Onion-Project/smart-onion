@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10;- Reverted back the elasticsearch server property to 127.0.0.1&#10;&#10;metrics_collector.py:&#10;- Fixed a bug that caused it to ignore a command line argument that specified the elasticsearch server that need to be used.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="6020" column="28" lean-forward="true" selection-start-line="6020" selection-start-column="28" selection-end-line="6020" selection-end-column="28" />
+            <state relative-caret-position="77610">
+              <caret line="6020" column="28" selection-start-line="6020" selection-start-column="28" selection-end-line="6020" selection-end-column="28" />
               <folding>
                 <element signature="n#groups#0;n#zabbix_export#0;n#!!top" />
                 <element signature="n#group#0;n#groups#0;n#zabbix_export#0;n#!!top" />
@@ -39,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="592" column="51" lean-forward="true" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
+            <state relative-caret-position="7696">
+              <caret line="592" column="51" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -49,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
@@ -84,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="839">
+            <state relative-caret-position="11336">
               <caret line="893" column="168" selection-start-line="893" selection-start-column="168" selection-end-line="893" selection-end-column="168" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
@@ -531,13 +531,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00001" summary="Preps">
-      <created>1528352489864</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1528352489865</updated>
-    </task>
     <task id="LOCAL-00002" summary="Redesigned the directory structure">
       <created>1537101388385</created>
       <option name="number" value="00002" />
@@ -867,7 +860,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547707774528</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="metrics_analyzer.py&#10;- BUGFIX: The first call to the configurator used python3 code">
+      <created>1548657420013</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1548657420013</updated>
+    </task>
+    <task id="LOCAL-00050" summary="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened">
+      <created>1548658636883</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1548658636883</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -896,7 +903,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -943,8 +950,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Completed the first version of the metrics analyzer. It should now support receiving metrics (in graphite format) both in UDP and TCP and detect anomalies in the metrics data that is coming in." />
-    <MESSAGE value="Fixed an issue with the metrics analyzer. (now, if it cannot find a module parameters for the metric family it will use a default one)" />
     <MESSAGE value="Updates the project structure and readme" />
     <MESSAGE value="Building the basic concept of the system's UI in both HTML file and in a readme file as a concept manifesto." />
     <MESSAGE value="Added header with details on each module.&#10;Added the basic code for the AnomalyDetector" />
@@ -968,7 +973,9 @@
     <MESSAGE value="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them." />
     <MESSAGE value="configurator.py:&#10;- For now, hard-coded the IP of the security onion at beta site" />
     <MESSAGE value="configurator.py:&#10;- Reverted back the elasticsearch server property to 127.0.0.1&#10;&#10;metrics_collector.py:&#10;- Fixed a bug that caused it to ignore a command line argument that specified the elasticsearch server that need to be used." />
-    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10;- Reverted back the elasticsearch server property to 127.0.0.1&#10;&#10;metrics_collector.py:&#10;- Fixed a bug that caused it to ignore a command line argument that specified the elasticsearch server that need to be used." />
+    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The first call to the configurator used python3 code" />
+    <MESSAGE value="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1112,13 +1119,7 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/text_to_image/encode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/text_to_image/encode.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/247832388/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1126,41 +1127,11 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/numpy/lib/function_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="2716" column="4" selection-start-line="2716" selection-start-column="4" selection-end-line="2716" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/imagehash/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/posixpath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/PIL/ImageFont.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="327" selection-start-line="327" selection-end-line="327" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/bottle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="1739" selection-start-line="1739" selection-end-line="1739" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/numpy/lib/function_base.py" />
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/imagehash/__init__.py" />
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/posixpath.py" />
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/PIL/ImageFont.py" />
+    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/bottle.py" />
     <entry file="file://$PROJECT_DIR$/Tests_and_POCs/test_text2image.py" />
     <entry file="file://$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1264,23 +1235,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="858">
-            <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/classify_queries/classify_queries.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="819">
@@ -1288,6 +1242,37 @@ hashlib.algorithms_available</expression-string>
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/statsd/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77610">
+          <caret line="6020" column="28" selection-start-line="6020" selection-start-column="28" selection-end-line="6020" selection-end-column="28" />
+          <folding>
+            <element signature="n#groups#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#group#0;n#groups#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#group#0;n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#applications#0;n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+            <element signature="n#application#0;n#applications#0;n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7696">
+          <caret line="592" column="51" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -1312,43 +1297,9 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="6020" column="28" lean-forward="true" selection-start-line="6020" selection-start-column="28" selection-end-line="6020" selection-end-column="28" />
-          <folding>
-            <element signature="n#groups#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#group#0;n#groups#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#group#0;n#groups#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#applications#0;n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-            <element signature="n#application#0;n#applications#0;n#item#0;n#items#0;n#template#0;n#templates#0;n#zabbix_export#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/statsd/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="592" column="51" lean-forward="true" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
+        <state relative-caret-position="11336">
           <caret line="893" column="168" selection-start-line="893" selection-start-column="168" selection-end-line="893" selection-end-column="168" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
@@ -1356,10 +1307,30 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="858">
+            <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
