@@ -168,7 +168,7 @@ class MetricsRealtimeAnalyzer:
                 metric_family.replace(" ", "_").replace("-", "_").replace(".", "/")
             )
             if self.DEBUG:
-                print "Importing model params from %s" % yaml_filename
+                print("Importing model params from %s" % yaml_filename)
 
             with open(yaml_filename, "r") as yaml_file:
                 model_params = yaml.safe_load(yaml_file)
@@ -178,7 +178,7 @@ class MetricsRealtimeAnalyzer:
                 metric_family.replace(" ", "_").replace("-", "_")
             )
             if self.DEBUG:
-                print "Importing model params from %s" % importName
+                print("Importing model params from %s" % importName)
             try:
                 importedModelParams = importlib.import_module(importName).MODEL_PARAMS
             except ImportError:
@@ -384,6 +384,9 @@ class MetricsRealtimeAnalyzer:
         autosave_thread.start()
 
         # bind the socket to a public host, and a well-known port
+        print("Starting listenter on " + str(ip) + ":" + str(port) + "/" + str(
+            proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(
+            connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
         serversocket.bind((ip, port))
         print("Listening on " + str(ip) + ":" + str(port) + "/" + str(proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
 
