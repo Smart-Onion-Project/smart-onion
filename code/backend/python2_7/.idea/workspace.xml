@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="454" column="91" selection-start-line="454" selection-start-column="91" selection-end-line="454" selection-end-column="91" />
+            <state relative-caret-position="314">
+              <caret line="463" column="8" lean-forward="true" selection-start-line="463" selection-start-column="8" selection-end-line="463" selection-end-column="8" />
               <folding>
                 <element signature="e#922#932#0" expanded="true" />
               </folding>
@@ -81,6 +81,7 @@
       <find>parse</find>
       <find>loads</find>
       <find>urllib_req</find>
+      <find>3000</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
@@ -508,8 +509,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="454" column="91" selection-start-line="454" selection-start-column="91" selection-end-line="454" selection-end-column="91" />
+        <state relative-caret-position="314">
+          <caret line="463" column="8" lean-forward="true" selection-start-line="463" selection-start-column="8" selection-end-line="463" selection-end-column="8" />
           <folding>
             <element signature="e#922#932#0" expanded="true" />
           </folding>
