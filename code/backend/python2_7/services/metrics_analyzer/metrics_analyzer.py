@@ -451,8 +451,8 @@ try:
     configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
     config_copy = json.loads(configurator_response)
     listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host"]
-    listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics_analyzer.listening-port"]
-    proto = config_copy["smart-onion.config.architecture.internal_services.backend.metrics_analyzer.protocol"]
+    listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-port"]
+    proto = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.protocol"]
     connections_backlog = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.connection-backlog"])
     save_interval = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.save_interval"])
 except:
