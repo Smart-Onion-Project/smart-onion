@@ -122,8 +122,8 @@ class MetricsRealtimeAnalyzer:
             models_count = len(self.models)
             for model_idx in range(0, models_count):
                 model_obj = self.models.items()[model_idx]
-                metric = model_obj["metric"]
-                model = model_obj["model"]
+                metric = model_obj[0]
+                model = model_obj[1]
                 model_save_path = self.get_save_path(metric=metric, path_element="model")
                 model.save(model_save_path)
                 if self.EXIT_ALL_THREADS_FLAG:

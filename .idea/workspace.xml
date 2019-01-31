@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py&#10;- BUGFIX: The service ignored configuration of it's listening IP and port">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/zbx_sampling_template.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1209,8 +1208,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="292" column="61" lean-forward="true" selection-start-line="292" selection-start-column="4" selection-end-line="292" selection-end-column="61" />
+            <state relative-caret-position="358">
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -1334,8 +1333,8 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="1915" />
-    <option name="height" value="986" />
+    <option name="width" value="960" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -1655,20 +1654,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Redesigned the directory structure&#10;Added code for finding the homoglyphs ratio in two FQDNs as another similarity algorithm for finding phishing attempts based on FQDN similarities (like www.google.com and www.g00gle.com)">
-      <created>1538740590473</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1538740590474</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added resources and a Zabbix template">
-      <created>1539113199167</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1539113199167</updated>
     </task>
     <task id="LOCAL-00006" summary="Added resources and a Zabbix template">
       <created>1539119279010</created>
@@ -1999,7 +1984,21 @@
       <option name="project" value="LOCAL" />
       <updated>1548659464998</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="metrics_analyzer.py&#10;- BUGFIX: The connection to statsd was probably broken, added warning message for such cases.">
+      <created>1548914351117</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1548914351117</updated>
+    </task>
+    <task id="LOCAL-00054" summary="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list">
+      <created>1548917618131</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1548917618131</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2013,6 +2012,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17246835" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -2074,8 +2074,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added header with details on each module.&#10;Added the basic code for the AnomalyDetector" />
-    <MESSAGE value="Built the anomaly-detector micro-service" />
     <MESSAGE value="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders" />
     <MESSAGE value="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions" />
     <MESSAGE value="Added unit files and sample configs" />
@@ -2099,7 +2097,9 @@
     <MESSAGE value="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The call to the configurator used wrong config URL" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The service ignored configuration of it's listening IP and port" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py&#10;- BUGFIX: The service ignored configuration of it's listening IP and port" />
+    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The connection to statsd was probably broken, added warning message for such cases." />
+    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3574,8 +3574,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="292" column="61" lean-forward="true" selection-start-line="292" selection-start-column="4" selection-end-line="292" selection-end-column="61" />
+        <state relative-caret-position="358">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
