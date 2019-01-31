@@ -19,6 +19,9 @@
             </groups>
             <applications>
                 <application>
+                    <name>peak:peak:dns_killswitch</name>
+                </application>
+                <application>
                     <name>dip:misbehaving_external_host</name>
                 </application>
                 <application>
@@ -104,9 +107,6 @@
                 </application>
                 <application>
                     <name>peak:dictionary_attack</name>
-                </application>
-                <application>
-                    <name>peak:brute_force</name>
                 </application>
                 <application>
                     <name>peak:privilege_escalation</name>
@@ -301,7 +301,7 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>health._general</name>
+                            <name>both:system_health</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -317,7 +317,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_ips_connecting_to_the_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_ips_connecting_to_the_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -664,7 +664,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_ips_pinging_the_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_ips_pinging_the_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -744,7 +744,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_ips_connected_to_by_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_ips_connected_to_by_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1049,7 +1049,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_useragents,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/useragents,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1231,7 +1231,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_lan_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/lan_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1551,7 +1551,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_accessed_external_website_vhost,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_accessed_external_website_vhost,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1967,7 +1967,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_accessed_external_website_vhost,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_accessed_external_website_vhost,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2431,7 +2431,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_types,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/types,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2511,7 +2511,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_urls_accessed_most_frequently_from_inside,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_urls_accessed_most_frequently_from_inside,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2594,7 +2594,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_urls_accessed_most_rarely_from_inside,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_urls_accessed_most_rarely_from_inside,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2677,7 +2677,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_most_rarely_accessed_certs_cn,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/most_rarely_accessed_certs_cn,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2757,7 +2757,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_tcp_ports_used_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/tcp_ports_used_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2840,7 +2840,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_udp_ports_used_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/udp_ports_used_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2923,7 +2923,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_public_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_public_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2985,7 +2985,7 @@
                                     <name>peak:denial_of_service</name>
                                 </application>
                                 <application>
-                                    <name>dip:traffic_hijackinge</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3006,7 +3006,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_ports_used_to_connect_to_external_public_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/ports_used_to_connect_to_external_public_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3068,7 +3068,7 @@
                                     <name>peak:denial_of_service</name>
                                 </application>
                                 <application>
-                                    <name>dip:traffic_hijackinge</name>
+                                    <name>dip:traffic_hijacking</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -3089,7 +3089,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_dns_query_flags,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/dns_query_flags,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3211,7 +3211,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_fqdns,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_fqdns,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3333,7 +3333,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_fqdns,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_queried_fqdns,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3497,7 +3497,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3619,7 +3619,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_queried_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3783,7 +3783,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_tlds,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_tlds,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3905,7 +3905,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_tlds,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_queried_tlds,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4069,7 +4069,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_tld_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_tld_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4191,7 +4191,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_tld_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_queried_tld_subdomains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4355,7 +4355,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_parent_domains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_parent_domains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4477,7 +4477,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_parent_domains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_queried_parent_domains,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4641,7 +4641,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4763,7 +4763,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_queried_class_names,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -4885,7 +4885,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_frequently_accessed_external_website_uri,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_frequently_accessed_external_website_uri,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -5301,7 +5301,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_top_n_most_rarely_accessed_external_website_uri,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/top_n_most_rarely_accessed_external_website_uri,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -5759,7 +5759,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_destination_continents_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_destination_continents_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -5839,7 +5839,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_destination_countries_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_destination_countries_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -5919,7 +5919,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_destination_cities_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_destination_cities_from_org,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -5999,7 +5999,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_dns_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_dns_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -6139,7 +6139,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_external_dns_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/external_dns_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -6279,7 +6279,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_lan_servers_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/lan_servers_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -6818,7 +6818,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_lan_workstations_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/lan_workstations_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -7354,7 +7354,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_crown_jewels_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/crown_jewels_ips,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -7896,7 +7896,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_tftp_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_tftp_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -8081,7 +8081,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_ftp_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_ftp_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -8266,7 +8266,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_mysql_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_mysql_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -8451,7 +8451,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_mssql_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_mssql_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -8636,7 +8636,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_pgsql_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_pgsql_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -8821,7 +8821,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_ldap_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_ldap_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9024,7 +9024,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_dhcp_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_dhcp_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9203,7 +9203,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_ssh_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_ssh_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9388,7 +9388,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_http_verbs,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_http_verbs,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9558,7 +9558,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_ext_http_verbs,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/ext_http_verbs,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9722,7 +9722,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_certs_issuers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/certs_issuers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9831,7 +9831,7 @@
                             <preprocessing/>
                             <jmx_endpoint/>
                             <application_prototypes/>
-                            <master_item_prototype/>1
+                            <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes/>
@@ -9844,7 +9844,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_certs_cn,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/certs_cn,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -9966,7 +9966,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_org_web_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/org_web_servers,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -10031,9 +10031,6 @@
                                     <name>peak:dictionary_attack</name>
                                 </application>
                                 <application>
-                                    <name>peak:brute_force</name>
-                                </application>
-                                <application>
                                     <name>peak:denial_of_service</name>
                                 </application>
                                 <application>
@@ -10086,9 +10083,6 @@
                                 </application>
                                 <application>
                                     <name>peak:dictionary_attack</name>
-                                </application>
-                                <application>
-                                    <name>peak:brute_force</name>
                                 </application>
                                 <application>
                                     <name>peak:denial_of_service</name>
@@ -10145,9 +10139,6 @@
                                     <name>peak:dictionary_attack</name>
                                 </application>
                                 <application>
-                                    <name>peak:brute_force</name>
-                                </application>
-                                <application>
                                     <name>peak:denial_of_service</name>
                                 </application>
                                 <application>
@@ -10175,7 +10166,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_webservers_webmethods,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/webservers_webmethods,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -10240,9 +10231,6 @@
                                     <name>peak:dictionary_attack</name>
                                 </application>
                                 <application>
-                                    <name>peak:brute_force</name>
-                                </application>
-                                <application>
                                     <name>peak:denial_of_service</name>
                                 </application>
                                 <application>
@@ -10295,9 +10283,6 @@
                                 </application>
                                 <application>
                                     <name>peak:dictionary_attack</name>
-                                </application>
-                                <application>
-                                    <name>peak:brute_force</name>
                                 </application>
                                 <application>
                                     <name>peak:denial_of_service</name>
@@ -10354,9 +10339,6 @@
                                     <name>peak:dictionary_attack</name>
                                 </application>
                                 <application>
-                                    <name>peak:brute_force</name>
-                                </application>
-                                <application>
                                     <name>peak:denial_of_service</name>
                                 </application>
                                 <application>
@@ -10384,7 +10366,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_dst_workstations_dst_ports,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/dst_workstations_dst_ports,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -10506,7 +10488,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_website_pages,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/website_pages,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -10636,7 +10618,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_downloaded_files,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/downloaded_files,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -10675,7 +10657,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_website_files,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/website_files,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -10717,7 +10699,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/discover_3_internal_users,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                    <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/discover/3_internal_users,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>

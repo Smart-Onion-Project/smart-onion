@@ -68,6 +68,7 @@ class MetricsRealtimeAnalyzer:
     create_anomaly_likelihood_calc_thread_lock = Lock()
     anomaly_likelihood_calculator_filename = "anomaly_likelihood_calculator"
     metrics_prefix = "smart-onion.anomaly_score.metrics_analyzer"
+    statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self):
         pass
@@ -274,6 +275,16 @@ class MetricsRealtimeAnalyzer:
                 self.statsd_client.gauge(self.metrics_prefix + ".anomaly_likelihood." + metric["metric_name"], anomalyLikelihood)
                 self.statsd_client.gauge(self.metrics_prefix + ".anomaly_direction." + metric["metric_name"], anomaly_direction)
             except:
+                print(
+                        "WARNING: Failed to report anomaly to statsd. ("
+                        "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
+                        "Metric: " + str(metric["metric_name"]) + ", " +
+                        "Value: " + str(metric["metric_value"]) + ", " +
+                        "Anomaly score: " + str(anomalyScore) + ", " +
+                        "Prediction: " + str(prediction) + ", " +
+                        "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
+                        "AnomalyReported: " + str(anomaly_reported) + ")"
+                )
                 pass
 
             if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
@@ -287,15 +298,15 @@ class MetricsRealtimeAnalyzer:
                 })
                 anomaly_reported = True
 
-            print(
-                    "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
-                    "Metric: " + str(metric["metric_name"]) + ", " +
-                    "Value: " + str(metric["metric_value"]) + ", " +
-                    "Anomaly score: " + str(anomalyScore) + ", " +
-                    "Prediction: " + str(prediction) + ", " +
-                    "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
-                    "AnomalyReported: " + str(anomaly_reported)
-            )
+                print(
+                        "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
+                        "Metric: " + str(metric["metric_name"]) + ", " +
+                        "Value: " + str(metric["metric_value"]) + ", " +
+                        "Anomaly score: " + str(anomalyScore) + ", " +
+                        "Prediction: " + str(prediction) + ", " +
+                        "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
+                        "AnomalyReported: " + str(anomaly_reported)
+                )
         else:
             print("ERROR: Could not load a model for " + str(metric))
 
