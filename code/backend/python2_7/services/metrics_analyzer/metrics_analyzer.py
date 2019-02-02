@@ -28,6 +28,8 @@ from datetime import datetime
 from nupic.frameworks.opf.model_factory import ModelFactory
 from nupic.algorithms.anomaly_likelihood import AnomalyLikelihood
 
+create_model_thread_lock = Lock()
+create_anomaly_likelihood_calc_thread_lock = Lock()
 
 class Utils:
 
@@ -64,8 +66,6 @@ class MetricsRealtimeAnalyzer:
     anomaly_likelihood_detectors_save_base_path = None
     models_save_base_path = None
     models_params_base_path = None
-    create_model_thread_lock = Lock()
-    create_anomaly_likelihood_calc_thread_lock = Lock()
     anomaly_likelihood_calculator_filename = "anomaly_likelihood_calculator"
     metrics_prefix = "smart-onion.anomaly_score.metrics_analyzer"
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
@@ -119,6 +119,7 @@ class MetricsRealtimeAnalyzer:
             if self.EXIT_ALL_THREADS_FLAG:
                 return
 
+            create_model_thread_lock.acquire()
             models_count = len(self.models)
             for model_idx in range(0, models_count):
                 model_obj = self.models.items()[model_idx]
@@ -127,8 +128,11 @@ class MetricsRealtimeAnalyzer:
                 model_save_path = self.get_save_path(metric=metric, path_element="model")
                 model.save(model_save_path)
                 if self.EXIT_ALL_THREADS_FLAG:
+                    create_model_thread_lock.release()
                     return
+            create_model_thread_lock.release()
 
+            create_anomaly_likelihood_calc_thread_lock.acquire()
             for metric, anomaly_likelihood_calculator in self.anomaly_likelihood_detectors.iteritems():
                 anomaly_likelihood_calculators_path = self.get_save_path(metric=metric,
                                                                          path_element="anomaly_likelihood_calculator")
@@ -139,7 +143,9 @@ class MetricsRealtimeAnalyzer:
                         , "w") as anomaly_likelihood_calc_file:
                     anomaly_likelihood_calculator.writeToFile(anomaly_likelihood_calc_file)
                 if self.EXIT_ALL_THREADS_FLAG:
+                    create_anomaly_likelihood_calc_thread_lock.release()
                     return
+            create_anomaly_likelihood_calc_thread_lock.release()
 
             for i in range(0, interval):
                 if self.EXIT_ALL_THREADS_FLAG:
@@ -211,7 +217,7 @@ class MetricsRealtimeAnalyzer:
             print("Received the metric " + str(metric) + " from " + str(client_address))
 
         if not metric["metric_name"] in self.models:
-            self.create_model_thread_lock.acquire()
+            create_model_thread_lock.acquire()
             if not metric["metric_name"] in self.models and os.path.isdir(self.get_save_path(metric["metric_name"])):
                 try:
                     self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
@@ -224,14 +230,14 @@ class MetricsRealtimeAnalyzer:
                 self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
                 if self.DEBUG:
                     print("Model for " + metric["metric_name"] + " created from params")
-            self.create_model_thread_lock.release()
+            create_model_thread_lock.release()
 
         if metric["metric_name"] in self.models:
             model = self.models[metric["metric_name"]]
             if self.DEBUG:
                 print("Model for " + metric["metric_name"] + " loaded from cache")
 
-        self.create_anomaly_likelihood_calc_thread_lock.acquire()
+        create_anomaly_likelihood_calc_thread_lock.acquire()
         if not metric["metric_name"] in self.anomaly_likelihood_detectors:
             anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
 
@@ -246,7 +252,7 @@ class MetricsRealtimeAnalyzer:
                 self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
 
         anomalyLikelihoodCalc = self.anomaly_likelihood_detectors[metric["metric_name"]]
-        self.create_anomaly_likelihood_calc_thread_lock.release()
+        create_anomaly_likelihood_calc_thread_lock.release()
 
         if model:
             result = model.run({
