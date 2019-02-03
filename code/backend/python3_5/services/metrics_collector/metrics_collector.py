@@ -488,6 +488,7 @@ class MetricsCollector:
             highest_match_rate = 0
             highest_match_rate_value = ""
             value_compared = ""
+            max_match_rate_algorithm = None
             for bucket in res['aggregations']['field_values0']['buckets']:
                 cur_value_to_compare_to = bucket["key"]
                 edit_distance_match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
@@ -524,6 +525,12 @@ class MetricsCollector:
             res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "(" + max_match_rate_algorithm + ")," + value_compared
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
+
+        if Utils().is_number(res):
+            try:
+                metric_object = self.statsd_client.gauge(metric_name, res)
+            except:
+                pass
 
         return res
 
