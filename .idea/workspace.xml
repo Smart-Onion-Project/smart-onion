@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1208,8 +1207,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="135" selection-start-line="135" selection-end-line="135" />
+            <state relative-caret-position="225">
+              <caret line="272" column="29" lean-forward="true" selection-start-line="272" selection-start-column="29" selection-end-line="272" selection-end-column="29" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -1325,16 +1324,16 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/set_permissions.sh" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="960" />
-    <option name="height" value="1053" />
+    <option name="width" value="1916" />
+    <option name="height" value="986" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -1654,20 +1653,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added resources and a Zabbix template">
-      <created>1539119279010</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1539119279010</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
-      <created>1539282443309</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1539282443309</updated>
     </task>
     <task id="LOCAL-00008" summary="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
       <created>1539316905950</created>
@@ -1998,7 +1983,21 @@
       <option name="project" value="LOCAL" />
       <updated>1548917618131</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="metrics_analyzer.py&#10;- BUGFIX: Added global locks to synchronize the auto-save threads with the creation threads (of models and anomaly probability calcs)">
+      <created>1549140849755</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1549140849756</updated>
+    </task>
+    <task id="LOCAL-00056" summary="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics.">
+      <created>1549174906772</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1549174906772</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2073,8 +2072,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders" />
-    <MESSAGE value="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions" />
     <MESSAGE value="Added unit files and sample configs" />
     <MESSAGE value="Pycharm files" />
     <MESSAGE value="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names" />
@@ -2098,7 +2095,9 @@
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The service ignored configuration of it's listening IP and port" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The connection to statsd was probably broken, added warning message for such cases." />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list" />
+    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Added global locks to synchronize the auto-save threads with the creation threads (of models and anomaly probability calcs)" />
+    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics." />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2115,17 +2114,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>821</line>
+          <line>828</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>725</line>
+          <line>732</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>754</line>
+          <line>761</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -3573,8 +3572,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="135" selection-start-line="135" selection-end-line="135" />
+        <state relative-caret-position="225">
+          <caret line="272" column="29" lean-forward="true" selection-start-line="272" selection-start-column="29" selection-end-line="272" selection-end-column="29" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
