@@ -566,6 +566,16 @@
   "___________________________________________QUERY_COUNT___________________________________________": {
     "type": "COMMENT"
   },
+  "source_hosts_per_server": {
+    "metric_name": "smart-onion.metrics.weird_behaviour.source_hosts_per_server.{{#arg1}}",
+    "tags": "peak:denial_of_service,dip:traffic_hijacking",
+    "time_range": 3600,
+    "base_64_used": false,
+    "count_unique_values_in": "source_ips.keyword",
+    "query": "event_type:bro_conn AND connection_state:\"SF\" AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT"
+  },
   "number_of_outbound_connections_to_server_via_ssh": {
     "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
@@ -607,7 +617,7 @@
   },
   "number_of_external_ips_connections_via_port": {
     "metric_name": "smart-onion.metrics.weird_behaviour.number_of_external_ips_connections_via_port.{{#arg1}}",
-    "tags": "peak:denial_of_service,dip:traffic_hijackinge",
+    "tags": "peak:denial_of_service,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
     "query": "NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_port:{{#arg1}})",
@@ -1514,7 +1524,7 @@
   },
   "number_of_external_ips_connections_to_host": {
     "metric_name": "smart-onion.metrics.weird_behaviour.number_of_external_ips_connections_to_host.{{#arg1}}",
-    "tags": "peak:denial_of_service,dip:traffic_hijackinge",
+    "tags": "peak:denial_of_service,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
     "query": "NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND (destination_ip:{{#arg1}})",
