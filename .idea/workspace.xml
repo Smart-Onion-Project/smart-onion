@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133965">
-              <caret line="10701" column="96" selection-start-line="10701" selection-start-column="96" selection-end-line="10701" selection-end-column="96" />
+            <state relative-caret-position="449">
+              <caret line="6200" column="50" lean-forward="true" selection-start-line="6200" selection-start-column="42" selection-end-line="6200" selection-end-column="50" />
               <folding>
                 <element signature="n#groups#0;n#zabbix_export#0;n#!!top" />
                 <element signature="n#group#0;n#groups#0;n#zabbix_export#0;n#!!top" />
@@ -1162,8 +1163,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7696">
-              <caret line="592" column="51" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
+            <state relative-caret-position="381">
+              <caret line="573" column="51" selection-start-line="573" selection-start-column="51" selection-end-line="573" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -1207,8 +1208,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="272" column="29" lean-forward="true" selection-start-line="272" selection-start-column="29" selection-end-line="272" selection-end-column="29" />
+            <state relative-caret-position="-1673">
+              <caret line="543" column="47" lean-forward="true" selection-start-line="543" selection-start-column="47" selection-end-line="543" selection-end-column="47" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -1254,8 +1255,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>org_web_servers</find>
-      <find>number_of_connections_to_ip</find>
       <find>webservers_webmethods</find>
       <find>dst_workstations_dst_ports</find>
       <find>.*per.*per.*</find>
@@ -1284,6 +1283,8 @@
       <find>health._general</find>
       <find>disc</find>
       <find>discover_</find>
+      <find>traffic_hijackinge</find>
+      <find>source_hosts_per_server</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -1295,6 +1296,7 @@
       <replace>destination</replace>
       <replace>destination_ips:({#</replace>
       <replace>destination_ips.keyword</replace>
+      <replace>traffic_hijacking`</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -1323,10 +1325,10 @@
         <option value="$PROJECT_DIR$/resources/classify_queries/classify_queries.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/set_permissions.sh" />
-        <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/config/queries.json" />
       </list>
     </option>
   </component>
@@ -1653,20 +1655,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Replaced all the large files to allow Github to get them&#10;Updated the Zabbix template">
-      <created>1539316905950</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1539316905951</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Pycharm settings changes">
-      <created>1539503945256</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1539503945258</updated>
     </task>
     <task id="LOCAL-00010" summary="Pycharm settings changes">
       <created>1539597873627</created>
@@ -1997,7 +1985,21 @@
       <option name="project" value="LOCAL" />
       <updated>1549174906772</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="metrics_analyzer.py&#10;- Switched to gunicorn">
+      <created>1549258417895</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1549258417895</updated>
+    </task>
+    <task id="LOCAL-00058" summary="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument">
+      <created>1549345851856</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1549345851856</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2072,8 +2074,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added unit files and sample configs" />
-    <MESSAGE value="Pycharm files" />
     <MESSAGE value="Removed duplicates from the Zabbix Template&#10;Added two metrics based on the DNS class names" />
     <MESSAGE value="Added metrics regarding the geographical information of connections&#10;Added discovery rules to zbx_sampling_template.xml" />
     <MESSAGE value="Added more metrics based on nested factors (virtual-host, http-verb, port, etc.)" />
@@ -2097,7 +2097,9 @@
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Added global locks to synchronize the auto-save threads with the creation threads (of models and anomaly probability calcs)" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics." />
+    <MESSAGE value="metrics_analyzer.py&#10;- Switched to gunicorn" />
+    <MESSAGE value="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument" />
+    <option name="LAST_COMMIT_MESSAGE" value="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2374,10 +2376,58 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/set_permissions.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="858">
+            <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133965">
-          <caret line="10701" column="96" selection-start-line="10701" selection-start-column="96" selection-end-line="10701" selection-end-column="96" />
+        <state relative-caret-position="449">
+          <caret line="6200" column="50" lean-forward="true" selection-start-line="6200" selection-start-column="42" selection-end-line="6200" selection-end-column="50" />
           <folding>
             <element signature="n#groups#0;n#zabbix_export#0;n#!!top" />
             <element signature="n#group#0;n#groups#0;n#zabbix_export#0;n#!!top" />
@@ -3517,63 +3567,15 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7696">
-          <caret line="592" column="51" selection-start-line="592" selection-start-column="51" selection-end-line="592" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/set_permissions.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="858">
-            <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="381">
+          <caret line="573" column="51" selection-start-line="573" selection-start-column="51" selection-end-line="573" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="272" column="29" lean-forward="true" selection-start-line="272" selection-start-column="29" selection-end-line="272" selection-end-column="29" />
+        <state relative-caret-position="-1673">
+          <caret line="543" column="47" lean-forward="true" selection-start-line="543" selection-start-column="47" selection-end-line="543" selection-end-column="47" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
