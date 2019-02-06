@@ -317,7 +317,7 @@ class MetricsCollector:
         if DEBUG:
             self._app.run(host=self._host, port=self._port)
         else:
-            self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32, timeout=30)
+            self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32, timeout=120)
 
     def GetQueryTimeRange(self, query_details):
         # if DEBUG:
