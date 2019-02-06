@@ -56,6 +56,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-port": 9000,
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.protocol": "http",
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.max_timeout_to_elastic": 120,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-port": 9001,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.protocol": "http",

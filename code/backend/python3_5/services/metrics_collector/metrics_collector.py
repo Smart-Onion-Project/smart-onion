@@ -293,14 +293,15 @@ class MetricsCollector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
     _learned_net_info = None
 
-    def __init__(self, listen_ip, listen_port, learned_net_info, queries_config, elasticsearch_server):
+    def __init__(self, listen_ip, listen_port, learned_net_info, queries_config, elasticsearch_server, timeout_to_elastic):
         self._host = listen_ip
         self._port = listen_port
         self._learned_net_info = learned_net_info
         self._app = Bottle()
         self._route()
         self.queries = queries_config
-        self.es = Elasticsearch(hosts=[elasticsearch_server], timeout=30)
+        self.es = Elasticsearch(hosts=[elasticsearch_server], timeout=timeout_to_elastic)
+        self.timeout_to_elastic = timeout_to_elastic
 
     def _route(self):
         self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
@@ -761,7 +762,8 @@ class MetricsCollector:
             syslog.syslog("metrics_collector: INFO: Executing the following query: index=" + query_index + ", query_body=" + json.dumps(query_body))
             res = self.es.search(
                 index=query_index,
-                body=query_body
+                body=query_body,
+                timeout=self.timeout_to_elastic * 2
             )
 
             macros_list = str.split(zabbix_macro, ",")
@@ -898,5 +900,5 @@ while queries_conf is None:
 
 
 sys.argv = [sys.argv[0]]
-MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info, queries_config=queries_conf, elasticsearch_server=elasticsearch_server).run()
+MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info, queries_config=queries_conf, elasticsearch_server=elasticsearch_server, timeout_to_elastic=config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.max_timeout_to_elastic"]).run()
 
