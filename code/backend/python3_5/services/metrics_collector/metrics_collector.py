@@ -763,7 +763,7 @@ class MetricsCollector:
             res = self.es.search(
                 index=query_index,
                 body=query_body,
-                timeout=self.timeout_to_elastic * 2
+                timeout=str(self.timeout_to_elastic * 2) + "s"
             )
 
             macros_list = str.split(zabbix_macro, ",")
