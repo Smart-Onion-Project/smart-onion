@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_collector.py:&#10;- Setting the gunicorn timeout to 120 seconds (hopefully)">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
@@ -1192,8 +1191,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="271" column="8" selection-start-line="271" selection-start-column="8" selection-end-line="271" selection-end-column="8" />
+            <state relative-caret-position="353">
+              <caret line="105" column="32" lean-forward="true" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -1491,7 +1490,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/code/backend/python2_7" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1520,7 +1519,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.homoglyphs_test">
+  <component name="RunManager" selected="Python.metrics_collector">
     <configuration name="anomaly_detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="smart-onion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -1635,10 +1634,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.classify_queries" />
         <item itemvalue="Python.configurator" />
         <item itemvalue="Python.anomaly_detector" />
-        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.homoglyphs_test" />
       </list>
     </recent_temporary>
@@ -1653,20 +1652,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Removed large files">
-      <created>1539792346857</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1539792346857</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Removed large files">
-      <created>1539809189498</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1539809189504</updated>
     </task>
     <task id="LOCAL-00014" summary="Removed large files">
       <created>1539845679106</created>
@@ -1997,7 +1982,21 @@
       <option name="project" value="LOCAL" />
       <updated>1549473633155</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)">
+      <created>1549474692595</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1549474692596</updated>
+    </task>
+    <task id="LOCAL-00062" summary="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)">
+      <created>1549518140231</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1549518140231</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2012,12 +2011,12 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32894737" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.83702534" visible="true" weight="0.073464915" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -2025,7 +2024,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" visible="true" weight="0.06688596" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.16297469" side_tool="true" visible="true" weight="0.073464915" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -2072,7 +2071,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added more metrics based on nested factors (virtual-host, http-verb, port, etc.)" />
     <MESSAGE value="zbx_sampling_template: Completed the first batch of metrics to monitor and classifed all metrics.&#10;&#10;queries.json: Automatically classified all metrics based on the Zabbix template." />
     <MESSAGE value="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)" />
     <MESSAGE value="queries.json:&#10;- Removed old unnecessary file." />
@@ -2097,7 +2095,8 @@
     <MESSAGE value="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument" />
     <MESSAGE value="metric_collector.py:&#10;- Setting the gunicorn timeout to 30 seconds (hopefully)" />
     <MESSAGE value="metric_collector.py:&#10;- Setting the gunicorn timeout to 120 seconds (hopefully)" />
-    <option name="LAST_COMMIT_MESSAGE" value="metric_collector.py:&#10;- Setting the gunicorn timeout to 120 seconds (hopefully)" />
+    <MESSAGE value="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)" />
+    <option name="LAST_COMMIT_MESSAGE" value="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2114,17 +2113,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>830</line>
+          <line>833</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>733</line>
+          <line>736</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>762</line>
+          <line>765</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
@@ -3586,8 +3585,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="271" column="8" selection-start-line="271" selection-start-column="8" selection-end-line="271" selection-end-column="8" />
+        <state relative-caret-position="353">
+          <caret line="105" column="32" lean-forward="true" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>

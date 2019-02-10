@@ -275,7 +275,7 @@ class Utils:
         homoglyphs_found = 0
         for i in range(0, len(cur_value_to_compare_to)):
             char1 = cur_value_to_compare_to[i]
-            if len(value_to_compare) >= i:
+            if len(value_to_compare) > i:
                 char2 = value_to_compare[i]
             else:
                 char2 = ""
@@ -490,40 +490,43 @@ class MetricsCollector:
             highest_match_rate_value = ""
             value_compared = ""
             max_match_rate_algorithm = None
-            for bucket in res['aggregations']['field_values0']['buckets']:
-                cur_value_to_compare_to = bucket["key"]
-                edit_distance_match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
-                homoglyphs_ratio = Utils().HomoglyphsRatio(value_to_compare, cur_value_to_compare_to)
-                visual_similarity_rate = []
+            if 'aggregations' in res and 'field_values0' in res['aggregations'] and 'buckets' in res['aggregations']['field_values0']:
+                for bucket in res['aggregations']['field_values0']['buckets']:
+                    cur_value_to_compare_to = bucket["key"]
+                    edit_distance_match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
+                    homoglyphs_ratio = Utils().HomoglyphsRatio(value_to_compare, cur_value_to_compare_to)
+                    visual_similarity_rate = []
 
-                for p_hashing_alg in Utils.perceptive_hashing_algs:
-                    visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, algorithm=p_hashing_alg))
+                    for p_hashing_alg in Utils.perceptive_hashing_algs:
+                        visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, algorithm=p_hashing_alg))
 
-                # Create average match rate between all the perceptive hashing algorithms
-                visual_match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
+                    # Create average match rate between all the perceptive hashing algorithms
+                    visual_match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
 
-                # Use the highest match rate detected (either visual similarity or textual similarity or homoglyphs ratio)
-                max_match_rate = 0
-                max_match_rate_algorithm = None
+                    # Use the highest match rate detected (either visual similarity or textual similarity or homoglyphs ratio)
+                    max_match_rate = 0
+                    max_match_rate_algorithm = None
 
-                if visual_match_rate > edit_distance_match_rate:
-                    max_match_rate = visual_match_rate
-                    max_match_rate_algorithm = "visual_match_rate"
-                else:
-                    if homoglyphs_ratio > edit_distance_match_rate:
-                        max_match_rate = homoglyphs_ratio
-                        max_match_rate_algorithm = "homoglyphs_ratio"
+                    if visual_match_rate > edit_distance_match_rate:
+                        max_match_rate = visual_match_rate
+                        max_match_rate_algorithm = "visual_match_rate"
                     else:
-                        max_match_rate = edit_distance_match_rate
-                        max_match_rate_algorithm = "edit_distance"
-                match_rate = max_match_rate
+                        if homoglyphs_ratio > edit_distance_match_rate:
+                            max_match_rate = homoglyphs_ratio
+                            max_match_rate_algorithm = "homoglyphs_ratio"
+                        else:
+                            max_match_rate = edit_distance_match_rate
+                            max_match_rate_algorithm = "edit_distance"
+                    match_rate = max_match_rate
 
-                if match_rate > highest_match_rate:
-                    highest_match_rate = match_rate
-                    highest_match_rate_value = cur_value_to_compare_to
-                    value_compared = value_to_compare
+                    if match_rate > highest_match_rate:
+                        highest_match_rate = match_rate
+                        highest_match_rate_value = cur_value_to_compare_to
+                        value_compared = value_to_compare
 
-            res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "(" + max_match_rate_algorithm + ")," + value_compared
+                res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "(" + max_match_rate_algorithm + ")," + value_compared
+            else:
+                res = "@@ERROR: Elasticsearch responded with an unexpected response: (" + json.dumps(res) + ")"
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
 
