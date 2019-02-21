@@ -7,7 +7,7 @@ import base64
 import os
 
 
-DEBUG = True
+DEBUG = False
 config_file_name = "queries.json"
 config_file_default_path = "/etc/smart-onion/"
 config_file = os.path.join(config_file_default_path, config_file_name)
@@ -57,6 +57,11 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-port": 9000,
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.protocol": "http",
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.max_timeout_to_elastic": 120,
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.similarity_test": "/smart-onion/test-similarity/",
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.query_count": "/smart-onion/query-count/",
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.field_query": "/smart-onion/field-query/",
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.list_hash": "/smart-onion/list-hash/",
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld": "/smart-onion/discover/",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-port": 9001,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.protocol": "http",
@@ -71,6 +76,14 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.alerter.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.alerter.listening-port": 9004,
         "smart-onion.config.architecture.internal_services.backend.alerter.protocol": "http",
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.protocol": "http",
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.listening-host": "127.0.0.1",
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.listening-port": 9999,
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.backup_file": "/tmp/tiny_url.json.db",
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.backup_interval": 30,
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.tiny2url": '/so/tiny2url/',
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny": '/so/url2tiny',
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.redirect_by_tiny": '/so/tiny/',
         "smart-onion.config.architecture.internal_services.frontend.ui.listening-host": "0.0.0.0",
         "smart-onion.config.architecture.internal_services.frontend.ui.listening-port": 8080,
         "smart-onion.config.architecture.internal_services.frontend.ui.protocol": "http",
