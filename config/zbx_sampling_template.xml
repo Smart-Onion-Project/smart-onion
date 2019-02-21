@@ -3933,11 +3933,11 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Highest similarity rating of the DNS TLD query {#DNS_TLD} to any of the most frequently queried TLDs</name>
+                            <name>{#NAME}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/test-similarity/highest_similarity_to_any_top_accessed_tld?arg1={#DNS_TLD}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},{#URL}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3963,99 +3963,16 @@
                             <description/>
                             <inventory_link>0</inventory_link>
                             <applications>
-                                <application>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes>
+                                <application_prototype>
                                     <name>peak:phishing</name>
-                                </application>
+                                </application_prototype>
+                            </application_prototypes>
                             </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Number of source hosts that used the DNS TLD {#DNS_TLD}</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_clients_per_dns_tld?arg1={#DNS_TLD}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                            <delay>5m</delay>
-                            <history>28d</history>
-                            <trends>60d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>peak:command_and_control</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Number of queries that used the DNS TLD {#DNS_TLD}</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>web.page.regexp[{$METRIC_COLLECTOR_HOST},smart-onion/query-count/number_of_queries_per_dns_tld?arg1={#DNS_TLD}&amp;comment=rare_dns_tld,{$METRIC_COLLECTOR_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
-                            <delay>5m</delay>
-                            <history>28d</history>
-                            <trends>60d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>peak:command_and_control</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>

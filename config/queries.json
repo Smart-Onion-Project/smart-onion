@@ -6,11 +6,16 @@
     "list_order": "asc",
     "time_range": 86400,
     "agg_on_field": "top_level_domain.keyword",
-    "zabbix_macro": "DNS_TLD",
+    "zabbix_macro": "DNS_TLD_QRY",
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50
+    "max_list_size": 50,
+    "queries_to_run": [
+      "highest_similarity_to_any_top_accessed_tld",
+      "number_of_clients_per_dns_tld",
+      "number_of_queries_per_dns_tld"
+    ]
   },
   "top_n_most_frequently_queried_class_names": {
     "list_order": "desc",
@@ -1691,7 +1696,8 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50
+    "max_list_size": 50,
+    "comment": ""
   },
   "___________________________________________LIST_HASH___________________________________________": {
     "type": "COMMENT"

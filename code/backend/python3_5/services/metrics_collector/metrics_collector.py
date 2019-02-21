@@ -35,6 +35,7 @@ import imagehash
 import time
 import homoglyphs
 import syslog
+import urllib.parse
 
 DEBUG = False
 elasticsearch_server = "127.0.0.1"
@@ -48,9 +49,9 @@ class Utils:
     lst = ""
     perceptive_hashing_algs = ["phash", "ahash", "dhash", "whash"]
 
-    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, add_doc_count=True, re_sort_by_value=False):
+    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, services_urls=None, tiny_url_service_details=None, queries_to_run=None, add_doc_count=True, re_sort_by_value=False):
         cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
-#        print(cls.lst)
+        # print(cls.lst)
         cls.lst = cls.lst.strip("|")
 
         res = {
@@ -90,15 +91,47 @@ class Utils:
                 for item in res["data"]:
                     res_tmp_sorted_arr.append(item["{#ITEM_" + str(idx) + "}"])
 
-                #Sort res_tmp
+                # Sort res_tmp
                 res_tmp_sorted_arr.sort()
 
                 for item in res_tmp_sorted_arr:
                     res_tmp["data"].append({"{#ITEM_" + str(idx) + "}": item})
 
                 #TODO: Add support for multi level lists?
-
                 res = res_tmp
+
+        if not queries_to_run is None:
+            res_new = {
+                "data": []
+            }
+            for item in res["data"]:
+                for query_id in queries_to_run:
+                    # Create the URL that need to be accessed by the query_obj type and the number of arguments returned
+                    cur_query_obj = queries_conf[query_id]
+                    query_type = str(cur_query_obj["type"])
+                    cur_url = services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id + "?arg1=" + str(item[list(item.keys())[0]])
+                    for key_idx in range(1, len(item.keys())):
+                        if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
+                            cur_url = cur_url + "&arg" + str(key_idx + 1) + "=" + str(item[list(item.keys())[key_idx]])
+
+                    # Translate the url to a tiny url
+                    tiny_url_res = "ERROR: NO TINY_URL SERVICE DETAILS."
+                    if tiny_url_service_details is not None:
+                        tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
+                        print("Calling " + tiny_service_url)
+                        tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
+
+                    if add_doc_count:
+                        res_new["data"].append({
+                            "{#URL}": tiny_url_res,
+                            "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
+                        })
+                    else:
+                        res_new["data"].append({
+                            "{#URL}": tiny_url_res
+                        })
+
+            res = res_new
         return res
 
     def FlattenAggregates(cls, obj, idx=0, add_doc_count=True):
@@ -293,13 +326,17 @@ class MetricsCollector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
     _learned_net_info = None
 
-    def __init__(self, listen_ip, listen_port, learned_net_info, queries_config, elasticsearch_server, timeout_to_elastic):
+    def __init__(self, listen_ip, listen_port, learned_net_info, config_copy, queries_config, tiny_url_protocol, tiny_url_server, tiny_url_port, elasticsearch_server, timeout_to_elastic):
         self._host = listen_ip
         self._port = listen_port
         self._learned_net_info = learned_net_info
         self._app = Bottle()
         self._route()
         self.queries = queries_config
+        self._tiny_url_protocol = tiny_url_protocol
+        self._tiny_url_server = tiny_url_server
+        self._tiny_url_port = tiny_url_port
+        self._config = config_copy
         self.es = Elasticsearch(hosts=[elasticsearch_server], timeout=timeout_to_elastic)
         self.timeout_to_elastic = timeout_to_elastic
 
@@ -313,6 +350,7 @@ class MetricsCollector:
         self._app.route('/smart-onion/discover/<queryname>', method="GET", callback=self.discover)
         self._app.route('/smart-onion/dump_queries', method="GET", callback=self.dump_queries)
         self._app.route('/test/similarity/<algo>/<s1>/<s2>', method="GET", callback=self.test_similarity)
+        self._app.route('/test/lld', method="GET", callback=self.test_lld_creation)
 
     def run(self):
         if DEBUG:
@@ -711,6 +749,7 @@ class MetricsCollector:
         query_base = query_details["query"].replace("{{#query_name}}", queryname)
         agg_on_field = query_details["agg_on_field"].replace("{{#query_name}}", queryname)
         zabbix_macro = query_details["zabbix_macro"].replace("{{#query_name}}", queryname)
+        queries_to_run = query_details["queries_to_run"]
         if "encode_json_as_b64" in query_details and (str(query_details["encode_json_as_b64"]).lower() == "true" or str(query_details["encode_json_as_b64"]).lower() == "false"):
             encode_json_as_b64 = bool(query_details["encode_json_as_b64"])
         else:
@@ -770,7 +809,9 @@ class MetricsCollector:
             )
 
             macros_list = str.split(zabbix_macro, ",")
-            res_lld = Utils().GenerateLldFromElasticAggrRes(res, macros_list,use_base64)
+            relevant_service_urls = self.get_config_by_regex(r'smart\-onion\.config\.architecture\.internal_services\.backend\.[a-z0-9\-_]+\.base_urls\.[a-z0-9\-_]+')
+            tin_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tin_url_service_details)
 
             res_str = str(json.dumps(res_lld))
             if encode_json_as_b64:
@@ -781,8 +822,100 @@ class MetricsCollector:
 
         return res
 
+    def get_config_by_regex(self, regex):
+        res = {}
+        for key in self._config.keys():
+            if re.match(regex, key):
+                res[key] = self._config[key]
+
+        return res
+
     def dump_queries(self):
         return "@@RES: " + json.dumps(self.queries)
+
+    def test_lld_creation(self):
+        simulation_res = {
+  "took" : 17,
+  "timed_out" : False,
+  "_shards" : {
+    "total" : 32,
+    "successful" : 32,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 941294,
+    "max_score" : 0.0,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "field_values0" : {
+      "doc_count_error_upper_bound" : -1,
+      "sum_other_doc_count" : 131298,
+      "buckets" : [
+        {
+          "key" : "world",
+          "doc_count" : 1
+        },
+        {
+          "key" : "asia",
+          "doc_count" : 2
+        },
+        {
+          "key" : "cl",
+          "doc_count" : 2
+        },
+        {
+          "key" : "st",
+          "doc_count" : 2
+        },
+        {
+          "key" : "com.gt",
+          "doc_count" : 3
+        },
+        {
+          "key" : "hu",
+          "doc_count" : 3
+        },
+        {
+          "key" : "appspot.com",
+          "doc_count" : 4
+        },
+        {
+          "key" : "at",
+          "doc_count" : 4
+        },
+        {
+          "key" : "blogspot.co.il",
+          "doc_count" : 4
+        },
+        {
+          "key" : "cm",
+          "doc_count" : 4
+        }
+      ]
+    }
+  }
+}
+        simulation_zabbix_macro = "DNS_TLD_QRY"
+        use_base64 = False
+        queries_to_run = [
+          "highest_similarity_to_any_top_accessed_tld",
+          "number_of_clients_per_dns_tld",
+          "number_of_queries_per_dns_tld"
+        ]
+        encode_json_as_b64 = False
+
+        macros_list = str.split(simulation_zabbix_macro, ",")
+        relevant_service_urls = self.get_config_by_regex(r'smart\-onion\.config\.architecture\.internal_services\.backend\.[a-z0-9\-_]+\.base_urls\.[a-z0-9\-_]+')
+        tiny_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
+        res_lld = Utils().GenerateLldFromElasticAggrRes(res=simulation_res, macro_list=macros_list, queries_to_run=queries_to_run, use_base64=use_base64, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details)
+
+        res_str = str(json.dumps(res_lld))
+        if encode_json_as_b64:
+            res_str = str(base64.b64encode(str(res_str).encode('ascii')).decode("ascii"))
+        res = "@@RES: " + res_str
+        return res
 
     def test_similarity(self, algo, s1, s2):
         utils = Utils()
@@ -803,6 +936,7 @@ class MetricsCollector:
         except Exception as ex:
             return "@@EX: " + str(ex)
 
+configurator_base_url = ""
 script_path = os.path.dirname(os.path.realpath(__file__))
 config_file_name = "queries.json"
 config_file_default_path = "/etc/smart-onion/"
@@ -903,5 +1037,15 @@ while queries_conf is None:
 
 
 sys.argv = [sys.argv[0]]
-MetricsCollector(listen_ip=listen_ip, listen_port=listen_port, learned_net_info=learned_net_info, queries_config=queries_conf, elasticsearch_server=elasticsearch_server, timeout_to_elastic=config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.max_timeout_to_elastic"]).run()
+MetricsCollector(
+    listen_ip=listen_ip,
+    listen_port=listen_port,
+    learned_net_info=learned_net_info,
+    queries_config=queries_conf,
+    config_copy=config_copy,
+    tiny_url_protocol=config_copy["smart-onion.config.architecture.internal_services.backend.tiny_url.protocol"],
+    tiny_url_server=config_copy["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-host"],
+    tiny_url_port=int(config_copy["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-port"]),
+    elasticsearch_server=elasticsearch_server,
+    timeout_to_elastic=int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.max_timeout_to_elastic"])).run()
 
