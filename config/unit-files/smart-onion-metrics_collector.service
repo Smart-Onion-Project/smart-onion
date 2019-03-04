@@ -6,7 +6,7 @@ After=smart-onion-configurator.service
 Type=simple
 User=smartonion_services
 Group=smartonion_services
-ExecStart=/opt/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py --elasticsearch_server=10.253.0.172
+ExecStart=/opt/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py --elasticsearch_server=10.253.0.153
 
 [Install]
 WantedBy=multi-user.target
