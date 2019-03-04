@@ -345,7 +345,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -421,7 +421,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -497,7 +497,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -573,7 +573,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -649,7 +649,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -725,7 +725,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -801,7 +801,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -877,7 +877,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -953,7 +953,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1029,7 +1029,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1105,7 +1105,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1181,7 +1181,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1257,7 +1257,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1333,7 +1333,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1409,7 +1409,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1485,7 +1485,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1561,7 +1561,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1637,7 +1637,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1713,7 +1713,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1789,7 +1789,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1865,7 +1865,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -1941,7 +1941,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2017,7 +2017,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2093,7 +2093,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2169,7 +2169,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2245,7 +2245,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2321,7 +2321,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2397,7 +2397,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2473,7 +2473,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2549,7 +2549,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2625,7 +2625,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2701,7 +2701,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2777,7 +2777,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2853,7 +2853,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2929,7 +2929,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3005,7 +3005,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3081,7 +3081,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3157,7 +3157,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3233,7 +3233,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3309,7 +3309,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3385,7 +3385,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3461,7 +3461,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3537,7 +3537,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3613,7 +3613,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3689,7 +3689,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3765,7 +3765,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3841,7 +3841,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3917,7 +3917,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3993,7 +3993,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -4069,7 +4069,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -4145,7 +4145,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -4221,7 +4221,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -4297,7 +4297,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -4373,7 +4373,7 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Calling {#NAME}</name>
+                            <name>Calling {#URL}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
