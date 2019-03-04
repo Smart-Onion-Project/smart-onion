@@ -4,12 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="    &quot;queries_to_run&quot;: [&#10;      &quot;number_of_servers_c..." line="675" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10;- Added shabang line and header">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10;- Removed the first '/' in the url returned">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/zbx_sampling_template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/zbx_sampling_template.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="125" column="46" selection-start-line="125" selection-start-column="39" selection-end-line="125" selection-end-column="46" />
+            <state relative-caret-position="529">
+              <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -34,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+            <state relative-caret-position="598">
+              <caret line="121" column="76" selection-start-line="121" selection-start-column="68" selection-end-line="121" selection-end-column="76" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -46,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="4375" column="49" selection-start-line="4375" selection-start-column="49" selection-end-line="4375" selection-end-column="49" />
+            <state relative-caret-position="328">
+              <caret line="4380" column="45" lean-forward="true" selection-start-line="4380" selection-start-column="45" selection-end-line="4380" selection-end-column="45" />
               <folding>
                 <element signature="e#13724#13729#0" expanded="true" />
                 <element signature="e#13772#13778#0" expanded="true" />
@@ -659,9 +657,9 @@
         <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-tiny_url.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
       </list>
     </option>
   </component>
@@ -928,20 +926,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Added header with details on each module.&#10;Added the basic code for the AnomalyDetector">
-      <created>1542725216850</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1542725216850</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Built the anomaly-detector micro-service">
-      <created>1542813185622</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1542813185622</updated>
     </task>
     <task id="LOCAL-00025" summary="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders">
       <created>1543345352832</created>
@@ -1272,7 +1256,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551709171490</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="tinyurl.py:&#10;- Chmodded to +x&#10;&#10;zbx_sampling_template.xml:&#10;- Changed the items' names to make sure they're not too long.">
+      <created>1551712649265</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1551712649265</updated>
+    </task>
+    <task id="LOCAL-00073" summary="tinyurl.py:&#10;- Removed the first '/' in the url returned">
+      <created>1551714023579</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1551714023579</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1348,8 +1346,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)" />
-    <MESSAGE value="queries.json:&#10;- Replaced source_ip to source_ips and destination_ip to destination_ips to allow string based queries against them." />
     <MESSAGE value="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them." />
     <MESSAGE value="configurator.py:&#10;- For now, hard-coded the IP of the security onion at beta site" />
     <MESSAGE value="configurator.py:&#10;- Reverted back the elasticsearch server property to 127.0.0.1&#10;&#10;metrics_collector.py:&#10;- Fixed a bug that caused it to ignore a command line argument that specified the elasticsearch server that need to be used." />
@@ -1373,7 +1369,9 @@
     <MESSAGE value="metrics_collector.py&#10;- Added more details to the log message" />
     <MESSAGE value="smart-onion-tiny_url.service:&#10;- Added unit file for the tiny url service" />
     <MESSAGE value="tinyurl.py:&#10;- Added shabang line and header" />
-    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10;- Added shabang line and header" />
+    <MESSAGE value="tinyurl.py:&#10;- Chmodded to +x&#10;&#10;zbx_sampling_template.xml:&#10;- Changed the items' names to make sure they're not too long." />
+    <MESSAGE value="tinyurl.py:&#10;- Removed the first '/' in the url returned" />
+    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10;- Removed the first '/' in the url returned" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1637,30 +1635,10 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="125" column="46" selection-start-line="125" selection-start-column="39" selection-end-line="125" selection-end-column="46" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/zbx_sampling_template.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="4375" column="49" selection-start-line="4375" selection-start-column="49" selection-end-line="4375" selection-end-column="49" />
+        <state relative-caret-position="328">
+          <caret line="4380" column="45" lean-forward="true" selection-start-line="4380" selection-start-column="45" selection-end-line="4380" selection-end-column="45" />
           <folding>
             <element signature="e#13724#13729#0" expanded="true" />
             <element signature="e#13772#13778#0" expanded="true" />
@@ -2144,6 +2122,26 @@ hashlib.algorithms_available</expression-string>
             <element signature="e#206523#206529#0" expanded="true" />
             <element signature="e#206531#206537#0" expanded="true" />
             <element signature="e#206539#206545#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="121" column="76" selection-start-line="121" selection-start-column="68" selection-end-line="121" selection-end-column="76" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
