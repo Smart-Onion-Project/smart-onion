@@ -123,11 +123,13 @@ class Utils:
 
                     if add_doc_count:
                         res_new["data"].append({
+                            "{#NAME}": cur_url,
                             "{#URL}": tiny_url_res,
                             "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
                         })
                     else:
                         res_new["data"].append({
+                            "{#NAME}": cur_url,
                             "{#URL}": tiny_url_res
                         })
 
