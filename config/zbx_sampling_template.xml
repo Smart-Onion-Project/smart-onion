@@ -374,13 +374,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -451,13 +450,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -528,13 +526,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -605,13 +602,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -682,13 +678,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -759,13 +754,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -836,13 +830,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -913,13 +906,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -990,13 +982,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1067,13 +1058,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1144,13 +1134,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1221,13 +1210,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1298,13 +1286,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1375,13 +1362,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1452,13 +1438,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1529,13 +1514,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1606,13 +1590,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1683,13 +1666,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1760,13 +1742,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1837,13 +1818,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1914,13 +1894,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -1991,13 +1970,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2068,13 +2046,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2145,13 +2122,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2222,13 +2198,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2299,13 +2274,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2376,13 +2350,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2453,13 +2426,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2530,13 +2502,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2607,13 +2578,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2684,13 +2654,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2761,13 +2730,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2838,13 +2806,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2915,13 +2882,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -2992,13 +2958,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3069,13 +3034,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3146,13 +3110,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3223,13 +3186,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3300,13 +3262,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3377,13 +3338,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3454,13 +3414,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3531,13 +3490,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3608,13 +3566,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3685,13 +3642,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3762,13 +3718,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3839,13 +3794,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3916,13 +3870,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -3993,13 +3946,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -4070,13 +4022,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -4147,13 +4098,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -4224,13 +4174,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -4301,16 +4250,16 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
+                    <trigger_prototypes/>
                     <graph_prototypes/>
                     <host_prototypes/>
                     <jmx_endpoint/>
@@ -4377,13 +4326,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
@@ -4454,13 +4402,12 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications>
-                                <valuemap/>
-                                <logtimefmt/>
-                                <preprocessing/>
-                                <jmx_endpoint/>
-                                <application_prototypes/>
-                            </applications>
+                            <applications/>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
                     </item_prototypes>
