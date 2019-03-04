@@ -1,3 +1,14 @@
+#!/usr/bin/python3.5
+##########################################################################
+# Tiny URL                                                               #
+# --------                                                               #
+#                                                                        #
+# This service is part of the Smart-Onion package. This micro-service is #
+# responsible for converting long URLs to tiny URLs.                     #
+#                                                                        #
+#                                                                        #
+##########################################################################
+
 from bottle import Bottle, request, redirect, abort
 import base64
 import uuid
