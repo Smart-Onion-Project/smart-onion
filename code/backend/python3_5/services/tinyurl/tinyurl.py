@@ -66,7 +66,7 @@ class TinyUrl:
             self._key2url_dictionary[url_key] = url_to_shorten
             self._url2key_dictionary[url_to_shorten] = url_key
             auto_save_dictionary_lock.release()
-        return "/so/tiny/" + url_category + "/" + url_sub_category + "/" + url_key
+        return "so/tiny/" + url_category + "/" + url_sub_category + "/" + url_key
 
     def url_to_tiny_bulk(self, url_b64_bulk):
         pass
