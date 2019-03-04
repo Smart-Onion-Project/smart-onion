@@ -119,7 +119,7 @@ class TinyUrl:
         if DEBUG:
             self._app.run(host=self._host, port=self._port)
         else:
-            self._app.run(host=self._host, port=self._port, server="paste", timeout=120)
+            self._app.run(host=self._host, port=self._port, server="paste")
 
         self._run_backup_loop = False
 
