@@ -340,6 +340,7 @@ class MetricsCollector:
         self._tiny_url_port = tiny_url_port
         self._config = config_copy
         self.es = Elasticsearch(hosts=[elasticsearch_server], timeout=timeout_to_elastic)
+        self.es_hosts = [elasticsearch_server]
         self.timeout_to_elastic = timeout_to_elastic
 
     def _route(self):
@@ -803,7 +804,7 @@ class MetricsCollector:
             agg = agg["field_values" + str(i)]["aggs"]
 
         try:
-            syslog.syslog("metrics_collector: INFO: Executing the following query: index=" + query_index + ", query_body=" + json.dumps(query_body))
+            syslog.syslog("metrics_collector: INFO: Executing the following query: hosts: " + json.dumps(self.es_hosts) + ", timeout: " + str(self.timeout_to_elastic) + ", index=" + query_index + ", query_body=" + json.dumps(query_body))
             res = self.es.search(
                 index=query_index,
                 body=query_body,

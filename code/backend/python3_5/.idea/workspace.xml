@@ -7,7 +7,7 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4173">
-              <caret line="345" column="50" selection-start-line="345" selection-start-column="24" selection-end-line="345" selection-end-column="50" />
+              <caret line="346" column="50" selection-start-line="346" selection-start-column="24" selection-end-line="346" selection-end-column="50" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -192,7 +192,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -281,7 +280,7 @@
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4173">
-          <caret line="345" column="50" selection-start-line="345" selection-start-column="24" selection-end-line="345" selection-end-column="50" />
+          <caret line="346" column="50" selection-start-line="346" selection-start-column="24" selection-end-line="346" selection-end-column="50" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
