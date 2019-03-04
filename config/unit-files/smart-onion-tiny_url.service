@@ -1,0 +1,12 @@
+[Unit]
+Description=Smart-Onion Tiny URL Service
+After=smart-onion-configurator.service
+
+[Service]
+Type=simple
+User=smartonion_services
+Group=smartonion_services
+ExecStart=/opt/smart-onion/code/backend/python3_5/services/tinyurl/tinyurl.py
+
+[Install]
+WantedBy=multi-user.target
