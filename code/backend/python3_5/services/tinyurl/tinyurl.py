@@ -84,6 +84,7 @@ class TinyUrl:
     def proxy_by_tiny(self, url_category, url_subcategory, tiny):
         url = self.tiny_to_url(tiny)
         if url != "":
+            # TODO: ERROR - Missing protocol, host and port in the URL
             return urllib_req.urlopen(url).read().decode('utf-8')
         else:
             abort(404, "Url key could not be found.")

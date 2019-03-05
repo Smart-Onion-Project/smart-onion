@@ -49,7 +49,7 @@ class Utils:
     lst = ""
     perceptive_hashing_algs = ["phash", "ahash", "dhash", "whash"]
 
-    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, services_urls=None, tiny_url_service_details=None, queries_to_run=None, add_doc_count=True, re_sort_by_value=False):
+    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, services_urls=None, tiny_url_service_details=None, queries_to_run=None, add_doc_count=True, re_sort_by_value=False, config_copy=None):
         cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
         # print(cls.lst)
         cls.lst = cls.lst.strip("|")
@@ -109,7 +109,16 @@ class Utils:
                     # Create the URL that need to be accessed by the query_obj type and the number of arguments returned
                     cur_query_obj = queries_conf[query_id]
                     query_type = str(cur_query_obj["type"])
-                    cur_url = services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id + "?arg1=" + str(item[list(item.keys())[0]])
+
+                    cur_url = ""
+                    if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in config_copy:
+                        cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
+                    if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in config_copy:
+                        cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
+                    if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in config_copy:
+                        cur_url = cur_url + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"]) + "/"
+                    cur_url = cur_url + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id + "?arg1=" + str(item[list(item.keys())[0]])
+
                     for key_idx in range(1, len(item.keys())):
                         if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
                             cur_url = cur_url + "&arg" + str(key_idx + 1) + "=" + str(item[list(item.keys())[key_idx]])
@@ -814,7 +823,7 @@ class MetricsCollector:
             macros_list = str.split(zabbix_macro, ",")
             relevant_service_urls = self.get_config_by_regex(r'smart\-onion\.config\.architecture\.internal_services\.backend\.[a-z0-9\-_]+\.base_urls\.[a-z0-9\-_]+')
             tin_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
-            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tin_url_service_details)
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tin_url_service_details, config_copy=self._config)
 
             res_str = str(json.dumps(res_lld))
             if encode_json_as_b64:
