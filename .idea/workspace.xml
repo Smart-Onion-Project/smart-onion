@@ -4,10 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="    &quot;queries_to_run&quot;: [&#10;      &quot;number_of_servers_c..." line="675" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10;- Removed the first '/' in the url returned">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="121" column="76" selection-start-line="121" selection-start-column="68" selection-end-line="121" selection-end-column="76" />
+            <state relative-caret-position="923">
+              <caret line="83" column="15" lean-forward="true" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -927,20 +927,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00025" summary="Built the dummy version of the configurator&#10;Added the code for sending the anomaly scores to StatsD (from both AnomalyDetector and MetricsAnalyzer)&#10;Started updating the queries file with placeholders">
-      <created>1543345352832</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1543345352832</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions">
-      <created>1544504761139</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1544504761139</updated>
-    </task>
     <task id="LOCAL-00027" summary="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions">
       <created>1544504932303</created>
       <option name="number" value="00027" />
@@ -1270,7 +1256,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551714023579</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="tinyurl.py:&#10;- Switched to &quot;paste&quot; instead of gunicorn">
+      <created>1551726162076</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1551726162076</updated>
+    </task>
+    <task id="LOCAL-00075" summary="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;">
+      <created>1551728057367</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1551728057367</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1284,13 +1284,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4978903" visible="true" weight="0.19736843" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.4978903" visible="true" weight="0.19736843" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.83280593" weight="0.44627193" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.903481" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1346,8 +1345,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them." />
-    <MESSAGE value="configurator.py:&#10;- For now, hard-coded the IP of the security onion at beta site" />
     <MESSAGE value="configurator.py:&#10;- Reverted back the elasticsearch server property to 127.0.0.1&#10;&#10;metrics_collector.py:&#10;- Fixed a bug that caused it to ignore a command line argument that specified the elasticsearch server that need to be used." />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The first call to the configurator used python3 code" />
     <MESSAGE value="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened" />
@@ -1371,7 +1368,9 @@
     <MESSAGE value="tinyurl.py:&#10;- Added shabang line and header" />
     <MESSAGE value="tinyurl.py:&#10;- Chmodded to +x&#10;&#10;zbx_sampling_template.xml:&#10;- Changed the items' names to make sure they're not too long." />
     <MESSAGE value="tinyurl.py:&#10;- Removed the first '/' in the url returned" />
-    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10;- Removed the first '/' in the url returned" />
+    <MESSAGE value="tinyurl.py:&#10;- Switched to &quot;paste&quot; instead of gunicorn" />
+    <MESSAGE value="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2138,8 +2137,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="121" column="76" selection-start-line="121" selection-start-column="68" selection-end-line="121" selection-end-column="76" />
+        <state relative-caret-position="923">
+          <caret line="83" column="15" lean-forward="true" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
