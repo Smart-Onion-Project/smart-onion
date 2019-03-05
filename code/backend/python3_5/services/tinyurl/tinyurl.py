@@ -42,7 +42,7 @@ class TinyUrl:
     def _route(self):
         self._app.route('/so/tiny2url/<tiny>', method="GET", callback=self.tiny_to_url)
         self._app.route('/so/url2tiny', method="GET", callback=self.url_to_tiny)
-        self._app.route('/so/tiny/<url_category>/<url_subcategory>/<tiny>', method="GET", callback=self.redirect_by_tiny)
+        self._app.route('/so/tiny/<url_category>/<url_subcategory>/<tiny>', method="GET", callback=self.proxy_by_tiny)
 
     def url_to_tiny(self):
         if "url" in request.query:
@@ -81,10 +81,10 @@ class TinyUrl:
 
         return url
 
-    def redirect_by_tiny(self, url_category, url_subcategory, tiny):
+    def proxy_by_tiny(self, url_category, url_subcategory, tiny):
         url = self.tiny_to_url(tiny)
         if url != "":
-            redirect(url)
+            return urllib_req.urlopen(url).read().decode('utf-8')
         else:
             abort(404, "Url key could not be found.")
 

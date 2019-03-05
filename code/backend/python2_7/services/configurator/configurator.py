@@ -83,7 +83,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.tiny_url.backup_interval": 30,
         "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.tiny2url": '/so/tiny2url/',
         "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny": '/so/url2tiny',
-        "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.redirect_by_tiny": '/so/tiny/',
+        "smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.proxy_by_tiny": '/so/tiny/',
         "smart-onion.config.architecture.internal_services.frontend.ui.listening-host": "0.0.0.0",
         "smart-onion.config.architecture.internal_services.frontend.ui.listening-port": 8080,
         "smart-onion.config.architecture.internal_services.frontend.ui.protocol": "http",
