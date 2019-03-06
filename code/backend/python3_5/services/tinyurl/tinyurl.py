@@ -51,8 +51,8 @@ class TinyUrl:
             return ""
         
         url_to_shorten = base64.b64decode(str(url_b64).encode('utf-8')).decode('utf-8')
-        url_category = url_to_shorten.split('/')[1]
-        url_sub_category = url_to_shorten.split('/')[2].split('?')[0]
+        url_category = url_to_shorten.split('/')[3]
+        url_sub_category = url_to_shorten.split('/')[4].split('?')[0]
         auto_save_dictionary_lock.acquire()
         url_in_url2key_dictionary = url_to_shorten in self._url2key_dictionary
         auto_save_dictionary_lock.release()
