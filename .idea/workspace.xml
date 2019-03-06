@@ -4,10 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="    &quot;queries_to_run&quot;: [&#10;      &quot;number_of_servers_c..." line="675" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10;- Added host, protocol and port to the URLs that are tokenized by the tiny url service to allow it to proxy the access later">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+            <state relative-caret-position="498">
+              <caret line="160" column="116" lean-forward="true" selection-start-line="160" selection-start-column="116" selection-end-line="160" selection-end-column="116" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -32,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="923">
-              <caret line="83" column="15" lean-forward="true" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+            <state relative-caret-position="507">
+              <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -581,7 +582,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>certs_cn</find>
       <find>external_ips_pinging_the_org</find>
       <find>top_n_most_rarely_queried_fqdns</find>
       <find>org_ssh_servers</find>
@@ -611,6 +611,7 @@
       <find>urlopen</find>
       <find>NAME</find>
       <find>Calling {#NAME}</find>
+      <find>tiny</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -657,9 +658,9 @@
         <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-tiny_url.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
@@ -926,20 +927,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Moved each service to the right python version&#10;Updated the Zabbix template&#10;Updated the queries.json file to support the Zabbix template&#10;Updated the README file with setup instructions">
-      <created>1544504932303</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1544504932303</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Added unit files and sample configs">
-      <created>1544597669454</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1544597669454</updated>
     </task>
     <task id="LOCAL-00029" summary="Pycharm files">
       <created>1545219893795</created>
@@ -1270,10 +1257,24 @@
       <option name="project" value="LOCAL" />
       <updated>1551728057367</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="tinyurl.py:&#10;- Switched to proxy mode (instead of redirector)">
+      <created>1551767644579</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1551767644579</updated>
+    </task>
+    <task id="LOCAL-00077" summary="metrics_collector.py:&#10;- Added host, protocol and port to the URLs that are tokenized by the tiny url service to allow it to proxy the access later">
+      <created>1551795797741</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1551795797741</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -1289,16 +1290,16 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.4978903" visible="true" weight="0.19736843" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4978903" weight="0.19736843" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.83280593" weight="0.44627193" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.903481" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" sideWeight="0.4994726" visible="true" weight="0.32894737" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5021097" side_tool="true" visible="true" weight="0.19736843" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50052744" side_tool="true" visible="true" weight="0.32894737" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1345,8 +1346,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configurator.py:&#10;- Reverted back the elasticsearch server property to 127.0.0.1&#10;&#10;metrics_collector.py:&#10;- Fixed a bug that caused it to ignore a command line argument that specified the elasticsearch server that need to be used." />
-    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The first call to the configurator used python3 code" />
     <MESSAGE value="metrics_analyzer.py&#10;- Added information about the socket that is about to be opened" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The call to the configurator used wrong config URL" />
     <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: The service ignored configuration of it's listening IP and port" />
@@ -1370,7 +1369,9 @@
     <MESSAGE value="tinyurl.py:&#10;- Removed the first '/' in the url returned" />
     <MESSAGE value="tinyurl.py:&#10;- Switched to &quot;paste&quot; instead of gunicorn" />
     <MESSAGE value="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;" />
+    <MESSAGE value="tinyurl.py:&#10;- Switched to proxy mode (instead of redirector)" />
+    <MESSAGE value="metrics_collector.py:&#10;- Added host, protocol and port to the URLs that are tokenized by the tiny url service to allow it to proxy the access later" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10;- Added host, protocol and port to the URLs that are tokenized by the tiny url service to allow it to proxy the access later" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1387,7 +1388,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>916</line>
+          <line>925</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
@@ -2125,22 +2126,22 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+        <state relative-caret-position="507">
+          <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
           <folding>
-            <element signature="e#923#933#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="923">
-          <caret line="83" column="15" lean-forward="true" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+        <state relative-caret-position="498">
+          <caret line="160" column="116" lean-forward="true" selection-start-line="160" selection-start-column="116" selection-end-line="160" selection-end-column="116" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>
