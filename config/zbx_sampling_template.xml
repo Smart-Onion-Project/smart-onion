@@ -349,7 +349,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_sources,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_sources,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -425,7 +425,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_sources_pinging,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_sources_pinging,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -501,7 +501,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_destinations,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_destinations,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -577,7 +577,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=useragents,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=useragents,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -653,7 +653,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=lan_ips,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=lan_ips,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -729,7 +729,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequent_websites_vhost,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequent_websites_vhost,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -805,7 +805,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rare_websites_vhost,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rare_websites_vhost,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -881,7 +881,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=types,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=types,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -957,7 +957,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_accessed_urls,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_accessed_urls,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1033,7 +1033,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_accessed_urls,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_accessed_urls,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1109,7 +1109,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_accessed_certs_cn,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_accessed_certs_cn,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1185,7 +1185,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=tcp_ports_from_org,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=tcp_ports_from_org,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1261,7 +1261,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=udp_ports_from_org,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=udp_ports_from_org,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1337,7 +1337,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_pub_ips,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_pub_ips,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1413,7 +1413,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=ports_to_external_pub_ips,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=ports_to_external_pub_ips,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1489,7 +1489,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=dns_query_flags,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=dns_query_flags,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1565,7 +1565,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_queried_fqdns,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_queried_fqdns,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1641,7 +1641,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_queried_fqdns,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_queried_fqdns,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1717,7 +1717,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_queried_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_queried_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1793,7 +1793,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_queried_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_queried_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1869,7 +1869,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_queried_tlds,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_queried_tlds,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -1945,7 +1945,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_queried_tlds,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_queried_tlds,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2021,7 +2021,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_queried_tld_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_queried_tld_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2097,7 +2097,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_queried_tlds_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_queried_tlds_subdomains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2173,7 +2173,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_queried_parent_domains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_queried_parent_domains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2249,7 +2249,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_queried_parent_domains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_queried_parent_domains,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2325,7 +2325,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_queried_class_names,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_queried_class_names,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2401,7 +2401,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_queried_class_names,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_queried_class_names,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2477,7 +2477,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=frequently_accessed_external_uris,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=frequently_accessed_external_uris,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2553,7 +2553,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=rarely_accessed_external_uri,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=rarely_accessed_external_uri,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2629,7 +2629,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_dest_continents,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_dest_continents,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2705,7 +2705,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_dest_countries,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_dest_countries,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2781,7 +2781,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=external_destination_cities,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=external_destination_cities,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2857,7 +2857,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_dns_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_dns_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -2933,7 +2933,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=ext_dns_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=ext_dns_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3009,7 +3009,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=lan_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=lan_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3085,7 +3085,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=lan_workstations,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=lan_workstations,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3161,7 +3161,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=crown_jewels,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=crown_jewels,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3237,7 +3237,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_tftp_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_tftp_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3313,7 +3313,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_ftp_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_ftp_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3389,7 +3389,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_mysql_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_mysql_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3465,7 +3465,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_mssql_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_mssql_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3541,7 +3541,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_pgsql_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_pgsql_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3617,7 +3617,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_ldap_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_ldap_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3693,7 +3693,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_dhcp_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_dhcp_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3769,7 +3769,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_ssh_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_ssh_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3845,7 +3845,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_http_verbs,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_http_verbs,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3921,7 +3921,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=ext_http_verbs,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=ext_http_verbs,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -3997,7 +3997,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=cert_issuers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=cert_issuers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -4073,7 +4073,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=certs_cn,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=certs_cn,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -4149,7 +4149,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=org_web_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=org_web_servers,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -4225,7 +4225,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=webservers_webmethods,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=webservers_webmethods,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -4301,7 +4301,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=dst_workstations_dst_ports,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=dst_workstations_dst_ports,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
@@ -4377,7 +4377,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;comment=websites_pages,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
+                            <key>web.page.regexp[{$SHORT_URL_HOST},{#URL}?comment=websites_pages,{$SHORT_URL_PORT},&quot;@@RES: (.*)&quot;,,&quot;\1&quot;]</key>
                             <delay>5m</delay>
                             <history>28d</history>
                             <trends>60d</trends>
