@@ -124,22 +124,30 @@ class Utils:
                             cur_url = cur_url + "&arg" + str(key_idx + 1) + "=" + str(item[list(item.keys())[key_idx]])
 
                     # Translate the url to a tiny url
-                    tiny_url_res = "ERROR: NO TINY_URL SERVICE DETAILS."
+                    tiny_url_res = cur_url
                     if tiny_url_service_details is not None:
                         tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
                         print("Calling " + tiny_service_url)
                         tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
+                    else:
+                        tiny_url_res = cur_url
 
                     if add_doc_count:
                         res_new["data"].append({
                             "{#NAME}": cur_url,
                             "{#URL}": tiny_url_res,
+                            "{#QUERY_NAME}": query_id,
+                            "{#QUERY_TYPE}": query_type,
+                            "{#ARGS}": list(item.keys()),
                             "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
                         })
                     else:
                         res_new["data"].append({
                             "{#NAME}": cur_url,
-                            "{#URL}": tiny_url_res
+                            "{#URL}": tiny_url_res,
+                            "{#QUERY_NAME}": query_id,
+                            "{#QUERY_TYPE}": query_type,
+                            "{#ARGS}": list(item.keys()),
                         })
 
             res = res_new
@@ -822,8 +830,11 @@ class MetricsCollector:
 
             macros_list = str.split(zabbix_macro, ",")
             relevant_service_urls = self.get_config_by_regex(r'smart\-onion\.config\.architecture\.internal_services\.backend\.[a-z0-9\-_]+\.base_urls\.[a-z0-9\-_]+')
-            tin_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
-            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tin_url_service_details, config_copy=self._config)
+            if self._config["smart-onion.config.architecture.internal_services.backend.metrics-collector.tinyfy_urls"]:
+                tiny_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
+            else:
+                tiny_url_service_details = None
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details, config_copy=self._config)
 
             res_str = str(json.dumps(res_lld))
             if encode_json_as_b64:
