@@ -31,16 +31,22 @@ class TimerService:
 
     def pack_and_resend_tasks(self, tasks_list):
         max_items_in_batch = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]
-        kafka_sender = kafka.producer.KafkaProducer(bootstrap_servers=self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"])
+        kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        kafka_sender = kafka.producer.KafkaProducer(bootstrap_servers=kafka_server)
+        kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.metrics_collection_tasks_topic"]
         batch = []
         for item in tasks_list:
             batch.append(item)
             if len(batch) >= max_items_in_batch:
-                kafka_sender.send(topic="metric_collection_tasks", value=json.dumps(batch).encode())
+                print("DEBUG: Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + kafka_server)
+                kafka_sender.send(topic=kafka_topic, value=json.dumps(batch).encode())
                 batch = []
         
         if len(batch) > 0:
-            kafka_sender.send(topic="metric_collection_tasks", value=json.dumps(batch).encode())
+            print("DEBUG: Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + kafka_server)
+            kafka_sender.send(topic=kafka_topic, value=json.dumps(batch).encode())
+
+        print("INFO: Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + kafka_topic + "' on server " + kafka_server)
         
     def run(self):
         base_url = ""
@@ -61,7 +67,7 @@ class TimerService:
                 print("Calling " + cur_url)
                 discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
                 if "@@EXCEPTION:" in discover_raw_res:
-                    print("WARN: Discovery call returned an exception. See the metrics_collector logs for more info. Re-Sending last tasks for this discovery ('" + query + "') to the Kafka service...")
+                    print("WARN: Discovery call returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics due to the TTL...")
                 else:
                     discover_res = json.loads(discover_raw_res)
                     for task in discover_res["data"]:

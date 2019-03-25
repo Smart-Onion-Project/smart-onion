@@ -5,11 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service">
-      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so-update.sh" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +26,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2014">
+            <state relative-caret-position="1444">
               <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
@@ -73,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+            <state relative-caret-position="569">
+              <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -85,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+            <state relative-caret-position="133">
+              <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-end-line="7" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -187,9 +188,9 @@
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
       </list>
     </option>
   </component>
@@ -447,20 +448,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00036" summary="queries.json:&#10;- Removed old unnecessary file.">
-      <created>1547479341345</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1547479341345</updated>
-    </task>
-    <task id="LOCAL-00037" summary="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once.">
-      <created>1547483335150</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1547483335151</updated>
     </task>
     <task id="LOCAL-00038" summary="metrics_analyzer:&#10;- Reset the configuratort_base_url&#10;- Fixed wrong error message&#10;&#10;test_service_status.sh:&#10;- Added script for testing all services status at once.">
       <created>1547483528060</created>
@@ -791,7 +778,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553511025195</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Added update script">
+      <created>1553512799554</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1553512799554</updated>
+    </task>
+    <task id="LOCAL-00086" summary="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash">
+      <created>1553514278274</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1553514278274</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TodoView">
@@ -805,9 +806,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17194092" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -820,7 +820,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.16824895" side_tool="true" visible="true" weight="0.15679824" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.16824895" side_tool="true" visible="true" weight="0.0877193" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -867,8 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_analyzer.py&#10;- Switched to gunicorn" />
-    <MESSAGE value="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument" />
     <MESSAGE value="metric_collector.py:&#10;- Setting the gunicorn timeout to 30 seconds (hopefully)" />
     <MESSAGE value="metric_collector.py:&#10;- Setting the gunicorn timeout to 120 seconds (hopefully)" />
     <MESSAGE value="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)" />
@@ -892,7 +890,9 @@
     <MESSAGE value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability" />
     <MESSAGE value="smart-onion-timer.service:&#10;- Added unit file for the newly created timer service" />
     <MESSAGE value="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service" />
-    <option name="LAST_COMMIT_MESSAGE" value="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service" />
+    <MESSAGE value="Added update script" />
+    <MESSAGE value="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash" />
+    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1551,16 +1551,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2014">
-          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1729">
@@ -1602,13 +1592,10 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/config/unit-files/kafka-server.service">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-          <folding>
-            <element signature="e#847#858#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1619,17 +1606,30 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-end-line="7" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        <state relative-caret-position="1444">
+          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+          <folding>
+            <element signature="e#847#858#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
