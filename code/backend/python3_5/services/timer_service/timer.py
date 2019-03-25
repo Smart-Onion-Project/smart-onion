@@ -16,6 +16,7 @@ import time
 import sys
 import os
 import re
+import kafka
 from urllib import request as urllib_req
 
 
@@ -28,86 +29,49 @@ class TimerService:
         self._listen_port = listen_port
         self._config_copy = config_copy
 
-    def pack_and_send_tasks(self, tasks_list):
-        '''
-            This is the format for a bulk request from the metric collector:
-            {
-              "bulk_queries":[
-                 {
-                    "query_name": "number_of_get_requests_per_verb_per_website",
-                    "scheduled_for": 1552458642,
-                    "args": {
-                       "arg1": "www.artifex.co.il",
-                       "arg2": ""
-                    }
-                 },
-                 {
-                    "query_name": "number_of_get_requests_per_verb_per_website",
-                    "scheduled_for": 1552458642,
-                    "args": {
-                       "arg1": "www.cnn.com",
-                       "arg2": ""
-                    }
-                 }
-              ]
-            }
-        '''
-        # TODO: Create "packages" of tasks that need to be preformed and send them to kafka
-        pass
+    def pack_and_resend_tasks(self, tasks_list):
+        max_items_in_batch = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]
+        kafka_sender = kafka.producer.KafkaProducer(bootstrap_servers=self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"])
+        batch = []
+        for item in tasks_list:
+            batch.append(item)
+            if len(batch) >= max_items_in_batch:
+                kafka_sender.send(topic="metric_collection_tasks", value=json.dumps(batch).encode())
+                batch = []
+        
+        if len(batch) > 0:
+            kafka_sender.send(topic="metric_collection_tasks", value=json.dumps(batch).encode())
         
     def run(self):
-        last_tasks_list = {}
-        cur_tasks_list = {}
+        base_url = ""
+        if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in self._config_copy:
+            base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
+        if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in self._config_copy:
+            base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
+        if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in self._config_copy:
+            base_url = base_url + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
+        base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld"]
+
+        cur_tasks_list = []
+        print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"])
         while True:
-            '''
-            This is the expected result from a discovery
-                    res["data"]: [{
-                            "{#NAME}": cur_url,
-                            "{#URL}": tiny_url_res,
-                            "{#QUERY_NAME}": query_id,
-                            "{#QUERY_TYPE}": query_type,
-                            "{#ARGS}": list(item.keys()),
-                            "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
-                    },
-                    {
-                            "{#NAME}": cur_url,
-                            "{#URL}": tiny_url_res,
-                            "{#QUERY_NAME}": query_id,
-                            "{#QUERY_TYPE}": query_type,
-                            "{#ARGS}": list(item.keys()),
-                            "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
-                    }]            
-            '''
-            # TODO: For each LLD query that has queries to run run it and send result tasks for the next hour to kafka
-            cycle_start_time = time.time()
             lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
             for query in lld_queries:
-                # TODO: Execute discover query by calling the metrics controller
-                cur_url = ""
-                if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in self._config_copy:
-                    cur_url = cur_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
-                if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in self._config_copy:
-                    cur_url = cur_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
-                if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in self._config_copy:
-                    cur_url = cur_url + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
-                cur_url = cur_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld"] + query
-
+                cur_url = base_url + query
                 print("Calling " + cur_url)
                 discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
                 if "@@EXCEPTION:" in discover_raw_res:
                     print("WARN: Discovery call returned an exception. See the metrics_collector logs for more info. Re-Sending last tasks for this discovery ('" + query + "') to the Kafka service...")
-                    cur_tasks_list[query] = last_tasks_list[query]
+                else:
+                    discover_res = json.loads(discover_raw_res)
+                    for task in discover_res["data"]:
+                        cur_tasks_list.append({
+                            "URL": task["{#URL}"]
+                        })
 
-                # TODO: Evaluate the result queries' interval and create tasks for the next self._interval seconds and add them to local list and if the list has reached its configured capacity, send them to Kafka as a bulk list and clear the list.
-                discover_res = json.loads(discover_raw_res)
-                for task in discover_res["data"]:
-                   pass
-
-            self.pack_and_send_tasks(cur_tasks_list)
-            last_tasks_list = cur_tasks_list
-            cur_tasks_list = {}
+            self.pack_and_resend_tasks(cur_tasks_list)
+            cur_tasks_list = []
             time.sleep(self._interval)
-        pass
 
 config_copy = {}
 configurator_base_url = ""
