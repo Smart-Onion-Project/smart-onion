@@ -65,21 +65,33 @@ class TimerService:
         cur_tasks_list = []
         print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"] + ",KafkaClientID:" + self._kafka_client_id)
         while True:
-            lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
-            for query in lld_queries:
-                cur_url = base_url + query
-                print("Calling " + cur_url)
-                discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
-                if "@@EXCEPTION:" in discover_raw_res:
-                    print("WARN: Discovery call returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics due to the TTL...")
-                else:
-                    discover_res = json.loads(discover_raw_res)
-                    for task in discover_res["data"]:
-                        cur_tasks_list.append({
-                            "URL": task["{#URL}"]
-                        })
+            try:
+                lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
+                for query in lld_queries:
+                    try:
+                        cur_url = base_url + query
+                        print("Calling " + cur_url)
+                        discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
+                        if "@@EXCEPTION:" in discover_raw_res:
+                            print("WARN: Discovery call returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics due to the TTL...")
+                        else:
+                            discover_res = json.loads(discover_raw_res)
+                            for task in discover_res["data"]:
+                                cur_tasks_list.append({
+                                    "URL": task["{#URL}"]
+                                })
+                    except Exception as ex:
+                        print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
 
-            self.pack_and_resend_tasks(cur_tasks_list)
+            except Exception as ex:
+                print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+
+            if len(cur_tasks_list) > 0:
+                try:
+                    self.pack_and_resend_tasks(cur_tasks_list)
+                except Exception as ex:
+                    print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle.")
+
             cur_tasks_list = []
             time.sleep(self._interval)
 
@@ -119,9 +131,27 @@ while queries_conf is None:
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         queries_conf = json.loads(configurator_response)
     except:
-        print(
-            "WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
         time.sleep(10)
+
+metric_collector_ping_response = None
+while metric_collector_ping_response is None:
+    try:
+        base_url = ""
+        if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in config_copy:
+            base_url = base_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
+        if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in config_copy:
+            base_url = base_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
+        if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in config_copy:
+            base_url = base_url + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
+
+        metric_collector_ping_response = json.loads(urllib_req.urlopen(base_url + "/ping").read().decode('utf-8'))
+        if metric_collector_ping_response["response"] != "PONG":
+            metric_collector_ping_response = None
+    except:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Metrics-Collector service to become available...")
+        time.sleep(10)
+
 
 config_file_specified_on_cmd = False
 if len(sys.argv) > 1:

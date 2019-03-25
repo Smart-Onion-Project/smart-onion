@@ -20,6 +20,7 @@ import time
 import threading
 from urllib import request as urllib_req
 from threading import Lock
+import hashlib
 
 DEBUG = False
 auto_save_dictionary_lock = Lock()
@@ -43,6 +44,18 @@ class TinyUrl:
         self._app.route('/so/tiny2url/<tiny>', method="GET", callback=self.tiny_to_url)
         self._app.route('/so/url2tiny', method="GET", callback=self.url_to_tiny)
         self._app.route('/so/tiny/<url_category>/<url_subcategory>/<tiny>', method="GET", callback=self.proxy_by_tiny)
+        self._app.route('/ping', method="GET", callback=self._ping)
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return json.dumps({
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        })
 
     def url_to_tiny(self):
         if "url" in request.query:

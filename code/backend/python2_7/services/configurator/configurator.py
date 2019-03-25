@@ -5,6 +5,7 @@ import datetime
 import json
 import base64
 import os
+import hashlib
 
 
 DEBUG = False
@@ -155,6 +156,18 @@ class SmartOnionConfigurator:
     def _route(self):
         self._app.route('/smart-onion/configurator/get_config/<config_name>', method="GET", callback=self.get_config)
         self._app.route('/smart-onion/configurator/update_config/<config_name>', method="GET", callback=self.update_config)
+        self._app.route('/ping', method="GET", callback=self._ping)
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return json.dumps({
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        })
 
     def run(self):
         if DEBUG:
