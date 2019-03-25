@@ -9,4 +9,4 @@ systemctl start smart-onion-configurator
 sleep 2s
 /opt/smart-onion/resources/test-scripts/test_services_status.sh start
 echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=
-/opt/smart-onion//resources/test-scripts/test_services_status.sh
+/opt/smart-onion/resources/test-scripts/test_services_status.sh
