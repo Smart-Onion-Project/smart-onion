@@ -36,6 +36,7 @@ import time
 import homoglyphs
 import syslog
 import urllib.parse
+import hashlib
 
 DEBUG = False
 elasticsearch_server = "127.0.0.1"
@@ -371,6 +372,18 @@ class MetricsCollector:
         self._app.route('/smart-onion/dump_queries', method="GET", callback=self.dump_queries)
         self._app.route('/test/similarity/<algo>/<s1>/<s2>', method="GET", callback=self.test_similarity)
         self._app.route('/test/lld', method="GET", callback=self.test_lld_creation)
+        self._app.route('/ping', method="GET", callback=self._ping)
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return json.dumps({
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        })
 
     def run(self):
         if DEBUG:

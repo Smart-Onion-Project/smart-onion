@@ -9,6 +9,7 @@ import datetime
 import json
 import base64
 import syslog
+import hashlib
 
 
 DEBUG = True
@@ -24,6 +25,18 @@ class SmartOnionAlerter:
 
     def _route(self):
         self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
+        self._app.route('/ping', method="GET", callback=self._ping)
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return json.dumps({
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        })
 
     def run(self):
         if DEBUG:
