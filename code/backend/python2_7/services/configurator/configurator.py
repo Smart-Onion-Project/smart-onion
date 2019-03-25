@@ -53,7 +53,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.external_services.security-onion-elk.protocol": "http",
         "smart-onion.config.architecture.internal_services.backend.pipeline.statsd.host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.pipeline.statsd.port": 8125,
-        "smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers": "localhost",
+        "smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers": "10.253.0.141",
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port": 9000,
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol": "http",
