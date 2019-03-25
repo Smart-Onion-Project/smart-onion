@@ -42,13 +42,13 @@ class TimerService:
             timestamp = time.time()
             if len(batch) >= max_items_in_batch:
                 print("DEBUG: [" + str(timestamp) + "]Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
-                self._kafka_sender.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode())
+                self._kafka_producer.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode())
                 batch = []
 
         if len(batch) > 0:
             timestamp = time.time()
             print("DEBUG: [" + str(timestamp) + "]Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
-            self._kafka_sender.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode())
+            self._kafka_producer.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode())
 
         print("INFO: Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
         

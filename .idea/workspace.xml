@@ -5,10 +5,8 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="timer.py:&#10; - Added timestamp to messages">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1444">
-              <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+            <state relative-caret-position="95">
+              <caret line="371" column="48" lean-forward="true" selection-start-line="371" selection-start-column="48" selection-end-line="371" selection-end-column="48" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -35,10 +33,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../python3.5_venv/lib/python3.5/site-packages/md5hash/md5hash.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1729">
-              <caret line="91" column="30" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+            <state relative-caret-position="-323">
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
                 <element signature="e#697#748#0" expanded="true" />
               </folding>
@@ -59,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+              <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -76,29 +83,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="653">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="54" lean-forward="true" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -192,11 +181,11 @@
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-tiny_url.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
       </list>
@@ -456,20 +445,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00040" summary="test_service_status.sh:&#10;- Added the ability to restart the services">
-      <created>1547484292079</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1547484292079</updated>
-    </task>
-    <task id="LOCAL-00041" summary="set_permissions.sh&#10;- Added to set the correct execute permissions on all the services">
-      <created>1547486115362</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1547486115362</updated>
     </task>
     <task id="LOCAL-00042" summary="metrics_collector.py:&#10;- added debug message in discovery queries to be written to syslog">
       <created>1547488585173</created>
@@ -800,7 +775,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553519185248</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="timer.py:&#10; - Added timestamp to debug messages&#10; - Using one object for producer&#10; - Specifying the kafka client ID">
+      <created>1553520128938</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1553520128938</updated>
+    </task>
+    <task id="LOCAL-00090" summary="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery.">
+      <created>1553526283264</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1553526283265</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TodoView">
@@ -815,12 +804,12 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49630803" visible="true" weight="0.16776316" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.83175105" weight="0.44627193" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8312236" visible="true" weight="0.073464915" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.90295357" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -828,7 +817,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.16824895" side_tool="true" visible="true" weight="0.0877193" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.16877638" side_tool="true" visible="true" weight="0.073464915" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -875,8 +864,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)" />
-    <MESSAGE value="metric_collector.py:&#10;- Fixed an issue that could've caused the get_similarity method to crash on string index out of range (assuming that the problem was in the HomoglyphsRatio method and in the slim chance that Elasticsearch would return a string instead of a JSON object." />
     <MESSAGE value="metric_collector.py:&#10;- Added {#NAME} macro to indicate the &quot;real&quot; url that need to be called.&#10;&#10;queries.json:&#10;- Added array with pointers to the queries that need to be queried per item that is returned by an LLD&#10;&#10;zbx_sampling_template.xml:&#10;- Replaced all the item prototypes under all the discoveries to the same prototype since that the LLD will now return a list of urls to be called (on the tiny url service)" />
     <MESSAGE value="smart-onion-metrics_collector.service:&#10;- Changed it to use the new elasticsearch server" />
     <MESSAGE value="zbx_sampling_template.xml:&#10;- Fixed some formatting issues" />
@@ -900,7 +887,9 @@
     <MESSAGE value="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash" />
     <MESSAGE value="configurator.py:&#10; - Added the kafka topic used as a config&#10;timer.py:&#10; - Added some informational and debug messages" />
     <MESSAGE value="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete." />
-    <option name="LAST_COMMIT_MESSAGE" value="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete." />
+    <MESSAGE value="timer.py:&#10; - Added timestamp to debug messages&#10; - Using one object for producer&#10; - Specifying the kafka client ID" />
+    <MESSAGE value="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery." />
+    <option name="LAST_COMMIT_MESSAGE" value="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -917,7 +906,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>936</line>
+          <line>949</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
@@ -994,14 +983,6 @@ hashlib.algorithms_available</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/text_to_image/encode.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/247832388/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="4891" column="8" selection-start-line="4891" selection-start-column="8" selection-end-line="4891" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/numpy/lib/function_base.py" />
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/imagehash/__init__.py" />
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/posixpath.py" />
@@ -1559,16 +1540,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1729">
-          <caret line="91" column="30" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
-          <folding>
-            <element signature="e#697#748#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19988">
@@ -1596,31 +1567,7 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="54" lean-forward="true" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1444">
-          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1631,10 +1578,58 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../python3.5_venv/lib/python3.5/site-packages/md5hash/md5hash.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/hashlib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1724">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding>
+            <element signature="e#697#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="371" column="48" lean-forward="true" selection-start-line="371" selection-start-column="48" selection-end-line="371" selection-end-column="48" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="653">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>
