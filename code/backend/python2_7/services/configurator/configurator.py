@@ -101,7 +101,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.timer.protocol": "http",
         "smart-onion.config.architecture.internal_services.backend.timer.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.timer.listening-port": 9006,
-        "smart-onion.config.architecture.internal_services.backend.timer.discover-interval": 600,
+        "smart-onion.config.architecture.internal_services.backend.timer.discover-interval": 3600,
         "smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch": 10,
         "smart-onion.config.architecture.internal_services.backend.tiny_url.published-listening-protocol": "http",
         "smart-onion.config.architecture.internal_services.backend.tiny_url.published-listening-host": "127.0.0.1",

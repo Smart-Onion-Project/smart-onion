@@ -1,5 +1,5 @@
 [Unit]
-Description=Smart-Onion Tiny URL Service
+Description=Smart-Onion Timer Service
 After=smart-onion-configurator.service
 
 [Service]
