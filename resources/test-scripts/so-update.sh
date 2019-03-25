@@ -6,6 +6,9 @@ cd /opt/smart-onion
 git pull
 systemctl daemon-reload
 systemctl start smart-onion-configurator
+systemctl status smart-onion-configurator | tail -n1
+systemctl start smart-onion-metrics_collector
+systemctl status smart-onion-metrics_collector | tail -n1
 sleep 2s
 /opt/smart-onion/resources/test-scripts/test_services_status.sh start
 echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=
