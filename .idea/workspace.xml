@@ -5,8 +5,8 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability">
-      <change afterPath="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service">
+      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so-update.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="133">
+              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -76,11 +76,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="76" column="26" lean-forward="true" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
+            <state relative-caret-position="418">
+              <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -180,6 +189,7 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
       </list>
     </option>
   </component>
@@ -437,20 +447,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00034" summary="zbx_sampling_template: Completed the first batch of metrics to monitor and classifed all metrics.&#10;&#10;queries.json: Automatically classified all metrics based on the Zabbix template.">
-      <created>1547363984295</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1547363984295</updated>
-    </task>
-    <task id="LOCAL-00035" summary="requirements.txt:&#10;- Removed built-in packages&#10;&#10;metrics_collector:&#10;- Removed the calls to the queries.conf. Now uses the configurator to get the available queries list.&#10;- Added imports for the builtins to prevent alerts on missing definitions&#10;&#10;metrics_analyzer:&#10;- Filled in the report_anomaly method. The service will now attempt to contact the alerter and deliver the report.&#10;&#10;configurator:&#10;- Added code to publish the queries list.&#10;&#10;alerter:&#10;- Added code to receive the anomaly reports and write them to syslog (for now)">
-      <created>1547477266506</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1547477266507</updated>
     </task>
     <task id="LOCAL-00036" summary="queries.json:&#10;- Removed old unnecessary file.">
       <created>1547479341345</created>
@@ -781,7 +777,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553502072921</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="smart-onion-timer.service:&#10;- Added unit file for the newly created timer service">
+      <created>1553506615391</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1553506615391</updated>
+    </task>
+    <task id="LOCAL-00084" summary="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service">
+      <created>1553511025195</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1553511025195</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView">
@@ -857,8 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Added global locks to synchronize the auto-save threads with the creation threads (of models and anomaly probability calcs)" />
-    <MESSAGE value="metrics_analyzer.py&#10;- BUGFIX: Similatity test didn't create metrics." />
     <MESSAGE value="metrics_analyzer.py&#10;- Switched to gunicorn" />
     <MESSAGE value="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument" />
     <MESSAGE value="metric_collector.py:&#10;- Setting the gunicorn timeout to 30 seconds (hopefully)" />
@@ -882,7 +890,9 @@
     <MESSAGE value="zbx_sampling_template.xml:&#10;- fixed the tiny urls prototypes" />
     <MESSAGE value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)" />
     <MESSAGE value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability" />
-    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability" />
+    <MESSAGE value="smart-onion-timer.service:&#10;- Added unit file for the newly created timer service" />
+    <MESSAGE value="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service" />
+    <option name="LAST_COMMIT_MESSAGE" value="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -976,20 +986,6 @@ hashlib.algorithms_available</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/lib/python3.5/wsgiref/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3.5/datetime.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11502">
-          <caret line="640" column="6" selection-start-line="640" selection-start-column="6" selection-end-line="640" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/PycharmProjects/untitled/venv/lib/python3.5/site-packages/text_to_image/encode.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/247832388/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1548,9 +1544,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/217457190/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -1592,16 +1585,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="76" column="26" lean-forward="true" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
-          <folding>
-            <element signature="e#847#858#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-tiny_url.service">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1616,10 +1599,37 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/kafka-server.service">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding>
+            <element signature="e#847#858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="133">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
