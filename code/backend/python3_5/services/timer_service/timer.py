@@ -17,6 +17,7 @@ import sys
 import os
 import re
 import kafka
+import uuid
 from urllib import request as urllib_req
 
 
@@ -28,25 +29,28 @@ class TimerService:
         self._listen_ip = listen_ip
         self._listen_port = listen_port
         self._config_copy = config_copy
+        self._kafka_client_id = "SmartOnionTimerService_" + str(uuid.uuid4())
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
 
     def pack_and_resend_tasks(self, tasks_list):
         max_items_in_batch = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]
-        kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
-        kafka_sender = kafka.producer.KafkaProducer(bootstrap_servers=kafka_server)
         kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.metrics_collection_tasks_topic"]
         batch = []
         for item in tasks_list:
             batch.append(item)
+            timestamp = time.time()
             if len(batch) >= max_items_in_batch:
-                print("DEBUG: Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + kafka_server)
-                kafka_sender.send(topic=kafka_topic, value=json.dumps(batch).encode())
+                print("DEBUG: [" + str(timestamp) + "]Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
+                self._kafka_sender.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode())
                 batch = []
-        
-        if len(batch) > 0:
-            print("DEBUG: Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + kafka_server)
-            kafka_sender.send(topic=kafka_topic, value=json.dumps(batch).encode())
 
-        print("INFO: Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + kafka_topic + "' on server " + kafka_server)
+        if len(batch) > 0:
+            timestamp = time.time()
+            print("DEBUG: [" + str(timestamp) + "]Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
+            self._kafka_sender.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode())
+
+        print("INFO: Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
         
     def run(self):
         base_url = ""
@@ -59,7 +63,7 @@ class TimerService:
         base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld"]
 
         cur_tasks_list = []
-        print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"])
+        print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"] + ",KafkaClientID:" + self._kafka_client_id)
         while True:
             lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
             for query in lld_queries:
