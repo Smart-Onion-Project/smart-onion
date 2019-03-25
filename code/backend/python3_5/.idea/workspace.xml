@@ -7,6 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="219">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+              <caret line="72" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -230,6 +231,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -343,7 +345,7 @@
     <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>

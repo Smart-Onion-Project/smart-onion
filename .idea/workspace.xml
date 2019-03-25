@@ -5,8 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="timer.py:&#10; - BUGFIX: Used to refer to non existent property">
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -80,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="520">
+              <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -446,13 +447,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00042" summary="metrics_collector.py:&#10;- added debug message in discovery queries to be written to syslog">
-      <created>1547488585173</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1547488585173</updated>
-    </task>
     <task id="LOCAL-00043" summary="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)">
       <created>1547488924248</created>
       <option name="number" value="00043" />
@@ -789,7 +783,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553526283265</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="timer.py:&#10; - BUGFIX: Used to refer to non existent property">
+      <created>1553526793265</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1553526793265</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView">
@@ -803,13 +804,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49630803" visible="true" weight="0.16776316" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8312236" visible="true" weight="0.073464915" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8312236" visible="true" weight="0.073464915" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.90295357" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -864,7 +866,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metric_collector.py:&#10;- Added {#NAME} macro to indicate the &quot;real&quot; url that need to be called.&#10;&#10;queries.json:&#10;- Added array with pointers to the queries that need to be queried per item that is returned by an LLD&#10;&#10;zbx_sampling_template.xml:&#10;- Replaced all the item prototypes under all the discoveries to the same prototype since that the LLD will now return a list of urls to be called (on the tiny url service)" />
     <MESSAGE value="smart-onion-metrics_collector.service:&#10;- Changed it to use the new elasticsearch server" />
     <MESSAGE value="zbx_sampling_template.xml:&#10;- Fixed some formatting issues" />
     <MESSAGE value="metrics_collector.py&#10;- Added more details to the log message" />
@@ -889,7 +890,8 @@
     <MESSAGE value="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete." />
     <MESSAGE value="timer.py:&#10; - Added timestamp to debug messages&#10; - Using one object for producer&#10; - Specifying the kafka client ID" />
     <MESSAGE value="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery." />
-    <option name="LAST_COMMIT_MESSAGE" value="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery." />
+    <MESSAGE value="timer.py:&#10; - BUGFIX: Used to refer to non existent property" />
+    <option name="LAST_COMMIT_MESSAGE" value="timer.py:&#10; - BUGFIX: Used to refer to non existent property" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1564,13 +1566,6 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/config/unit-files/kafka-server.service">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python3.5_venv/lib/python3.5/site-packages/kafka/producer/kafka.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1628,11 +1623,18 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="520">
+          <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>
