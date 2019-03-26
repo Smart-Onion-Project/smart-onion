@@ -491,6 +491,7 @@ class MetricsCollector:
 
     def sampling_tasks_kafka_consumer(self):
         try:
+            print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._sampling_tasks_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads")
             kafka_consumer = None
             while kafka_consumer is None:
                 try:
