@@ -1137,17 +1137,27 @@ except:
     configurator_port = 9003
     configurator_proto = "http"
 
-try:
-    # Contact configurator to fetch all of our config and configure listen-ip and port
-    configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
-    configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
-    configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
-    config_copy = json.loads(configurator_response)
-    listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-host"]
-    listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-port"]
-except:
-    listen_ip = "127.0.0.1"
-    listen_port = 9000
+queries_conf = None
+learned_net_info = None
+while queries_conf is None:
+    try:
+        # Contact configurator to fetch all of our config and configure listen-ip and port
+        configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        config_copy = json.loads(configurator_response)
+        listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-host"]
+        listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.listening-port"]
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.queries"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        queries_conf = json.loads(configurator_response)
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.dynamic.learned.*"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        learned_net_info = json.loads(configurator_response)
+    except:
+        print(
+            "WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
+        time.sleep(10)
 
 config_file_specified_on_cmd = False
 if len(sys.argv) > 1:
@@ -1195,26 +1205,6 @@ if not os.path.isfile(config_file):
 if not os.path.isfile(config_file):
     print ("ERROR: Failed to find the config file in both " + config_file_default_path + " and " + script_path + " (script location)")
     quit(9)
-
-learned_net_info = None
-while learned_net_info is None:
-    try:
-        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.dynamic.learned.*"
-        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
-        learned_net_info = json.loads(configurator_response)
-    except:
-        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for learned net info)...")
-        time.sleep(10)
-
-queries_conf = None
-while queries_conf is None:
-    try:
-        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.queries"
-        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
-        queries_conf = json.loads(configurator_response)
-    except:
-        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
-        time.sleep(10)
 
 
 sys.argv = [sys.argv[0]]
