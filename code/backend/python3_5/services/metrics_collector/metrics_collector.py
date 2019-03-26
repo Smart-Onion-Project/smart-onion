@@ -486,7 +486,7 @@ class MetricsCollector:
                     pass
 
             sleep_time = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000.0
-            print("INFO: Going to sleep for " + str(sleep_time) + " seconds...")
+            print("INFO[" + thread_id + "]: Going to sleep for " + str(sleep_time) + " seconds...")
             time.sleep(sleep_time)
 
     def sampling_tasks_kafka_consumer(self):
@@ -502,8 +502,8 @@ class MetricsCollector:
 
             last_task_list_appended = -1
             for sampling_tasks_batch_raw in kafka_consumer:
-                sampling_tasks_batch = json.loads(sampling_tasks_batch_raw.decode('utf-8'))
-                print("DEBUG: Received the following sampling task from Kafka: " + json.dumps(sampling_tasks_batch))
+                sampling_tasks_batch = json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))
+                print("DEBUG: Received the following sampling task from Kafka (topic=" + str(sampling_tasks_batch_raw.topic) + ";partition=" + str(sampling_tasks_batch_raw.partition) + ";offset=" + str(sampling_tasks_batch_raw.offset) + ",): " + json.dumps(sampling_tasks_batch))
                 for sampling_task in sampling_tasks_batch["batch"]:
                     is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
 
