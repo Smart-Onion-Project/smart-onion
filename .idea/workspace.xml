@@ -5,11 +5,13 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Switched back to production mode">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Now launching the GC thread.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+            <state relative-caret-position="247">
+              <caret line="46" selection-start-line="45" selection-end-line="46" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -82,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1444">
-              <caret line="76" column="41" selection-start-line="75" selection-start-column="91" selection-end-line="76" selection-end-column="41" />
+            <state relative-caret-position="133">
+              <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -189,8 +191,8 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
       </list>
     </option>
   </component>
@@ -315,7 +317,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.metrics_collector">
+  <component name="RunManager" selected="Python.timer">
     <configuration name="anomaly_detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="smart-onion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -430,8 +432,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.timer" />
+        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.classify_queries" />
         <item itemvalue="Python.configurator" />
         <item itemvalue="Python.anomaly_detector" />
@@ -448,13 +450,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00058" summary="queries.json:&#10;- Added new query that would return the number of unique hosts connected to the host mentioned in the argument">
-      <created>1549345851856</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1549345851856</updated>
     </task>
     <task id="LOCAL-00059" summary="metric_collector.py:&#10;- Setting the gunicorn timeout to 30 seconds (hopefully)">
       <created>1549389288393</created>
@@ -792,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553614996066</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="metrics_collector.py:&#10; - Now launching the GC thread.">
+      <created>1553616525315</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1553616525316</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TodoView">
@@ -806,13 +808,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4957806" weight="0.16776316" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8280591" visible="true" weight="0.073464915" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.82753164" visible="true" weight="0.44188598" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.9003165" weight="0.2741228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -820,7 +823,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.17194092" side_tool="true" visible="true" weight="0.073464915" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.17246835" side_tool="true" visible="true" weight="0.44188598" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -867,7 +870,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)" />
     <MESSAGE value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability" />
     <MESSAGE value="smart-onion-timer.service:&#10;- Added unit file for the newly created timer service" />
     <MESSAGE value="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service" />
@@ -892,7 +894,8 @@
     <MESSAGE value="metric_collector.py:&#10; - Fixed several issues that caused the discovery to fail." />
     <MESSAGE value="timer.py:&#10; - Fixed grammatical issue with a log message" />
     <MESSAGE value="metrics_collector.py:&#10; - Switched back to production mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Switched back to production mode" />
+    <MESSAGE value="metrics_collector.py:&#10; - Now launching the GC thread." />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Now launching the GC thread." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1635,16 +1638,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -1690,10 +1683,20 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="46" selection-start-line="45" selection-end-line="46" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1444">
-          <caret line="76" column="41" selection-start-line="75" selection-start-column="91" selection-end-line="76" selection-end-column="41" />
+        <state relative-caret-position="133">
+          <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>
