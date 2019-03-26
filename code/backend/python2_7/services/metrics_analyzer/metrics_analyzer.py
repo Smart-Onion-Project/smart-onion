@@ -17,7 +17,6 @@ import yaml
 import time
 import os
 import socket
-import threading
 import importlib
 import json
 import urllib
@@ -27,7 +26,11 @@ from os.path import dirname
 from datetime import datetime
 from nupic.frameworks.opf.model_factory import ModelFactory
 from nupic.algorithms.anomaly_likelihood import AnomalyLikelihood
+import hashlib
+import threading
+from bottle import Bottle
 
+DEBUG = False
 create_model_thread_lock = Lock()
 create_anomaly_likelihood_calc_thread_lock = Lock()
 
@@ -71,7 +74,22 @@ class MetricsRealtimeAnalyzer:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self):
-        pass
+        self._app = Bottle()
+        self._route()
+
+    def _route(self):
+        self._app.route('/ping', method="GET", callback=self._ping)
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return json.dumps({
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        })
 
     def report_anomaly(self, metric, anomaly_info):
         res = urllib.urlopen(url=self.alerter_url, data={
@@ -374,7 +392,30 @@ class MetricsRealtimeAnalyzer:
                 #If the message is not an empty line send it to the parser. If it is an empty line just ignore it.
                 self.parse_metric_message(metric_line, client_address)
 
-    def run(self, ip='', port=3000, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
+    def run(self, ip='', port=3000, ping_listening_host="127.0.0.1", ping_listening_port=3001, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
+        self._ping_listening_host = ping_listening_host
+        self._ping_listening_port = ping_listening_port
+        self._analyzer_thread = threading.Thread(target=self.run_analyzer, args=[
+            ip,
+            port,
+            connections_backlog,
+            proto,
+            save_interval,
+            models_save_base_path,
+            models_params_base_path,
+            anomaly_likelihood_detectors_save_base_path,
+            alerter_url
+        ])
+        self._analyzer_thread.start()
+        if DEBUG:
+            self._app.run(host=self._ping_listening_host, port=self._ping_listening_port)
+        else:
+            self._app.run(host=self._ping_listening_host, port=self._ping_listening_port, server="gunicorn", workers=32)
+
+    def run_analyzer(self, ip='', port=3000, connections_backlog=10, proto="UDP", save_interval=5,
+            models_save_base_path=None, models_params_base_path=None,
+            anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
+
         self.alerter_url = alerter_url
 
         # create an INET, STREAMing socket
@@ -465,24 +506,23 @@ except:
     configurator_port = 9003
     configurator_proto = "http"
 
-try:
-    # Contact configurator to fetch all of our config and configure listen-ip and port
-    configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
-    configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
-    configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
-    config_copy = json.loads(configurator_response)
-    ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host"]
-    port = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-port"])
-    proto = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.protocol"]
-    connections_backlog = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.connection-backlog"])
-    save_interval = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.save_interval"])
-except:
-    listen_ip = "127.0.0.1"
-    listen_port = 9004
-
 alerter_url = None
+ping_listening_host = None
+ping_listening_port = None
 while alerter_url is None:
     try:
+        # Contact configurator to fetch all of our config and configure listen-ip and port
+        configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
+        configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
+        config_copy = json.loads(configurator_response)
+        ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host"]
+        port = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-port"])
+        proto = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.protocol"]
+        connections_backlog = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.connection-backlog"])
+        save_interval = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.save_interval"])
+        ping_listening_host = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-listening-host"]
+        ping_listening_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-listening-port"]
         configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.alerter.*"
         configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
@@ -532,6 +572,8 @@ except:
 MetricsRealtimeAnalyzer().run(
     ip=ip,
     port=port,
+    ping_listening_host=ping_listening_host,
+    ping_listening_port=ping_listening_port,
     proto=proto,
     connections_backlog=connections_backlog,
     save_interval=save_interval,

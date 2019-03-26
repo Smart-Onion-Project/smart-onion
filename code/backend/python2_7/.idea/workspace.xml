@@ -8,8 +8,10 @@
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+            <state relative-caret-position="510">
+              <caret line="512" column="8" lean-forward="true" selection-start-line="512" selection-start-column="8" selection-end-line="512" selection-end-column="8" />
               <folding>
                 <element signature="e#922#932#0" expanded="true" />
               </folding>
@@ -43,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="63" column="114" selection-start-line="63" selection-start-column="114" selection-end-line="63" selection-end-column="114" />
+            <state relative-caret-position="380">
+              <caret line="89" column="103" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="103" />
               <folding>
                 <element signature="e#21#31#0" expanded="true" />
               </folding>
@@ -96,6 +98,7 @@
       <find>route</find>
       <find>smart-onion.config.architecture.internal_services.backend.tiny_url.protocol</find>
       <find>highest_similarity_to_any_top_accessed_tld_subdomains</find>
+      <find>9007</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
@@ -113,9 +116,9 @@
         <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.yaml" />
         <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
         <option value="$PROJECT_DIR$/services/alerter/alerter.py" />
         <option value="$PROJECT_DIR$/services/configurator/configurator.py" />
+        <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
       </list>
     </option>
   </component>
@@ -196,7 +199,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.configurator">
+  <component name="RunManager" selected="Python.metrics_analyzer">
     <configuration name="configurator" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python2_7" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -241,6 +244,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.metrics_analyzer" />
         <item itemvalue="Python.configurator" />
       </list>
     </recent_temporary>
@@ -260,6 +264,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14820676" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -282,13 +287,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py</url>
-          <line>531</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -496,16 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-          <folding>
-            <element signature="e#922#932#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -525,10 +513,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="63" column="114" selection-start-line="63" selection-start-column="114" selection-end-line="63" selection-end-column="114" />
+        <state relative-caret-position="380">
+          <caret line="89" column="103" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="103" />
           <folding>
             <element signature="e#21#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="512" column="8" lean-forward="true" selection-start-line="512" selection-start-column="8" selection-end-line="512" selection-end-column="8" />
+          <folding>
+            <element signature="e#922#932#0" expanded="true" />
           </folding>
         </state>
       </provider>

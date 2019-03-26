@@ -18,8 +18,12 @@ import os
 import re
 import kafka
 import uuid
+import hashlib
+import threading
+from bottle import Bottle
 from urllib import request as urllib_req
 
+DEBUG = False
 
 class TimerService:
 
@@ -38,6 +42,11 @@ class TimerService:
             except Exception as ex:
                 print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...")
                 time.sleep(10)
+        self._app = Bottle()
+        self._route()
+
+    def _route(self):
+        self._app.route('/ping', method="GET", callback=self._ping)
 
     def pack_and_resend_tasks(self, tasks_list):
         max_items_in_batch = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]
@@ -58,8 +67,28 @@ class TimerService:
 
         timestamp = time.time()
         print("INFO[" + str(timestamp) + "]: Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
-        
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return json.dumps({
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        })
+
     def run(self):
+        self._timer_thread = threading.Thread(target=self.run_timer)
+        self._timer_thread.start()
+
+        if DEBUG:
+            self._app.run(host=self._listen_ip, port=self._listen_port)
+        else:
+            self._app.run(host=self._listen_ip, port=self._listen_port, server="gunicorn", workers=32, timeout=120)
+
+    def run_timer(self):
         base_url = ""
         if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in self._config_copy:
             base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
