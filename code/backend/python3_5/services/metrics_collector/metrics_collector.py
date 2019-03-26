@@ -501,6 +501,7 @@ class MetricsCollector:
 
             last_task_list_appended = -1
             for sampling_tasks_batch in kafka_consumer:
+                print("DEBUG: Received the following sampling task from Kafka: " + json.dumps(sampling_tasks_batch))
                 for sampling_task in sampling_tasks_batch["batch"]:
                     is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
 
