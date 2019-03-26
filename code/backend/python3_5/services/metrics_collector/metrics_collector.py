@@ -43,7 +43,7 @@ import multiprocessing
 import random
 
 
-DEBUG = True
+DEBUG = False
 elasticsearch_server = "127.0.0.1"
 metrics_prefix = "smart-onion"
 config_copy = {}
