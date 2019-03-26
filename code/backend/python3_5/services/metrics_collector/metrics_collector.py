@@ -400,9 +400,6 @@ class MetricsCollector:
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._sampling_tasks_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.metrics_collection_tasks_topic"]
 
-        self._sampling_tasks_kafka_consumer_thread = threading.Thread(target=self.sampling_tasks_kafka_consumer)
-        self._sampling_tasks_kafka_consumer_thread.start()
-
         # Start a pool of threads (the size is in the config) that will pull sampling tasks from this object's list
         for i in range(0, self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.poller_threads_per_cpu"] * multiprocessing.cpu_count()):
             sampling_tasks_list = {}
@@ -410,6 +407,12 @@ class MetricsCollector:
             poller_thread = threading.Thread(target=self.sampling_tasks_poller, args=[sampling_tasks_list])
             self._polling_threads.append(poller_thread)
             poller_thread.start()
+
+        self._sampling_tasks_kafka_consumer_thread = threading.Thread(target=self.sampling_tasks_kafka_consumer)
+        self._sampling_tasks_kafka_consumer_thread.start()
+
+        self._sampling_tasks_garbage_collector_thread = threading.Thread(target=self._sampling_tasks_garbage_collector)
+        self._sampling_tasks_garbage_collector_thread.start()
 
         if DEBUG:
             self._app.run(host=self._host, port=self._port)
