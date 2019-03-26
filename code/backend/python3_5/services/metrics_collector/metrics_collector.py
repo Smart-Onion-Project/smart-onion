@@ -457,7 +457,7 @@ class MetricsCollector:
                 self._sampling_tasks_threads_sync_lock.acquire()
 
             try:
-                if last_ran > 0 and time.time() - last_ran > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000):
+                if last_ran > 0 and int(time.time() - last_ran) > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000):
                     print("WARN[" + thread_id + "]: Samples are lagging in " + str(time.time() - last_ran) + " seconds. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Elasticsearch's performance or add more instances of this service on other servers.")
 
                 last_ran = time.time()

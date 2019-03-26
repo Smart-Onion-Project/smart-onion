@@ -8,10 +8,8 @@
     <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="521" column="39" lean-forward="true" selection-start-line="521" selection-start-column="39" selection-end-line="521" selection-end-column="39" />
+            <state relative-caret-position="247">
+              <caret line="462" column="38" lean-forward="true" selection-start-line="462" selection-start-column="38" selection-end-line="462" selection-end-column="38" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -459,13 +457,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00044" summary="metrics_collector.py:&#10;- removed the code that set the time range for queries as a fixed value (for DEBUG)">
-      <created>1547489179180</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1547489179180</updated>
-    </task>
     <task id="LOCAL-00045" summary="queries.json:&#10;- Replaced source_ip to source_ips and destination_ip to destination_ips to allow string based queries against them.">
       <created>1547622554336</created>
       <option name="number" value="00045" />
@@ -802,7 +793,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553529830595</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks">
+      <created>1553585218935</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1553585218935</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1659,8 +1657,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="521" column="39" lean-forward="true" selection-start-line="521" selection-start-column="39" selection-end-line="521" selection-end-column="39" />
+        <state relative-caret-position="247">
+          <caret line="462" column="38" lean-forward="true" selection-start-line="462" selection-start-column="38" selection-end-line="462" selection-end-column="38" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
