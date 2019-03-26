@@ -25,7 +25,6 @@ import re
 import os
 import statsd
 import dateutil.parser
-import hashlib
 import editdistance
 import nltk.metrics
 from PIL import ImageFont
@@ -37,6 +36,12 @@ import homoglyphs
 import syslog
 import urllib.parse
 import hashlib
+import kafka
+import threading
+import uuid
+import multiprocessing
+import random
+
 
 DEBUG = False
 elasticsearch_server = "127.0.0.1"
@@ -356,10 +361,15 @@ class MetricsCollector:
         self._tiny_url_protocol = tiny_url_protocol
         self._tiny_url_server = tiny_url_server
         self._tiny_url_port = tiny_url_port
-        self._config = config_copy
+        self._config_copy = config_copy
         self.es = Elasticsearch(hosts=[elasticsearch_server], timeout=timeout_to_elastic)
         self.es_hosts = [elasticsearch_server]
         self.timeout_to_elastic = timeout_to_elastic
+        self._sampling_tasks = []
+        self._polling_threads = []
+        self._sampling_tasks_index = {}
+        self._is_sampling_tasks_gc_running = False
+        self._sampling_tasks_threads_sync_lock = threading.Lock()
 
     def _route(self):
         self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
@@ -386,10 +396,138 @@ class MetricsCollector:
         })
 
     def run(self):
+        self._kafka_client_id = "SmartOnionMetricsCollectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._sampling_tasks_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.metrics_collection_tasks_topic"]
+
+        self._sampling_tasks_kafka_consumer_thread = threading.Thread(target=self.sampling_tasks_kafka_consumer)
+        self._sampling_tasks_kafka_consumer_thread.start()
+
+        # Start a pool of threads (the size is in the config) that will pull sampling tasks from this object's list
+        for i in range(0, self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.poller_threads_per_cpu"] * multiprocessing.cpu_count()):
+            sampling_tasks_list = {}
+            self._sampling_tasks.append(sampling_tasks_list)
+            poller_thread = threading.Thread(target=self.sampling_tasks_poller, args=[sampling_tasks_list])
+            self._polling_threads.append(poller_thread)
+            poller_thread.start()
+
         if DEBUG:
             self._app.run(host=self._host, port=self._port)
         else:
             self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32, timeout=120)
+
+    def _sampling_tasks_garbage_collector(self):
+        while True:
+            time.sleep(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"])
+            self._is_sampling_tasks_gc_running = True
+
+            try:
+                tombstoned_urls = []
+
+                for sampling_tasks_list in self._sampling_tasks:
+                    for url in sampling_tasks_list.keys():
+                        if sampling_tasks_list[url]["TTL"] == 0:
+                            tombstoned_urls.append(url)
+
+                self._sampling_tasks_threads_sync_lock.acquire()
+                for url in tombstoned_urls:
+                    for sampling_tasks_list in self._sampling_tasks:
+                        if url in sampling_tasks_list.keys():
+                            del sampling_tasks_list[url]
+            except Exception as ex:
+                print("WARN: The following unexpected exception has been thrown during the garbage collection of the sampling tasks lists items: " + str(ex))
+            finally:
+                try:
+                    self._sampling_tasks_threads_sync_lock.release()
+                except:
+                    pass
+
+            self._is_sampling_tasks_gc_running = False
+
+    def sampling_tasks_poller(self, tasks_list):
+        thread_id = "sampling_tasks_poller_" + str(uuid.uuid4())
+        last_ran = 0
+
+        time.sleep(random.randint(0, 10))
+
+        while True:
+            is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
+
+            if is_sampling_tasks_gc_running:
+                self._sampling_tasks_threads_sync_lock.acquire()
+
+            try:
+                if last_ran > 0 and time.time() - last_ran > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000):
+                    print("WARN[" + thread_id + "]: Samples are lagging in " + str(time.time() - last_ran) + " seconds. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Elasticsearch's performance or add more instances of this service on other servers.")
+
+                last_ran = time.time()
+
+                # Get a task from the list and complete it.
+                for task_url in tasks_list.keys():
+                    if tasks_list[task_url]["TTL"] > 0:
+                        try:
+                            print("DEBUG[" + thread_id + "]: Calling '" + task_url + "'...")
+                            urllib_req.urlopen(task_url)
+                            tasks_list[task_url]["TTL"] = tasks_list[task_url]["TTL"] - 1
+                        except Exception as ex:
+                            print("WARN[" + thread_id + "]: Failed to query the URL '" + task_url + "' due to the following exception: " + str(ex))
+
+            except Exception as ex:
+                print("WARN[" + thread_id + "]: The following unexpected exception has been thrown while handling sampling tasks: " + str(ex))
+
+            finally:
+                try:
+                    if is_sampling_tasks_gc_running:
+                        self._sampling_tasks_threads_sync_lock.release()
+                except:
+                    pass
+
+            sleep_time = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000.0
+            time.sleep(sleep_time)
+
+    def sampling_tasks_kafka_consumer(self):
+        try:
+            kafka_consumer = None
+            while kafka_consumer is None:
+                try:
+                    kafka_consumer = kafka.KafkaConsumer(self._sampling_tasks_kafka_topic, bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
+                except:
+                    print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                    time.sleep(10)
+
+            last_task_list_appended = -1
+            for sampling_tasks_batch in kafka_consumer:
+                for sampling_task in sampling_tasks_batch["batch"]:
+                    is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
+
+                    if is_sampling_tasks_gc_running:
+                        self._sampling_tasks_threads_sync_lock.acquire()
+
+                    try:
+                        # If the task exists in the current object's list - reset its TTL
+                        # otherwise - add it with the default TTL
+                        if sampling_task["URL"] in self._sampling_tasks_index.keys():
+                            self._sampling_tasks[self._sampling_tasks_index[sampling_task["URL"]]["list_index"]][sampling_task["URL"]]["TTL"] = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl"]
+                        else:
+                            if last_task_list_appended + 1 >= len(self._sampling_tasks):
+                                last_task_list_appended = -1
+
+                            self._sampling_tasks[last_task_list_appended + 1][sampling_task["URL"]] = {
+                                "TTL": self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl"],
+                                "timestamp": time.time()
+                            }
+
+                            last_task_list_appended = last_task_list_appended + 1
+                    except Exception as ex:
+                        print("WARN: The following unexpected exception has been thrown while processing tasks from Kafka: " + str(ex))
+                    finally:
+                        try:
+                            self._sampling_tasks_threads_sync_lock.release()
+                        except:
+                            pass
+
+        except Exception as ex:
+            print("ERROR: An unexpected exception (" + str(ex) + ") has been thrown while consuming sampling tasks from the Kafka server.")
 
     def GetQueryTimeRange(self, query_details):
         # if DEBUG:
@@ -843,11 +981,11 @@ class MetricsCollector:
 
             macros_list = str.split(zabbix_macro, ",")
             relevant_service_urls = self.get_config_by_regex(r'smart\-onion\.config\.architecture\.internal_services\.backend\.[a-z0-9\-_]+\.base_urls\.[a-z0-9\-_]+')
-            if self._config["smart-onion.config.architecture.internal_services.backend.metrics-collector.tinyfy_urls"]:
+            if self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.tinyfy_urls"]:
                 tiny_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
             else:
                 tiny_url_service_details = None
-            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details, config_copy=self._config)
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details, config_copy=self._config_copy)
 
             res_str = str(json.dumps(res_lld))
             if encode_json_as_b64:
@@ -860,9 +998,9 @@ class MetricsCollector:
 
     def get_config_by_regex(self, regex):
         res = {}
-        for key in self._config.keys():
+        for key in self._config_copy.keys():
             if re.match(regex, key):
-                res[key] = self._config[key]
+                res[key] = self._config_copy[key]
 
         return res
 

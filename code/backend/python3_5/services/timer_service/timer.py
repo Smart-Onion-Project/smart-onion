@@ -29,7 +29,7 @@ class TimerService:
         self._listen_ip = listen_ip
         self._listen_port = listen_port
         self._config_copy = config_copy
-        self._kafka_client_id = "SmartOnionTimerService_" + str(uuid.uuid4())
+        self._kafka_client_id = "SmartOnionTimerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._kafka_producer = None
         while self._kafka_producer is None:

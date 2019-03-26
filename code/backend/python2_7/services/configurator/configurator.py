@@ -68,6 +68,8 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.list_hash": "/smart-onion/list-hash/",
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld": "/smart-onion/discover/",
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms": 300000,
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl": 8640, # Number of sampling cycles (every 5 mins) in 30 days
+        "smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval": 604800,
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.keep_lost_items_for_days": 30,
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.poller_threads_per_cpu": 10,
         "smart-onion.config.architecture.internal_services.backend.metrics-collector.tinyfy_urls": False,
