@@ -5,12 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4315">
-              <caret line="1138" lean-forward="true" selection-start-line="1138" selection-end-line="1138" />
+            <state relative-caret-position="262">
+              <caret line="526" selection-start-line="526" selection-end-line="526" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -92,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
-              <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+              <caret line="82" column="62" selection-start-line="82" selection-start-column="62" selection-end-line="82" selection-end-column="69" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -198,8 +197,8 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
       </list>
     </option>
   </component>
@@ -457,13 +456,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00053" summary="metrics_analyzer.py&#10;- BUGFIX: The connection to statsd was probably broken, added warning message for such cases.">
-      <created>1548914351117</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1548914351117</updated>
     </task>
     <task id="LOCAL-00054" summary="metrics_analyzer.py&#10;- BUGFIX: Fixed a race condition in the code that saves the models list">
       <created>1548917618131</created>
@@ -801,7 +793,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553606156907</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)">
+      <created>1553607297080</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1553607297080</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TodoView">
@@ -815,7 +814,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -823,14 +821,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4957806" weight="0.16776316" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8301688" weight="0.073464915" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.90189874" visible="true" weight="0.57236844" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.90189874" visible="true" weight="0.2741228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49894515" weight="0.33004385" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.098101266" side_tool="true" visible="true" weight="0.57236844" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.098101266" side_tool="true" visible="true" weight="0.2741228" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -877,7 +875,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="tinyurl.py:&#10;- Switched to proxy mode (instead of redirector)" />
     <MESSAGE value="metrics_collector.py:&#10;- Added host, protocol and port to the URLs that are tokenized by the tiny url service to allow it to proxy the access later" />
     <MESSAGE value="metrics_collector.py:&#10;- Removed one extra slash" />
     <MESSAGE value="tinyurl.py:&#10;- Fixed to support full URLs" />
@@ -902,7 +899,8 @@
     <MESSAGE value="metric_collector.py:&#10; - Added log message that indicates that the kafka consumer thread is loading" />
     <MESSAGE value="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX." />
     <MESSAGE value="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message" />
-    <option name="LAST_COMMIT_MESSAGE" value="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message" />
+    <MESSAGE value="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)" />
+    <option name="LAST_COMMIT_MESSAGE" value="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -954,47 +952,47 @@ hashlib.algorithms_available</expression-string>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>[q for q in self._queries if self._queries[q][&quot;type&quot;]==&quot;LLD&quot;]</expression-string>
+        <expression-string>self._sampling_tasks[last_task_list_appended + 1][sampling_task[&quot;URL&quot;]]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[q for q in self._queries]</expression-string>
+        <expression-string>sampling_task[&quot;URL&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>self._queries</expression-string>
+        <expression-string>json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))[&quot;batch&quot;][0][&quot;URL&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>json.dumps(self._queries, indent=2)</expression-string>
+        <expression-string>json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))[&quot;batch&quot;][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>json.dumps(self._queries)</expression-string>
+        <expression-string>json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))[&quot;batch&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>filter(lambda q: q.get('type')=='LLD', self._queries)</expression-string>
+        <expression-string>json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[q for q in self._queries if q.get(&quot;type&quot;)==&quot;LLD&quot;]</expression-string>
+        <expression-string>sampling_tasks_batch_raw.value.decode('utf-8')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[q for q in self._queries if q[&quot;type&quot;]==&quot;LLD&quot;]</expression-string>
+        <expression-string>sampling_tasks_batch_raw.value</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>tiny_url_res.read()</expression-string>
+        <expression-string>sampling_tasks_batch_raw</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1652,22 +1650,22 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        <state relative-caret-position="262">
+          <caret line="526" selection-start-line="526" selection-end-line="526" />
           <folding>
-            <element signature="e#847#858#0" expanded="true" />
+            <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4315">
-          <caret line="1138" lean-forward="true" selection-start-line="1138" selection-end-line="1138" />
+        <state relative-caret-position="418">
+          <caret line="82" column="62" selection-start-line="82" selection-start-column="62" selection-end-line="82" selection-end-column="69" />
           <folding>
-            <element signature="e#923#933#0" expanded="true" />
+            <element signature="e#847#858#0" expanded="true" />
           </folding>
         </state>
       </provider>

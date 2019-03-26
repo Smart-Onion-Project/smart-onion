@@ -80,7 +80,7 @@ class TimerService:
                         print("Calling " + cur_url)
                         discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
                         if "@@EXCEPTION:" in discover_raw_res:
-                            print("WARN: Discovery call returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics due to the TTL...")
+                            print("WARN: Discovery call ('" + cur_url + "') returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics due to the TTL...")
                         else:
                             discover_res = json.loads(discover_raw_res)
                             for task in discover_res["data"]:
