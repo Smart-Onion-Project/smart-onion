@@ -499,6 +499,7 @@
     "agg_on_field": "source_ips.keyword",
     "zabbix_macro": "SRC_IP",
     "query": "(NOT source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT source_ip:0.0.0.0) AND (source_ip:/[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/) AND protocol:icmp",
+
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "queries_to_run": [
@@ -732,7 +733,7 @@
     "type": "LLD",
     "max_list_size": 50,
     "queries_to_run": [
-      "highest_similarity_to_any_top_accessed_tld_subdomains",
+      "highest_similarity_to_any_top_accessed_tld_subdomain",
       "number_of_clients_per_dns_tld_subdomain",
       "number_of_queries_per_dns_tld_subdomain"
     ]

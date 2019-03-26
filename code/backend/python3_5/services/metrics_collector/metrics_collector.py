@@ -43,7 +43,7 @@ import multiprocessing
 import random
 
 
-DEBUG = False
+DEBUG = True
 elasticsearch_server = "127.0.0.1"
 metrics_prefix = "smart-onion"
 config_copy = {}
@@ -68,9 +68,9 @@ class Utils:
             idx = 0
             line_as_arr = line.split(",")
             for item_b64 in line_as_arr:
-                item = base64.b64decode(item_b64.encode("ascii")).decode("ascii")
+                item = base64.b64decode(item_b64.encode('utf-8')).decode('utf-8')
                 if use_base64:
-                    item_parsed = str(base64.b64encode(str(item).encode('ascii')).decode("ascii"))
+                    item_parsed = str(base64.b64encode(str(item).encode('utf-8')).decode('utf-8'))
                 else:
                     if cls.is_number(item):
                         item_parsed = float(item)
@@ -138,7 +138,7 @@ class Utils:
                     else:
                         tiny_url_res = cur_url
 
-                    if add_doc_count:
+                    if add_doc_count and "{#_DOC_COUNT}" in item.keys():
                         res_new["data"].append({
                             "{#NAME}": cur_url,
                             "{#URL}": tiny_url_res,
@@ -164,23 +164,23 @@ class Utils:
             if len(cls.lst) > 0:
                 if cls.lst[len(cls.lst) - 1] == "|":
                     if idx == 0:
-                        cls.lst = cls.lst + str(base64.b64encode(str(obj["key"]).encode('ascii')).decode("ascii"))
+                        cls.lst = cls.lst + str(base64.b64encode(str(obj["key"]).encode('utf-8')).decode('utf-8'))
                     else:
                         lst_as_arr = cls.lst.split("|")
                         last_line_as_arr = lst_as_arr[len(lst_as_arr) - 2].split(",")
                         for i in range(0, idx - 1):
                             cls.lst = cls.lst + last_line_as_arr[i] + ","
-                        cls.lst = cls.lst + str(base64.b64encode(str(obj["key"]).encode('ascii')).decode("ascii"))
+                        cls.lst = cls.lst + str(base64.b64encode(str(obj["key"]).encode('utf-8')).decode('utf-8'))
                 else:
-                    cls.lst = cls.lst + "," + str(base64.b64encode(str(obj["key"]).encode('ascii')).decode("ascii"))
+                    cls.lst = cls.lst + "," + str(base64.b64encode(str(obj["key"]).encode('utf-8')).decode('utf-8'))
             else:
-                cls.lst = str(base64.b64encode(str(obj["key"]).encode('ascii')).decode("ascii"))
+                cls.lst = str(base64.b64encode(str(obj["key"]).encode('utf-8')).decode('utf-8'))
         if "field_values" + str(idx) in obj and "buckets" in obj["field_values" + str(idx)]:
             for value in obj["field_values" + str(idx)]["buckets"]:
                 cls.FlattenAggregates(obj=value, idx=idx + 1, add_doc_count=add_doc_count)
         else:
             if add_doc_count:
-                cls.lst = cls.lst + "," + str(base64.b64encode(str(obj["doc_count"]).encode('ascii')).decode("ascii")) + "|"
+                cls.lst = cls.lst + "," + str(base64.b64encode(str(obj["doc_count"]).encode('utf-8')).decode('utf-8')) + "|"
             else:
                 cls.lst = cls.lst + "," + "|"
             return
@@ -560,11 +560,14 @@ class MetricsCollector:
         mode = 0
         res_str = ""
         cur_conf_item = ""
+        char_idx = 0
         for char in raw_query:
-            if char == "{":
+            if char == "{" and len(raw_query) > (char_idx + 1) and raw_query[char_idx + 1] == "#":
                 mode = 1
+                char_idx = char_idx + 1
             elif char == "#" and mode == 1:
                 mode = 2
+                char_idx = char_idx + 1
                 continue
             elif char == "}" and mode == 2:
                 mode = 0
@@ -574,11 +577,14 @@ class MetricsCollector:
                     else:
                         res_str = res_str + str(self._learned_net_info[cur_conf_item])
                 cur_conf_item = ""
+                char_idx = char_idx + 1
             elif mode == 0:
                 res_str = res_str + char
+                char_idx = char_idx + 1
 
             if mode == 2:
                 cur_conf_item = cur_conf_item + char
+                char_idx = char_idx + 1
 
         return res_str
 
@@ -598,7 +604,7 @@ class MetricsCollector:
                 arg = request.query["arg" + str(i)]
                 if len(str(arg).strip()) != 0:
                     if base_64_used:
-                        query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode("ascii")).decode("ascii"))
+                        query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
                     else:
                         query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
@@ -665,7 +671,7 @@ class MetricsCollector:
                 arg = request.query["arg" + str(i)]
                 if len(str(arg).strip()) != 0:
                     if base_64_used:
-                        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode("ascii")).decode("ascii"))
+                        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
                     else:
                         query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", arg)
@@ -783,7 +789,7 @@ class MetricsCollector:
                 arg = request.query["arg" + str(i)]
                 if len(str(arg).strip()) != 0:
                     if base_64_used:
-                        query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode("ascii")).decode("ascii"))
+                        query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
                         metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
                     else:
                         query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
@@ -996,7 +1002,7 @@ class MetricsCollector:
 
             res_str = str(json.dumps(res_lld))
             if encode_json_as_b64:
-                res_str = str(base64.b64encode(str(res_str).encode('ascii')).decode("ascii"))
+                res_str = str(base64.b64encode(str(res_str).encode('utf-8')).decode('utf-8'))
             res = "@@RES: " + res_str
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
@@ -1094,7 +1100,7 @@ class MetricsCollector:
 
         res_str = str(json.dumps(res_lld))
         if encode_json_as_b64:
-            res_str = str(base64.b64encode(str(res_str).encode('ascii')).decode("ascii"))
+            res_str = str(base64.b64encode(str(res_str).encode('utf-8')).decode('utf-8'))
         res = "@@RES: " + res_str
         return res
 
