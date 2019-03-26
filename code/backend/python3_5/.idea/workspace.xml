@@ -7,9 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
