@@ -100,6 +100,7 @@ class TimerService:
                     print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle.")
 
             cur_tasks_list = []
+            print("INFO: Going to sleep for " + str(self._interval) + " seconds...")
             time.sleep(self._interval)
 
 config_copy = {}

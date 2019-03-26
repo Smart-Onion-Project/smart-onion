@@ -418,6 +418,7 @@ class MetricsCollector:
 
     def _sampling_tasks_garbage_collector(self):
         while True:
+            print("DEBUG: Going to sleep for " + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"]) + " seconds...")
             time.sleep(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"])
             self._is_sampling_tasks_gc_running = True
 
@@ -448,7 +449,9 @@ class MetricsCollector:
         thread_id = "sampling_tasks_poller_" + str(uuid.uuid4())
         last_ran = 0
 
-        time.sleep(random.randint(0, 10))
+        sleep_time = random.randint(0, 10)
+        print("INFO: Going to sleep for " + str(sleep_time) + " seconds (randomly chosen sleeping time)...")
+        time.sleep(sleep_time)
 
         while True:
             is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
@@ -483,6 +486,7 @@ class MetricsCollector:
                     pass
 
             sleep_time = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000.0
+            print("INFO: Going to sleep for " + str(sleep_time) + " seconds...")
             time.sleep(sleep_time)
 
     def sampling_tasks_kafka_consumer(self):

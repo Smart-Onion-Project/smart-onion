@@ -5,11 +5,10 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="timer.py:&#10; - Commented out two logging commands that caused excessive logging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="462" column="38" lean-forward="true" selection-start-line="462" selection-start-column="38" selection-end-line="462" selection-end-column="38" />
+            <state relative-caret-position="268">
+              <caret line="1213" column="19" selection-start-line="1213" selection-start-column="13" selection-end-line="1213" selection-end-column="19" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -91,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="36" column="137" lean-forward="true" selection-start-line="36" selection-start-column="68" selection-end-line="36" selection-end-column="137" />
+            <state relative-caret-position="252">
+              <caret line="160" column="19" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="19" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -115,8 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>most_rarely_accessed_certs_cn</find>
-      <find>top_n_most_frequently_accessed_external_website_uri</find>
       <find>certs_issuers</find>
       <find>org_ftp_servers</find>
       <find>udp_ports_used_from_org</find>
@@ -145,6 +142,8 @@
       <find>cur_ur</find>
       <find>discover_res</find>
       <find>urllib</find>
+      <find>slee</find>
+      <find>sleep(</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -197,8 +196,8 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
       </list>
     </option>
   </component>
@@ -456,20 +455,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00045" summary="queries.json:&#10;- Replaced source_ip to source_ips and destination_ip to destination_ips to allow string based queries against them.">
-      <created>1547622554336</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1547622554336</updated>
-    </task>
-    <task id="LOCAL-00046" summary="queries.json:&#10;- Replaced source_ip to source_ip.keyword and destination_ip.keyword to source_ips.keyword destination_ips.keyword to allow string based queries against them.">
-      <created>1547623889667</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1547623889667</updated>
     </task>
     <task id="LOCAL-00047" summary="configurator.py:&#10;- For now, hard-coded the IP of the security onion at beta site">
       <created>1547706991805</created>
@@ -800,7 +785,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553585218935</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="metrics_collector.py:&#10; - Preventing flooding of &quot;sampling is lagging&quot; messages when the lag is in less than a second.">
+      <created>1553586193243</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1553586193243</updated>
+    </task>
+    <task id="LOCAL-00095" summary="timer.py:&#10; - Commented out two logging commands that caused excessive logging">
+      <created>1553587020473</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1553587020473</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TodoView">
@@ -814,6 +813,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -875,8 +875,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_collector.py&#10;- Added more details to the log message" />
-    <MESSAGE value="smart-onion-tiny_url.service:&#10;- Added unit file for the tiny url service" />
     <MESSAGE value="tinyurl.py:&#10;- Added shabang line and header" />
     <MESSAGE value="tinyurl.py:&#10;- Chmodded to +x&#10;&#10;zbx_sampling_template.xml:&#10;- Changed the items' names to make sure they're not too long." />
     <MESSAGE value="tinyurl.py:&#10;- Removed the first '/' in the url returned" />
@@ -900,7 +898,9 @@
     <MESSAGE value="timer.py:&#10; - BUGFIX: Used to refer to non existent property" />
     <MESSAGE value="timer.py:&#10; - Added code for waiting for the Kafka server to load&#10; &#10;smart-onion-timer.service:&#10; - Added requirement for the exact services order" />
     <MESSAGE value="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks" />
+    <MESSAGE value="metrics_collector.py:&#10; - Preventing flooding of &quot;sampling is lagging&quot; messages when the lag is in less than a second." />
+    <MESSAGE value="timer.py:&#10; - Commented out two logging commands that caused excessive logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="timer.py:&#10; - Commented out two logging commands that caused excessive logging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -917,7 +917,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>1087</line>
+          <line>1091</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
@@ -1638,16 +1638,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="36" column="137" lean-forward="true" selection-start-line="36" selection-start-column="68" selection-end-line="36" selection-end-column="137" />
-          <folding>
-            <element signature="e#847#858#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/217457190/_random.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -1657,10 +1647,20 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="462" column="38" lean-forward="true" selection-start-line="462" selection-start-column="38" selection-end-line="462" selection-end-column="38" />
+        <state relative-caret-position="268">
+          <caret line="1213" column="19" selection-start-line="1213" selection-start-column="13" selection-end-line="1213" selection-end-column="19" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="160" column="19" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="19" />
+          <folding>
+            <element signature="e#847#858#0" expanded="true" />
           </folding>
         </state>
       </provider>
