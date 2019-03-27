@@ -5,13 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Now launching the GC thread.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Added ping method for all services (including the timer and metric analyzer services)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
@@ -48,7 +46,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
+            <state relative-caret-position="-551">
               <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
                 <element signature="e#697#748#0" expanded="true" />
@@ -84,7 +82,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -451,13 +449,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00059" summary="metric_collector.py:&#10;- Setting the gunicorn timeout to 30 seconds (hopefully)">
-      <created>1549389288393</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1549389288393</updated>
-    </task>
     <task id="LOCAL-00060" summary="metric_collector.py:&#10;- Setting the gunicorn timeout to 120 seconds (hopefully)">
       <created>1549473633155</created>
       <option name="number" value="00060" />
@@ -794,7 +785,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553616525316</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Added ping method for all services (including the timer and metric analyzer services)">
+      <created>1553622693542</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1553622693543</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TodoView">
@@ -870,7 +868,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability" />
     <MESSAGE value="smart-onion-timer.service:&#10;- Added unit file for the newly created timer service" />
     <MESSAGE value="smart-onion-timer.service:&#10;- Fixed the service name in the unit file for the newly created timer service" />
     <MESSAGE value="Added update script" />
@@ -895,7 +892,8 @@
     <MESSAGE value="timer.py:&#10; - Fixed grammatical issue with a log message" />
     <MESSAGE value="metrics_collector.py:&#10; - Switched back to production mode" />
     <MESSAGE value="metrics_collector.py:&#10; - Now launching the GC thread." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Now launching the GC thread." />
+    <MESSAGE value="Added ping method for all services (including the timer and metric analyzer services)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ping method for all services (including the timer and metric analyzer services)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1652,16 +1650,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <element signature="e#697#748#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1683,22 +1671,32 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="46" selection-start-line="45" selection-end-line="46" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-551">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding>
+            <element signature="e#697#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="46" selection-start-line="45" selection-end-line="46" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>
