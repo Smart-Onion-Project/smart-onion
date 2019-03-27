@@ -389,11 +389,11 @@ class MetricsCollector:
             return file.read()
 
     def _ping(self):
-        return json.dumps({
+        return {
             "response": "PONG",
             "file": __file__,
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
-        })
+        }
 
     def run(self):
         self._kafka_client_id = "SmartOnionMetricsCollectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))

@@ -85,11 +85,11 @@ class MetricsRealtimeAnalyzer:
             return file.read()
 
     def _ping(self):
-        return json.dumps({
+        return {
             "response": "PONG",
             "file": __file__,
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
-        })
+        }
 
     def report_anomaly(self, metric, anomaly_info):
         res = urllib.urlopen(url=self.alerter_url, data={

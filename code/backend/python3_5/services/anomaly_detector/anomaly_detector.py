@@ -21,12 +21,15 @@ import glob
 import json
 import threading
 import statsd
-from bottle import run, get, request
+import hashlib
+from bottle import Bottle, request
+from urllib import request as urllib_req
 
-DEBUG = True
+
+DEBUG = False
 REFERENCE_PAST_SAMPLES = '7,14,21'
 METRIC_PATH = '/var/lib/graphite/whisper/'
-METRIC_PATH = '/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/'
+# METRIC_PATH = '/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/'
 TIMESPAN_IN_SEC = 86400
 PERCENT_MODE = True
 METRICS_CACHE = {}
@@ -91,13 +94,30 @@ class AnomalyDetector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self):
-       pass
+        self._app = Bottle()
+        self._route()
+
+    def _route(self):
+        self._app.route('/smart-onion/discover-metrics/<metric_pattern>', method="GET", callback=self.discover_metrics)
+        self._app.route('/smart-onion/get-anomaly-score/<metric_name>', method="GET", callback=self.get_anomaly_score)
+        self._app.route('/ping', method="GET", callback=self._ping)
 
     def run(self, listen_ip, listen_port):
         if DEBUG:
-           run(host=listen_ip, port=listen_port)
+            self._app.run(host=listen_ip, port=listen_port)
         else:
-           run(host=listen_ip, port=listen_port, server="gunicorn", workers=32)
+            self._app.run(host=listen_ip, port=listen_port, server="gunicorn", workers=32, timeout=120)
+
+    def _file_as_bytes(self, filename):
+        with open(filename, 'rb') as file:
+            return file.read()
+
+    def _ping(self):
+        return {
+            "response": "PONG",
+            "file": __file__,
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+        }
 
     def report_anomaly(self, metric, anomaly_info):
         pass
@@ -226,8 +246,7 @@ class AnomalyDetector:
         METRICS_CACHE[metrics_pattern] = res
         DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
 
-    @get('/smart-onion/get-anomaly-score/<metric_name>')
-    def get_anomaly_score(metric_name, cur_time=None, ref_periods=None):
+    def get_anomaly_score(self, metric_name, cur_time=None, ref_periods=None):
         res = 0
 
         if "cur_time" in request.query:
@@ -314,8 +333,7 @@ class AnomalyDetector:
         
         return "@@RES: " + str(res)
 
-    @get('/smart-onion/discover-metrics/<metric_pattern>')
-    def discover_metrics(metric_pattern):
+    def discover_metrics(self, metric_pattern):
         anomaly_detector = AnomalyDetector()
         metrics_discoverer_thread = threading.Thread(target=anomaly_detector.metrics_discoverer, args=[metric_pattern])
         metrics_discoverer_thread.start()
@@ -334,6 +352,36 @@ class AnomalyDetector:
 script_path = os.path.dirname(os.path.realpath(__file__))
 listen_ip = "127.0.0.1"
 listen_port = 9090
+config_file_default_path = "/etc/smart-onion/"
+settings_file_name = "alerter_settings.json"
+settings_file = os.path.join(config_file_default_path, settings_file_name)
+settings = None
+try:
+    with open(settings_file, "r") as settings_file_obj:
+        settings = json.loads(settings_file_obj.read())
+
+    configurator_host = settings["smart-onion.config.architecture.configurator.listening-host"]
+    configurator_port = int(settings["smart-onion.config.architecture.configurator.listening-port"])
+    configurator_proto = settings["smart-onion.config.architecture.configurator.protocol"]
+except:
+    configurator_host = "127.0.0.1"
+    configurator_port = 9003
+    configurator_proto = "http"
+
+config_copy = None
+while config_copy is None:
+    try:
+        # Contact configurator to fetch all of our config and configure listen-ip and port
+        configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
+        configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
+        config_copy = json.loads(configurator_response)
+        listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-host"]
+        listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-port"]
+    except:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available...")
+        time.sleep(10)
+
 if len(sys.argv) > 1:
     for arg in sys.argv:
         if "=" in arg:
