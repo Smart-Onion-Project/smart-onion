@@ -215,4 +215,5 @@ try:
 except:
     pass
 
+sys.argv = [sys.argv[0]]
 SmartOnionConfigurator(listen_ip=ip, listen_port=port, config_filename=config_filename).run()

@@ -201,5 +201,5 @@ if len(sys.argv) > 1:
                 quit(1)
 
 
-
+sys.argv = [sys.argv[0]]
 TinyUrl(config_object=config_copy).run()

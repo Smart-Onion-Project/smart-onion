@@ -220,4 +220,5 @@ if len(sys.argv) > 1:
                 print("")
                 quit(1)
 
+sys.argv = [sys.argv[0]]
 TimerService(queries=queries_conf, interval=discover_interval, listen_ip=listen_ip, listen_port=listen_port, config_copy=config_copy).run()
