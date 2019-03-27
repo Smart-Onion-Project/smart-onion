@@ -569,6 +569,7 @@ try:
 except:
     pass
 
+sys.argv = [sys.argv[0]]
 MetricsRealtimeAnalyzer().run(
     ip=ip,
     port=port,
