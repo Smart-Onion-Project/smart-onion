@@ -28,6 +28,7 @@ DEBUG = False
 class TimerService:
 
     def __init__(self, queries, listen_ip, listen_port, config_copy, interval=3600):
+        self._time_loaded = time.time()
         self._interval = interval
         self._queries = queries
         self._listen_ip = listen_ip
@@ -76,7 +77,8 @@ class TimerService:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded
         }
 
     def run(self):
