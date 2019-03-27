@@ -352,6 +352,7 @@ class MetricsCollector:
     _learned_net_info = None
 
     def __init__(self, listen_ip, listen_port, learned_net_info, config_copy, queries_config, tiny_url_protocol, tiny_url_server, tiny_url_port, elasticsearch_server, timeout_to_elastic):
+        self._time_loaded = time.time()
         self._host = listen_ip
         self._port = listen_port
         self._learned_net_info = learned_net_info
@@ -392,7 +393,8 @@ class MetricsCollector:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded
         }
 
     def run(self):

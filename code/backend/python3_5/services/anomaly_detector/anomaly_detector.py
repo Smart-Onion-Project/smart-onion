@@ -94,6 +94,7 @@ class AnomalyDetector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self):
+        self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
 
@@ -116,7 +117,8 @@ class AnomalyDetector:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded
         }
 
     def report_anomaly(self, metric, anomaly_info):

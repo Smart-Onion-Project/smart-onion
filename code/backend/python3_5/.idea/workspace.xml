@@ -11,10 +11,10 @@
       <change beforePath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/tinyurl/tinyurl.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="417" column="59" lean-forward="true" selection-start-line="417" selection-start-column="59" selection-end-line="417" selection-end-column="59" />
+              <caret line="419" column="59" lean-forward="true" selection-start-line="419" selection-start-column="59" selection-end-line="419" selection-end-column="59" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -50,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1254">
-              <caret line="102" selection-start-line="102" selection-end-line="102" />
+              <caret line="104" selection-start-line="104" selection-end-line="104" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -333,7 +333,7 @@
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="417" column="59" lean-forward="true" selection-start-line="417" selection-start-column="59" selection-end-line="417" selection-end-column="59" />
+          <caret line="419" column="59" lean-forward="true" selection-start-line="419" selection-start-column="59" selection-end-line="419" selection-end-column="59" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
@@ -351,7 +351,7 @@
     <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1254">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>

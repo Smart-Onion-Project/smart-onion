@@ -6,6 +6,7 @@ import json
 import base64
 import os
 import hashlib
+import time
 
 
 DEBUG = False
@@ -148,6 +149,7 @@ class SmartOnionConfigurator:
     }
 
     def __init__(self, listen_ip, listen_port, config_filename):
+        self._time_loaded = time.time()
         self._host = listen_ip
         self._port = listen_port
         self._app = Bottle()
@@ -171,7 +173,8 @@ class SmartOnionConfigurator:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded
         }
 
     def run(self):

@@ -10,6 +10,7 @@ import json
 import base64
 import syslog
 import hashlib
+import time
 
 
 DEBUG = True
@@ -18,6 +19,7 @@ DEBUG = True
 class SmartOnionAlerter:
 
     def __init__(self, listen_ip, listen_port):
+        self._time_loaded = time.time()
         self._host = listen_ip
         self._port = listen_port
         self._app = Bottle()
@@ -35,7 +37,8 @@ class SmartOnionAlerter:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded
         }
 
     def run(self):

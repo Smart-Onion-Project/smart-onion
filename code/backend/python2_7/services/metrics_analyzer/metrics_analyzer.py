@@ -74,6 +74,9 @@ class MetricsRealtimeAnalyzer:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self):
+        self._metrics_received = 0
+        self._metrics_successfully_processed = 0
+        self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
 
@@ -88,7 +91,12 @@ class MetricsRealtimeAnalyzer:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded,
+            "service_specific_info": {
+                "metrics_received": self._metrics_received,
+                "metrics_successfully_processed": self._metrics_successfully_processed
+            }
         }
 
     def report_anomaly(self, metric, anomaly_info):
@@ -340,6 +348,8 @@ class MetricsRealtimeAnalyzer:
 
         if self.EXIT_ALL_THREADS_FLAG:
             return
+        
+        self._metrics_successfully_processed = self._metrics_successfully_processed + 1
 
     def create_anomaly_likelihood_calc_from_disk(self, metric):
         anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
@@ -463,8 +473,7 @@ class MetricsRealtimeAnalyzer:
                     try:
                         # accept connections from outside
                         (clientsocket, address) = serversocket.accept()
-                        # now do something with the clientsocket
-                        # in this case, we'll pretend this is a threaded server
+                        self._metrics_received = self._metrics_received + 1
                         ct = threading.Thread(target=self.tcp_client_handler, args=[clientsocket, address])
                         ct.start()
                     except socket.timeout:
@@ -472,6 +481,7 @@ class MetricsRealtimeAnalyzer:
             else:
                 while True:
                     metric_line, client_address = serversocket.recvfrom(1024)
+                    self._metrics_received = self._metrics_received + 1
                     ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
                     ct.start()
         except KeyboardInterrupt:

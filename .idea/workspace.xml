@@ -5,7 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="Fixed an issue with Gunicorn that throws an error about an unrecognized parameter">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
@@ -15,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="395" column="9" lean-forward="true" selection-start-line="395" selection-start-column="9" selection-end-line="395" selection-end-column="9" />
+            <state relative-caret-position="283">
+              <caret line="354" column="39" selection-start-line="354" selection-start-column="39" selection-end-line="354" selection-end-column="39" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -43,8 +42,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" selection-start-line="4" selection-end-line="5" />
+            <state relative-caret-position="380">
+              <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+              <folding>
+                <element signature="e#21#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+            <state relative-caret-position="412">
+              <caret line="80" column="53" selection-start-line="80" selection-start-column="53" selection-end-line="80" selection-end-column="53" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -70,16 +72,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="376" column="94" selection-start-line="376" selection-start-column="87" selection-end-line="376" selection-end-column="94" />
+            <state relative-caret-position="251">
+              <caret line="120" column="53" selection-start-line="120" selection-start-column="53" selection-end-line="120" selection-end-column="53" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
                 <element signature="e#1479#2798#0" />
                 <element signature="e#3176#3241#0" />
-                <element signature="e#3272#3427#0" />
                 <element signature="e#3189#3193#0" />
                 <element signature="e#3243#5058#0" />
                 <element signature="e#5107#5408#0" />
@@ -197,10 +198,10 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
@@ -467,13 +468,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00062" summary="metric_collector.py:&#10;- Upped the timeout set for elasticsearch queries (and added it to the config instead of being hard-coded)">
-      <created>1549518140231</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1549518140231</updated>
     </task>
     <task id="LOCAL-00063" summary="metric_collector.py:&#10;- Fixed an issue that could've caused the get_similarity method to crash on string index out of range (assuming that the problem was in the HomoglyphsRatio method and in the slim chance that Elasticsearch would return a string instead of a JSON object.">
       <created>1549781258529</created>
@@ -811,7 +805,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553669776723</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object">
+      <created>1553692720050</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1553692720050</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TodoView">
@@ -887,7 +888,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added update script" />
     <MESSAGE value="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash" />
     <MESSAGE value="configurator.py:&#10; - Added the kafka topic used as a config&#10;timer.py:&#10; - Added some informational and debug messages" />
     <MESSAGE value="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete." />
@@ -912,7 +912,8 @@
     <MESSAGE value="Added ping method for all services (including the timer and metric analyzer services)" />
     <MESSAGE value="Fixed the config to match the status at the beta site" />
     <MESSAGE value="Fixed an issue with Gunicorn that throws an error about an unrecognized parameter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with Gunicorn that throws an error about an unrecognized parameter" />
+    <MESSAGE value="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object" />
+    <option name="LAST_COMMIT_MESSAGE" value="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -929,22 +930,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>945</line>
+          <line>947</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>507</line>
+          <line>509</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>926</line>
+          <line>928</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>1003</line>
+          <line>1005</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -959,13 +960,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>968</line>
+          <line>970</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <condition expression="&quot;{1,3}&quot; in raw_query" language="Python" />
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>562</line>
+          <line>564</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>
@@ -1674,22 +1675,44 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="395" column="9" lean-forward="true" selection-start-line="395" selection-start-column="9" selection-end-line="395" selection-end-column="9" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="46" selection-start-line="45" selection-end-line="46" />
           <folding>
             <element signature="e#697#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.5/urllib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="120" column="53" selection-start-line="120" selection-start-column="53" selection-end-line="120" selection-end-column="53" />
+          <folding>
+            <element signature="e#922#936#0" expanded="true" />
+            <element signature="e#1479#2798#0" />
+            <element signature="e#3176#3241#0" />
+            <element signature="e#3189#3193#0" />
+            <element signature="e#3243#5058#0" />
+            <element signature="e#5107#5408#0" />
+            <element signature="e#5485#8377#0" />
+            <element signature="e#8438#9236#0" />
+            <element signature="e#9942#14024#0" />
+            <element signature="e#13569#14014#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="80" column="53" selection-start-line="80" selection-start-column="53" selection-end-line="80" selection-end-column="53" />
+          <folding>
+            <element signature="e#847#858#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1701,42 +1724,22 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+        <state relative-caret-position="380">
+          <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
           <folding>
-            <element signature="e#847#858#0" expanded="true" />
+            <element signature="e#21#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python3.5/urllib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="4" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="376" column="94" selection-start-line="376" selection-start-column="87" selection-end-line="376" selection-end-column="94" />
+        <state relative-caret-position="283">
+          <caret line="354" column="39" selection-start-line="354" selection-start-column="39" selection-end-line="354" selection-end-column="39" />
           <folding>
-            <element signature="e#922#936#0" expanded="true" />
-            <element signature="e#1479#2798#0" />
-            <element signature="e#3176#3241#0" />
-            <element signature="e#3272#3427#0" />
-            <element signature="e#3189#3193#0" />
-            <element signature="e#3243#5058#0" />
-            <element signature="e#5107#5408#0" />
-            <element signature="e#5485#8377#0" />
-            <element signature="e#8438#9236#0" />
-            <element signature="e#9942#14024#0" />
-            <element signature="e#13569#14014#0" />
+            <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>
