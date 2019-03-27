@@ -29,6 +29,7 @@ auto_save_dictionary_lock = Lock()
 class TinyUrl:
 
     def __init__(self, config_object):
+        self._time_loaded = time.time()
         self._config = config_object
         self._host = self._config["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-host"]
         self._port = int(self._config["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-port"])
@@ -54,7 +55,8 @@ class TinyUrl:
         return {
             "response": "PONG",
             "file": __file__,
-            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest()
+            "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+            "uptime": time.time() - self._time_loaded
         }
 
     def url_to_tiny(self):
