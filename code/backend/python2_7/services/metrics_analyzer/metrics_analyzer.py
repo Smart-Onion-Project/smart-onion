@@ -156,7 +156,7 @@ class MetricsRealtimeAnalyzer:
                 model_save_path = self.get_save_path(metric=metric, path_element="model")
                 try:
                     model.save(model_save_path)
-                except OSError as ex:
+                except Exception as ex:
                     print("WARN: Could NOT auto save module no." + str(model_idx) + " at " + model_save_path + " due to the following exception: " + str(ex))
 
                 if self.EXIT_ALL_THREADS_FLAG:
