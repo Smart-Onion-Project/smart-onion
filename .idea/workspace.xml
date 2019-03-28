@@ -5,9 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - Lowered the allowed number of loaded models to minimize the memory consumption of the service.">
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="135" column="60" selection-start-line="135" selection-start-column="60" selection-end-line="135" selection-end-column="60" />
+            <state relative-caret-position="2570">
+              <caret line="510" column="40" lean-forward="true" selection-start-line="510" selection-start-column="40" selection-end-line="510" selection-end-column="40" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -46,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="291">
@@ -112,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;discovery_</find>
       <find>&lt;discovery_rule&gt;</find>
       <find>Executing the following query:</find>
       <find>urlopen</find>
@@ -142,6 +141,7 @@
       <find>urlen</find>
       <find>number_of_source_hosts_per_url</find>
       <find>&quot;max_list_size&quot;: 50,</find>
+      <find>kafka</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -464,20 +464,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00081" summary="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability">
-      <created>1552546432074</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1552546432074</updated>
-    </task>
-    <task id="LOCAL-00082" summary="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability">
-      <created>1553502072920</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1553502072921</updated>
     </task>
     <task id="LOCAL-00083" summary="smart-onion-timer.service:&#10;- Added unit file for the newly created timer service">
       <created>1553506615391</created>
@@ -808,7 +794,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553793345336</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="metric_analyzer.py:&#10; - Set the code that writes debug messages about the metrics being received to be depended on the DEBUG constant to try and lower the memory consumption of the service">
+      <created>1553794308685</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1553794308685</updated>
+    </task>
+    <task id="LOCAL-00131" summary="metric_analyzer.py:&#10; - Lowered the allowed number of loaded models to minimize the memory consumption of the service.">
+      <created>1553794418836</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1553794418836</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TodoView">
@@ -822,6 +822,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -883,8 +884,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message" />
-    <MESSAGE value="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)" />
     <MESSAGE value="metric_collector.py:&#10; - Added the exact discovery url that caused an exception to the logs" />
     <MESSAGE value="metric_collector.py:&#10; - Fixed several issues that caused the discovery to fail." />
     <MESSAGE value="timer.py:&#10; - Fixed grammatical issue with a log message" />
@@ -908,7 +907,9 @@
     <MESSAGE value="metric_analyzer.py:&#10; - Used a broader exception handler to prevent the failure of the entire thread" />
     <MESSAGE value="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server" />
     <MESSAGE value="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers" />
-    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers" />
+    <MESSAGE value="metric_analyzer.py:&#10; - Set the code that writes debug messages about the metrics being received to be depended on the DEBUG constant to try and lower the memory consumption of the service" />
+    <MESSAGE value="metric_analyzer.py:&#10; - Lowered the allowed number of loaded models to minimize the memory consumption of the service." />
+    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - Lowered the allowed number of loaded models to minimize the memory consumption of the service." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1681,20 +1682,20 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="135" column="60" selection-start-line="135" selection-start-column="60" selection-end-line="135" selection-end-column="60" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="749" column="23" selection-start-line="749" selection-start-column="23" selection-end-line="749" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2570">
+          <caret line="510" column="40" lean-forward="true" selection-start-line="510" selection-start-column="40" selection-end-line="510" selection-end-column="40" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,6 +1,6 @@
 [Unit]
 Description=Smart-Onion Metrics-Analyzer Service
-After=smart-onion-configurator.service
+After=smart-onion-configurator.service kafka-server.service
 
 [Service]
 Type=simple

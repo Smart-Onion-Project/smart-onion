@@ -16,7 +16,7 @@ import sys
 import yaml
 import time
 import os
-import socket
+# import socket
 import importlib
 import json
 import urllib
@@ -30,6 +30,9 @@ import hashlib
 import threading
 from bottle import Bottle
 import base64
+import uuid
+import kafka
+
 
 DEBUG = False
 create_model_thread_lock = Lock()
@@ -239,12 +242,11 @@ class MetricsRealtimeAnalyzer:
 
             return importedModelParams
 
-    def anomaly_detector(self, metric, client_address):
+    def anomaly_detector(self, metric):
         """
         The main method of the service - whenever a metric is received, it is parsed by the parse_metric_message method
         and then sent to this method for feeding the data to the correct model and detect anomalies
         :param metric:
-        :param client_address:
         :return:
         """
 
@@ -252,7 +254,7 @@ class MetricsRealtimeAnalyzer:
             model = None
             anomalyLikelihoodCalc = None
             if DEBUG:
-                print("Received the metric " + str(metric) + " from " + str(client_address))
+                print("DEBUG: Received the metric " + str(base64.b64encode(metric)))
 
             if len(self.models) < self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models"]:
                 models_number_below_configured_limit = True
@@ -268,7 +270,6 @@ class MetricsRealtimeAnalyzer:
                         try:
                             self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
                             print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
-
                         except Exception as ex:
                             self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
                             print("WARN: Failed to create a model from disk (" + str(ex) + ")")
@@ -380,7 +381,7 @@ class MetricsRealtimeAnalyzer:
             self._metrics_successfully_processed = self._metrics_successfully_processed + 1
             
         except Exception as ex:
-            print("WARN: Failed to analyze the metric " + str(metric) + " from " + str(client_address) + " due to the following exception: " + str(ex))
+            print("WARN: Failed to analyze the metric(b64) " + str(base64.b64encode(metric)) + " due to the following exception: " + str(ex))
 
     def create_anomaly_likelihood_calc_from_disk(self, metric):
         anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
@@ -389,7 +390,7 @@ class MetricsRealtimeAnalyzer:
                 "rb") as anomaly_likelihood_calc_file:
             return AnomalyLikelihood.readFromFile(anomaly_likelihood_calc_file)
 
-    def parse_metric_message(self, metric_raw_info, client_address):
+    def parse_metric_message(self, metric_raw_info):
         try:
             self._metrics_received = self._metrics_received + 1
             metric_family_hierarchy = ""
@@ -404,23 +405,23 @@ class MetricsRealtimeAnalyzer:
                     metric_family = ".".join(metric_family_hierarchy)
                     metric_item = metric_family_raw[(len(metric_family_raw) - 1)]
                 else:
-                    print("WARN: Failed to parse metric info from client (failed to parse metric family. Less than one dot in the family name) " + str(client_address) + ": " + str(metric_raw_info))
+                    print("WARN: Failed to parse metric info(b64) (failed to parse metric family. Less than one dot in the family name): " + str(base64.b64encode(metric_raw_info)))
                 try:
                     metric_value = float(metric_raw_info.split(" ")[1])
                 except:
-                    print("WARN: Failed to parse metric info from client (failed to convert metric value to float) " + str(client_address) + ": " + str(metric_raw_info))
+                    print("WARN: Failed to parse metric info(b64) (failed to convert metric value to float): " + str(base64.b64encode(metric_raw_info)))
                     return
                 try:
                     metric_timestamp = int(metric_raw_info.split(" ")[2])
                 except:
-                    print("WARN: Failed to parse metric info from client (failed to convert timestamp value to int) " + str(client_address) + ": " + str(metric_raw_info))
+                    print("WARN: Failed to parse metric info(b64) (failed to convert timestamp value to int): " + str(base64.b64encode(metric_raw_info)))
                     return
     
             else:
-                print("WARN: Failed to parse metric info from client (raw message contains more or less than two spaces) " + str(client_address) + ": " + str(metric_raw_info))
+                print("WARN: Failed to parse metric info(b64) (raw message contains more or less than two spaces): " + str(base64.b64encode(metric_raw_info)))
                 return
     
-            self.anomaly_detector({"metric_family_hierarchy" : metric_family_hierarchy, "metric_family": metric_family, "metric_item": metric_item, "metric_name": metric_name, "metric_value": metric_value, "metric_timestamp": metric_timestamp}, client_address)
+            self.anomaly_detector({"metric_family_hierarchy" : metric_family_hierarchy, "metric_family": metric_family, "metric_item": metric_item, "metric_name": metric_name, "metric_value": metric_value, "metric_timestamp": metric_timestamp})
             
         except Exception as ex:
             print("WARN: The following unexpected exception has been thrown while parsing the metric message: " + str(ex))
@@ -429,10 +430,6 @@ class MetricsRealtimeAnalyzer:
         self._ping_listening_host = ping_listening_host
         self._ping_listening_port = ping_listening_port
         self._analyzer_thread = threading.Thread(target=self.run_analyzer, args=[
-            ip,
-            port,
-            connections_backlog,
-            proto,
             save_interval,
             models_save_base_path,
             models_params_base_path,
@@ -442,19 +439,33 @@ class MetricsRealtimeAnalyzer:
         self._analyzer_thread.start()
         self._app.run(host=self._ping_listening_host, port=self._ping_listening_port)
 
-    def run_analyzer(self, ip='', port=3000, connections_backlog=10, proto="UDP", save_interval=5,
+    def run_analyzer(self, save_interval=5,
             models_save_base_path=None, models_params_base_path=None,
             anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
 
         self.alerter_url = alerter_url
+        self._kafka_client_id = "SmartOnionMetricsAnalyzerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
 
-        # create an INET, STREAMing socket
-        if proto == "UDP":
-            serversocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        elif proto == "TCP":
-            serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        else:
-            raise Exception("The protocol specified is not recognized. Use either TCP or UDP (upper-case only)")
+        kafka_consumer = None
+        while kafka_consumer is None:
+            try:
+                kafka_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
+                                                     bootstrap_servers=self._kafka_server,
+                                                     client_id=self._kafka_client_id)
+            except:
+                print(
+                    "DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                time.sleep(10)
+
+        # # create an INET, STREAMing socket
+        # if proto == "UDP":
+        #     serversocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # elif proto == "TCP":
+        #     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # else:
+        #     raise Exception("The protocol specified is not recognized. Use either TCP or UDP (upper-case only)")
 
         # launch the auto-save thread
         if not models_params_base_path:
@@ -475,59 +486,61 @@ class MetricsRealtimeAnalyzer:
         autosave_thread = threading.Thread(target=self.auto_save_models, args=[save_interval])
         autosave_thread.start()
 
-        # bind the socket to a public host, and a well-known port
-        print("Starting listenter on " + str(ip) + ":" + str(port) + "/" + str(
-            proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(
-            connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
-        serversocket.bind((ip, port))
-        print("Listening on " + str(ip) + ":" + str(port) + "/" + str(proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
-
-        clientsocket = None
-        try:
-            if proto == "TCP":
-                # become a server socket
-                serversocket.listen(connections_backlog)
-                serversocket.settimeout(None)
-                
-                while True:
-                    address = "NONE"
-                    try:
-                        # accept connections from outside
-                        (clientsocket, address) = serversocket.accept()
-                        cur_metric_line = ""
-                        while True:
-                            buf_size = 4096
-                            buf = clientsocket.recv(buf_size)
-                            for char in buf.encode():
-                                if char != "\n":
-                                    cur_metric_line = cur_metric_line + char
-                                else:
-                                    if cur_metric_line and len(cur_metric_line) > 0 and len(cur_metric_line.split(" ")) == 3:
-                                        if DEBUG:
-                                            print("DEBUG: Launching a thread for handling the metric received: " + base64.b64encode(cur_metric_line))
-                                        ct = threading.Thread(target=self.parse_metric_message, args=[cur_metric_line, address])
-                                        ct.start()
-                                        cur_metric_line = ""
-                                    else:
-                                        print("WARN: The following metric line (b64) ends with a \\n but does NOT have exactly two spaces in it so it cannot be a valid metric (SKIPPED): " + base64.b64encode(cur_metric_line))
-                                        cur_metric_line = ""
-
-                    except Exception as ex:
-                        print("WARN: TCP connection from " + str(address) + " ended due to the following exception: " + str(ex))
-            else:
-                while True:
-                    client_address = "NONE"
-                    try:
-                        metric_line, client_address = serversocket.recvfrom(1024)
-                        ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
-                        ct.start()
-                    except Exception as ex:
-                        print("WARN: UDP connection from " + str(client_address) + " threw the following exception: " + str(ex))
-
-        except KeyboardInterrupt:
-            self.EXIT_ALL_THREADS_FLAG = True
-            if clientsocket:
-                clientsocket.close()
+        for metric in kafka_consumer:
+            self.parse_metric_message(metric_raw_info=metric)
+        # # bind the socket to a public host, and a well-known port
+        # print("Starting listenter on " + str(ip) + ":" + str(port) + "/" + str(
+        #     proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(
+        #     connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
+        # serversocket.bind((ip, port))
+        # print("Listening on " + str(ip) + ":" + str(port) + "/" + str(proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
+        #
+        # clientsocket = None
+        # try:
+        #     if proto == "TCP":
+        #         # become a server socket
+        #         serversocket.listen(connections_backlog)
+        #         serversocket.settimeout(None)
+        #
+        #         while True:
+        #             address = "NONE"
+        #             try:
+        #                 # accept connections from outside
+        #                 (clientsocket, address) = serversocket.accept()
+        #                 cur_metric_line = ""
+        #                 while True:
+        #                     buf_size = 4096
+        #                     buf = clientsocket.recv(buf_size)
+        #                     for char in buf.encode():
+        #                         if char != "\n":
+        #                             cur_metric_line = cur_metric_line + char
+        #                         else:
+        #                             if cur_metric_line and len(cur_metric_line) > 0 and len(cur_metric_line.split(" ")) == 3:
+        #                                 if DEBUG:
+        #                                     print("DEBUG: Launching a thread for handling the metric received: " + base64.b64encode(cur_metric_line))
+        #                                 ct = threading.Thread(target=self.parse_metric_message, args=[cur_metric_line, address])
+        #                                 ct.start()
+        #                                 cur_metric_line = ""
+        #                             else:
+        #                                 print("WARN: The following metric line (b64) ends with a \\n but does NOT have exactly two spaces in it so it cannot be a valid metric (SKIPPED): " + base64.b64encode(cur_metric_line))
+        #                                 cur_metric_line = ""
+        #
+        #             except Exception as ex:
+        #                 print("WARN: TCP connection from " + str(address) + " ended due to the following exception: " + str(ex))
+        #     else:
+        #         while True:
+        #             client_address = "NONE"
+        #             try:
+        #                 metric_line, client_address = serversocket.recvfrom(1024)
+        #                 ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
+        #                 ct.start()
+        #             except Exception as ex:
+        #                 print("WARN: UDP connection from " + str(client_address) + " threw the following exception: " + str(ex))
+        #
+        # except KeyboardInterrupt:
+        #     self.EXIT_ALL_THREADS_FLAG = True
+        #     if clientsocket:
+        #         clientsocket.close()
 
 
 ip = ''
