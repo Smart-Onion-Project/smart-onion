@@ -125,7 +125,7 @@ class Utils:
                         cur_url = cur_url + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
                     cur_url = cur_url + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id + "?arg1=" + str(item[list(item.keys())[0]])
 
-                    arg_no = 1
+                    arg_no = 2
                     for key_idx in range(1, len(item.keys())):
                         if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
                             cur_url = cur_url + "&arg" + str(arg_no) + "=" + urllib.parse.quote_plus(str(item[list(item.keys())[key_idx]]))

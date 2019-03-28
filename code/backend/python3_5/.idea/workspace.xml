@@ -21,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="421" column="59" lean-forward="true" selection-start-line="421" selection-start-column="59" selection-end-line="421" selection-end-column="59" />
+              <caret line="421" column="59" selection-start-line="421" selection-start-column="59" selection-end-line="421" selection-end-column="59" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -326,7 +326,7 @@
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="421" column="59" lean-forward="true" selection-start-line="421" selection-start-column="59" selection-end-line="421" selection-end-column="59" />
+          <caret line="421" column="59" selection-start-line="421" selection-start-column="59" selection-end-line="421" selection-end-column="59" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
