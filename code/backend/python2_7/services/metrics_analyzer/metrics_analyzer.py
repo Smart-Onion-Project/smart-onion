@@ -524,9 +524,9 @@ class MetricsRealtimeAnalyzer:
                     try:
                         # accept connections from outside
                         (clientsocket, address) = serversocket.accept()
+                        cur_metric_line = ""
                         while True:
                             buf_size = 4096
-                            cur_metric_line = ""
                             buf = clientsocket.recv(buf_size)
                             for char in buf.encode():
                                 if char != "\n":
