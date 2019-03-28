@@ -71,12 +71,14 @@ class MetricsRealtimeAnalyzer:
     metrics_prefix = "smart-onion.anomaly_score.metrics_analyzer"
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
-    def __init__(self):
+    def __init__(self, config_copy):
         self._metrics_received = 0
         self._metrics_successfully_processed = 0
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
+        self._config_copy = config_copy
+        self._last_logged_messsage_about_too_many_models = 0
 
     def _route(self):
         self._app.route('/ping', method="GET", callback=self._ping)
@@ -93,7 +95,9 @@ class MetricsRealtimeAnalyzer:
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
                 "metrics_received": self._metrics_received,
-                "metrics_successfully_processed": self._metrics_successfully_processed
+                "metrics_successfully_processed": self._metrics_successfully_processed,
+                "models_loaded": len(self.models),
+                "anomaly_likelihood_calculators_loaded": len(self.anomaly_likelihood_detectors)
             }
         }
 
@@ -248,21 +252,31 @@ class MetricsRealtimeAnalyzer:
             anomalyLikelihoodCalc = None
             if DEBUG:
                 print("Received the metric " + str(metric) + " from " + str(client_address))
-    
+
+            if len(self.models) < self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models"]:
+                models_number_below_configured_limit = True
+            else:
+                models_number_below_configured_limit = False
+                if (time.time() - self._last_logged_messsage_about_too_many_models) > self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages"]:
+                    print("WARN: Currently the number of models/anomaly_likelihood_calculators loaded is exceeds the configured quota. CANNOT CREATE NEW MODELS.")
+
             if not metric["metric_name"] in self.models:
                 create_model_thread_lock.acquire()
                 if not metric["metric_name"] in self.models and os.path.isdir(self.get_save_path(metric["metric_name"])):
-                    try:
-                        self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
-                        print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
-                    except Exception as ex:
-                        self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
-                        print("WARN: Failed to create a model from disk (" + str(ex) + ")")
-    
+                    if models_number_below_configured_limit:
+                        try:
+                            self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
+                            print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
+
+                        except Exception as ex:
+                            self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
+                            print("WARN: Failed to create a model from disk (" + str(ex) + ")")
+
                 if not metric["metric_name"] in self.models and not os.path.isdir(self.get_save_path(metric["metric_name"])):
-                    self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
-                    if DEBUG:
-                        print("Model for " + metric["metric_name"] + " created from params")
+                    if models_number_below_configured_limit:
+                        self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
+                        if DEBUG:
+                            print("Model for " + metric["metric_name"] + " created from params")
                 create_model_thread_lock.release()
     
             if metric["metric_name"] in self.models:
@@ -275,16 +289,21 @@ class MetricsRealtimeAnalyzer:
                 anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
     
                 if os.path.isfile(os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename)):
-                    try:
-                        self.anomaly_likelihood_detectors[metric["metric_name"]] = self.create_anomaly_likelihood_calc_from_disk(metric)
-                        print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
-                    except Exception as ex:
-                        self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
-                        print("WARN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
+                    if models_number_below_configured_limit:
+                        try:
+                            if models_number_below_configured_limit:
+                                self.anomaly_likelihood_detectors[metric["metric_name"]] = self.create_anomaly_likelihood_calc_from_disk(metric)
+                                print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
+                        except Exception as ex:
+                            if models_number_below_configured_limit:
+                                self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
+                                print("WARN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
                 else:
-                    self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
-    
-            anomalyLikelihoodCalc = self.anomaly_likelihood_detectors[metric["metric_name"]]
+                    if models_number_below_configured_limit:
+                        self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
+
+            if metric["metric_name"] in self.anomaly_likelihood_detectors:
+                anomalyLikelihoodCalc = self.anomaly_likelihood_detectors[metric["metric_name"]]
             create_anomaly_likelihood_calc_thread_lock.release()
     
             if model:
@@ -351,7 +370,8 @@ class MetricsRealtimeAnalyzer:
                             "AnomalyReported: " + str(anomaly_reported)
                     )
             else:
-                print("ERROR: Could not load a model for " + str(metric))
+                if models_number_below_configured_limit:
+                    print("ERROR: Could not load/create a model for " + str(metric))
     
             if self.EXIT_ALL_THREADS_FLAG:
                 return
@@ -605,7 +625,7 @@ except:
     pass
 
 sys.argv = [sys.argv[0]]
-MetricsRealtimeAnalyzer().run(
+MetricsRealtimeAnalyzer(config_copy=config_copy).run(
     ip=ip,
     port=port,
     ping_listening_host=ping_listening_host,

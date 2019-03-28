@@ -10,7 +10,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "highest_similarity_to_any_top_accessed_tld",
       "number_of_clients_per_dns_tld",
@@ -25,7 +25,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "events_per_source_ip",
       "ids_alerts_for_host",
@@ -40,7 +40,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "source_hosts_per_server",
       "events_per_destination_dns"
@@ -54,7 +54,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mssql}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_mssql",
       "number_of_outbound_connections_to_server_via_mssql",
@@ -69,7 +69,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_tld",
       "number_of_queries_per_dns_tld"
@@ -83,7 +83,7 @@
     "query": "event_type:bro_http AND (source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "events_per_url"
     ]
@@ -117,7 +117,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.mysql}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_mysql",
       "number_of_workstations_connections_to_server_via_mysql",
@@ -132,7 +132,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "org_source_servers_per_org_http_verb",
       "org_source_workstations_per_org_http_verb",
@@ -147,7 +147,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.pgsql}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_pgsql",
       "number_of_workstations_connections_to_server_via_pgsql",
@@ -162,7 +162,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_tld_subdomain",
       "number_of_queries_per_dns_tld_subdomain"
@@ -176,7 +176,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.websites}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_web_connections_to_ip",
       "number_of_workstations_ips_connected_to_ip_via_web_ports",
@@ -207,7 +207,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "highest_similarity_to_any_top_accessed_parent_domains",
       "number_of_clients_per_dns_parent_domain",
@@ -222,7 +222,7 @@
     "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "events_per_vhost",
       "source_hosts_per_vhost",
@@ -243,7 +243,7 @@
     "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "events_per_vhost",
       "source_hosts_per_vhost",
@@ -264,7 +264,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_subdomain",
       "highest_similarity_to_any_top_accessed_subdomain",
@@ -293,7 +293,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_parent_domain",
       "number_of_queries_per_dns_parent_domain"
@@ -380,7 +380,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ldap}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_ldap",
       "number_of_workstations_connections_to_server_via_ldap",
@@ -395,7 +395,7 @@
     "query": "event_type:bro_files",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": []
   },
   "top_n_most_frequently_queried_subdomains": {
@@ -406,7 +406,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_subdomain",
       "number_of_queries_per_dns_subdomain"
@@ -473,7 +473,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query_type_name:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_qry_flag",
       "number_of_queries_per_dns_qry_flag"
@@ -488,7 +488,7 @@
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_ips_connected_to_sites_signed_by_cert_cn",
       "number_of_workstations_ips_connected_to_sites_signed_by_cert_cn"
@@ -514,7 +514,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_qry",
       "highest_similarity_to_any_top_accessed_fqdn",
@@ -529,7 +529,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ssh}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_ssh",
       "number_of_workstations_connections_to_server_via_ssh",
@@ -544,7 +544,7 @@
     "query": "event_type:bro_http AND (source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": []
   },
   "dst_workstations_dst_ports": {
@@ -568,7 +568,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.tftp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_tftp",
       "number_of_workstations_connections_to_server_via_tftp",
@@ -583,7 +583,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND _exists_:method AND NOT method:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "org_source_servers_per_ext_http_verb",
       "org_source_workstations_per_ext_http_verb",
@@ -599,7 +599,7 @@
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "highest_similarity_to_any_top_accessed_cert"
     ]
@@ -613,7 +613,7 @@
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "events_per_vhost",
       "source_hosts_per_vhost",
@@ -635,7 +635,7 @@
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_internal_servers_ips_connected_to_sites_signed_by_issuer",
       "number_of_internal_workstations_ips_connected_to_sites_signed_by_issuer"
@@ -649,7 +649,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.ftp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_servers_connections_to_server_via_ftp",
       "number_of_workstations_connections_to_server_via_ftp",
@@ -684,7 +684,7 @@
     "query": "event_type:bro_http AND (source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "highest_similarity_to_any_top_searched_uri"
     ]
@@ -698,7 +698,7 @@
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "events_per_vhost",
       "source_hosts_per_vhost",
@@ -720,7 +720,7 @@
     "query": "event_type:bro_files AND file_name:/.*/",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": []
   },
   "top_n_most_rarely_queried_tld_subdomains": {
@@ -731,7 +731,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "highest_similarity_to_any_top_accessed_tld_subdomain",
       "number_of_clients_per_dns_tld_subdomain",
@@ -746,7 +746,7 @@
     "query": "event_type:bro_http",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_requests_per_url",
       "number_of_source_hosts_per_url",
@@ -790,7 +790,7 @@
     "index_pattern": "logstash-bro-*",
     "use_base64": true,
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": []
   },
   "types": {
@@ -812,7 +812,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_qry",
       "number_of_queries_per_dns_qry"
@@ -826,7 +826,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dns}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "source_hosts_per_server",
       "events_per_destination_dns"
@@ -840,7 +840,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_clients_per_dns_class_name",
       "number_of_queries_per_dns_class_name"
@@ -854,7 +854,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_conn AND (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND destination_port:({#smart-onion.config.dynamic.learned.ports.dhcp}) AND connection_state:\"SF\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "queries_to_run": [
       "number_of_workstations_connections_to_server_via_dhcp",
       "number_of_outbound_connections_to_server_via_dhcp"
@@ -2060,7 +2060,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_searched_fqdn": {
@@ -2073,7 +2073,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_fqdn": {
@@ -2086,7 +2086,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_subdomain": {
@@ -2099,7 +2099,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_tld_subdomain": {
@@ -2112,7 +2112,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_parent_domain": {
@@ -2125,7 +2125,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_cert": {
@@ -2138,7 +2138,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_x509",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_searched_uri": {
@@ -2151,7 +2151,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_http",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_tld": {
@@ -2164,7 +2164,7 @@
     "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
-    "max_list_size": 50,
+    "max_list_size": 10,
     "comment": "",
     "interval_sec": 300
   },
