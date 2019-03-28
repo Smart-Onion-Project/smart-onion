@@ -29,6 +29,7 @@ from nupic.algorithms.anomaly_likelihood import AnomalyLikelihood
 import hashlib
 import threading
 from bottle import Bottle
+import base64
 
 DEBUG = False
 create_model_thread_lock = Lock()
@@ -444,7 +445,8 @@ class MetricsRealtimeAnalyzer:
 
             if not '\n' in received_msg:
                 received_msg = received_msg + '\n'
-                
+
+            print("DEBUG: Raw message arrived (b64) is: " + base64.b64encode(received_msg))
             for metric_line in received_msg.split('\n'):
                 if len(metric_line.strip()) > 0:
                     #If the message is not an empty line send it to the parser. If it is an empty line just ignore it.
