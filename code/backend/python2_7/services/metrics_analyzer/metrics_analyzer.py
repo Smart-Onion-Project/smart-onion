@@ -30,7 +30,7 @@ import hashlib
 import threading
 from bottle import Bottle
 
-DEBUG = False
+DEBUG = True
 create_model_thread_lock = Lock()
 create_anomaly_likelihood_calc_thread_lock = Lock()
 

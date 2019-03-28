@@ -5,16 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="354" column="39" selection-start-line="354" selection-start-column="39" selection-end-line="354" selection-end-column="39" />
+            <state relative-caret-position="644">
+              <caret line="397" selection-start-line="396" selection-end-line="397" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -93,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="46" selection-start-line="45" selection-end-line="46" />
+            <state relative-caret-position="602">
+              <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
               <folding>
                 <element signature="e#697#748#0" expanded="true" />
               </folding>
@@ -198,10 +193,10 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
       </list>
     </option>
   </component>
@@ -468,20 +463,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00063" summary="metric_collector.py:&#10;- Fixed an issue that could've caused the get_similarity method to crash on string index out of range (assuming that the problem was in the HomoglyphsRatio method and in the slim chance that Elasticsearch would return a string instead of a JSON object.">
-      <created>1549781258529</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1549781258529</updated>
-    </task>
-    <task id="LOCAL-00064" summary="metric_collector.py:&#10;- Fixed an issue that could've caused the get_similarity method to crash on string index out of range (assuming that the problem was in the HomoglyphsRatio method and in the slim chance that Elasticsearch would return a string instead of a JSON object.">
-      <created>1550731212430</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1550731212430</updated>
     </task>
     <task id="LOCAL-00065" summary="metric_collector.py:&#10;- Added {#NAME} macro to indicate the &quot;real&quot; url that need to be called.&#10;&#10;queries.json:&#10;- Added array with pointers to the queries that need to be queried per item that is returned by an LLD&#10;&#10;zbx_sampling_template.xml:&#10;- Replaced all the item prototypes under all the discoveries to the same prototype since that the LLD will now return a list of urls to be called (on the tiny url service)">
       <created>1551699812667</created>
@@ -812,7 +793,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553692720050</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="ALL SERVICES:&#10; - Added uptime to the ping result&#10; &#10;metrics_analyzer.py:&#10; - Added the number of metrics received and successfully processed to the ping result">
+      <created>1553705198905</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1553705198906</updated>
+    </task>
+    <task id="LOCAL-00113" summary="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result.">
+      <created>1553707067418</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1553707067418</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TodoView">
@@ -826,7 +821,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -888,8 +882,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configurator.py:&#10; - Fixed some configuration issues&#10;timer.py:&#10; - Waiting indefinitely for the configurator&#10;so-update.sh&#10; - Removed excessive forward slash" />
-    <MESSAGE value="configurator.py:&#10; - Added the kafka topic used as a config&#10;timer.py:&#10; - Added some informational and debug messages" />
     <MESSAGE value="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete." />
     <MESSAGE value="timer.py:&#10; - Added timestamp to debug messages&#10; - Using one object for producer&#10; - Specifying the kafka client ID" />
     <MESSAGE value="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery." />
@@ -913,7 +905,9 @@
     <MESSAGE value="Fixed the config to match the status at the beta site" />
     <MESSAGE value="Fixed an issue with Gunicorn that throws an error about an unrecognized parameter" />
     <MESSAGE value="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object" />
-    <option name="LAST_COMMIT_MESSAGE" value="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object" />
+    <MESSAGE value="ALL SERVICES:&#10; - Added uptime to the ping result&#10; &#10;metrics_analyzer.py:&#10; - Added the number of metrics received and successfully processed to the ping result" />
+    <MESSAGE value="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result." />
+    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1675,16 +1669,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="46" selection-start-line="45" selection-end-line="46" />
-          <folding>
-            <element signature="e#697#748#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.5/urllib/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1736,10 +1720,20 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="354" column="39" selection-start-line="354" selection-start-column="39" selection-end-line="354" selection-end-column="39" />
+        <state relative-caret-position="644">
+          <caret line="397" selection-start-line="396" selection-end-line="397" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
+          <folding>
+            <element signature="e#697#748#0" expanded="true" />
           </folding>
         </state>
       </provider>
