@@ -424,11 +424,24 @@ class MetricsRealtimeAnalyzer:
         except Exception as ex:
             print("WARN: The following unexpected exception has been thrown while parsing the metric message: " + str(ex))
 
+    def recvall(self, sock):
+        BUFF_SIZE = 8192  # 8 KiB
+        data = b''
+        while True:
+            part = sock.recv(BUFF_SIZE)
+            data += part
+            if len(part) < BUFF_SIZE:
+                # either 0 or end of data
+                break
+        return data
+
     def tcp_client_handler(self, client_socket, client_address):
         try:
-            received_msg = client_socket.recv(1024)
+            received_msg = self.recvall(client_socket)
+            if received_msg:
+                received_msg = received_msg.encode('utf-8')
             client_socket.close()
-    
+
             if not '\n' in received_msg:
                 received_msg = received_msg + '\n'
                 
