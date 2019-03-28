@@ -5,9 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -463,20 +465,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00076" summary="tinyurl.py:&#10;- Switched to proxy mode (instead of redirector)">
-      <created>1551767644579</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1551767644579</updated>
-    </task>
-    <task id="LOCAL-00077" summary="metrics_collector.py:&#10;- Added host, protocol and port to the URLs that are tokenized by the tiny url service to allow it to proxy the access later">
-      <created>1551795797741</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1551795797741</updated>
-    </task>
     <task id="LOCAL-00078" summary="metrics_collector.py:&#10;- Removed one extra slash">
       <created>1551855817938</created>
       <option name="number" value="00078" />
@@ -806,7 +794,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553788384873</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="metric_analyzer.py:&#10; - Used a broader exception handler to prevent the failure of the entire thread">
+      <created>1553788613179</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1553788613179</updated>
+    </task>
+    <task id="LOCAL-00126" summary="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server">
+      <created>1553789261388</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1553789261388</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TodoView">
@@ -820,7 +822,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -882,8 +883,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="timer.py, metric_collector.py:&#10; - Logging the data that arrives from Kafka - DEBUG" />
-    <MESSAGE value="metric_collector.py:&#10; - Added log message that indicates that the kafka consumer thread is loading" />
     <MESSAGE value="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX." />
     <MESSAGE value="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message" />
     <MESSAGE value="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)" />
@@ -907,7 +906,9 @@
     <MESSAGE value="configurator.py:&#10; - Added configured limit for the number of models that the metrics analyzer will be allowed to keep in memory.&#10; &#10;metric_analyzer.py:&#10; - Added code to follow the limit set in the config" />
     <MESSAGE value="metric_analyzer.py:&#10; - Calculating the number of metrics received vs. processed successfully differently now.&#10; - Removed the DEBUG dependency for all warning messages" />
     <MESSAGE value="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream." />
-    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream." />
+    <MESSAGE value="metric_analyzer.py:&#10; - Used a broader exception handler to prevent the failure of the entire thread" />
+    <MESSAGE value="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server" />
+    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -524,10 +524,26 @@ class MetricsRealtimeAnalyzer:
                     try:
                         # accept connections from outside
                         (clientsocket, address) = serversocket.accept()
-                        ct = threading.Thread(target=self.tcp_client_handler, args=[clientsocket, address])
-                        ct.start()
-                    except socket.timeout:
-                        print("WARN: TCP connection from " + str(address) + " threw a socket.timeout exception.")
+                        while True:
+                            buf_size = 4096
+                            cur_metric_line = ""
+                            buf = clientsocket.recv(buf_size)
+                            for char in buf.encode():
+                                if char != "\n":
+                                    cur_metric_line = cur_metric_line + char
+                                else:
+                                    if cur_metric_line and len(cur_metric_line) > 0 and len(cur_metric_line.split(" ")) == 3:
+                                        ct = threading.Thread(target=self.parse_metric_message, args=[cur_metric_line, address])
+                                        ct.start()
+                                        cur_metric_line = ""
+                                    else:
+                                        print("WARN: The following metric line (b64) ends with a \\n but does NOT have exactly two spaces in it so it cannot be a valid metric (SKIPPED): " + base64.b64encode(cur_metric_line))
+                                        cur_metric_line = ""
+
+                        # ct = threading.Thread(target=self.tcp_client_handler, args=[clientsocket, address])
+                        # ct.start()
+                    except Exception as ex:
+                        print("WARN: TCP connection from " + str(address) + " ended due to the following exception: " + str(ex))
             else:
                 while True:
                     client_address = "NONE"
