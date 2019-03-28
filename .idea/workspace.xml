@@ -5,9 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics-collector.py:&#10; - Fixed an issue that caused the URLs that arrived as a response from the discover method contained raw URLs as argX parameters (not urlencoded)&#10; - Fixed an issue with the numbers of the argX parameters that was sometimes out of sequence.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+            <state relative-caret-position="326">
+              <caret line="133" column="53" lean-forward="true" selection-start-line="133" selection-start-column="53" selection-end-line="133" selection-end-column="53" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -462,13 +465,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00071" summary="tinyurl.py:&#10;- Added shabang line and header">
-      <created>1551709171490</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1551709171490</updated>
-    </task>
     <task id="LOCAL-00072" summary="tinyurl.py:&#10;- Chmodded to +x&#10;&#10;zbx_sampling_template.xml:&#10;- Changed the items' names to make sure they're not too long.">
       <created>1551712649265</created>
       <option name="number" value="00072" />
@@ -805,7 +801,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553762672834</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)">
+      <created>1553764858013</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1553764858013</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TodoView">
@@ -881,7 +884,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="timer.py:&#10; - Added code for waiting for the Kafka server to load&#10; &#10;smart-onion-timer.service:&#10; - Added requirement for the exact services order" />
     <MESSAGE value="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks" />
     <MESSAGE value="metrics_collector.py:&#10; - Preventing flooding of &quot;sampling is lagging&quot; messages when the lag is in less than a second." />
     <MESSAGE value="timer.py:&#10; - Commented out two logging commands that caused excessive logging" />
@@ -906,7 +908,8 @@
     <MESSAGE value="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it." />
     <MESSAGE value="metrics-analyzer.py:&#10; - Trying to disable the timeout on the socket to see if this will improve the service listening" />
     <MESSAGE value="metrics-collector.py:&#10; - Fixed an issue that caused the URLs that arrived as a response from the discover method contained raw URLs as argX parameters (not urlencoded)&#10; - Fixed an issue with the numbers of the argX parameters that was sometimes out of sequence." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics-collector.py:&#10; - Fixed an issue that caused the URLs that arrived as a response from the discover method contained raw URLs as argX parameters (not urlencoded)&#10; - Fixed an issue with the numbers of the argX parameters that was sometimes out of sequence." />
+    <MESSAGE value="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1688,8 +1691,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+        <state relative-caret-position="326">
+          <caret line="133" column="53" lean-forward="true" selection-start-line="133" selection-start-column="53" selection-end-line="133" selection-end-column="53" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
