@@ -30,7 +30,7 @@ import hashlib
 import threading
 from bottle import Bottle
 
-DEBUG = True
+DEBUG = False
 create_model_thread_lock = Lock()
 create_anomaly_likelihood_calc_thread_lock = Lock()
 
@@ -61,8 +61,6 @@ class Utils:
 
 
 class MetricsRealtimeAnalyzer:
-
-    DEBUG = False
     EXIT_ALL_THREADS_FLAG = False
     models = {}
     anomaly_likelihood_detectors = {}
@@ -204,7 +202,7 @@ class MetricsRealtimeAnalyzer:
             yaml_filename = self.models_params_base_path + "/%s.yaml" % (
                 metric_family.replace(" ", "_").replace("-", "_").replace(".", "/")
             )
-            if self.DEBUG:
+            if DEBUG:
                 print("Importing model params from %s" % yaml_filename)
 
             with open(yaml_filename, "r") as yaml_file:
@@ -214,7 +212,7 @@ class MetricsRealtimeAnalyzer:
             importName = "data_model_params.%s" % (
                 metric_family.replace(" ", "_").replace("-", "_")
             )
-            if self.DEBUG:
+            if DEBUG:
                 print("Importing model params from %s" % importName)
             try:
                 importedModelParams = importlib.import_module(importName).MODEL_PARAMS
@@ -222,7 +220,7 @@ class MetricsRealtimeAnalyzer:
                 #Using default model params
                 importName = "data_model_params.default"
                 importedModelParams = importlib.import_module(importName).MODEL_PARAMS
-                if self.DEBUG:
+                if DEBUG:
                     print("No model params exist for '%s'. Using default module params."
                           % metric_family)
 
@@ -237,119 +235,123 @@ class MetricsRealtimeAnalyzer:
         :return:
         """
 
-        model = None
-        anomalyLikelihoodCalc = None
-        if self.DEBUG:
-            print("Received the metric " + str(metric) + " from " + str(client_address))
-
-        if not metric["metric_name"] in self.models:
-            create_model_thread_lock.acquire()
-            if not metric["metric_name"] in self.models and os.path.isdir(self.get_save_path(metric["metric_name"])):
-                try:
-                    self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
-                    print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
-                except Exception as ex:
+        try:
+            model = None
+            anomalyLikelihoodCalc = None
+            if DEBUG:
+                print("Received the metric " + str(metric) + " from " + str(client_address))
+    
+            if not metric["metric_name"] in self.models:
+                create_model_thread_lock.acquire()
+                if not metric["metric_name"] in self.models and os.path.isdir(self.get_save_path(metric["metric_name"])):
+                    try:
+                        self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
+                        print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
+                    except Exception as ex:
+                        self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
+                        print("WRN: Failed to create a model from disk (" + str(ex) + ")")
+    
+                if not metric["metric_name"] in self.models and not os.path.isdir(self.get_save_path(metric["metric_name"])):
                     self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
-                    print("WRN: Failed to create a model from disk (" + str(ex) + ")")
-
-            if not metric["metric_name"] in self.models and not os.path.isdir(self.get_save_path(metric["metric_name"])):
-                self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
-                if self.DEBUG:
-                    print("Model for " + metric["metric_name"] + " created from params")
-            create_model_thread_lock.release()
-
-        if metric["metric_name"] in self.models:
-            model = self.models[metric["metric_name"]]
-            if self.DEBUG:
-                print("Model for " + metric["metric_name"] + " loaded from cache")
-
-        create_anomaly_likelihood_calc_thread_lock.acquire()
-        if not metric["metric_name"] in self.anomaly_likelihood_detectors:
-            anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
-
-            if os.path.isfile(os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename)):
-                try:
-                    self.anomaly_likelihood_detectors[metric["metric_name"]] = self.create_anomaly_likelihood_calc_from_disk(metric)
-                    print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
-                except Exception as ex:
-                    self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
-                    print("WRN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
-            else:
-                self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
-
-        anomalyLikelihoodCalc = self.anomaly_likelihood_detectors[metric["metric_name"]]
-        create_anomaly_likelihood_calc_thread_lock.release()
-
-        if model:
-            result = model.run({
-                "timestamp": datetime.fromtimestamp(metric["metric_timestamp"]),
-                "value": metric["metric_value"]
-            })
-
-            anomalyScore = result.inferences["anomalyScore"]
-            if "multiStepBestPredictions" in result.inferences:
-                prediction = result.inferences["multiStepBestPredictions"][1]
-            else:
-                prediction = None
-
-            anomalyLikelihood = anomalyLikelihoodCalc.anomalyProbability(
-                value=metric["metric_value"],
-                anomalyScore=anomalyScore,
-                timestamp=datetime.fromtimestamp(metric["metric_timestamp"])
-            )
-
-            anomaly_reported = False
-            anomaly_direction = 0
-            if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
-                if prediction > metric["metric_value"]:
-                    anomaly_direction = 1
+                    if DEBUG:
+                        print("Model for " + metric["metric_name"] + " created from params")
+                create_model_thread_lock.release()
+    
+            if metric["metric_name"] in self.models:
+                model = self.models[metric["metric_name"]]
+                if DEBUG:
+                    print("Model for " + metric["metric_name"] + " loaded from cache")
+    
+            create_anomaly_likelihood_calc_thread_lock.acquire()
+            if not metric["metric_name"] in self.anomaly_likelihood_detectors:
+                anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
+    
+                if os.path.isfile(os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename)):
+                    try:
+                        self.anomaly_likelihood_detectors[metric["metric_name"]] = self.create_anomaly_likelihood_calc_from_disk(metric)
+                        print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
+                    except Exception as ex:
+                        self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
+                        print("WRN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
                 else:
-                    anomaly_direction = -1
-
-            try:
-                self.statsd_client.gauge(self.metrics_prefix + ".anomaly_score." + metric["metric_name"], anomalyScore)
-                self.statsd_client.gauge(self.metrics_prefix + ".anomaly_likelihood." + metric["metric_name"], anomalyLikelihood)
-                self.statsd_client.gauge(self.metrics_prefix + ".anomaly_direction." + metric["metric_name"], anomaly_direction)
-            except:
-                print(
-                        "WARNING: Failed to report anomaly to statsd. ("
-                        "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
-                        "Metric: " + str(metric["metric_name"]) + ", " +
-                        "Value: " + str(metric["metric_value"]) + ", " +
-                        "Anomaly score: " + str(anomalyScore) + ", " +
-                        "Prediction: " + str(prediction) + ", " +
-                        "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
-                        "AnomalyReported: " + str(anomaly_reported) + ")"
-                )
-                pass
-
-            if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
-                self.report_anomaly(metric=metric, anomaly_info={
-                    "htm_anomaly_score": anomalyScore,
-                    "htm_anomaly_likelihood": anomalyLikelihood,
-                    "anomaly_score": anomalyLikelihood * anomaly_direction * 100,
-                    "timestamp: ": datetime.fromtimestamp(metric["metric_timestamp"]),
-                    "metric: ": metric["metric_name"],
-                    "value: ": metric["metric_value"]
+                    self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
+    
+            anomalyLikelihoodCalc = self.anomaly_likelihood_detectors[metric["metric_name"]]
+            create_anomaly_likelihood_calc_thread_lock.release()
+    
+            if model:
+                result = model.run({
+                    "timestamp": datetime.fromtimestamp(metric["metric_timestamp"]),
+                    "value": metric["metric_value"]
                 })
-                anomaly_reported = True
-
-                print(
-                        "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
-                        "Metric: " + str(metric["metric_name"]) + ", " +
-                        "Value: " + str(metric["metric_value"]) + ", " +
-                        "Anomaly score: " + str(anomalyScore) + ", " +
-                        "Prediction: " + str(prediction) + ", " +
-                        "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
-                        "AnomalyReported: " + str(anomaly_reported)
+    
+                anomalyScore = result.inferences["anomalyScore"]
+                if "multiStepBestPredictions" in result.inferences:
+                    prediction = result.inferences["multiStepBestPredictions"][1]
+                else:
+                    prediction = None
+    
+                anomalyLikelihood = anomalyLikelihoodCalc.anomalyProbability(
+                    value=metric["metric_value"],
+                    anomalyScore=anomalyScore,
+                    timestamp=datetime.fromtimestamp(metric["metric_timestamp"])
                 )
-        else:
-            print("ERROR: Could not load a model for " + str(metric))
-
-        if self.EXIT_ALL_THREADS_FLAG:
-            return
-        
-        self._metrics_successfully_processed = self._metrics_successfully_processed + 1
+    
+                anomaly_reported = False
+                anomaly_direction = 0
+                if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
+                    if prediction > metric["metric_value"]:
+                        anomaly_direction = 1
+                    else:
+                        anomaly_direction = -1
+    
+                try:
+                    self.statsd_client.gauge(self.metrics_prefix + ".anomaly_score." + metric["metric_name"], anomalyScore)
+                    self.statsd_client.gauge(self.metrics_prefix + ".anomaly_likelihood." + metric["metric_name"], anomalyLikelihood)
+                    self.statsd_client.gauge(self.metrics_prefix + ".anomaly_direction." + metric["metric_name"], anomaly_direction)
+                except:
+                    print(
+                            "WARNING: Failed to report anomaly to statsd. ("
+                            "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
+                            "Metric: " + str(metric["metric_name"]) + ", " +
+                            "Value: " + str(metric["metric_value"]) + ", " +
+                            "Anomaly score: " + str(anomalyScore) + ", " +
+                            "Prediction: " + str(prediction) + ", " +
+                            "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
+                            "AnomalyReported: " + str(anomaly_reported) + ")"
+                    )
+                    pass
+    
+                if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
+                    self.report_anomaly(metric=metric, anomaly_info={
+                        "htm_anomaly_score": anomalyScore,
+                        "htm_anomaly_likelihood": anomalyLikelihood,
+                        "anomaly_score": anomalyLikelihood * anomaly_direction * 100,
+                        "timestamp: ": datetime.fromtimestamp(metric["metric_timestamp"]),
+                        "metric: ": metric["metric_name"],
+                        "value: ": metric["metric_value"]
+                    })
+                    anomaly_reported = True
+    
+                    print(
+                            "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
+                            "Metric: " + str(metric["metric_name"]) + ", " +
+                            "Value: " + str(metric["metric_value"]) + ", " +
+                            "Anomaly score: " + str(anomalyScore) + ", " +
+                            "Prediction: " + str(prediction) + ", " +
+                            "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
+                            "AnomalyReported: " + str(anomaly_reported)
+                    )
+            else:
+                print("ERROR: Could not load a model for " + str(metric))
+    
+            if self.EXIT_ALL_THREADS_FLAG:
+                return
+            
+            self._metrics_successfully_processed = self._metrics_successfully_processed + 1
+            
+        except Exception as ex:
+            print("WARN: Failed to analyze the metric " + str(metric) + " from " + str(client_address) + " due to the following exception: " + str(ex))
 
     def create_anomaly_likelihood_calc_from_disk(self, metric):
         anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
@@ -359,48 +361,59 @@ class MetricsRealtimeAnalyzer:
             return AnomalyLikelihood.readFromFile(anomaly_likelihood_calc_file)
 
     def parse_metric_message(self, metric_raw_info, client_address):
-        metric_family_hierarchy = ""
-        metric_family = ""
-
-        if len(metric_raw_info.split(" ")) == 3:
-            metric_name = metric_raw_info.split(" ")[0]
-            metric_family_raw = metric_name.split(".")
-            metric_item = ""
-            if len(metric_family_raw) > 1:
-                metric_family_hierarchy = metric_family_raw[:(len(metric_family_raw) - 1)]
-                metric_family = ".".join(metric_family_hierarchy)
-                metric_item = metric_family_raw[(len(metric_family_raw) - 1)]
+        try:
+            metric_family_hierarchy = ""
+            metric_family = ""
+    
+            if len(metric_raw_info.split(" ")) == 3:
+                metric_name = metric_raw_info.split(" ")[0]
+                metric_family_raw = metric_name.split(".")
+                metric_item = ""
+                if len(metric_family_raw) > 1:
+                    metric_family_hierarchy = metric_family_raw[:(len(metric_family_raw) - 1)]
+                    metric_family = ".".join(metric_family_hierarchy)
+                    metric_item = metric_family_raw[(len(metric_family_raw) - 1)]
+                else:
+                    if DEBUG:
+                        print("Failed to parse metric info from client (failed to parse metric family. Less than one dot in the family name) " + str(client_address) + ": " + str(metric_raw_info))
+                try:
+                    metric_value = float(metric_raw_info.split(" ")[1])
+                except:
+                    if DEBUG:
+                        print("Failed to parse metric info from client (failed to convert metric value to float) " + str(client_address) + ": " + str(metric_raw_info))
+                    return
+                try:
+                    metric_timestamp = int(metric_raw_info.split(" ")[2])
+                except:
+                    if DEBUG:
+                        print("Failed to parse metric info from client (failed to convert timestamp value to int) " + str(client_address) + ": " + str(metric_raw_info))
+                    return
+    
             else:
-                if self.DEBUG:
-                    print("Failed to parse metric info from client (failed to parse metric family. Less than one dot in the family name) " + str(client_address) + ": " + str(metric_raw_info))
-            try:
-                metric_value = float(metric_raw_info.split(" ")[1])
-            except:
-                if self.DEBUG:
-                    print("Failed to parse metric info from client (failed to convert metric value to float) " + str(client_address) + ": " + str(metric_raw_info))
+                if DEBUG:
+                    print("Failed to parse metric info from client (raw message contains more or less than two spaces) " + str(client_address) + ": " + str(metric_raw_info))
                 return
-            try:
-                metric_timestamp = int(metric_raw_info.split(" ")[2])
-            except:
-                if self.DEBUG:
-                    print("Failed to parse metric info from client (failed to convert timestamp value to int) " + str(client_address) + ": " + str(metric_raw_info))
-                return
-
-        else:
-            if self.DEBUG:
-                print("Failed to parse metric info from client (raw message contains more or less than two spaces) " + str(client_address) + ": " + str(metric_raw_info))
-            return
-
-        self.anomaly_detector({"metric_family_hierarchy" : metric_family_hierarchy, "metric_family": metric_family, "metric_item": metric_item, "metric_name": metric_name, "metric_value": metric_value, "metric_timestamp": metric_timestamp}, client_address)
+    
+            self.anomaly_detector({"metric_family_hierarchy" : metric_family_hierarchy, "metric_family": metric_family, "metric_item": metric_item, "metric_name": metric_name, "metric_value": metric_value, "metric_timestamp": metric_timestamp}, client_address)
+            
+        except Exception as ex:
+            print("WARN: The following unexpected exception has been thrown while parsing the metric message: " + str(ex))
 
     def tcp_client_handler(self, client_socket, client_address):
-        received_msg = client_socket.recv(1024)
-        client_socket.close()
-
-        for metric_line in received_msg.split('\n'):
-            if len(metric_line.strip()) > 0:
-                #If the message is not an empty line send it to the parser. If it is an empty line just ignore it.
-                self.parse_metric_message(metric_line, client_address)
+        try:
+            received_msg = client_socket.recv(1024)
+            client_socket.close()
+    
+            if not '\n' in received_msg:
+                received_msg = received_msg + '\n'
+                
+            for metric_line in received_msg.split('\n'):
+                if len(metric_line.strip()) > 0:
+                    #If the message is not an empty line send it to the parser. If it is an empty line just ignore it.
+                    self.parse_metric_message(metric_line, client_address)
+        except Exception as ex:
+            print("WARN: The following unexpected exception has been thrown while handling the client at " + str(client_address))
+        
 
     def run(self, ip='', port=3000, ping_listening_host="127.0.0.1", ping_listening_port=3001, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
         self._ping_listening_host = ping_listening_host
@@ -417,10 +430,7 @@ class MetricsRealtimeAnalyzer:
             alerter_url
         ])
         self._analyzer_thread.start()
-        if DEBUG:
-            self._app.run(host=self._ping_listening_host, port=self._ping_listening_port)
-        else:
-            self._app.run(host=self._ping_listening_host, port=self._ping_listening_port, server="gunicorn", workers=32)
+        self._app.run(host=self._ping_listening_host, port=self._ping_listening_port)
 
     def run_analyzer(self, ip='', port=3000, connections_backlog=10, proto="UDP", save_interval=5,
             models_save_base_path=None, models_params_base_path=None,
@@ -470,6 +480,7 @@ class MetricsRealtimeAnalyzer:
                 serversocket.settimeout(1.0)
 
                 while True:
+                    address = "NONE"
                     try:
                         # accept connections from outside
                         (clientsocket, address) = serversocket.accept()
@@ -477,13 +488,18 @@ class MetricsRealtimeAnalyzer:
                         ct = threading.Thread(target=self.tcp_client_handler, args=[clientsocket, address])
                         ct.start()
                     except socket.timeout:
-                        pass
+                        print("WARN: TCP connection from " + str(address) + " threw a socket.timeout exception.")
             else:
                 while True:
-                    metric_line, client_address = serversocket.recvfrom(1024)
-                    self._metrics_received = self._metrics_received + 1
-                    ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
-                    ct.start()
+                    client_address = "NONE"
+                    try:
+                        metric_line, client_address = serversocket.recvfrom(1024)
+                        self._metrics_received = self._metrics_received + 1
+                        ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
+                        ct.start()
+                    except Exception as ex:
+                        print("WARN: UDP connection from " + str(client_address) + " threw the following exception: " + str(ex))
+
         except KeyboardInterrupt:
             self.EXIT_ALL_THREADS_FLAG = True
             if clientsocket:
