@@ -154,7 +154,7 @@ class MetricsRealtimeAnalyzer:
                     model.save(model_save_path)
                 except OSError as ex:
                     print("WARN: Could NOT auto save module no." + str(model_idx) + " at " + model_save_path + " due to the following exception: " + str(ex))
-                    
+
                 if self.EXIT_ALL_THREADS_FLAG:
                     create_model_thread_lock.release()
                     return
@@ -165,11 +165,15 @@ class MetricsRealtimeAnalyzer:
                 anomaly_likelihood_calculators_path = self.get_save_path(metric=metric,
                                                                          path_element="anomaly_likelihood_calculator")
 
-                if not os.path.exists(anomaly_likelihood_calculators_path):
-                    os.makedirs(anomaly_likelihood_calculators_path)
-                with open(os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename)
-                        , "w") as anomaly_likelihood_calc_file:
-                    anomaly_likelihood_calculator.writeToFile(anomaly_likelihood_calc_file)
+                try:
+                    if not os.path.exists(anomaly_likelihood_calculators_path):
+                        os.makedirs(anomaly_likelihood_calculators_path)
+                    with open(os.path.join(anomaly_likelihood_calculators_path, self.anomaly_likelihood_calculator_filename)
+                            , "w") as anomaly_likelihood_calc_file:
+                        anomaly_likelihood_calculator.writeToFile(anomaly_likelihood_calc_file)
+                except OSError as ex:
+                    print("WARN: Could NOT auto save anomaly likelihood calc for metric " + str(metric) + " at " + anomaly_likelihood_calculators_path + " due to the following exception: " + str(ex))
+
                 if self.EXIT_ALL_THREADS_FLAG:
                     create_anomaly_likelihood_calc_thread_lock.release()
                     return
