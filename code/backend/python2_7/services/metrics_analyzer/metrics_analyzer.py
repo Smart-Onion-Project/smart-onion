@@ -249,7 +249,7 @@ class MetricsRealtimeAnalyzer:
                         print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
                     except Exception as ex:
                         self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
-                        print("WRN: Failed to create a model from disk (" + str(ex) + ")")
+                        print("WARN: Failed to create a model from disk (" + str(ex) + ")")
     
                 if not metric["metric_name"] in self.models and not os.path.isdir(self.get_save_path(metric["metric_name"])):
                     self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
@@ -272,7 +272,7 @@ class MetricsRealtimeAnalyzer:
                         print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
                     except Exception as ex:
                         self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
-                        print("WRN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
+                        print("WARN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
                 else:
                     self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
     
@@ -477,8 +477,9 @@ class MetricsRealtimeAnalyzer:
             if proto == "TCP":
                 # become a server socket
                 serversocket.listen(connections_backlog)
-                serversocket.settimeout(1.0)
-
+                # serversocket.settimeout(1.0)
+                serversocket.settimeout(None)
+                
                 while True:
                     address = "NONE"
                     try:
