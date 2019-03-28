@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="540" selection-start-line="540" selection-end-line="540" />
+            <state relative-caret-position="722">
+              <caret line="541" column="56" selection-start-line="541" selection-start-column="56" selection-end-line="541" selection-end-column="56" />
               <folding>
                 <element signature="e#922#932#0" expanded="true" />
               </folding>
@@ -538,8 +538,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="540" selection-start-line="540" selection-end-line="540" />
+        <state relative-caret-position="722">
+          <caret line="541" column="56" selection-start-line="541" selection-start-column="56" selection-end-line="541" selection-end-column="56" />
           <folding>
             <element signature="e#922#932#0" expanded="true" />
           </folding>
