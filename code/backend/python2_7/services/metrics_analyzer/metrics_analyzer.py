@@ -487,7 +487,7 @@ class MetricsRealtimeAnalyzer:
         autosave_thread.start()
 
         for metric in kafka_consumer:
-            self.parse_metric_message(metric_raw_info=metric)
+            self.parse_metric_message(metric_raw_info=metric.value)
         # # bind the socket to a public host, and a well-known port
         # print("Starting listenter on " + str(ip) + ":" + str(port) + "/" + str(
         #     proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(
