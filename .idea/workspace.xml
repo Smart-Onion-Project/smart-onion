@@ -5,7 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
@@ -91,7 +91,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="602">
+            <state relative-caret-position="1001">
               <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
               <folding>
                 <element signature="e#697#748#0" expanded="true" />
@@ -464,20 +464,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00065" summary="metric_collector.py:&#10;- Added {#NAME} macro to indicate the &quot;real&quot; url that need to be called.&#10;&#10;queries.json:&#10;- Added array with pointers to the queries that need to be queried per item that is returned by an LLD&#10;&#10;zbx_sampling_template.xml:&#10;- Replaced all the item prototypes under all the discoveries to the same prototype since that the LLD will now return a list of urls to be called (on the tiny url service)">
-      <created>1551699812667</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1551699812667</updated>
-    </task>
-    <task id="LOCAL-00066" summary="smart-onion-metrics_collector.service:&#10;- Changed it to use the new elasticsearch server">
-      <created>1551700096603</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1551700096603</updated>
-    </task>
     <task id="LOCAL-00067" summary="zbx_sampling_template.xml:&#10;- Fixed some formatting issues">
       <created>1551704744894</created>
       <option name="number" value="00067" />
@@ -807,7 +793,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553707067418</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="metrics-analyzer.py:&#10; - Switched to &quot;debug&quot; mode">
+      <created>1553750524837</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1553750524837</updated>
+    </task>
+    <task id="LOCAL-00115" summary="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it.">
+      <created>1553754535388</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1553754535388</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TodoView">
@@ -821,6 +821,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -882,8 +883,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete." />
-    <MESSAGE value="timer.py:&#10; - Added timestamp to debug messages&#10; - Using one object for producer&#10; - Specifying the kafka client ID" />
     <MESSAGE value="alerter.py,configurator.py,metrics_collector.py,tiny_url.py:&#10; - Added a ping method&#10; &#10;timer.py:&#10; - Added code for waiting for the metrics collector service to load (during service load) and to properly handle exceptions during discovery." />
     <MESSAGE value="timer.py:&#10; - BUGFIX: Used to refer to non existent property" />
     <MESSAGE value="timer.py:&#10; - Added code for waiting for the Kafka server to load&#10; &#10;smart-onion-timer.service:&#10; - Added requirement for the exact services order" />
@@ -907,7 +906,9 @@
     <MESSAGE value="anomaly_detector.py:&#10; - Added ping method&#10; &#10;ALL SERVICES:&#10; - Changed the way the ping method sends its response from sending a JSON string to actually sending a JSON object" />
     <MESSAGE value="ALL SERVICES:&#10; - Added uptime to the ping result&#10; &#10;metrics_analyzer.py:&#10; - Added the number of metrics received and successfully processed to the ping result" />
     <MESSAGE value="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result." />
-    <option name="LAST_COMMIT_MESSAGE" value="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result." />
+    <MESSAGE value="metrics-analyzer.py:&#10; - Switched to &quot;debug&quot; mode" />
+    <MESSAGE value="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it." />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1730,7 +1731,7 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
+        <state relative-caret-position="1001">
           <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
           <folding>
             <element signature="e#697#748#0" expanded="true" />
