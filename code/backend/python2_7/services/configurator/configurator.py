@@ -90,7 +90,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-listening-port": 9007,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-protocol": "http",
-        "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models": 800,
+        "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models": 400,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages": 3600,
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-port": 9003,

@@ -425,36 +425,6 @@ class MetricsRealtimeAnalyzer:
         except Exception as ex:
             print("WARN: The following unexpected exception has been thrown while parsing the metric message: " + str(ex))
 
-    def recvall(self, sock):
-        BUFF_SIZE = 8192  # 8 KiB
-        data = b''
-        while True:
-            part = sock.recv(BUFF_SIZE)
-            data += part
-            if len(part) < BUFF_SIZE:
-                # either 0 or end of data
-                break
-        return data
-
-    def tcp_client_handler(self, client_socket, client_address):
-        try:
-            received_msg = self.recvall(client_socket)
-            if received_msg:
-                received_msg = received_msg.encode('utf-8')
-            client_socket.close()
-
-            if not '\n' in received_msg:
-                received_msg = received_msg + '\n'
-
-            print("DEBUG: Raw message arrived (b64) is: " + base64.b64encode(received_msg))
-            for metric_line in received_msg.split('\n'):
-                if len(metric_line.strip()) > 0:
-                    #If the message is not an empty line send it to the parser. If it is an empty line just ignore it.
-                    self.parse_metric_message(metric_line, client_address)
-        except Exception as ex:
-            print("WARN: The following unexpected exception has been thrown while handling the client at " + str(client_address))
-        
-
     def run(self, ip='', port=3000, ping_listening_host="127.0.0.1", ping_listening_port=3001, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
         self._ping_listening_host = ping_listening_host
         self._ping_listening_port = ping_listening_port
@@ -533,7 +503,8 @@ class MetricsRealtimeAnalyzer:
                                     cur_metric_line = cur_metric_line + char
                                 else:
                                     if cur_metric_line and len(cur_metric_line) > 0 and len(cur_metric_line.split(" ")) == 3:
-                                        print("DEBUG: Launching a thread for handling the metric received: " + base64.b64encode(cur_metric_line))
+                                        if DEBUG:
+                                            print("DEBUG: Launching a thread for handling the metric received: " + base64.b64encode(cur_metric_line))
                                         ct = threading.Thread(target=self.parse_metric_message, args=[cur_metric_line, address])
                                         ct.start()
                                         cur_metric_line = ""
@@ -541,8 +512,6 @@ class MetricsRealtimeAnalyzer:
                                         print("WARN: The following metric line (b64) ends with a \\n but does NOT have exactly two spaces in it so it cannot be a valid metric (SKIPPED): " + base64.b64encode(cur_metric_line))
                                         cur_metric_line = ""
 
-                        # ct = threading.Thread(target=self.tcp_client_handler, args=[clientsocket, address])
-                        # ct.start()
                     except Exception as ex:
                         print("WARN: TCP connection from " + str(address) + " ended due to the following exception: " + str(ex))
             else:
