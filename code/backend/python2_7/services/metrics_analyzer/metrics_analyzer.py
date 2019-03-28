@@ -533,6 +533,7 @@ class MetricsRealtimeAnalyzer:
                                     cur_metric_line = cur_metric_line + char
                                 else:
                                     if cur_metric_line and len(cur_metric_line) > 0 and len(cur_metric_line.split(" ")) == 3:
+                                        print("DEBUG: Launching a thread for handling the metric received: " + base64.b64encode(cur_metric_line))
                                         ct = threading.Thread(target=self.parse_metric_message, args=[cur_metric_line, address])
                                         ct.start()
                                         cur_metric_line = ""
