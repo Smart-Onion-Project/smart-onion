@@ -5,7 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
@@ -465,27 +465,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00078" summary="metrics_collector.py:&#10;- Removed one extra slash">
-      <created>1551855817938</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1551855817938</updated>
-    </task>
-    <task id="LOCAL-00079" summary="tinyurl.py:&#10;- Fixed to support full URLs">
-      <created>1551857229834</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1551857229835</updated>
-    </task>
-    <task id="LOCAL-00080" summary="zbx_sampling_template.xml:&#10;- fixed the tiny urls prototypes">
-      <created>1551857823774</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1551857823775</updated>
-    </task>
     <task id="LOCAL-00081" summary="configurator.py:&#10;- added config for a new service (the timer service) which will replace Zabbix in this solution (Zabbix will still be used for devop monitoring)&#10;&#10;metrics_collector.py:&#10;- Added code for returning more information from discovery calls&#10;- Added support for both tinyfying and not tinyfying the URLS returned from discovery calls &#10;&#10;timer.py:&#10;- New service that will handle the calls for discovery and will send tasks to Kafka (these tasks will be pulled and processed by threads on the metrics_collector which will allow for greater scalability">
       <created>1552546432074</created>
       <option name="number" value="00081" />
@@ -808,7 +787,28 @@
       <option name="project" value="LOCAL" />
       <updated>1553789261388</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
+      <created>1553792486162</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1553792486162</updated>
+    </task>
+    <task id="LOCAL-00128" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
+      <created>1553792567379</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1553792567379</updated>
+    </task>
+    <task id="LOCAL-00129" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
+      <created>1553793345336</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1553793345336</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TodoView">
@@ -883,7 +883,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX." />
     <MESSAGE value="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message" />
     <MESSAGE value="metric_collector.py:&#10; - Now waiting infinitely for the configurator to load (if necessary)" />
     <MESSAGE value="metric_collector.py:&#10; - Added the exact discovery url that caused an exception to the logs" />
@@ -908,7 +907,8 @@
     <MESSAGE value="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream." />
     <MESSAGE value="metric_analyzer.py:&#10; - Used a broader exception handler to prevent the failure of the entire thread" />
     <MESSAGE value="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server" />
-    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - Added debug message that contains the entire raw message received by the server" />
+    <MESSAGE value="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers" />
+    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
