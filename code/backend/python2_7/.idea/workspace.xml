@@ -5,10 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/../../../config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
-    </list>
+    <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="158" column="32" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
+            <state relative-caret-position="365">
+              <caret line="446" column="16" lean-forward="true" selection-start-line="446" selection-start-column="16" selection-end-line="446" selection-end-column="16" />
               <folding>
                 <element signature="e#922#932#0" expanded="true" />
               </folding>
@@ -538,8 +535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="158" column="32" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
+        <state relative-caret-position="365">
+          <caret line="446" column="16" lean-forward="true" selection-start-line="446" selection-start-column="16" selection-end-line="446" selection-end-column="16" />
           <folding>
             <element signature="e#922#932#0" expanded="true" />
           </folding>
