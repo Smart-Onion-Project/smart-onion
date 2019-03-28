@@ -390,6 +390,7 @@ class MetricsRealtimeAnalyzer:
 
     def parse_metric_message(self, metric_raw_info, client_address):
         try:
+            self._metrics_received = self._metrics_received + 1
             metric_family_hierarchy = ""
             metric_family = ""
     
@@ -402,24 +403,20 @@ class MetricsRealtimeAnalyzer:
                     metric_family = ".".join(metric_family_hierarchy)
                     metric_item = metric_family_raw[(len(metric_family_raw) - 1)]
                 else:
-                    if DEBUG:
-                        print("Failed to parse metric info from client (failed to parse metric family. Less than one dot in the family name) " + str(client_address) + ": " + str(metric_raw_info))
+                    print("WARN: Failed to parse metric info from client (failed to parse metric family. Less than one dot in the family name) " + str(client_address) + ": " + str(metric_raw_info))
                 try:
                     metric_value = float(metric_raw_info.split(" ")[1])
                 except:
-                    if DEBUG:
-                        print("Failed to parse metric info from client (failed to convert metric value to float) " + str(client_address) + ": " + str(metric_raw_info))
+                    print("WARN: Failed to parse metric info from client (failed to convert metric value to float) " + str(client_address) + ": " + str(metric_raw_info))
                     return
                 try:
                     metric_timestamp = int(metric_raw_info.split(" ")[2])
                 except:
-                    if DEBUG:
-                        print("Failed to parse metric info from client (failed to convert timestamp value to int) " + str(client_address) + ": " + str(metric_raw_info))
+                    print("WARN: Failed to parse metric info from client (failed to convert timestamp value to int) " + str(client_address) + ": " + str(metric_raw_info))
                     return
     
             else:
-                if DEBUG:
-                    print("Failed to parse metric info from client (raw message contains more or less than two spaces) " + str(client_address) + ": " + str(metric_raw_info))
+                print("WARN: Failed to parse metric info from client (raw message contains more or less than two spaces) " + str(client_address) + ": " + str(metric_raw_info))
                 return
     
             self.anomaly_detector({"metric_family_hierarchy" : metric_family_hierarchy, "metric_family": metric_family, "metric_item": metric_item, "metric_name": metric_name, "metric_value": metric_value, "metric_timestamp": metric_timestamp}, client_address)
@@ -505,7 +502,6 @@ class MetricsRealtimeAnalyzer:
             if proto == "TCP":
                 # become a server socket
                 serversocket.listen(connections_backlog)
-                # serversocket.settimeout(1.0)
                 serversocket.settimeout(None)
                 
                 while True:
@@ -513,7 +509,6 @@ class MetricsRealtimeAnalyzer:
                     try:
                         # accept connections from outside
                         (clientsocket, address) = serversocket.accept()
-                        self._metrics_received = self._metrics_received + 1
                         ct = threading.Thread(target=self.tcp_client_handler, args=[clientsocket, address])
                         ct.start()
                     except socket.timeout:
@@ -523,7 +518,6 @@ class MetricsRealtimeAnalyzer:
                     client_address = "NONE"
                     try:
                         metric_line, client_address = serversocket.recvfrom(1024)
-                        self._metrics_received = self._metrics_received + 1
                         ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
                         ct.start()
                     except Exception as ex:
