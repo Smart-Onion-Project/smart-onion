@@ -5,11 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10; - Added configured limit for the number of models that the metrics analyzer will be allowed to keep in memory.&#10; &#10;metric_analyzer.py:&#10; - Added code to follow the limit set in the config">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -465,20 +463,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00074" summary="tinyurl.py:&#10;- Switched to &quot;paste&quot; instead of gunicorn">
-      <created>1551726162076</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1551726162076</updated>
-    </task>
-    <task id="LOCAL-00075" summary="tinyurl.py:&#10;- Removed extra keyword &quot;timeout&quot;">
-      <created>1551728057367</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1551728057367</updated>
-    </task>
     <task id="LOCAL-00076" summary="tinyurl.py:&#10;- Switched to proxy mode (instead of redirector)">
       <created>1551767644579</created>
       <option name="number" value="00076" />
@@ -808,7 +792,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553776242267</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="metric_analyzer.py:&#10; - Calculating the number of metrics received vs. processed successfully differently now.&#10; - Removed the DEBUG dependency for all warning messages">
+      <created>1553786055969</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1553786055969</updated>
+    </task>
+    <task id="LOCAL-00124" summary="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream.">
+      <created>1553788384872</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1553788384873</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TodoView">
@@ -822,6 +820,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16086498" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -883,8 +882,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="timer.py:&#10; - Commented out two logging commands that caused excessive logging" />
-    <MESSAGE value="timer.py, metric_collector.py:&#10; - Logging every sleep" />
     <MESSAGE value="timer.py, metric_collector.py:&#10; - Logging the data that arrives from Kafka - DEBUG" />
     <MESSAGE value="metric_collector.py:&#10; - Added log message that indicates that the kafka consumer thread is loading" />
     <MESSAGE value="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX." />
@@ -908,7 +905,9 @@
     <MESSAGE value="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
     <MESSAGE value="configurator.py:&#10; - Due to performance issues on the server changed the number of poller threads per CPU to 3 (used to be 10)&#10; - Due to performance issues on the server lowered the sampling frequency to once every 10 minutes&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the likelihood calc save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
     <MESSAGE value="configurator.py:&#10; - Added configured limit for the number of models that the metrics analyzer will be allowed to keep in memory.&#10; &#10;metric_analyzer.py:&#10; - Added code to follow the limit set in the config" />
-    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10; - Added configured limit for the number of models that the metrics analyzer will be allowed to keep in memory.&#10; &#10;metric_analyzer.py:&#10; - Added code to follow the limit set in the config" />
+    <MESSAGE value="metric_analyzer.py:&#10; - Calculating the number of metrics received vs. processed successfully differently now.&#10; - Removed the DEBUG dependency for all warning messages" />
+    <MESSAGE value="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream." />
+    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
