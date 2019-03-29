@@ -262,6 +262,7 @@ class MetricsRealtimeAnalyzer:
                 models_number_below_configured_limit = False
                 if (time.time() - self._last_logged_messsage_about_too_many_models) > self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages"]:
                     print("WARN: Currently the number of models/anomaly_likelihood_calculators loaded is exceeds the configured quota. CANNOT CREATE NEW MODELS.")
+                    self._last_logged_messsage_about_too_many_models = time.time()
 
             if not metric["metric_name"] in self.models:
                 create_model_thread_lock.acquire()
