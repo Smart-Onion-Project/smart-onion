@@ -24,7 +24,6 @@ from elasticsearch import Elasticsearch
 import re
 import os
 import statsd
-import dateutil.parser
 import editdistance
 import nltk.metrics
 from PIL import ImageFont
@@ -41,6 +40,7 @@ import threading
 import uuid
 import multiprocessing
 import random
+import postgresql
 
 
 DEBUG = False
@@ -381,7 +381,13 @@ class MetricsCollector:
         self._field_query_requests_received = 0
         self._discovery_requests_received = 0
         self._discovery_requests_processed_successfully = 0
-
+        self._metric_item_element_max_size = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_max_length"]
+        self._tokenizer_db_type = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbtype"]
+        self._tokenizer_db_port = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbport"]
+        self._tokenizer_db_host = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbhost"]
+        self._tokenizer_db_name = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbname"]
+        self._tokenizer_db_user = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbuser"]
+        self._tokenizer_db_password = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbpassword"]
 
     def _route(self):
         self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
@@ -614,6 +620,44 @@ class MetricsCollector:
 
         return res_str
 
+    def resolve_query_args_in_metric_name(self, base_64_used, metric_name, query_base):
+        with postgresql.open('pq://smart_onion_metric_collector:vindeta11@localhost:5432/smart_onion_metric_collector') as tokenizer_db_conn:
+            for i in range(1, 10):
+                if "{{#arg" + str(i) + "}}" in str(query_base):
+                    arg = request.query["arg" + str(i)]
+
+                    if len(arg) > self._metric_item_element_max_size:
+                        # Tokenizing the element in the DB:
+                        element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key = '" + arg + "'")
+                        element_token = element_token_query()
+                        if len(element_token) == 0:
+                            # If the token was not found - creating new one and saving it to the DB
+                            element_token = [str(uuid.uuid4())]
+                            try:
+                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key) values ('" + element_token[0] + "', '" + arg + "')")
+                                set_token()
+                            except:
+                                # Perhaps another thread preceded us and created it already?
+                                element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key = '" + arg + "'")
+                                element_token = element_token_query()
+                                if len(element_token) == 0:
+                                    # If we couldn't set the token nor get it... exception!
+                                    raise Exception("ERROR: Could not tokenize the argument via the tokenizer DB.")
+
+                    arg = element_token[0]
+
+                    if len(str(arg).strip()) != 0:
+                        if base_64_used:
+                            query_base = query_base.replace("{{#arg" + str(i) + "}}",
+                                                            base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
+                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                        else:
+                            query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                else:
+                    break
+        return metric_name, query_base
+
     def fieldQuery(self, queryname):
         self._field_query_requests_received = self._field_query_requests_received + 1
         query_details = self.queries[queryname]
@@ -626,18 +670,7 @@ class MetricsCollector:
         query_index = query_details["index_pattern"].replace("%{today}", now.strftime("%Y.%m.%d")).replace("%{yesterday}", yesterday.strftime("%Y.%m.%d"))
         query_base = query_details["query"].replace("{{#query_name}}", queryname)
         base_64_used = query_details["base_64_used"]
-        for i in range(1, 10):
-            if "{{#arg" + str(i) + "}}" in str(query_base):
-                arg = request.query["arg" + str(i)]
-                if len(str(arg).strip()) != 0:
-                    if base_64_used:
-                        query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
-                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
-                    else:
-                        query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
-                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
-            else:
-                break
+        metric_name, query_base = self.resolve_query_args_in_metric_name(base_64_used, metric_name, query_base)
 
 
         query_string = "(" + query_base + ") AND @timestamp:[" + time_range + "]"
@@ -649,6 +682,7 @@ class MetricsCollector:
                     }
                 }
 
+        raw_res = None
         try:
             res = self.es.search(
                 index=query_index,
@@ -695,18 +729,8 @@ class MetricsCollector:
         if "list_order" in query_details and (query_details["list_order"] == "asc" or query_details["list_order"] == "asc"):
             list_order = query_details["list_order"]
 
-        for i in range(1, 10):
-            if "{{#arg" + str(i) + "}}" in str(query_list_to_test_similarity_to):
-                arg = request.query["arg" + str(i)]
-                if len(str(arg).strip()) != 0:
-                    if base_64_used:
-                        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
-                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
-                    else:
-                        query_list_to_test_similarity_to = query_list_to_test_similarity_to.replace("{{#arg" + str(i) + "}}", arg)
-                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
-            else:
-                break
+        metric_name, query_base = self.resolve_query_args_in_metric_name(base_64_used, metric_name,
+                                                                         query_list_to_test_similarity_to)
 
         query_list_to_test_similarity_to_query_body = {
             "size": 0,
@@ -815,18 +839,7 @@ class MetricsCollector:
         if "count_unique_values_in" in query_details:
             count_unique_values_in = query_details["count_unique_values_in"]
 
-        for i in range(1, 10):
-            if "{{#arg" + str(i) + "}}" in str(query_base):
-                arg = request.query["arg" + str(i)]
-                if len(str(arg).strip()) != 0:
-                    if base_64_used:
-                        query_base = query_base.replace("{{#arg" + str(i) + "}}", base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
-                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
-                    else:
-                        query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
-                        metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
-            else:
-                break
+        metric_name, query_base = self.resolve_query_args_in_metric_name(base_64_used, metric_name, query_base)
 
         query_string = "(" + query_base + ") AND @timestamp:[" + time_range + "]"
         query_body = {
