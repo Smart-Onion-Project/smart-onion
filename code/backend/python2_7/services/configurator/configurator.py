@@ -93,6 +93,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models": 400,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name": "metrics",
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages": 3600,
+        "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic": "metric-analyzer-detected-anomalies",
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-port": 9003,
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-protocol": "http",

@@ -83,6 +83,16 @@ class MetricsRealtimeAnalyzer:
         self._route()
         self._config_copy = config_copy
         self._last_logged_messsage_about_too_many_models = 0
+        self._kafka_client_id = "SmartOnionMetricsAnalyzerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
+        self._kafka_producer = None
+        while self._kafka_producer is None:
+            try:
+                self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
+            except Exception as ex:
+                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...")
+                time.sleep(10)
 
     def _route(self):
         self._app.route('/ping', method="GET", callback=self._ping)
@@ -106,12 +116,23 @@ class MetricsRealtimeAnalyzer:
         }
 
     def report_anomaly(self, metric, anomaly_info):
-        res = urllib.urlopen(url=self.alerter_url, data={
+        anomaly_report = {
             "metric": metric,
             "reporter": "metrics_analyzer",
             "meta_data": anomaly_info
-        }, context={'Content-Type': 'application/json'}).read().decode('utf-8')
+        }
+        try:
+            res = urllib.urlopen(url=self.alerter_url, data=anomaly_report, context={'Content-Type': 'application/json'}).read().decode('utf-8')
+            if res is None:
+                res = "None"
+        except Exception as ex:
+            print("WARN: Failed to report the following anomaly to the alerter service directly due to the follwing exception: " + str(ex) + ". Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report))
 
+        try:
+            self._kafka_producer.send(topic=self._reported_anomalies_kafka_topic, value=json.dumps(anomaly_report).encode('utf-8'))
+            print("INFO: Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report))
+        except Exception as ex:
+            print("WARN: Failed to report the following anomaly to Kafka due to the follwing exception: " + str(ex) + ". These are the anomaly details: " + json.dumps(anomaly_report))
 
     def get_save_path(self, metric, path_element="model"):
         """
@@ -445,8 +466,6 @@ class MetricsRealtimeAnalyzer:
             anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
 
         self.alerter_url = alerter_url
-        self._kafka_client_id = "SmartOnionMetricsAnalyzerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
-        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
 
         kafka_consumer = None
