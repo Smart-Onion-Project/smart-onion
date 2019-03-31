@@ -3,6 +3,7 @@
 systemctl daemon-reload
 /opt/smart-onion/resources/test-scripts/test_services_status.sh stop
 cd /opt/smart-onion
+git stash
 git pull
 systemctl daemon-reload
 systemctl start smart-onion-configurator
