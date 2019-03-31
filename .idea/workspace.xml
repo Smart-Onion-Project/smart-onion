@@ -5,15 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metric_analyzer.py:&#10; - The message about exceeding the models quota repeated all the time. Fixed">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10; - Added configuration for a kafka topic that will be used for sending the anomaly reports by the metrics analyzer&#10;&#10;metric_analyzer.py:&#10; - Added code for reporting anomalies found in metrics to Kafka as well as to the alerter. This will allow other services to handle other aspects of the alerts and at least for now will help me debug the service.\&#10;&#10;metrics_collector.py, timer.py:&#10; - Added extra info to the ping result to help detect problems in the service.&#10; &#10;test_service_status.sh:&#10; - Added the infrastructure services (kafka, zookeeper, logstash)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,10 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9690">
+            <state relative-caret-position="-478">
               <caret line="510" column="23" selection-start-line="510" selection-start-column="23" selection-end-line="510" selection-end-column="23" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
@@ -80,11 +76,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
               <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -489,13 +494,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00087" summary="configurator.py:&#10; - Added the kafka topic used as a config&#10;timer.py:&#10; - Added some informational and debug messages">
-      <created>1553518878724</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1553518878724</updated>
-    </task>
     <task id="LOCAL-00088" summary="so-update:&#10; - Now launching the configurator and the metrics-collector before all the rest just to make sure they start in the proper order until the code for waiting for these services is complete.">
       <created>1553519185248</created>
       <option name="number" value="00088" />
@@ -832,7 +830,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553834047034</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="configurator.py:&#10; - Added configuration for a kafka topic that will be used for sending the anomaly reports by the metrics analyzer&#10;&#10;metric_analyzer.py:&#10; - Added code for reporting anomalies found in metrics to Kafka as well as to the alerter. This will allow other services to handle other aspects of the alerts and at least for now will help me debug the service.\&#10;&#10;metrics_collector.py, timer.py:&#10; - Added extra info to the ping result to help detect problems in the service.&#10; &#10;test_service_status.sh:&#10; - Added the infrastructure services (kafka, zookeeper, logstash)">
+      <created>1554024393654</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1554024393654</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TodoView">
@@ -907,7 +912,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_collector.py:&#10; - Now launching the GC thread." />
     <MESSAGE value="Added ping method for all services (including the timer and metric analyzer services)" />
     <MESSAGE value="Fixed the config to match the status at the beta site" />
     <MESSAGE value="Fixed an issue with Gunicorn that throws an error about an unrecognized parameter" />
@@ -932,7 +936,8 @@
     <MESSAGE value="metric_analyzer.py:&#10; - Configured the unit file to load the metric-analyzer only after kafka is loaded" />
     <MESSAGE value="metric_analyzer.py:&#10; - Accidently used the consumer record as-is without extracting the value from it first" />
     <MESSAGE value="metric_analyzer.py:&#10; - The message about exceeding the models quota repeated all the time. Fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="metric_analyzer.py:&#10; - The message about exceeding the models quota repeated all the time. Fixed" />
+    <MESSAGE value="configurator.py:&#10; - Added configuration for a kafka topic that will be used for sending the anomaly reports by the metrics analyzer&#10;&#10;metric_analyzer.py:&#10; - Added code for reporting anomalies found in metrics to Kafka as well as to the alerter. This will allow other services to handle other aspects of the alerts and at least for now will help me debug the service.\&#10;&#10;metrics_collector.py, timer.py:&#10; - Added extra info to the ping result to help detect problems in the service.&#10; &#10;test_service_status.sh:&#10; - Added the infrastructure services (kafka, zookeeper, logstash)" />
+    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10; - Added configuration for a kafka topic that will be used for sending the anomaly reports by the metrics analyzer&#10;&#10;metric_analyzer.py:&#10; - Added code for reporting anomalies found in metrics to Kafka as well as to the alerter. This will allow other services to handle other aspects of the alerts and at least for now will help me debug the service.\&#10;&#10;metrics_collector.py, timer.py:&#10; - Added extra info to the ping result to help detect problems in the service.&#10; &#10;test_service_status.sh:&#10; - Added the infrastructure services (kafka, zookeeper, logstash)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1595,13 +1600,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python3.5_venv/lib/python3.5/site-packages/kafka/consumer/group.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="698">
@@ -1631,16 +1629,6 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14">
           <caret line="752" column="4" selection-start-line="752" selection-start-column="4" selection-end-line="752" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9690">
-          <caret line="510" column="23" selection-start-line="510" selection-start-column="23" selection-end-line="510" selection-end-column="23" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1712,6 +1700,23 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-478">
+          <caret line="510" column="23" selection-start-line="510" selection-start-column="23" selection-end-line="510" selection-end-column="23" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
