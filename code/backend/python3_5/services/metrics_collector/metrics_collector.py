@@ -644,16 +644,14 @@ class MetricsCollector:
                                     # If we couldn't set the token nor get it... exception!
                                     raise Exception("ERROR: Could not tokenize the argument via the tokenizer DB.")
 
-                    arg = element_token[0]
-
                     if len(str(arg).strip()) != 0:
                         if base_64_used:
                             query_base = query_base.replace("{{#arg" + str(i) + "}}",
                                                             base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
-                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0])
                         else:
                             query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
-                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
+                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0])
                 else:
                     break
         return metric_name, query_base
