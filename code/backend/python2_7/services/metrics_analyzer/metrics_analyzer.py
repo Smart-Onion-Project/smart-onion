@@ -479,14 +479,6 @@ class MetricsRealtimeAnalyzer:
                     "DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
                 time.sleep(10)
 
-        # # create an INET, STREAMing socket
-        # if proto == "UDP":
-        #     serversocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # elif proto == "TCP":
-        #     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # else:
-        #     raise Exception("The protocol specified is not recognized. Use either TCP or UDP (upper-case only)")
-
         # launch the auto-save thread
         if not models_params_base_path:
             self.models_params_base_path = os.path.join(dirname(__file__), "data_model_params")
@@ -508,59 +500,6 @@ class MetricsRealtimeAnalyzer:
 
         for metric in kafka_consumer:
             self.parse_metric_message(metric_raw_info=metric.value)
-        # # bind the socket to a public host, and a well-known port
-        # print("Starting listenter on " + str(ip) + ":" + str(port) + "/" + str(
-        #     proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(
-        #     connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
-        # serversocket.bind((ip, port))
-        # print("Listening on " + str(ip) + ":" + str(port) + "/" + str(proto) + " (if the IP is empty that means all IPs) with connection backlog set to " + str(connections_backlog) + " and " + str(save_interval) + "s auto-save interval")
-        #
-        # clientsocket = None
-        # try:
-        #     if proto == "TCP":
-        #         # become a server socket
-        #         serversocket.listen(connections_backlog)
-        #         serversocket.settimeout(None)
-        #
-        #         while True:
-        #             address = "NONE"
-        #             try:
-        #                 # accept connections from outside
-        #                 (clientsocket, address) = serversocket.accept()
-        #                 cur_metric_line = ""
-        #                 while True:
-        #                     buf_size = 4096
-        #                     buf = clientsocket.recv(buf_size)
-        #                     for char in buf.encode():
-        #                         if char != "\n":
-        #                             cur_metric_line = cur_metric_line + char
-        #                         else:
-        #                             if cur_metric_line and len(cur_metric_line) > 0 and len(cur_metric_line.split(" ")) == 3:
-        #                                 if DEBUG:
-        #                                     print("DEBUG: Launching a thread for handling the metric received: " + base64.b64encode(cur_metric_line))
-        #                                 ct = threading.Thread(target=self.parse_metric_message, args=[cur_metric_line, address])
-        #                                 ct.start()
-        #                                 cur_metric_line = ""
-        #                             else:
-        #                                 print("WARN: The following metric line (b64) ends with a \\n but does NOT have exactly two spaces in it so it cannot be a valid metric (SKIPPED): " + base64.b64encode(cur_metric_line))
-        #                                 cur_metric_line = ""
-        #
-        #             except Exception as ex:
-        #                 print("WARN: TCP connection from " + str(address) + " ended due to the following exception: " + str(ex))
-        #     else:
-        #         while True:
-        #             client_address = "NONE"
-        #             try:
-        #                 metric_line, client_address = serversocket.recvfrom(1024)
-        #                 ct = threading.Thread(target=self.parse_metric_message, args=[metric_line, client_address])
-        #                 ct.start()
-        #             except Exception as ex:
-        #                 print("WARN: UDP connection from " + str(client_address) + " threw the following exception: " + str(ex))
-        #
-        # except KeyboardInterrupt:
-        #     self.EXIT_ALL_THREADS_FLAG = True
-        #     if clientsocket:
-        #         clientsocket.close()
 
 
 ip = ''
@@ -589,6 +528,7 @@ except:
     configurator_port = 9003
     configurator_proto = "http"
 
+config_copy = None
 alerter_url = None
 ping_listening_host = None
 ping_listening_port = None
@@ -606,13 +546,9 @@ while alerter_url is None:
         save_interval = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.save_interval"])
         ping_listening_host = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-listening-host"]
         ping_listening_port = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.ping-listening-port"]
-        configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
-        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.alerter.*"
-        configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
-        alerter_info = json.loads(configurator_response)
-        alerter_url = alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(alerter_info["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
-    except:
-        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for alerter service info)...")
+        alerter_url = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
+    except Exception as ex:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for alerter service info)... (Exception: " + str(ex) + ")")
         time.sleep(10)
 
 
