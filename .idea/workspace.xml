@@ -5,10 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py:&#10; - prevented the service from processing its own output again">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,15 +23,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="359" column="25" selection-start-line="359" selection-start-column="25" selection-end-line="359" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -47,7 +39,16 @@
         <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="38">
-              <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
+              <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -74,28 +75,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
+        <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="38">
+              <caret line="2" column="112" selection-start-line="2" selection-start-column="112" selection-end-line="2" selection-end-column="112" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+        <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+            <state relative-caret-position="38">
+              <caret line="2" column="74" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -199,20 +191,20 @@
         <option value="$PROJECT_DIR$/resources/classify_queries/classify_queries.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/set_permissions.sh" />
         <option value="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" />
-        <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-tiny_url.service" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
-        <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
+        <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
+        <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
+        <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
       </list>
     </option>
   </component>
@@ -480,20 +472,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00097" summary="timer.py, metric_collector.py:&#10; - Logging the data that arrives from Kafka - DEBUG">
-      <created>1553595624385</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1553595624386</updated>
-    </task>
-    <task id="LOCAL-00098" summary="metric_collector.py:&#10; - Added log message that indicates that the kafka consumer thread is loading">
-      <created>1553604461099</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1553604461100</updated>
     </task>
     <task id="LOCAL-00099" summary="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX.">
       <created>1553604999580</created>
@@ -824,7 +802,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554106933741</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="metrics_collector.py:&#10; - Added timestamp column to the tokenizer table to allow for building a garbage collector later that will remove old entries">
+      <created>1554108414786</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1554108414786</updated>
+    </task>
+    <task id="LOCAL-00147" summary="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list.">
+      <created>1554110143494</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1554110143494</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TodoView">
@@ -899,8 +891,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics-collector.py:&#10; - Fixed an issue that caused the URLs that arrived as a response from the discover method contained raw URLs as argX parameters (not urlencoded)&#10; - Fixed an issue with the numbers of the argX parameters that was sometimes out of sequence." />
-    <MESSAGE value="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
     <MESSAGE value="configurator.py:&#10; - Due to performance issues on the server changed the number of poller threads per CPU to 3 (used to be 10)&#10; - Due to performance issues on the server lowered the sampling frequency to once every 10 minutes&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the likelihood calc save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
     <MESSAGE value="configurator.py:&#10; - Added configured limit for the number of models that the metrics analyzer will be allowed to keep in memory.&#10; &#10;metric_analyzer.py:&#10; - Added code to follow the limit set in the config" />
     <MESSAGE value="metric_analyzer.py:&#10; - Calculating the number of metrics received vs. processed successfully differently now.&#10; - Removed the DEBUG dependency for all warning messages" />
@@ -924,7 +914,9 @@
     <MESSAGE value="anomaly_detector:&#10; - Added information about the anomalies reported in the logs and in the /ping result&#10;&#10;so-clean_all:&#10; - Added informational messages&#10;&#10;so-stat:&#10; - Added script for testing all the system services status" />
     <MESSAGE value="timer.py:&#10; - Added more info to the logs and the /ping method.&#10;&#10;test_services_status.sh&#10; - Added --quiet mode&#10;&#10;so-clean.sh, so-update:&#10; - Using the quiet mode of test_services_status" />
     <MESSAGE value="metrics_analyzer.py:&#10; - prevented the service from processing its own output again" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py:&#10; - prevented the service from processing its own output again" />
+    <MESSAGE value="metrics_collector.py:&#10; - Added timestamp column to the tokenizer table to allow for building a garbage collector later that will remove old entries" />
+    <MESSAGE value="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list." />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1599,13 +1591,6 @@ hashlib.algorithms_available</expression-string>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../python3.5_venv/lib/python3.5/site-packages/md5hash/md5hash.py" />
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.5/urllib/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1623,13 +1608,6 @@ hashlib.algorithms_available</expression-string>
           <folding>
             <element signature="e#21#31#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="97" selection-start-line="2" selection-start-column="76" selection-end-line="2" selection-end-column="97" />
         </state>
       </provider>
     </entry>
@@ -1670,20 +1648,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -1691,27 +1655,6 @@ hashlib.algorithms_available</expression-string>
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1723,6 +1666,55 @@ hashlib.algorithms_available</expression-string>
             <element signature="e#923#933#0" expanded="true" />
             <element signature="e#1656#16422#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="113" lean-forward="true" selection-start-line="2" selection-start-column="113" selection-end-line="2" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-timer.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="112" selection-start-line="2" selection-start-column="112" selection-end-line="2" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="74" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
         </state>
       </provider>
     </entry>
