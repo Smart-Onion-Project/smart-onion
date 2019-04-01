@@ -8,11 +8,21 @@ COMMAND='status'
 if [ "$#" -gt 0 ]; then
   COMMAND=$1
 fi
+if [ "$2" == "--quiet" ]; then
+  QUIET=1
+else
+  QUIET=0
+fi
 
 for svc_unit in $ALL_SERVICES; do
   SERVICE_NAME=`/usr/bin/basename $svc_unit | sed -s 's/\.service//g'`
-  echo "Getting/running $COMMAND of $SERVICE_NAME..."
-  systemctl --no-pager $COMMAND $SERVICE_NAME | grep Active
-  systemctl --no-pager status $SERVICE_NAME | tail -n1
-  echo
+  if [ "$QUIET" == 0 ]; then
+    echo "Getting/running $COMMAND of $SERVICE_NAME..."
+    systemctl --no-pager $COMMAND $SERVICE_NAME | grep Active
+    systemctl --no-pager status $SERVICE_NAME | tail -n1
+    echo
+  else
+    echo " - $SERVICE_NAME"
+    RES1=`systemctl --no-pager $COMMAND $SERVICE_NAME`
+  fi
 done
