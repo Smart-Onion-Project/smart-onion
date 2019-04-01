@@ -462,18 +462,13 @@ class MetricsCollector:
                         if sampling_tasks_list[url]["TTL"] == 0:
                             tombstoned_urls.append(url)
 
-                self._sampling_tasks_threads_sync_lock.acquire()
-                for url in tombstoned_urls:
-                    for sampling_tasks_list in self._sampling_tasks:
-                        if url in sampling_tasks_list.keys():
-                            del sampling_tasks_list[url]
+                with self._sampling_tasks_threads_sync_lock:
+                    for url in tombstoned_urls:
+                        for sampling_tasks_list in self._sampling_tasks:
+                            if url in sampling_tasks_list.keys():
+                                del sampling_tasks_list[url]
             except Exception as ex:
                 print("WARN: The following unexpected exception has been thrown during the garbage collection of the sampling tasks lists items: " + str(ex))
-            finally:
-                try:
-                    self._sampling_tasks_threads_sync_lock.release()
-                except:
-                    pass
 
             self._is_sampling_tasks_gc_running = False
 
@@ -486,36 +481,26 @@ class MetricsCollector:
         time.sleep(sleep_time)
 
         while True:
-            is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
-
-            if is_sampling_tasks_gc_running:
-                self._sampling_tasks_threads_sync_lock.acquire()
-
-            try:
-                if last_ran > 0 and int(time.time() - last_ran) > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000):
-                    print("WARN[" + thread_id + "]: Samples are lagging in " + str(time.time() - last_ran) + " seconds. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Elasticsearch's performance or add more instances of this service on other servers.")
-
-                last_ran = time.time()
-
-                # Get a task from the list and complete it.
-                for task_url in tasks_list.keys():
-                    if tasks_list[task_url]["TTL"] > 0:
-                        try:
-                            print("DEBUG[" + thread_id + "]: Calling '" + task_url + "'...")
-                            urllib_req.urlopen(task_url)
-                            tasks_list[task_url]["TTL"] = tasks_list[task_url]["TTL"] - 1
-                        except Exception as ex:
-                            print("WARN[" + thread_id + "]: Failed to query the URL '" + task_url + "' due to the following exception: " + str(ex))
-
-            except Exception as ex:
-                print("WARN[" + thread_id + "]: The following unexpected exception has been thrown while handling sampling tasks: " + str(ex))
-
-            finally:
+            with self._sampling_tasks_threads_sync_lock:
                 try:
-                    if is_sampling_tasks_gc_running:
-                        self._sampling_tasks_threads_sync_lock.release()
-                except:
-                    pass
+                    if last_ran > 0 and int(time.time() - last_ran) > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000):
+                        print("WARN[" + thread_id + "]: Samples are lagging in " + str(time.time() - last_ran) + " seconds. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Elasticsearch's performance or add more instances of this service on other servers.")
+
+                    last_ran = time.time()
+
+                    # Get a task from the list and complete it.
+                    tmp_list = tasks_list.copy()
+                    for task_url in tasks_list.keys():
+                        if tasks_list[task_url]["TTL"] > 0:
+                            try:
+                                print("DEBUG[" + thread_id + "]: Calling '" + task_url + "'...")
+                                urllib_req.urlopen(task_url)
+                                tasks_list[task_url]["TTL"] = tasks_list[task_url]["TTL"] - 1
+                            except Exception as ex:
+                                print("WARN[" + thread_id + "]: Failed to query the URL '" + task_url + "' due to the following exception: " + str(ex))
+
+                except Exception as ex:
+                    print("WARN[" + thread_id + "]: The following unexpected exception has been thrown while handling sampling tasks: " + str(ex))
 
             sleep_time = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000.0
             print("INFO[" + thread_id + "]: Going to sleep for " + str(sleep_time) + " seconds...")
@@ -539,31 +524,24 @@ class MetricsCollector:
                 for sampling_task in sampling_tasks_batch["batch"]:
                     is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
 
-                    if is_sampling_tasks_gc_running:
-                        self._sampling_tasks_threads_sync_lock.acquire()
-
-                    try:
-                        # If the task exists in the current object's list - reset its TTL
-                        # otherwise - add it with the default TTL
-                        if sampling_task["URL"] in self._sampling_tasks_index.keys():
-                            self._sampling_tasks[self._sampling_tasks_index[sampling_task["URL"]]["list_index"]][sampling_task["URL"]]["TTL"] = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl"]
-                        else:
-                            if last_task_list_appended + 1 >= len(self._sampling_tasks):
-                                last_task_list_appended = -1
-
-                            self._sampling_tasks[last_task_list_appended + 1][sampling_task["URL"]] = {
-                                "TTL": self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl"],
-                                "timestamp": time.time()
-                            }
-
-                            last_task_list_appended = last_task_list_appended + 1
-                    except Exception as ex:
-                        print("WARN: The following unexpected exception has been thrown while processing tasks from Kafka: " + str(ex))
-                    finally:
+                    with self._sampling_tasks_threads_sync_lock:
                         try:
-                            self._sampling_tasks_threads_sync_lock.release()
-                        except:
-                            pass
+                            # If the task exists in the current object's list - reset its TTL
+                            # otherwise - add it with the default TTL
+                            if sampling_task["URL"] in self._sampling_tasks_index.keys():
+                                self._sampling_tasks[self._sampling_tasks_index[sampling_task["URL"]]["list_index"]][sampling_task["URL"]]["TTL"] = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl"]
+                            else:
+                                if last_task_list_appended + 1 >= len(self._sampling_tasks):
+                                    last_task_list_appended = -1
+
+                                self._sampling_tasks[last_task_list_appended + 1][sampling_task["URL"]] = {
+                                    "TTL": self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.task_base_ttl"],
+                                    "timestamp": time.time()
+                                }
+
+                                last_task_list_appended = last_task_list_appended + 1
+                        except Exception as ex:
+                            print("WARN: The following unexpected exception has been thrown while processing tasks from Kafka: " + str(ex))
 
         except Exception as ex:
             print("ERROR: An unexpected exception (" + str(ex) + ") has been thrown while consuming sampling tasks from the Kafka server.")
