@@ -97,6 +97,7 @@ class AnomalyDetector:
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
+        self._anomalies_reported = 0
 
     def _route(self):
         self._app.route('/smart-onion/discover-metrics/<metric_pattern>', method="GET", callback=self.discover_metrics)
@@ -118,10 +119,15 @@ class AnomalyDetector:
             "response": "PONG",
             "file": __file__,
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
-            "uptime": time.time() - self._time_loaded
+            "uptime": time.time() - self._time_loaded,
+            "service_specific_info": {
+                "anomalies_reported": self._anomalies_reported
+            }
         }
 
     def report_anomaly(self, metric, anomaly_info):
+        self._anomalies_reported = self._anomalies_reported + 1
+        print("INFO: The following anomaly reported regarding metric " + str(metric) + ": " + json.dumps(anomaly_info))
         pass
 
     def normalize_data(self, raw_data):

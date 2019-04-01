@@ -5,10 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="so-clean_all.sh:&#10; - Deleting the topics instead of just purging them">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="anomaly:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD">
+      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,20 +36,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="622" column="73" selection-start-line="622" selection-start-column="62" selection-end-line="622" selection-end-column="73" />
+            <state relative-caret-position="364">
+              <caret line="414" column="38" selection-start-line="414" selection-start-column="12" selection-end-line="414" selection-end-column="38" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="120" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
             </state>
           </provider>
         </entry>
@@ -83,19 +76,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="171">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" selection-start-line="2" selection-end-line="4" />
+            <state relative-caret-position="342">
+              <caret line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -103,22 +105,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2071">
-              <caret line="120" column="53" selection-start-line="120" selection-start-column="53" selection-end-line="120" selection-end-column="53" />
+            <state relative-caret-position="551">
+              <caret line="131" selection-start-line="131" selection-end-line="131" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1102">
-              <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
-              <folding>
-                <element signature="e#697#748#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,9 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NAME</find>
-      <find>Calling {#NAME}</find>
-      <find>&lt;key&gt;web.page.regexp[{$SHORT_URL_HOST},{#URL}&amp;amp;comment=</find>
       <find>events_per_destination_ip</find>
       <find>&quot;interval_sec&quot;: 360</find>
       <find>tiny</find>
@@ -166,6 +153,9 @@
       <find>{{</find>
       <find>smart-onion.metrics.command_and_control.destination_ips_per_vhost.</find>
       <find>metric_name</find>
+      <find>kafk</find>
+      <find>produ</find>
+      <find>stats</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -214,15 +204,16 @@
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-tiny_url.service" />
         <option value="$PROJECT_DIR$/config/zbx_sampling_template.xml" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
       </list>
     </option>
@@ -491,20 +482,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00092" summary="timer.py:&#10; - Added code for waiting for the Kafka server to load&#10; &#10;smart-onion-timer.service:&#10; - Added requirement for the exact services order">
-      <created>1553529830595</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1553529830595</updated>
-    </task>
-    <task id="LOCAL-00093" summary="configurator.py:&#10; - Added two more settings for the sampling tasks handling&#10;&#10;timer.py:&#10; - Added unique kafka client id&#10; &#10;metrics_collector.py:&#10; - Added the code for collecting the tasks from Kafka and adding them to a pool of sampling tasks">
-      <created>1553585218935</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1553585218935</updated>
     </task>
     <task id="LOCAL-00094" summary="metrics_collector.py:&#10; - Preventing flooding of &quot;sampling is lagging&quot; messages when the lag is in less than a second.">
       <created>1553586193243</created>
@@ -835,7 +812,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554055533984</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Just updated permissions">
+      <created>1554055727652</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1554055727652</updated>
+    </task>
+    <task id="LOCAL-00142" summary="so-update:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD">
+      <created>1554063614654</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1554063614654</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TodoView">
@@ -849,13 +840,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.056434598" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2136076" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49472573" visible="true" weight="0.057017542" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49472573" visible="true" weight="0.057017542" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.82753164" weight="0.114035085" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.9003165" weight="0.2741228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -911,8 +901,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ALL SERVICES:&#10; - Added uptime to the ping result&#10; &#10;metrics_analyzer.py:&#10; - Added the number of metrics received and successfully processed to the ping result" />
-    <MESSAGE value="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result." />
     <MESSAGE value="metrics-analyzer.py:&#10; - Switched to &quot;debug&quot; mode" />
     <MESSAGE value="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it." />
     <MESSAGE value="metrics-analyzer.py:&#10; - Trying to disable the timeout on the socket to see if this will improve the service listening" />
@@ -936,7 +924,9 @@
     <MESSAGE value="metrics_collector.py:&#10; - Added first version of a tokenizing mechanism for tokenizing long metric elements to prevent file name too long errors.&#10;&#10;so-clean_all.sh&#10; - A script for cleaning the system from all the metrics, topics info, tasks, etc. (in the future also passwords) to prepare it for deployments" />
     <MESSAGE value="metrics_collector.py:&#10; -" />
     <MESSAGE value="so-clean_all.sh:&#10; - Deleting the topics instead of just purging them" />
-    <option name="LAST_COMMIT_MESSAGE" value="so-clean_all.sh:&#10; - Deleting the topics instead of just purging them" />
+    <MESSAGE value="Just updated permissions" />
+    <MESSAGE value="so-update:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD" />
+    <option name="LAST_COMMIT_MESSAGE" value="so-update:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1032,7 +1022,6 @@ hashlib.algorithms_available</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/homoglyphs_test/homoglyphs_test.py" />
     <entry file="file://$PROJECT_DIR$/code/frontend/ux/README.md" />
     <entry file="file://$PROJECT_DIR$/code/frontend/ux/games_items_info.md" />
     <entry file="file://$PROJECT_DIR$/code/frontend/ux/sample_ui.html" />
@@ -1646,16 +1635,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2071">
-          <caret line="120" column="53" selection-start-line="120" selection-start-column="53" selection-end-line="120" selection-end-column="53" />
-          <folding>
-            <element signature="e#922#936#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1102">
@@ -1669,34 +1648,10 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so_send_data">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-          <folding>
-            <element signature="e#847#858#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" selection-start-line="2" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -1714,20 +1669,61 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="622" column="73" selection-start-line="622" selection-start-column="62" selection-end-line="622" selection-end-column="73" />
+        <state relative-caret-position="364">
+          <caret line="414" column="38" selection-start-line="414" selection-start-column="12" selection-end-line="414" selection-end-column="38" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
+          <folding>
+            <element signature="e#922#936#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+          <folding>
+            <element signature="e#847#858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="120" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
+        <state relative-caret-position="475">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
         </state>
       </provider>
     </entry>
