@@ -634,7 +634,7 @@ class MetricsCollector:
                             # If the token was not found - creating new one and saving it to the DB
                             element_token = [str(uuid.uuid4())]
                             try:
-                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key) values ('" + element_token[0] + "', '" + arg + "')")
+                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key, timestamp) values ('" + element_token[0] + "', '" + arg + "', " + str(time.time()) + ")")
                                 set_token()
                             except:
                                 # Perhaps another thread preceded us and created it already?

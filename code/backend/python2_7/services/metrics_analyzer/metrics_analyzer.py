@@ -499,7 +499,9 @@ class MetricsRealtimeAnalyzer:
         autosave_thread.start()
 
         for metric in kafka_consumer:
-            self.parse_metric_message(metric_raw_info=metric.value)
+            # If this is an anomaly metric created by this service then there's no need to process it again...
+            if not str(metric.value).startswith(self.metrics_prefix):
+                self.parse_metric_message(metric_raw_info=metric.value)
 
 
 ip = ''
