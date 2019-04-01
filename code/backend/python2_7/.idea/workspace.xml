@@ -10,11 +10,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_analyzer.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_analyzer.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-timer.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-timer.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/test_services_status.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/test_services_status.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
-              <caret line="503" column="16" selection-start-line="503" selection-start-column="16" selection-end-line="503" selection-end-column="16" />
+              <caret line="503" column="154" selection-start-line="503" selection-start-column="154" selection-end-line="503" selection-end-column="154" />
               <folding>
                 <element signature="e#922#932#0" expanded="true" />
                 <element signature="e#1469#2480#0" />
@@ -557,7 +552,7 @@
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="503" column="16" selection-start-line="503" selection-start-column="16" selection-end-line="503" selection-end-column="16" />
+          <caret line="503" column="154" selection-start-line="503" selection-start-column="154" selection-end-line="503" selection-end-column="154" />
           <folding>
             <element signature="e#922#932#0" expanded="true" />
             <element signature="e#1469#2480#0" />
