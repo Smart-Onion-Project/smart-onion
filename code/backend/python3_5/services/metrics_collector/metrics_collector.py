@@ -625,6 +625,7 @@ class MetricsCollector:
             for i in range(1, 10):
                 if "{{#arg" + str(i) + "}}" in str(query_base):
                     arg = request.query["arg" + str(i)]
+                    metric_arg = request.query["arg" + str(i)]
 
                     if len(arg) > self._metric_item_element_max_size:
                         # Tokenizing the element in the DB:
@@ -636,6 +637,7 @@ class MetricsCollector:
                             try:
                                 set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key, timestamp) values ('" + element_token[0] + "', '" + arg + "', " + str(time.time()) + ")")
                                 set_token()
+                                metric_arg = element_token[0]
                             except:
                                 # Perhaps another thread preceded us and created it already?
                                 element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key = '" + arg + "'")
@@ -648,10 +650,10 @@ class MetricsCollector:
                         if base_64_used:
                             query_base = query_base.replace("{{#arg" + str(i) + "}}",
                                                             base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
-                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0])
+                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", metric_arg)
                         else:
                             query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
-                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0])
+                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", metric_arg)
                 else:
                     break
         return metric_name, query_base
