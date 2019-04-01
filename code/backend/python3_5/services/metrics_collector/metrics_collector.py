@@ -128,7 +128,12 @@ class Utils:
                     arg_no = 1
                     for key_idx in range(1, len(item.keys())):
                         if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
-                            cur_url = cur_url + "&arg" + str(arg_no) + "=" + urllib.parse.quote_plus(str(item[list(item.keys())[key_idx]]))
+                            if arg_no == 1:
+                                cur_url = cur_url + "?"
+                            else:
+                                cur_url = cur_url + "&"
+
+                            cur_url = cur_url + "arg" + str(arg_no) + "=" + urllib.parse.quote_plus(str(item[list(item.keys())[key_idx]]))
                             arg_no = arg_no + 1
 
                     # Translate the url to a tiny url
