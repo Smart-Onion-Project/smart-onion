@@ -5,11 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Fixed a null-ref error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,12 +26,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="636" selection-start-line="636" selection-end-line="636" />
+            <state relative-caret-position="711">
+              <caret line="663" column="48" selection-start-line="663" selection-start-column="48" selection-end-line="663" selection-end-column="48" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
                 <element signature="e#1656#16422#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="94" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -47,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state relative-caret-position="285">
+              <caret line="15" column="134" selection-start-line="15" selection-start-column="134" selection-end-line="15" selection-end-column="134" />
             </state>
           </provider>
         </entry>
@@ -198,12 +208,12 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-timer.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
       </list>
     </option>
@@ -472,20 +482,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00099" summary="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX.">
-      <created>1553604999580</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1553604999580</updated>
-    </task>
-    <task id="LOCAL-00100" summary="metric_collector.py:&#10; - Decoding the bytes from Kafka to string before using it. BUGFIX.">
-      <created>1553605724905</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1553605724905</updated>
     </task>
     <task id="LOCAL-00101" summary="metric_collector.py:&#10; - Now using the correct syntax to get the value from the kafka message">
       <created>1553606156907</created>
@@ -816,7 +812,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554110143494</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="metrics_analyzer.py:&#10; - Hopefully, realized why the service kept handling its own metrics and causing a loop. Hopefully - fixed it.">
+      <created>1554110857425</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1554110857425</updated>
+    </task>
+    <task id="LOCAL-00149" summary="metrics_collector.py:&#10; - Fixed a null-ref error">
+      <created>1554111932091</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1554111932091</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="TodoView">
@@ -830,6 +840,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2136076" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -891,8 +902,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configurator.py:&#10; - Due to performance issues on the server changed the number of poller threads per CPU to 3 (used to be 10)&#10; - Due to performance issues on the server lowered the sampling frequency to once every 10 minutes&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the likelihood calc save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
-    <MESSAGE value="configurator.py:&#10; - Added configured limit for the number of models that the metrics analyzer will be allowed to keep in memory.&#10; &#10;metric_analyzer.py:&#10; - Added code to follow the limit set in the config" />
     <MESSAGE value="metric_analyzer.py:&#10; - Calculating the number of metrics received vs. processed successfully differently now.&#10; - Removed the DEBUG dependency for all warning messages" />
     <MESSAGE value="metric_analyzer.py:&#10; - I found out that Logstash is sending the service multiple metrics in one go which exceeds the 4K buffer so in this version I try to get all the data from the network stream." />
     <MESSAGE value="metric_analyzer.py:&#10; - Used a broader exception handler to prevent the failure of the entire thread" />
@@ -916,7 +925,9 @@
     <MESSAGE value="metrics_analyzer.py:&#10; - prevented the service from processing its own output again" />
     <MESSAGE value="metrics_collector.py:&#10; - Added timestamp column to the tokenizer table to allow for building a garbage collector later that will remove old entries" />
     <MESSAGE value="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list." />
+    <MESSAGE value="metrics_analyzer.py:&#10; - Hopefully, realized why the service kept handling its own metrics and causing a loop. Hopefully - fixed it." />
+    <MESSAGE value="metrics_collector.py:&#10; - Fixed a null-ref error" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Fixed a null-ref error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1658,28 +1669,10 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="636" selection-start-line="636" selection-end-line="636" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-            <element signature="e#1656#16422#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1711,10 +1704,28 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="663" column="48" selection-start-line="663" selection-start-column="48" selection-end-line="663" selection-end-column="48" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+            <element signature="e#1656#16422#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="94" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state relative-caret-position="285">
+          <caret line="15" column="134" selection-start-line="15" selection-start-column="134" selection-end-line="15" selection-end-column="134" />
         </state>
       </provider>
     </entry>

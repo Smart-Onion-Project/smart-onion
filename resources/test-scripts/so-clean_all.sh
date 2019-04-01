@@ -14,6 +14,7 @@ systemctl start statsd
 sleep 2
 echo "Deleting all metrics in StatsD..."
 for g in `echo "gauges" | nc 127.0.0.1 8126 | sed 's/END//g' | sed "s/'/\"/g" | jq -r "keys[]"`; do echo "delgauges $g" | nc 127.0.0.1 8126; done
+systemctl restart statsd
 echo "Deleting all relevant topics in Kafka..."
 /opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metrics --delete
 /opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metric-collection-tasks --delete
