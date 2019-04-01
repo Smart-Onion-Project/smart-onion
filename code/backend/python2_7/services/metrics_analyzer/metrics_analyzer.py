@@ -501,6 +501,7 @@ class MetricsRealtimeAnalyzer:
         for metric in kafka_consumer:
             # If this is an anomaly metric created by this service then there's no need to process it again...
             if not str(metric.value).startswith(self.metrics_prefix):
+                print("DEBUG: Handling the following metric " + str(metric.value) + " since it doesn't start with the following prefix: " + self.metrics_prefix)
                 self.parse_metric_message(metric_raw_info=metric.value)
 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INFRA_SERVICES=`echo -e "zookeeper\nkafka-server\nlogstash_statsd2kafka\nlogstash_kafka2graphite\n"`
+INFRA_SERVICES=`echo -e "zookeeper\nkafka-server\nlogstash_statsd2kafka\nlogstash_kafka2graphite\ngraphite-carbon\ngraphite-api\nstatsd\n"`
 ALL_UNIT_FILES=`ls -1 /etc/systemd/system/smart-onion*.service`
 ALL_SERVICES="$INFRA_SERVICES $ALL_UNIT_FILES"
 COMMAND='status'

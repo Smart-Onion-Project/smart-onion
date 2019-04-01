@@ -1,6 +1,6 @@
 [Unit]
 Description=Smart-Onion Timer Service
-After=smart-onion-configurator.service smart-onion-metrics_collector.service kafka-server.service
+After=smart-onion-configurator.service smart-onion-metrics_collector.service kafka-server.service statsd.service
 
 [Service]
 Type=simple

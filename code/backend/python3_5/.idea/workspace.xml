@@ -9,6 +9,11 @@
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_analyzer.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_analyzer.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-metrics_collector.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-timer.service" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/unit-files/smart-onion-timer.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/test_services_status.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/test_services_status.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
