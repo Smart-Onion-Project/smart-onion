@@ -5,11 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="so-update.sh:&#10; - Added another command to start kafka because it seems to fail quite often after start for some reason.">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="queries.json:&#10; - Removed all base64 usage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="166" column="23" selection-start-line="166" selection-start-column="23" selection-end-line="166" selection-end-column="23" />
+            <state relative-caret-position="172">
+              <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -70,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="279" column="18" selection-start-line="279" selection-start-column="18" selection-end-line="279" selection-end-column="18" />
+            <state relative-caret-position="217">
+              <caret line="485" column="12" selection-start-line="485" selection-start-column="12" selection-end-line="485" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -133,9 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>discover_res</find>
-      <find>urllib</find>
-      <find>slee</find>
       <find>sleep(</find>
       <find>highest_similarity_to_any_top_accessed_tld_subdomains</find>
       <find>ascii</find>
@@ -159,10 +156,13 @@
       <find>produ</find>
       <find>stats</find>
       <find>x509</find>
-      <find>number_of_servers_ips_connected_to_sites_signed_by_cert_cn</find>
       <find>&quot;use_base64&quot;: true</find>
       <find>DEBUG: Received the following sampling</find>
       <find>&quot;base_64_used&quot;: true</find>
+      <find>&quot;use_base64&quot;: t</find>
+      <find>number_of_connections_to_workstations_for_server</find>
+      <find>discover(</find>
+      <find>number_of_servers_ips_connected_to_sites_signed_by_cert_cn</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -220,9 +220,9 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/detokenize.py" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/config/queries.json" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
@@ -357,7 +357,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.anomaly_detector">
+  <component name="RunManager" selected="Python.metrics_collector">
     <configuration name="anomaly_detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="smart-onion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -472,9 +472,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.anomaly_detector" />
         <item itemvalue="Python.timer" />
-        <item itemvalue="Python.metrics_collector" />
         <item itemvalue="Python.classify_queries" />
         <item itemvalue="Python.configurator" />
       </list>
@@ -490,13 +490,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00106" summary="metrics_collector.py:&#10; - Switched back to production mode">
-      <created>1553614996066</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1553614996066</updated>
     </task>
     <task id="LOCAL-00107" summary="metrics_collector.py:&#10; - Now launching the GC thread.">
       <created>1553616525315</created>
@@ -834,7 +827,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554124498700</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="queries.json:&#10; - Removed all base64 usage">
+      <created>1554126351280</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1554126351280</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TodoView">
@@ -848,21 +848,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10021097" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49472573" visible="true" weight="0.31469297" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49472573" weight="0.31469297" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.82753164" weight="0.114035085" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.9003165" weight="0.2741228" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.89978904" visible="true" weight="0.2741228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49894515" weight="0.33004385" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50527424" side_tool="true" visible="true" weight="0.31469297" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10021097" side_tool="true" visible="true" weight="0.2741228" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -909,7 +910,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metric_analyzer.py:&#10; - Set the code that writes debug messages about the metrics being received to be depended on the DEBUG constant to try and lower the memory consumption of the service" />
     <MESSAGE value="metric_analyzer.py:&#10; - Lowered the allowed number of loaded models to minimize the memory consumption of the service." />
     <MESSAGE value="metric_analyzer.py:&#10; - Switched from the TCP server approach to the Kafka consumer approach: the service will now consume the metrics directly from Kafka" />
     <MESSAGE value="metric_analyzer.py:&#10; - Configured the unit file to load the metric-analyzer only after kafka is loaded" />
@@ -934,7 +934,8 @@
     <MESSAGE value="queries.json:&#10; - Configured all queries that used base64 not to use it anymore.&#10; &#10;detokenize.py:&#10; - Added script for retrieving the actual parameter based on the token" />
     <MESSAGE value="metrics_collector.py:&#10; - Fixed thread sync issues." />
     <MESSAGE value="so-update.sh:&#10; - Added another command to start kafka because it seems to fail quite often after start for some reason." />
-    <option name="LAST_COMMIT_MESSAGE" value="so-update.sh:&#10; - Added another command to start kafka because it seems to fail quite often after start for some reason." />
+    <MESSAGE value="queries.json:&#10; - Removed all base64 usage" />
+    <option name="LAST_COMMIT_MESSAGE" value="queries.json:&#10; - Removed all base64 usage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -948,6 +949,11 @@
           <url>file://$PROJECT_DIR$/Tests_and_POCs/test_text2image.py</url>
           <line>85</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
+          <line>113</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1727,20 +1733,20 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="166" column="23" selection-start-line="166" selection-start-column="23" selection-end-line="166" selection-end-column="23" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="217">
+          <caret line="485" column="12" selection-start-line="485" selection-start-column="12" selection-end-line="485" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="279" column="18" selection-start-line="279" selection-start-column="18" selection-end-line="279" selection-end-column="18" />
+        <state relative-caret-position="172">
+          <caret line="127" column="30" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
