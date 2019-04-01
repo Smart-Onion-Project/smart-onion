@@ -621,7 +621,7 @@ class MetricsCollector:
         return res_str
 
     def resolve_query_args_in_metric_name(self, base_64_used, metric_name, query_base):
-        with postgresql.open('pq://smart_onion_metric_collector:vindeta11@localhost:5432/smart_onion_metric_collector') as tokenizer_db_conn:
+        with postgresql.open('pq://' + self._tokenizer_db_user + ':' + self._tokenizer_db_password + '@' + self._tokenizer_db_host + ':' + str(self._tokenizer_db_port) + '/' + self._tokenizer_db_name) as tokenizer_db_conn:
             for i in range(1, 10):
                 if "{{#arg" + str(i) + "}}" in str(query_base):
                     arg = request.query["arg" + str(i)]

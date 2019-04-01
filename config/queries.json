@@ -277,7 +277,7 @@
     "zabbix_macro": "UA",
     "query": "*",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "queries_to_run": [
       "events_per_useragent",
@@ -486,7 +486,7 @@
     "zabbix_macro": "CERT_CN",
     "query": "event_type:bro_x509",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
@@ -597,7 +597,7 @@
     "zabbix_macro": "CERT_CN",
     "query": "event_type:bro_x509",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
@@ -611,7 +611,7 @@
     "zabbix_macro": "EXT_WEB_URI",
     "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
@@ -633,7 +633,7 @@
     "zabbix_macro": "CERT_ISSUER",
     "query": "event_type:bro_x509",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
@@ -696,7 +696,7 @@
     "zabbix_macro": "EXT_WEB_URI",
     "query": "source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}) AND NOT (destination_ips:({#smart-onion.config.dynamic.learned.networks.lan-network}))",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
@@ -788,7 +788,7 @@
     "zabbix_macro": "CERT_CN",
     "query": "event_type:bro_x509",
     "index_pattern": "logstash-bro-*",
-    "use_base64": true,
+    "use_base64": false,
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": []
