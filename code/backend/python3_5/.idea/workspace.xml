@@ -6,11 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/timer_service/timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1786">
-              <caret line="106" selection-start-line="106" selection-end-line="106" />
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -349,7 +348,7 @@
     <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1786">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>

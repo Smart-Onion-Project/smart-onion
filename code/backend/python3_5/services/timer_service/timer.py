@@ -80,10 +80,15 @@ class TimerService:
             "response": "PONG",
             "file": __file__,
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
-            "uptime": time.time() - self._time_loaded
+            "uptime": time.time() - self._time_loaded,
+            "service_specific_info": {
+                "discovery_requests_ran": self._discovery_requests_ran,
+                "discovery_requests_completed_successfully": self._discovery_requests_completed_successfully
+            }
         }
 
     def run(self):
+        print("DEBUG: Launching the timer thread...")
         self._timer_thread = threading.Thread(target=self.run_timer)
         self._timer_thread.start()
 
@@ -93,50 +98,57 @@ class TimerService:
             self._app.run(host=self._listen_ip, port=self._listen_port, server="gunicorn", workers=32, timeout=120)
 
     def run_timer(self):
-        base_url = ""
-        if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in self._config_copy:
-            base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
-        if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in self._config_copy:
-            base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
-        if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in self._config_copy:
-            base_url = base_url + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
-        base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld"]
-
-        cur_tasks_list = []
-        print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"] + ",KafkaClientID:" + self._kafka_client_id)
         while True:
             try:
-                lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
-                for query in lld_queries:
-                    self._discovery_requests_ran = self._discovery_requests_ran + 1
+                base_url = ""
+                if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in self._config_copy:
+                    base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
+                if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in self._config_copy:
+                    base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
+                if self._config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in self._config_copy:
+                    base_url = base_url + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
+                base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld"]
+
+                cur_tasks_list = []
+                print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"] + ",KafkaClientID:" + self._kafka_client_id)
+                while True:
                     try:
-                        cur_url = base_url + query
-                        print("Calling " + cur_url)
-                        discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
-                        if "@@EXCEPTION:" in discover_raw_res:
-                            print("WARN: Discovery call ('" + cur_url + "') returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics according to their TTL...")
-                        else:
-                            discover_res = json.loads(discover_raw_res)
-                            for task in discover_res["data"]:
-                                cur_tasks_list.append({
-                                    "URL": task["{#URL}"]
-                                })
-                            self._discovery_requests_completed_successfully = self._discovery_requests_completed_successfully + 1
+                        lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
+                        for query in lld_queries:
+                            self._discovery_requests_ran = self._discovery_requests_ran + 1
+                            try:
+                                cur_url = base_url + query
+                                print("Calling " + cur_url)
+                                discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
+                                if "@@EXCEPTION:" in discover_raw_res:
+                                    print("WARN: Discovery call ('" + cur_url + "') returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics according to their TTL...")
+                                else:
+                                    discover_res = json.loads(discover_raw_res)
+                                    for task in discover_res["data"]:
+                                        cur_tasks_list.append({
+                                            "URL": task["{#URL}"]
+                                        })
+                                    self._discovery_requests_completed_successfully = self._discovery_requests_completed_successfully + 1
+                            except Exception as ex:
+                                print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+
                     except Exception as ex:
-                        print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+                        print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
 
+                    if len(cur_tasks_list) > 0:
+                        try:
+                            self.pack_and_resend_tasks(cur_tasks_list)
+                        except Exception as ex:
+                            print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle.")
+
+                    cur_tasks_list = []
+                    print("INFO: Going to sleep for " + str(self._interval) + " seconds...")
+                    time.sleep(self._interval)
+            except KeyboardInterrupt:
+                print("INFO: Shutting down... (KeyboardInterrupt)")
             except Exception as ex:
-                print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
-
-            if len(cur_tasks_list) > 0:
-                try:
-                    self.pack_and_resend_tasks(cur_tasks_list)
-                except Exception as ex:
-                    print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle.")
-
-            cur_tasks_list = []
-            print("INFO: Going to sleep for " + str(self._interval) + " seconds...")
-            time.sleep(self._interval)
+                print("ERROR: An '" + str(ex) + "' exception has been thrown in the timer thread. Waiting 10 seconds and retrying...")
+                time.sleep(10)
 
 config_copy = {}
 configurator_base_url = ""

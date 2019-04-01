@@ -2,7 +2,7 @@
 
 echo "Stopping services..."
 systemctl daemon-reload
-/opt/smart-onion/resources/test-scripts/test_services_status.sh stop
+/opt/smart-onion/resources/test-scripts/test_services_status.sh stop --quiet
 echo "Starting Zookeeper..."
 systemctl start zookeeper
 sleep 2
@@ -27,3 +27,6 @@ echo "Removing all whisper files..."
 rm -rf /data/metrics/whisper/*
 
 # TODO: Regenerate all passwords (for DBs, users, etc)
+
+echo =============================================
+/opt/smart-onion/resources/test-scripts/so-stat.sh
