@@ -5,13 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="anomaly:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD">
-      <change afterPath="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="timer.py:&#10; - Added more info to the logs and the /ping method.&#10;&#10;test_services_status.sh&#10; - Added --quiet mode&#10;&#10;so-clean.sh, so-update:&#10; - Using the quiet mode of test_services_status">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+            <state relative-caret-position="646">
+              <caret line="149" column="76" selection-start-line="149" selection-start-column="76" selection-end-line="149" selection-end-column="76" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -84,20 +82,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="570">
+              <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" selection-end-line="18" />
+            <state relative-caret-position="247">
+              <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -208,12 +206,12 @@
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/test_services_status.sh" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
       </list>
     </option>
@@ -482,20 +480,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00094" summary="metrics_collector.py:&#10; - Preventing flooding of &quot;sampling is lagging&quot; messages when the lag is in less than a second.">
-      <created>1553586193243</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1553586193243</updated>
-    </task>
-    <task id="LOCAL-00095" summary="timer.py:&#10; - Commented out two logging commands that caused excessive logging">
-      <created>1553587020473</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1553587020473</updated>
     </task>
     <task id="LOCAL-00096" summary="timer.py, metric_collector.py:&#10; - Logging every sleep">
       <created>1553587513045</created>
@@ -826,7 +810,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554063614654</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="anomaly_detector:&#10; - Added information about the anomalies reported in the logs and in the /ping result&#10;&#10;so-clean_all:&#10; - Added informational messages&#10;&#10;so-stat:&#10; - Added script for testing all the system services status">
+      <created>1554101398596</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1554101398596</updated>
+    </task>
+    <task id="LOCAL-00144" summary="timer.py:&#10; - Added more info to the logs and the /ping method.&#10;&#10;test_services_status.sh&#10; - Added --quiet mode&#10;&#10;so-clean.sh, so-update:&#10; - Using the quiet mode of test_services_status">
+      <created>1554104852207</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1554104852207</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TodoView">
@@ -901,8 +899,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics-analyzer.py:&#10; - Switched to &quot;debug&quot; mode" />
-    <MESSAGE value="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it." />
     <MESSAGE value="metrics-analyzer.py:&#10; - Trying to disable the timeout on the socket to see if this will improve the service listening" />
     <MESSAGE value="metrics-collector.py:&#10; - Fixed an issue that caused the URLs that arrived as a response from the discover method contained raw URLs as argX parameters (not urlencoded)&#10; - Fixed an issue with the numbers of the argX parameters that was sometimes out of sequence." />
     <MESSAGE value="metrics-collector.py:&#10; - The arg1 was still being used un-encoded&#10; &#10;metric_analyzer.py:&#10; - Added try-except around the module save block (sometimes fail because of too long filenames. Need to move to a partition on a disk that has a GPT partition table)" />
@@ -926,7 +922,9 @@
     <MESSAGE value="so-clean_all.sh:&#10; - Deleting the topics instead of just purging them" />
     <MESSAGE value="Just updated permissions" />
     <MESSAGE value="so-update:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD" />
-    <option name="LAST_COMMIT_MESSAGE" value="so-update:&#10; - Added git stash to prevent the update from failing because of local changes&#10;&#10;so-clean_all:&#10; - Added code for cleaning up StatsD" />
+    <MESSAGE value="anomaly_detector:&#10; - Added information about the anomalies reported in the logs and in the /ping result&#10;&#10;so-clean_all:&#10; - Added informational messages&#10;&#10;so-stat:&#10; - Added script for testing all the system services status" />
+    <MESSAGE value="timer.py:&#10; - Added more info to the logs and the /ping method.&#10;&#10;test_services_status.sh&#10; - Added --quiet mode&#10;&#10;so-clean.sh, so-update:&#10; - Using the quiet mode of test_services_status" />
+    <option name="LAST_COMMIT_MESSAGE" value="timer.py:&#10; - Added more info to the logs and the /ping method.&#10;&#10;test_services_status.sh&#10; - Added --quiet mode&#10;&#10;so-clean.sh, so-update:&#10; - Using the quiet mode of test_services_status" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1648,13 +1646,6 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so_send_data">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -1669,10 +1660,27 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+        <state relative-caret-position="551">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
+          <folding>
+            <element signature="e#922#936#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -1686,20 +1694,10 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
-          <folding>
-            <element signature="e#922#936#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+        <state relative-caret-position="646">
+          <caret line="149" column="76" selection-start-line="149" selection-start-column="76" selection-end-line="149" selection-end-column="76" />
           <folding>
             <element signature="e#847#858#0" expanded="true" />
           </folding>
@@ -1708,22 +1706,22 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/test_services_status.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="456">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        <state relative-caret-position="570">
+          <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
         </state>
       </provider>
     </entry>
