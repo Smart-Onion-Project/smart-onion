@@ -13,3 +13,4 @@ done
 echo
 echo "Non Anomaly Metric (*.wsp) Files: "`find /data/metrics/whisper/ -name '*.wsp' | grep -v anomaly | wc -l`
 echo "Anomaly Metric (*.wsp) Files    : "`find /data/metrics/whisper/ -name '*.wsp' | grep anomaly | wc -l`
+echo "Metrics in StatsD               : "`echo "gauges" | nc 127.0.0.1 8126 | sed 's/END//g' | sed "s/'/\"/g" | jq -r "keys[]" | wc -l`
