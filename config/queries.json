@@ -912,7 +912,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ips.keyword",
-    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_issuer:{{#arg1}}",
+    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_issuer:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -984,7 +984,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ips.keyword",
-    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_common_name:{{#arg1}}",
+    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_common_name:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1261,7 +1261,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ips.keyword",
-    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_issuer:{{#arg1}}",
+    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_issuer:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1272,7 +1272,7 @@
     "time_range": 86400,
     "base_64_used": true,
     "count_unique_values_in": "source_ips.keyword",
-    "query": "event_type:bro_x509 AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_common_name:{{#arg1}}",
+    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_common_name:{{#arg1}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -2135,7 +2135,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "agg_on_field": "certificate_common_name.keyword",
-    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_x509",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_ssl",
     "index_pattern": "logstash-bro-*",
     "type": "SIMILARITY_TEST",
     "max_list_size": 10,
