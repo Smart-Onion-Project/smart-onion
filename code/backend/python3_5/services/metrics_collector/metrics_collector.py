@@ -41,6 +41,7 @@ import uuid
 import multiprocessing
 import random
 import postgresql
+from operator import itemgetter
 
 
 DEBUG = False
@@ -55,116 +56,316 @@ class Utils:
     lst = ""
     perceptive_hashing_algs = ["phash", "ahash", "dhash", "whash"]
 
-    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, services_urls=None, tiny_url_service_details=None, queries_to_run=None, add_doc_count=True, re_sort_by_value=False, config_copy=None):
-        cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
-        # print(cls.lst)
-        cls.lst = cls.lst.strip("|")
-
-        res = {
+    def GenerateLldFromElasticAggrRes(cls, res, macro_list, use_base64, agg_on_field=None, services_urls=None, tiny_url_service_details=None, queries_to_run=None, add_doc_count=True, re_sort_by_value=False, config_copy=None):
+        lld = {
             "data": []
         }
-        for line in cls.lst.split("|"):
-            line_element = {}
-            idx = 0
-            line_as_arr = line.split(",")
-            for item_b64 in line_as_arr:
-                item = base64.b64decode(item_b64.encode('utf-8')).decode('utf-8')
+
+        if queries_to_run is None:
+            return lld
+
+        urls = []
+        for query_id in queries_to_run:
+            # Create the URL that need to be accessed by the query_obj type and the number of arguments returned
+            cur_query_obj = queries_conf[query_id]
+            query_type = str(cur_query_obj["type"])
+            agg_on_field = str(agg_on_field).split(",")
+
+            url_base = ""
+            if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in config_copy:
+                url_base = url_base + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
+            if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in config_copy:
+                url_base = url_base + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
+            if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in config_copy:
+                url_base = url_base + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
+            url_base = url_base + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id
+
+            if not "aggregations" in res or not "field_values0" in res["aggregations"] or not "buckets" in res["aggregations"]["field_values0"]:
+                print("ERROR: GenerateLldFromElasticAggrRes: The input does not look like a result from Elasticsearch aggregation query.")
+                raise Exception("ERROR: GenerateLldFromElasticAggrRes: The input does not look like a result from Elasticsearch aggregation query.")
+
+            for agg0_item in res["aggregations"]["field_values0"]["buckets"]:
+                latest_values = []
+                arg_idx = 1
+                cur_url = url_base + "?"
                 if use_base64:
-                    item_parsed = str(base64.b64encode(str(item).encode('utf-8')).decode('utf-8'))
+                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8') + "&"
                 else:
-                    if cls.is_number(item):
-                        item_parsed = float(item)
-                    else:
-                        item_parsed = str(item)
+                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + agg0_item["key"] + "&"
+                arg_idx = arg_idx + 1
+                latest_values.append(agg0_item["key"])
+                if "field_values1" in agg0_item and "buckets" in agg0_item["field_values1"]:
+                    for agg1_item in agg0_item["field_values1"]["buckets"]:
+                        if use_base64:
+                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                        else:
+                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + agg1_item["key"] + "&"
+                        arg_idx = arg_idx + 1
+                        latest_values.append(agg1_item["key"])
+                        if "field_values2" in agg1_item and "buckets" in agg1_item["field_values2"]:
+                            for agg2_item in agg1_item["field_values2"]["buckets"]:
+                                if use_base64:
+                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + base64.b64encode(agg2_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                else:
+                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + agg2_item["key"] + "&"
+                                arg_idx = arg_idx + 1
+                                latest_values.append(agg2_item["key"])
+                                if "field_values3" in agg2_item and "buckets" in agg2_item["field_values3"]:
+                                    for agg3_item in agg2_item["field_values3"]["buckets"]:
+                                        if use_base64:
+                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + base64.b64encode(agg3_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                        else:
+                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + agg3_item["key"] + "&"
+                                        arg_idx = arg_idx + 1
+                                        latest_values.append(agg3_item["key"])
+                                        if "field_values4" in agg3_item and "buckets" in agg3_item["field_values4"]:
+                                            for agg4_item in agg3_item["field_values4"]["buckets"]:
+                                                if use_base64:
+                                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + base64.b64encode(agg4_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                                else:
+                                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + agg4_item["key"] + "&"
+                                                arg_idx = arg_idx + 1
+                                                latest_values.append(agg4_item["key"])
+                                                if "field_values5" in agg4_item and "buckets" in agg4_item["field_values5"]:
+                                                    for agg5_item in agg4_item["field_values5"]["buckets"]:
+                                                        if use_base64:
+                                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + base64.b64encode(agg5_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                                        else:
+                                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + agg5_item["key"] + "&"
+                                                        arg_idx = arg_idx + 1
+                                                        latest_values.append(agg5_item["key"])
+                                                else:
+                                                    cur_url = cur_url.strip('&')
+                                                    urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg4_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
 
-                if len(macro_list) <= idx:
-                    if idx == len(line_as_arr) - 1:
-                        if add_doc_count:
-                            line_element["{#_DOC_COUNT}"] = item_parsed
-                    else:
-                        line_element["{#ITEM_" + str(idx) + "}"] = item_parsed
-                else:
-                    line_element["{#" + macro_list[idx] + "}"] = item_parsed
-                idx = idx + 1
-            res["data"].append(line_element)
+                                                    latest_values = [agg0_item["key"], agg1_item["key"], agg2_item["key"], agg3_item["key"]]
+                                                    arg_idx = arg_idx - 1
+                                                    cur_url = url_base + "?"
+                                                    if use_base64:
+                                                        cur_url = cur_url + \
+                                                                  "arg1=" + base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8') + "&" + \
+                                                                  "arg2=" + base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8') + "&" + \
+                                                                  "arg3=" + base64.b64encode(agg2_item["key"].encode('utf-8')).decode('utf-8') + "&" + \
+                                                                  "arg4=" + base64.b64encode(agg3_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                                    else:
+                                                        cur_url = cur_url + \
+                                                                  "arg1=" + agg0_item["key"] + "&" + \
+                                                                  "arg2=" + agg1_item["key"] + "&" + \
+                                                                  "arg3=" + agg2_item["key"] + "&" + \
+                                                                  "arg4=" + agg3_item["key"] + "&"
+                                        else:
+                                            cur_url = cur_url.strip('&')
+                                            urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg3_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
 
-            if re_sort_by_value:
-                idx = 0
-                res_tmp = {
-                    "data": []
-                }
-                res_tmp_sorted_arr = []
-                for item in res["data"]:
-                    res_tmp_sorted_arr.append(item["{#ITEM_" + str(idx) + "}"])
+                                            latest_values = [agg0_item["key"], agg1_item["key"], agg2_item["key"]]
+                                            arg_idx = arg_idx - 1
+                                            cur_url = url_base + "?"
+                                            if use_base64:
+                                                cur_url = cur_url + \
+                                                          "arg1=" + base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8') + "&" + \
+                                                          "arg2=" + base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8') + "&" + \
+                                                          "arg3=" + base64.b64encode(agg2_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                            else:
+                                                cur_url = cur_url + \
+                                                          "arg1=" + agg0_item["key"] + "&" + \
+                                                          "arg2=" + agg1_item["key"] + "&" + \
+                                                          "arg3=" + agg2_item["key"] + "&"
+                                else:
+                                    cur_url = cur_url.strip('&')
+                                    urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg2_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
 
-                # Sort res_tmp
-                res_tmp_sorted_arr.sort()
+                                    latest_values = [agg0_item["key"], agg1_item["key"]]
+                                    arg_idx = arg_idx - 1
+                                    cur_url = url_base + "?"
+                                    if use_base64:
+                                        cur_url = cur_url + \
+                                                  "arg1=" + base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8') + "&" + \
+                                                  "arg2=" + base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8') + "&"
+                                    else:
+                                        cur_url = cur_url + \
+                                                  "arg1=" + agg0_item["key"] + "&" + \
+                                                  "arg2=" + agg1_item["key"] + "&"
+                        else:
+                            cur_url = cur_url.strip('&')
+                            urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg1_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
 
-                for item in res_tmp_sorted_arr:
-                    res_tmp["data"].append({"{#ITEM_" + str(idx) + "}": item})
-
-                #TODO: Add support for multi level lists?
-                res = res_tmp
-
-        if not queries_to_run is None:
-            res_new = {
-                "data": []
-            }
-            for item in res["data"]:
-                for query_id in queries_to_run:
-                    # Create the URL that need to be accessed by the query_obj type and the number of arguments returned
-                    cur_query_obj = queries_conf[query_id]
-                    query_type = str(cur_query_obj["type"])
-
-                    cur_url = ""
-                    if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in config_copy:
-                        cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
-                    if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in config_copy:
-                        cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
-                    if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in config_copy:
-                        cur_url = cur_url + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
-                    cur_url = cur_url + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id
-
-                    arg_no = 1
-                    for key_idx in range(1, len(item.keys())):
-                        if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
-                            if arg_no == 1:
-                                cur_url = cur_url + "?"
+                            latest_values = [agg0_item["key"]]
+                            arg_idx = arg_idx - 1
+                            cur_url = url_base + "?"
+                            if use_base64:
+                                cur_url = cur_url + \
+                                          "arg1=" + base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8') + "&"
                             else:
-                                cur_url = cur_url + "&"
+                                cur_url = cur_url + \
+                                          "arg1=" + agg0_item["key"] + "&"
+                else:
+                    cur_url = cur_url.strip('&')
+                    urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg0_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
 
-                            cur_url = cur_url + "arg" + str(arg_no) + "=" + urllib.parse.quote_plus(str(item[list(item.keys())[key_idx]]))
-                            arg_no = arg_no + 1
+        for url in urls:
+            cur_url = url["URL"]
+            query_id = url["query_id"]
+            query_type = url["query_type"]
+            doc_counts = url["doc_count"]
+            latest_values = url["macro_values"]
+            agg_on_field = url["agg_on_field"]
 
-                    # Translate the url to a tiny url
-                    tiny_url_res = cur_url
-                    if tiny_url_service_details is not None:
-                        tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
-                        print("Calling " + tiny_service_url)
-                        tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
-                    else:
-                        tiny_url_res = cur_url
+            # Translate the url to a tiny url
+            tiny_url_res = cur_url
+            if tiny_url_service_details is not None:
+                tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
+                print("Calling " + tiny_service_url)
+                tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
+            else:
+                tiny_url_res = cur_url
 
-                    if add_doc_count and "{#_DOC_COUNT}" in item.keys():
-                        res_new["data"].append({
-                            "{#NAME}": cur_url,
-                            "{#URL}": tiny_url_res,
-                            "{#QUERY_NAME}": query_id,
-                            "{#QUERY_TYPE}": query_type,
-                            "{#ARGS}": list(item.keys()),
-                            "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
-                        })
-                    else:
-                        res_new["data"].append({
-                            "{#NAME}": cur_url,
-                            "{#URL}": tiny_url_res,
-                            "{#QUERY_NAME}": query_id,
-                            "{#QUERY_TYPE}": query_type,
-                            "{#ARGS}": list(item.keys()),
-                        })
+            if add_doc_count:
+                lld_obj = {
+                    "{#NAME}": cur_url,
+                    "{#URL}": tiny_url_res,
+                    "{#QUERY_NAME}": query_id,
+                    "{#QUERY_TYPE}": query_type,
+                    "{#_DOC_COUNT}": doc_counts
+                }
+            else:
+                lld_obj = {
+                    "{#NAME}": cur_url,
+                    "{#URL}": tiny_url_res,
+                    "{#QUERY_NAME}": query_id,
+                    "{#QUERY_TYPE}": query_type,
+                }
 
-            res = res_new
-        return res
+            if agg_on_field is not None:
+                macro_idx = 0
+                for field in agg_on_field:
+                    if latest_values is not None and len(latest_values) > macro_idx and len(macro_list) > macro_idx:
+                        lld_obj["{#" + macro_list[macro_idx] + "}"] = latest_values[macro_idx]
+                    elif latest_values is not None:
+                        lld_obj["{#ITEM_" + str(macro_idx + 1) + "}"] = latest_values[macro_idx]
+                    macro_idx = macro_idx + 1
+
+            if not any(d['{#URL}'] == lld_obj["{#URL}"] for d in lld["data"]):
+                lld["data"].append(lld_obj)
+
+        if re_sort_by_value:
+            key_field = "{#URL}"
+            if len(macro_list) > 0:
+                key_field = "{#" + macro_list[0] + "}"
+            elif "{#ITEM_1}" in lld["data"][0]:
+                key_field = "{#ITEM_1}"
+            lld["data"] = sorted(lld["data"], key=itemgetter(key_field))
+
+        return lld
+
+        # cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
+        # # print(cls.lst)
+        # cls.lst = cls.lst.strip("|")
+        #
+        # res = {
+        #     "data": []
+        # }
+        # for line in cls.lst.split("|"):
+        #     line_element = {}
+        #     idx = 0
+        #     line_as_arr = line.split(",")
+        #     for item_b64 in line_as_arr:
+        #         item = base64.b64decode(item_b64.encode('utf-8')).decode('utf-8')
+        #         if use_base64:
+        #             item_parsed = str(base64.b64encode(str(item).encode('utf-8')).decode('utf-8'))
+        #         else:
+        #             if cls.is_number(item):
+        #                 item_parsed = float(item)
+        #             else:
+        #                 item_parsed = str(item)
+        #
+        #         if len(macro_list) <= idx:
+        #             if idx == len(line_as_arr) - 1:
+        #                 if add_doc_count:
+        #                     line_element["{#_DOC_COUNT}"] = item_parsed
+        #             else:
+        #                 line_element["{#ITEM_" + str(idx) + "}"] = item_parsed
+        #         else:
+        #             line_element["{#" + macro_list[idx] + "}"] = item_parsed
+        #         idx = idx + 1
+        #     res["data"].append(line_element)
+        #
+        #     if re_sort_by_value:
+        #         idx = 0
+        #         res_tmp = {
+        #             "data": []
+        #         }
+        #         res_tmp_sorted_arr = []
+        #         for item in res["data"]:
+        #             res_tmp_sorted_arr.append(item["{#ITEM_" + str(idx) + "}"])
+        #
+        #         # Sort res_tmp
+        #         res_tmp_sorted_arr.sort()
+        #
+        #         for item in res_tmp_sorted_arr:
+        #             res_tmp["data"].append({"{#ITEM_" + str(idx) + "}": item})
+        #
+        #         #TODO: Add support for multi level lists?
+        #         res = res_tmp
+        #
+        # if not queries_to_run is None:
+        #     res_new = {
+        #         "data": []
+        #     }
+        #     for item in res["data"]:
+        #         for query_id in queries_to_run:
+        #             # Create the URL that need to be accessed by the query_obj type and the number of arguments returned
+        #             cur_query_obj = queries_conf[query_id]
+        #             query_type = str(cur_query_obj["type"])
+        #
+        #             cur_url = ""
+        #             if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in config_copy:
+        #                 cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
+        #             if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in config_copy:
+        #                 cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
+        #             if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in config_copy:
+        #                 cur_url = cur_url + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
+        #             cur_url = cur_url + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id
+        #
+        #             arg_no = 1
+        #             for key_idx in range(1, len(item.keys())):
+        #                 if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
+        #                     if arg_no == 1:
+        #                         cur_url = cur_url + "?"
+        #                     else:
+        #                         cur_url = cur_url + "&"
+        #
+        #                     cur_url = cur_url + "arg" + str(arg_no) + "=" + urllib.parse.quote_plus(str(item[list(item.keys())[key_idx]]))
+        #                     arg_no = arg_no + 1
+        #
+        #             # Translate the url to a tiny url
+        #             tiny_url_res = cur_url
+        #             if tiny_url_service_details is not None:
+        #                 tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
+        #                 print("Calling " + tiny_service_url)
+        #                 tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
+        #             else:
+        #                 tiny_url_res = cur_url
+        #
+        #             if add_doc_count and "{#_DOC_COUNT}" in item.keys():
+        #                 res_new["data"].append({
+        #                     "{#NAME}": cur_url,
+        #                     "{#URL}": tiny_url_res,
+        #                     "{#QUERY_NAME}": query_id,
+        #                     "{#QUERY_TYPE}": query_type,
+        #                     "{#ARGS}": list(item.keys()),
+        #                     "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
+        #                 })
+        #             else:
+        #                 res_new["data"].append({
+        #                     "{#NAME}": cur_url,
+        #                     "{#URL}": tiny_url_res,
+        #                     "{#QUERY_NAME}": query_id,
+        #                     "{#QUERY_TYPE}": query_type,
+        #                     "{#ARGS}": list(item.keys()),
+        #                 })
+        #
+        #     res = res_new
+        # return res
 
     def FlattenAggregates(cls, obj, idx=0, add_doc_count=True):
         if "key" in obj:
@@ -404,7 +605,6 @@ class MetricsCollector:
         self._app.route('/smart-onion/discover/<queryname>', method="GET", callback=self.discover)
         self._app.route('/smart-onion/dump_queries', method="GET", callback=self.dump_queries)
         self._app.route('/test/similarity/<algo>/<s1>/<s2>', method="GET", callback=self.test_similarity)
-        self._app.route('/test/lld', method="GET", callback=self.test_lld_creation)
         self._app.route('/ping', method="GET", callback=self._ping)
 
     def _file_as_bytes(self, filename):
@@ -939,7 +1139,7 @@ class MetricsCollector:
                 body=query_body
             )
 
-            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=[], use_base64=False, add_doc_count=False, re_sort_by_value=True)
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=[], agg_on_field=agg_on_field, use_base64=False, add_doc_count=False, re_sort_by_value=True)
             res_str = str(hashlib.sha1(json.dumps(res_lld).encode("utf-8")).hexdigest())
 
             res = "@@RES: " + res_str
@@ -1027,7 +1227,7 @@ class MetricsCollector:
                 tiny_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
             else:
                 tiny_url_service_details = None
-            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details, config_copy=self._config_copy)
+            res_lld = Utils().GenerateLldFromElasticAggrRes(res=res, macro_list=macros_list, agg_on_field=agg_on_field, use_base64=use_base64, queries_to_run=queries_to_run, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details, config_copy=self._config_copy)
 
             res_str = str(json.dumps(res_lld))
             if encode_json_as_b64:
@@ -1049,90 +1249,6 @@ class MetricsCollector:
 
     def dump_queries(self):
         return "@@RES: " + json.dumps(self.queries)
-
-    def test_lld_creation(self):
-        simulation_res = {
-  "took" : 17,
-  "timed_out" : False,
-  "_shards" : {
-    "total" : 32,
-    "successful" : 32,
-    "skipped" : 0,
-    "failed" : 0
-  },
-  "hits" : {
-    "total" : 941294,
-    "max_score" : 0.0,
-    "hits" : [ ]
-  },
-  "aggregations" : {
-    "field_values0" : {
-      "doc_count_error_upper_bound" : -1,
-      "sum_other_doc_count" : 131298,
-      "buckets" : [
-        {
-          "key" : "world",
-          "doc_count" : 1
-        },
-        {
-          "key" : "asia",
-          "doc_count" : 2
-        },
-        {
-          "key" : "cl",
-          "doc_count" : 2
-        },
-        {
-          "key" : "st",
-          "doc_count" : 2
-        },
-        {
-          "key" : "com.gt",
-          "doc_count" : 3
-        },
-        {
-          "key" : "hu",
-          "doc_count" : 3
-        },
-        {
-          "key" : "appspot.com",
-          "doc_count" : 4
-        },
-        {
-          "key" : "at",
-          "doc_count" : 4
-        },
-        {
-          "key" : "blogspot.co.il",
-          "doc_count" : 4
-        },
-        {
-          "key" : "cm",
-          "doc_count" : 4
-        }
-      ]
-    }
-  }
-}
-        simulation_zabbix_macro = "DNS_TLD_QRY"
-        use_base64 = False
-        queries_to_run = [
-          "highest_similarity_to_any_top_accessed_tld",
-          "number_of_clients_per_dns_tld",
-          "number_of_queries_per_dns_tld"
-        ]
-        encode_json_as_b64 = False
-
-        macros_list = str.split(simulation_zabbix_macro, ",")
-        relevant_service_urls = self.get_config_by_regex(r'smart\-onion\.config\.architecture\.internal_services\.backend\.[a-z0-9\-_]+\.base_urls\.[a-z0-9\-_]+')
-        tiny_url_service_details = {"protocol": self._tiny_url_protocol, "server": self._tiny_url_server, "port": self._tiny_url_port}
-        res_lld = Utils().GenerateLldFromElasticAggrRes(res=simulation_res, macro_list=macros_list, queries_to_run=queries_to_run, use_base64=use_base64, services_urls=relevant_service_urls, tiny_url_service_details=tiny_url_service_details)
-
-        res_str = str(json.dumps(res_lld))
-        if encode_json_as_b64:
-            res_str = str(base64.b64encode(str(res_str).encode('utf-8')).decode('utf-8'))
-        res = "@@RES: " + res_str
-        return res
 
     def test_similarity(self, algo, s1, s2):
         utils = Utils()
