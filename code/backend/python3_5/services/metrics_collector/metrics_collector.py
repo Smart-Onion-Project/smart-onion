@@ -257,116 +257,6 @@ class Utils:
 
         return lld
 
-        # cls.FlattenAggregates(obj=res["aggregations"], idx=0, add_doc_count=add_doc_count)
-        # # print(cls.lst)
-        # cls.lst = cls.lst.strip("|")
-        #
-        # res = {
-        #     "data": []
-        # }
-        # for line in cls.lst.split("|"):
-        #     line_element = {}
-        #     idx = 0
-        #     line_as_arr = line.split(",")
-        #     for item_b64 in line_as_arr:
-        #         item = base64.b64decode(item_b64.encode('utf-8')).decode('utf-8')
-        #         if use_base64:
-        #             item_parsed = str(base64.b64encode(str(item).encode('utf-8')).decode('utf-8'))
-        #         else:
-        #             if cls.is_number(item):
-        #                 item_parsed = float(item)
-        #             else:
-        #                 item_parsed = str(item)
-        #
-        #         if len(macro_list) <= idx:
-        #             if idx == len(line_as_arr) - 1:
-        #                 if add_doc_count:
-        #                     line_element["{#_DOC_COUNT}"] = item_parsed
-        #             else:
-        #                 line_element["{#ITEM_" + str(idx) + "}"] = item_parsed
-        #         else:
-        #             line_element["{#" + macro_list[idx] + "}"] = item_parsed
-        #         idx = idx + 1
-        #     res["data"].append(line_element)
-        #
-        #     if re_sort_by_value:
-        #         idx = 0
-        #         res_tmp = {
-        #             "data": []
-        #         }
-        #         res_tmp_sorted_arr = []
-        #         for item in res["data"]:
-        #             res_tmp_sorted_arr.append(item["{#ITEM_" + str(idx) + "}"])
-        #
-        #         # Sort res_tmp
-        #         res_tmp_sorted_arr.sort()
-        #
-        #         for item in res_tmp_sorted_arr:
-        #             res_tmp["data"].append({"{#ITEM_" + str(idx) + "}": item})
-        #
-        #         #TODO: Add support for multi level lists?
-        #         res = res_tmp
-        #
-        # if not queries_to_run is None:
-        #     res_new = {
-        #         "data": []
-        #     }
-        #     for item in res["data"]:
-        #         for query_id in queries_to_run:
-        #             # Create the URL that need to be accessed by the query_obj type and the number of arguments returned
-        #             cur_query_obj = queries_conf[query_id]
-        #             query_type = str(cur_query_obj["type"])
-        #
-        #             cur_url = ""
-        #             if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol" in config_copy:
-        #                 cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-protocol"] + "://"
-        #             if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host" in config_copy:
-        #                 cur_url = cur_url + config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-host"] + ":"
-        #             if config_copy is not None and "smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port" in config_copy:
-        #                 cur_url = cur_url + str(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.published-listening-port"])
-        #             cur_url = cur_url + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id
-        #
-        #             arg_no = 1
-        #             for key_idx in range(1, len(item.keys())):
-        #                 if list(item.keys())[key_idx] != "{#_DOC_COUNT}":
-        #                     if arg_no == 1:
-        #                         cur_url = cur_url + "?"
-        #                     else:
-        #                         cur_url = cur_url + "&"
-        #
-        #                     cur_url = cur_url + "arg" + str(arg_no) + "=" + urllib.parse.quote_plus(str(item[list(item.keys())[key_idx]]))
-        #                     arg_no = arg_no + 1
-        #
-        #             # Translate the url to a tiny url
-        #             tiny_url_res = cur_url
-        #             if tiny_url_service_details is not None:
-        #                 tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
-        #                 print("Calling " + tiny_service_url)
-        #                 tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
-        #             else:
-        #                 tiny_url_res = cur_url
-        #
-        #             if add_doc_count and "{#_DOC_COUNT}" in item.keys():
-        #                 res_new["data"].append({
-        #                     "{#NAME}": cur_url,
-        #                     "{#URL}": tiny_url_res,
-        #                     "{#QUERY_NAME}": query_id,
-        #                     "{#QUERY_TYPE}": query_type,
-        #                     "{#ARGS}": list(item.keys()),
-        #                     "{#_DOC_COUNT}": item["{#_DOC_COUNT}"]
-        #                 })
-        #             else:
-        #                 res_new["data"].append({
-        #                     "{#NAME}": cur_url,
-        #                     "{#URL}": tiny_url_res,
-        #                     "{#QUERY_NAME}": query_id,
-        #                     "{#QUERY_TYPE}": query_type,
-        #                     "{#ARGS}": list(item.keys()),
-        #                 })
-        #
-        #     res = res_new
-        # return res
-
     def FlattenAggregates(cls, obj, idx=0, add_doc_count=True):
         if "key" in obj:
             if len(cls.lst) > 0:
@@ -757,9 +647,9 @@ class MetricsCollector:
         #     yesterday = dateutil.parser.parse("2018-06-11T08:00")
         #     last_month = dateutil.parser.parse("2018-05-11T00:00")
         # else:
-        now = datetime.datetime.now()
-        yesterday = datetime.date.today() - datetime.timedelta(1)
-        last_month = datetime.date.today() - datetime.timedelta(days=30)
+        now = datetime.datetime.utcnow()
+        yesterday = now.date() - datetime.timedelta(1)
+        last_month = now.date() - datetime.timedelta(days=30)
 
         time_range = (now - datetime.timedelta(
             seconds=query_details["time_range"])).isoformat() + " TO " + now.isoformat()
