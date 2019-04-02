@@ -8,6 +8,8 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="413" column="54" selection-start-line="413" selection-start-column="54" selection-end-line="413" selection-end-column="54" />
+            <state relative-caret-position="179">
+              <caret line="1229" column="60" selection-start-line="1229" selection-start-column="60" selection-end-line="1229" selection-end-column="60" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -66,6 +68,9 @@
       <find>simil</find>
       <find>discover</find>
       <find>ping</find>
+      <find>cover(</find>
+      <find>doc_counts</find>
+      <find>re_sort_by_value</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -234,13 +239,13 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.059599157" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.34649122" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2752193" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991228" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.34649122" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.16995615" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.114035085" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -261,11 +266,31 @@
           <line>68</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
+          <line>1229</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>e</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>cur_query_obj</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>res</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>item.keys()</expression-string>
         <language-id>Python</language-id>
@@ -296,11 +321,6 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>url_in_url2key_dictionary</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -327,8 +347,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="413" column="54" selection-start-line="413" selection-start-column="54" selection-end-line="413" selection-end-column="54" />
+        <state relative-caret-position="179">
+          <caret line="1229" column="60" selection-start-line="1229" selection-start-column="60" selection-end-line="1229" selection-end-column="60" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
