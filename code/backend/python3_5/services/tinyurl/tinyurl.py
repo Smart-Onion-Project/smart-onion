@@ -21,6 +21,7 @@ import threading
 from urllib import request as urllib_req
 from threading import Lock
 import hashlib
+from multiprocessing import Value
 
 DEBUG = False
 auto_save_dictionary_lock = Lock()

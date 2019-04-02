@@ -7,6 +7,7 @@ import base64
 import os
 import hashlib
 import time
+from multiprocessing import Value
 
 
 DEBUG = False

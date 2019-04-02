@@ -32,6 +32,7 @@ from bottle import Bottle
 import base64
 import uuid
 import kafka
+from multiprocessing import Value
 
 
 DEBUG = False
@@ -76,8 +77,8 @@ class MetricsRealtimeAnalyzer:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self, config_copy):
-        self._metrics_received = 0
-        self._metrics_successfully_processed = 0
+        self._metrics_received = Value('i', 0)
+        self._metrics_successfully_processed = Value('i', 0)
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
@@ -108,8 +109,8 @@ class MetricsRealtimeAnalyzer:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "metrics_received": self._metrics_received,
-                "metrics_successfully_processed": self._metrics_successfully_processed,
+                "metrics_received": self._metrics_received.value,
+                "metrics_successfully_processed": self._metrics_successfully_processed.value,
                 "models_loaded": len(self.models),
                 "anomaly_likelihood_calculators_loaded": len(self.anomaly_likelihood_detectors)
             }
@@ -400,7 +401,7 @@ class MetricsRealtimeAnalyzer:
             if self.EXIT_ALL_THREADS_FLAG:
                 return
             
-            self._metrics_successfully_processed = self._metrics_successfully_processed + 1
+            self._metrics_successfully_processed.value += 1
             
         except Exception as ex:
             print("WARN: Failed to analyze the metric(b64) " + str(base64.b64encode(metric)) + " due to the following exception: " + str(ex))
@@ -414,7 +415,7 @@ class MetricsRealtimeAnalyzer:
 
     def parse_metric_message(self, metric_raw_info):
         try:
-            self._metrics_received = self._metrics_received + 1
+            self._metrics_received.value += 1
             metric_family_hierarchy = ""
             metric_family = ""
     

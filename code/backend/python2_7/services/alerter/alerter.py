@@ -11,6 +11,7 @@ import base64
 import syslog
 import hashlib
 import time
+from multiprocessing import Value
 
 
 DEBUG = True

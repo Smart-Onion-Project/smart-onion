@@ -22,6 +22,7 @@ import hashlib
 import threading
 from bottle import Bottle
 from urllib import request as urllib_req
+from multiprocessing import Value
 
 DEBUG = False
 
@@ -37,8 +38,8 @@ class TimerService:
         self._kafka_client_id = "SmartOnionTimerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._kafka_producer = None
-        self._discovery_requests_ran = 0
-        self._discovery_requests_completed_successfully = 0
+        self._discovery_requests_ran = Value('i', 0)
+        self._discovery_requests_completed_successfully = Value('i', 0)
         while self._kafka_producer is None:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
@@ -115,7 +116,7 @@ class TimerService:
                     try:
                         lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
                         for query in lld_queries:
-                            self._discovery_requests_ran = self._discovery_requests_ran + 1
+                            self._discovery_requests_ran.value += 1
                             try:
                                 cur_url = base_url + query
                                 print("Calling " + cur_url)
@@ -128,7 +129,7 @@ class TimerService:
                                         cur_tasks_list.append({
                                             "URL": task["{#URL}"]
                                         })
-                                    self._discovery_requests_completed_successfully = self._discovery_requests_completed_successfully + 1
+                                    self._discovery_requests_completed_successfully.value += 1
                             except Exception as ex:
                                 print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
 

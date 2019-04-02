@@ -24,6 +24,9 @@ import statsd
 import hashlib
 from bottle import Bottle, request
 from urllib import request as urllib_req
+import kafka
+import uuid
+from multiprocessing import Value
 
 
 DEBUG = False
@@ -93,11 +96,17 @@ class NormalizedDataSet:
 class AnomalyDetector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
-    def __init__(self):
+    def __init__(self, config_copy):
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
-        self._anomalies_reported = 0
+        self._anomalies_reported = Value('i', 0)
+        self._config_copy = config_copy
+        self._kafka_client_id = "SmartOnionAnomalyDetectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
+        self._metrics_uniqe_list = {}
+        self._metrics_uniqe_list_update_lock = threading.Lock()
 
     def _route(self):
         self._app.route('/smart-onion/discover-metrics/<metric_pattern>', method="GET", callback=self.discover_metrics)
@@ -121,12 +130,12 @@ class AnomalyDetector:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "anomalies_reported": self._anomalies_reported
+                "anomalies_reported": self._anomalies_reported.value
             }
         }
 
     def report_anomaly(self, metric, anomaly_info):
-        self._anomalies_reported = self._anomalies_reported + 1
+        self._anomalies_reported.value += 1
         print("INFO: The following anomaly reported regarding metric " + str(metric) + ": " + json.dumps(anomaly_info))
         pass
 
@@ -234,25 +243,62 @@ class AnomalyDetector:
         else:
             return R
 
+    def metrics_collector(self):
+        print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._metrics_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads")
+        kafka_consumer = None
+        while kafka_consumer is None:
+            try:
+                kafka_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
+                                                     bootstrap_servers=self._kafka_server,
+                                                     client_id=self._kafka_client_id)
+            except:
+                print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                time.sleep(10)
+
+        for metric_record in kafka_consumer:
+            metric = str(metric_record.value)
+            metric_name = metric
+            if metric is None or metric.strip() == "" or len(metric.split(" ")) != 3:
+                if metric is None:
+                    metric_name = "None"
+                print("DEBUG: Received the following malformed metric. Ignoring: " + metric_name)
+                continue
+
+            with self._metrics_uniqe_list_update_lock:
+                if not metric_name in self._metrics_uniqe_list:
+                    self._metrics_uniqe_list[metric_name] = time.time()
+
     def metrics_discoverer(self, metrics_pattern):
-        if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
-            return
+        regex = re.compile(metrics_pattern)
+        with self._metrics_uniqe_list_update_lock:
+            res = {
+                "data": []
+            }
 
-        else:
-            DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = True
+            for metric_name in self._metrics_uniqe_list.keys():
+                if re.match(regex, metric_name):
+                    res["data"].append(metric_name)
 
-        metrics_pattern_real_path = os.path.join(METRIC_PATH, metrics_pattern.replace(".", "/")) + ".wsp"
+        return res
 
-        raw_metrics_list = glob.glob(metrics_pattern_real_path, recursive=True)
-        res = []
-        for metric_file in raw_metrics_list:
-            metric_base_path = METRIC_PATH
-            if not metric_base_path.endswith("/"):
-                metric_base_path = metric_base_path + "/"
-            res.append(metric_file.replace(metric_base_path, "").replace("/", "."))
-
-        METRICS_CACHE[metrics_pattern] = res
-        DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
+        # if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
+        #     return
+        #
+        # else:
+        #     DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = True
+        #
+        # metrics_pattern_real_path = os.path.join(METRIC_PATH, metrics_pattern.replace(".", "/")) + ".wsp"
+        #
+        # raw_metrics_list = glob.glob(metrics_pattern_real_path, recursive=True)
+        # res = []
+        # for metric_file in raw_metrics_list:
+        #     metric_base_path = METRIC_PATH
+        #     if not metric_base_path.endswith("/"):
+        #         metric_base_path = metric_base_path + "/"
+        #     res.append(metric_file.replace(metric_base_path, "").replace("/", "."))
+        #
+        # METRICS_CACHE[metrics_pattern] = res
+        # DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
 
     def get_anomaly_score(self, metric_name, cur_time=None, ref_periods=None):
         res = 0
@@ -416,4 +462,4 @@ if len(sys.argv) > 1:
                 quit(1)
 
 sys.argv = [sys.argv[0]]
-AnomalyDetector().run(listen_ip=listen_ip, listen_port=listen_port)
+AnomalyDetector(config_copy=config_copy).run(listen_ip=listen_ip, listen_port=listen_port)

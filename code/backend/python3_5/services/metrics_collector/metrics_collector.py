@@ -42,6 +42,7 @@ import multiprocessing
 import random
 import postgresql
 from operator import itemgetter
+from multiprocessing import Value
 
 
 DEBUG = False
@@ -469,14 +470,14 @@ class MetricsCollector:
         self._sampling_tasks_index = {}
         self._is_sampling_tasks_gc_running = False
         self._sampling_tasks_threads_sync_lock = threading.Lock()
-        self._metric_requests_processed_successfully = 0
-        self._metric_requests_received = 0
-        self._similarity_test_requests_processed_successfully = 0
-        self._similarity_test_requests_received = 0
-        self._field_query_requests_processed_successfully = 0
-        self._field_query_requests_received = 0
-        self._discovery_requests_received = 0
-        self._discovery_requests_processed_successfully = 0
+        self._metric_requests_processed_successfully = Value('i', 0)
+        self._metric_requests_received = Value('i', 0)
+        self._similarity_test_requests_processed_successfully = Value('i', 0)
+        self._similarity_test_requests_received = Value('i', 0)
+        self._field_query_requests_processed_successfully = Value('i', 0)
+        self._field_query_requests_received = Value('i', 0)
+        self._discovery_requests_received = Value('i', 0)
+        self._discovery_requests_processed_successfully = Value('i', 0)
         self._metric_item_element_max_size = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_max_length"]
         self._tokenizer_db_type = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbtype"]
         self._tokenizer_db_port = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbport"]
@@ -508,14 +509,14 @@ class MetricsCollector:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "metric_requests_received": self._metric_requests_received,
-                "metric_requests_processed_successfully": self._metric_requests_processed_successfully,
-                "similarity_test_requests_received": self._similarity_test_requests_received,
-                "similarity_test_requests_processed_successfully": self._similarity_test_requests_processed_successfully,
-                "field_query_requests_received": self._field_query_requests_received,
-                "field_query_requests_processed_successfully": self._field_query_requests_processed_successfully,
-                "discovery_requests_received": self._discovery_requests_received,
-                "discovery_requests_processed_successfully": self._discovery_requests_processed_successfully
+                "metric_requests_received": self._metric_requests_received.value,
+                "metric_requests_processed_successfully": self._metric_requests_processed_successfully.value,
+                "similarity_test_requests_received": self._similarity_test_requests_received.value,
+                "similarity_test_requests_processed_successfully": self._similarity_test_requests_processed_successfully.value,
+                "field_query_requests_received": self._field_query_requests_received.value,
+                "field_query_requests_processed_successfully": self._field_query_requests_processed_successfully.value,
+                "discovery_requests_received": self._discovery_requests_received.value,
+                "discovery_requests_processed_successfully": self._discovery_requests_processed_successfully.value
             }
         }
 
@@ -732,7 +733,7 @@ class MetricsCollector:
         return metric_name, query_base
 
     def fieldQuery(self, queryname):
-        self._field_query_requests_received = self._field_query_requests_received + 1
+        self._field_query_requests_received.value += 1
         query_details = self.queries[queryname]
         if query_details["type"] != "FIELD_QUERY":
             raise QueryNameNotFoundOrOfWrongType()
@@ -764,7 +765,7 @@ class MetricsCollector:
             )
             raw_res = res['hits']['hits'][0]['_source'][query_details["field_name"]]
             res = "@@RES: " + raw_res
-            self._field_query_requests_processed_successfully = self._field_query_requests_processed_successfully + 1
+            self._field_query_requests_processed_successfully.value += 1
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
 
@@ -777,7 +778,7 @@ class MetricsCollector:
         return res
 
     def get_similarity(self, queryname):
-        self._similarity_test_requests_received = self._similarity_test_requests_received + 1
+        self._similarity_test_requests_received.value += 1
         query_details = self.queries[queryname]
         if query_details["type"] != "SIMILARITY_TEST":
             raise QueryNameNotFoundOrOfWrongType()
@@ -873,7 +874,7 @@ class MetricsCollector:
                         value_compared = value_to_compare
 
                 res = "@@RES: " + str(highest_match_rate) + "," + highest_match_rate_value + "(" + max_match_rate_algorithm + ")," + value_compared
-                self._field_query_requests_processed_successfully = self._field_query_requests_processed_successfully + 1
+                self._similarity_test_requests_processed_successfully.value += 1
             else:
                 res = "@@ERROR: Elasticsearch responded with an unexpected response: (" + json.dumps(res) + ")"
         except Exception as e:
@@ -894,7 +895,7 @@ class MetricsCollector:
         return str(len(base64.b64decode(queryname.encode("utf-8")).decode("utf-8")))
 
     def queryCount(self, queryname):
-        self._metric_requests_received = self._metric_requests_received + 1
+        self._metric_requests_received.value += 1
         query_details = self.queries[queryname]
         if query_details["type"] != "QUERY_COUNT":
             raise QueryNameNotFoundOrOfWrongType()
@@ -957,7 +958,7 @@ class MetricsCollector:
                 raw_res = res['count']
 
             res = "@@RES: " + str(raw_res)
-            self._metric_requests_processed_successfully = self._metric_requests_processed_successfully + 1
+            self._metric_requests_processed_successfully.value += 1
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
 
@@ -1039,7 +1040,7 @@ class MetricsCollector:
         return res
 
     def discover(self, queryname):
-        self._discovery_requests_received = self._discovery_requests_received + 1
+        self._discovery_requests_received.value += 1
         query_details = self.queries[queryname]
         if query_details["type"] != "LLD":
             raise QueryNameNotFoundOrOfWrongType()
@@ -1123,7 +1124,7 @@ class MetricsCollector:
             if encode_json_as_b64:
                 res_str = str(base64.b64encode(str(res_str).encode('utf-8')).decode('utf-8'))
             res = "@@RES: " + res_str
-            self._discovery_requests_processed_successfully = self._discovery_requests_processed_successfully + 1
+            self._discovery_requests_processed_successfully.value += 1
         except Exception as e:
             res = "@@RES: @@EXCEPTION: " + str(e)
 
