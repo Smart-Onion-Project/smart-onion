@@ -139,6 +139,13 @@ class AnomalyDetector:
             return file.read()
 
     def _ping(self):
+        metrics_in_list = -1
+        try:
+            with self._metrics_uniqe_list_update_lock:
+                metrics_in_list = len(self._metrics_uniqe_list)
+        except:
+            pass
+
         return {
             "response": "PONG",
             "file": __file__,
@@ -148,7 +155,8 @@ class AnomalyDetector:
                 "anomalies_reported": self._anomalies_reported.value,
                 "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
                 "metrics_parsed": self._metrics_parsed.value,
-                "analysis_cycles_so_far": self._analysis_cycles_so_far.value
+                "analysis_cycles_so_far": self._analysis_cycles_so_far.value,
+                "metrics_in_list": metrics_in_list
             }
         }
 
@@ -303,9 +311,14 @@ class AnomalyDetector:
                 continue
 
             metric_name = metric.split(" ")[0]
-            with self._metrics_uniqe_list_update_lock:
-                if not metric_name in self._metrics_uniqe_list.keys():
-                    self._metrics_uniqe_list[metric_name] = time.time()
+            if re.match(self._allowed_to_work_on_metrics_pattern, str(metric_name)):
+                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+                with self._metrics_uniqe_list_update_lock:
+                    if not metric_name in self._metrics_uniqe_list.keys():
+                        self._metrics_uniqe_list[metric_name] = time.time()
+            else:
+                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+
 
     # def metrics_discoverer(self):
         # if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
@@ -417,9 +430,16 @@ class AnomalyDetector:
         return "@@RES: " + str(res)
 
     def auto_detect_metrics_anomalies_thread(self):
+        last_cycle_started = time.time()
         while True:
+            time_since_last_cycle_started = time.time() - last_cycle_started
+            if time_since_last_cycle_started > (self._anomalies_check_interval * 1.5):
+                print("WARN: Sampling cycles are taking too long to complete. Last cycle took " + str(time_since_last_cycle_started - self._anomalies_check_interval) + " seconds to completr. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Graphite's/disk subsystem's performance or add more instances of this service on other servers.")
+
+            last_cycle_started = time.time()
             self._analysis_cycles_so_far.value += 1
             try:
+                print("DEBUG: Starting a sampling cycle.")
                 with self._metrics_uniqe_list_update_lock:
                     local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
 
@@ -427,6 +447,8 @@ class AnomalyDetector:
                     print("DEBUG: Looking for anomalies in metric " + str(metric))
                     self.get_anomaly_score(metric)
                     self._metrics_parsed.value += 1
+
+                print("DEBUG: Finished sampling cycle. Handled "+ str(len(local_metrics_list_copy)) + " metrics.")
                 local_metrics_list_copy = None
 
             except KeyboardInterrupt:

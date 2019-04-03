@@ -511,11 +511,17 @@ class MetricsRealtimeAnalyzer:
             self._raw_metrics_downloaded_from_kafka.value += 1
 
             # If this is an anomaly metric created by this service then there's no need to process it again...
-            if re.match(self._allowed_to_work_on_metrics_pattern, str(metric.value)):
-                print("DEBUG: Handling the following metric " + str(metric.value) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+            metric_name = metric.value
+            if metric.value is None or metric.value.strip() == "" or len(metric.value.split(" ")) != 3:
+                print("DEBUG: Received the following malformed metric. Ignoring: " + str(metric_name))
+                continue
+
+            metric_name = metric.value.split(" ")[0]
+            if re.match(self._allowed_to_work_on_metrics_pattern, str(metric_name)):
+                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
                 self.parse_metric_message(metric_raw_info=metric.value)
             else:
-                print("DEBUG: Ignoring the following metric " + str(metric.value) + " since it DOES NOT matche the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
 
 
 
