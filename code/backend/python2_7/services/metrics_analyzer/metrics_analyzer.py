@@ -33,6 +33,7 @@ import base64
 import uuid
 import kafka
 from multiprocessing import Value
+import re
 
 
 DEBUG = False
@@ -87,12 +88,13 @@ class MetricsRealtimeAnalyzer:
         self._kafka_client_id = "SmartOnionMetricsAnalyzerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
+        self._allowed_to_work_on_metrics_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern"])
         self._kafka_producer = None
         while self._kafka_producer is None:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
             except Exception as ex:
-                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...")
+                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available... (" + str(ex) + " (" + type(ex).__name__ + ")")
                 time.sleep(10)
 
     def _route(self):
@@ -118,6 +120,7 @@ class MetricsRealtimeAnalyzer:
 
     def report_anomaly(self, metric, anomaly_info):
         anomaly_report = {
+            "report_id": str(uuid.uuid4()),
             "metric": metric,
             "reporter": "metrics_analyzer",
             "meta_data": anomaly_info
@@ -501,7 +504,7 @@ class MetricsRealtimeAnalyzer:
 
         for metric in kafka_consumer:
             # If this is an anomaly metric created by this service then there's no need to process it again...
-            if not str(metric.value).startswith("stats.gauges." + self.metrics_prefix):
+            if not re.match(self._allowed_to_work_on_metrics_pattern, str(metric.value)):
                 print("DEBUG: Handling the following metric " + str(metric.value) + " since it doesn't start with the following prefix: " + "stats.gauges." + self.metrics_prefix)
                 self.parse_metric_message(metric_raw_info=metric.value)
 

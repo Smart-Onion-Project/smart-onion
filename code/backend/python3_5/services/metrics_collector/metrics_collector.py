@@ -564,7 +564,7 @@ class MetricsCollector:
                             if url in sampling_tasks_list.keys():
                                 del sampling_tasks_list[url]
             except Exception as ex:
-                print("WARN: The following unexpected exception has been thrown during the garbage collection of the sampling tasks lists items: " + str(ex))
+                print("WARN: The following unexpected exception has been thrown during the garbage collection of the sampling tasks lists items (" + type(ex).__name__ + "): " + str(ex))
 
             self._is_sampling_tasks_gc_running = False
 
@@ -593,10 +593,10 @@ class MetricsCollector:
                                 urllib_req.urlopen(task_url)
                                 tasks_list[task_url]["TTL"] = tasks_list[task_url]["TTL"] - 1
                             except Exception as ex:
-                                print("WARN[" + thread_id + "]: Failed to query the URL '" + task_url + "' due to the following exception: " + str(ex))
+                                print("WARN[" + thread_id + "]: Failed to query the URL '" + task_url + "' due to the following exception (" + type(ex).__name__ + "): " + str(ex))
 
                 except Exception as ex:
-                    print("WARN[" + thread_id + "]: The following unexpected exception has been thrown while handling sampling tasks: " + str(ex))
+                    print("WARN[" + thread_id + "]: The following unexpected exception has been thrown while handling sampling tasks (" + type(ex).__name__ + "): " + str(ex))
 
             sleep_time = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000.0
             print("INFO[" + thread_id + "]: Going to sleep for " + str(sleep_time) + " seconds...")
@@ -637,10 +637,10 @@ class MetricsCollector:
 
                                 last_task_list_appended = last_task_list_appended + 1
                         except Exception as ex:
-                            print("WARN: The following unexpected exception has been thrown while processing tasks from Kafka: " + str(ex))
+                            print("WARN: The following unexpected exception has been thrown while processing tasks from Kafka (" + type(ex).__name__ + "): " + str(ex))
 
         except Exception as ex:
-            print("ERROR: An unexpected exception (" + str(ex) + ") has been thrown while consuming sampling tasks from the Kafka server.")
+            print("ERROR: An unexpected exception (" + str(ex) + " (" + type(ex).__name__ + ")) has been thrown while consuming sampling tasks from the Kafka server.")
 
     def GetQueryTimeRange(self, query_details):
         # if DEBUG:
@@ -767,7 +767,7 @@ class MetricsCollector:
             res = "@@RES: " + raw_res
             self._field_query_requests_processed_successfully.value += 1
         except Exception as e:
-            res = "@@RES: @@EXCEPTION: " + str(e)
+            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         if Utils().is_number(raw_res):
             try:
@@ -878,7 +878,7 @@ class MetricsCollector:
             else:
                 res = "@@ERROR: Elasticsearch responded with an unexpected response: (" + json.dumps(res) + ")"
         except Exception as e:
-            res = "@@RES: @@EXCEPTION: " + str(e)
+            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         if Utils().is_number(res):
             try:
@@ -960,7 +960,7 @@ class MetricsCollector:
             res = "@@RES: " + str(raw_res)
             self._metric_requests_processed_successfully.value += 1
         except Exception as e:
-            res = "@@RES: @@EXCEPTION: " + str(e)
+            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         if Utils().is_number(raw_res):
             try:
@@ -1035,7 +1035,7 @@ class MetricsCollector:
 
             res = "@@RES: " + res_str
         except Exception as e:
-            res = "@@RES: @@EXCEPTION: " + str(e)
+            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         return res
 
@@ -1126,7 +1126,7 @@ class MetricsCollector:
             res = "@@RES: " + res_str
             self._discovery_requests_processed_successfully.value += 1
         except Exception as e:
-            res = "@@RES: @@EXCEPTION: " + str(e)
+            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         return res
 
@@ -1158,7 +1158,7 @@ class MetricsCollector:
 
             return res
         except Exception as ex:
-            return "@@EX: " + str(ex)
+            return "@@EX: " + str(ex) + " (" + type(ex).__name__ + ")"
 
 configurator_base_url = ""
 script_path = os.path.dirname(os.path.realpath(__file__))
@@ -1197,9 +1197,9 @@ while queries_conf is None:
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.dynamic.learned.*"
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         learned_net_info = json.loads(configurator_response)
-    except:
+    except Exception as ex:
         print(
-            "WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
+            "WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...  (" + str(ex) + " (" + type(ex).__name__ + "))")
         time.sleep(10)
 
 config_file_specified_on_cmd = False
