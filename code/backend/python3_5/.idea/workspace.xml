@@ -8,14 +8,8 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/tinyurl/tinyurl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/so-update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-update.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="424">
-              <caret line="1201" column="187" lean-forward="true" selection-start-line="1201" selection-start-column="142" selection-end-line="1201" selection-end-column="187" />
+              <caret line="1200" column="187" lean-forward="true" selection-start-line="1200" selection-start-column="142" selection-end-line="1200" selection-end-column="187" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -41,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="176" selection-start-line="176" selection-end-line="176" />
+            <state relative-caret-position="-451">
+              <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
                 <element signature="e#1537#2856#0" />
@@ -96,12 +90,12 @@
       <find>metrics_discoverer</find>
       <find>discover_metrics</find>
       <find>AnomalyDetector(</find>
-      <find>run</find>
       <find>thread</find>
       <find>path</find>
       <find>Exception</find>
       <find>report</find>
       <find>wait</find>
+      <find>run</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -380,7 +374,7 @@
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
-          <caret line="1201" column="187" lean-forward="true" selection-start-line="1201" selection-start-column="142" selection-end-line="1201" selection-end-column="187" />
+          <caret line="1200" column="187" lean-forward="true" selection-start-line="1200" selection-start-column="142" selection-end-line="1200" selection-end-column="187" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
@@ -410,8 +404,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="176" selection-start-line="176" selection-end-line="176" />
+        <state relative-caret-position="-451">
+          <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
           <folding>
             <element signature="e#922#936#0" expanded="true" />
             <element signature="e#1537#2856#0" />
