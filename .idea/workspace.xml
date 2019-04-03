@@ -5,7 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - There was a bug that prevented the collector from tokenizing arguments in the metric name">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="timer.py:&#10; - The /ping result included the raw Value object.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
@@ -449,20 +449,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00113" summary="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result.">
-      <created>1553707067418</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1553707067418</updated>
-    </task>
-    <task id="LOCAL-00114" summary="metrics-analyzer.py:&#10; - Switched to &quot;debug&quot; mode">
-      <created>1553750524837</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1553750524837</updated>
-    </task>
     <task id="LOCAL-00115" summary="metrics-analyzer.py:&#10; - Added more try-except blocks and warning messages in cases of exceptions. To help find out why the service manages to handle only such a tiny portion of the metrics that reach it.">
       <created>1553754535388</created>
       <option name="number" value="00115" />
@@ -792,7 +778,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554290046317</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="metrics_collector.py:&#10; - There was a bug that prevented the collector from tokenizing arguments in the metric name&#10; - The URLs that were created during discovery were not url-encoded">
+      <created>1554297803701</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1554297803701</updated>
+    </task>
+    <task id="LOCAL-00163" summary="timer.py:&#10; - The /ping result included the raw Value object.">
+      <created>1554298597558</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1554298597558</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TodoView">
@@ -867,8 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metric_analyzer.py:&#10; - Removed all commented out tcp server stuff&#10; - Added more info on why the service is waiting on load" />
-    <MESSAGE value="metrics_collector.py:&#10; - Added first version of a tokenizing mechanism for tokenizing long metric elements to prevent file name too long errors.&#10;&#10;so-clean_all.sh&#10; - A script for cleaning the system from all the metrics, topics info, tasks, etc. (in the future also passwords) to prepare it for deployments" />
     <MESSAGE value="metrics_collector.py:&#10; -" />
     <MESSAGE value="so-clean_all.sh:&#10; - Deleting the topics instead of just purging them" />
     <MESSAGE value="Just updated permissions" />
@@ -892,7 +890,9 @@
     <MESSAGE value="metrics_collector.py:&#10; - Removed commented out code of the old GenerateLLD&#10; - Changed the code to use UTC when setting ranges and alike in Elasticsearch queries" />
     <MESSAGE value="alerter.py, configurator.py:&#10; - Added preparation for usage of Gunicorn and some service specific info in /ping methods&#10;&#10;metrics_analyzer.py, metrics_collector.py, timer.py:&#10; - Added code for synchronizing the service specific info between all the worker threads to make /ping results more accurate&#10; &#10;anomaly_detector.py:&#10; - Preparing for metrics discovery by collecting a list of unique metric names directly from Kafka. (to minimize latency and IOPS involved in filesystem enumeration)" />
     <MESSAGE value="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discovering metrics by subscribing to the metrics topic on Kafka and de-duping the input into a dictionary.&#10; - Rewritten the report_anomaly method to match the format and the techniques used in the metrics-analyzer.&#10; - Protecting against attempts for path traversal&#10; - Replaced code that was located within the class in class methods that created new instances of the class with the call to &quot;self.&quot;&#10;&#10;metrics_collector.py, timer.py, tinyurl.py:&#10; - Added the exception type in error messages in generic exception handlers.&#10; &#10;so-update.sh:&#10; - Added cleanup of all the metrics stored in the StatsD cache at every update (to prevent ghost metrics)" />
-    <option name="LAST_COMMIT_MESSAGE" value="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discovering metrics by subscribing to the metrics topic on Kafka and de-duping the input into a dictionary.&#10; - Rewritten the report_anomaly method to match the format and the techniques used in the metrics-analyzer.&#10; - Protecting against attempts for path traversal&#10; - Replaced code that was located within the class in class methods that created new instances of the class with the call to &quot;self.&quot;&#10;&#10;metrics_collector.py, timer.py, tinyurl.py:&#10; - Added the exception type in error messages in generic exception handlers.&#10; &#10;so-update.sh:&#10; - Added cleanup of all the metrics stored in the StatsD cache at every update (to prevent ghost metrics)" />
+    <MESSAGE value="metrics_collector.py:&#10; - There was a bug that prevented the collector from tokenizing arguments in the metric name&#10; - The URLs that were created during discovery were not url-encoded" />
+    <MESSAGE value="timer.py:&#10; - The /ping result included the raw Value object." />
+    <option name="LAST_COMMIT_MESSAGE" value="timer.py:&#10; - The /ping result included the raw Value object." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

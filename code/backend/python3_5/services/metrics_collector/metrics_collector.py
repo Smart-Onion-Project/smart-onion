@@ -721,13 +721,22 @@ class MetricsCollector:
                                     raise Exception("ERROR: Could not tokenize the argument via the tokenizer DB. (Exception details: (" + str(ex) + " (" + type(ex).__name__ + "))")
 
                     if len(str(arg).strip()) != 0:
-                        if base_64_used:
-                            query_base = query_base.replace("{{#arg" + str(i) + "}}",
-                                                            base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
-                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0][0])
+                        if len(arg) > self._metric_item_element_max_size:
+                            if base_64_used:
+                                query_base = query_base.replace("{{#arg" + str(i) + "}}",
+                                                                base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
+                                metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0][0])
+                            else:
+                                query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+                                metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0][0])
                         else:
-                            query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
-                            metric_name = metric_name.replace("{{#arg" + str(i) + "}}", element_token[0][0])
+                            if base_64_used:
+                                query_base = query_base.replace("{{#arg" + str(i) + "}}",
+                                                                base64.b64decode(arg.encode('utf-8')).decode('utf-8'))
+                                metric_name = metric_name.replace("{{#arg" + str(i) + "}}", base64.b64encode(arg.encode('utf-8')).decode('utf-8'))
+                            else:
+                                query_base = query_base.replace("{{#arg" + str(i) + "}}", arg)
+                                metric_name = metric_name.replace("{{#arg" + str(i) + "}}", arg)
                 else:
                     break
         return metric_name, query_base
