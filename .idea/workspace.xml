@@ -5,17 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discover">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - There was a bug that prevented the collector from tokenizing arguments in the metric name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/test-scripts/so-update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/so-update.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="1204" column="36" lean-forward="true" selection-start-line="1204" selection-start-column="36" selection-end-line="1204" selection-end-column="36" />
+            <state relative-caret-position="321">
+              <caret line="591" column="32" lean-forward="true" selection-start-line="591" selection-start-column="32" selection-end-line="591" selection-end-column="32" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -52,17 +46,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="1812" column="54" lean-forward="true" selection-start-line="1812" selection-start-column="14" selection-end-line="1812" selection-end-column="54" />
+            <state relative-caret-position="417">
+              <caret line="1563" column="46" lean-forward="true" selection-start-line="1563" selection-start-column="46" selection-end-line="1563" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+              <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -97,8 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Skipping these URLs. The metric collector should still collect those metrics due to the TTL</find>
-      <find>decode</find>
       <find>encode</find>
       <find>ping</find>
       <find>&quot;arg&quot;</find>
@@ -126,7 +118,9 @@
       <find>&quot;agg_on_field&quot;: &quot;.*,.*&quot;</find>
       <find>nxdomain</find>
       <find>@time</find>
+      <find>Count</find>
       <find>tld</find>
+      <find>number_of_clients_per_dns_subdomain</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -184,9 +178,9 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/detokenize.py" />
         <option value="$PROJECT_DIR$/config/queries.json" />
-        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
+        <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
@@ -454,13 +448,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00112" summary="ALL SERVICES:&#10; - Added uptime to the ping result&#10; &#10;metrics_analyzer.py:&#10; - Added the number of metrics received and successfully processed to the ping result">
-      <created>1553705198905</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1553705198906</updated>
     </task>
     <task id="LOCAL-00113" summary="tinyurl.py:&#10; - Apparently I missed this service. Adding the uptime to it's ping result.">
       <created>1553707067418</created>
@@ -798,7 +785,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554208980329</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discovering metrics by subscribing to the metrics topic on Kafka and de-duping the input into a dictionary.&#10; - Rewritten the report_anomaly method to match the format and the techniques used in the metrics-analyzer.&#10; - Protecting against attempts for path traversal&#10; - Replaced code that was located within the class in class methods that created new instances of the class with the call to &quot;self.&quot;&#10;&#10;metrics_collector.py, timer.py, tinyurl.py:&#10; - Added the exception type in error messages in generic exception handlers.&#10; &#10;so-update.sh:&#10; - Added cleanup of all the metrics stored in the StatsD cache at every update (to prevent ghost metrics)">
+      <created>1554290046317</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1554290046317</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TodoView">
@@ -813,20 +807,20 @@
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20094937" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26476794" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49367088" visible="true" weight="0.31469297" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49367088" weight="0.31469297" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8270042" weight="0.114035085" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8992616" weight="0.41118422" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.89873415" visible="true" weight="0.12828948" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49894515" weight="0.33004385" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.5063291" side_tool="true" visible="true" weight="0.31469297" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.101265825" side_tool="true" visible="true" weight="0.12828948" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -873,7 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configurator.py:&#10; - Added configuration for a kafka topic that will be used for sending the anomaly reports by the metrics analyzer&#10;&#10;metric_analyzer.py:&#10; - Added code for reporting anomalies found in metrics to Kafka as well as to the alerter. This will allow other services to handle other aspects of the alerts and at least for now will help me debug the service.\&#10;&#10;metrics_collector.py, timer.py:&#10; - Added extra info to the ping result to help detect problems in the service.&#10; &#10;test_service_status.sh:&#10; - Added the infrastructure services (kafka, zookeeper, logstash)" />
     <MESSAGE value="metric_analyzer.py:&#10; - Removed all commented out tcp server stuff&#10; - Added more info on why the service is waiting on load" />
     <MESSAGE value="metrics_collector.py:&#10; - Added first version of a tokenizing mechanism for tokenizing long metric elements to prevent file name too long errors.&#10;&#10;so-clean_all.sh&#10; - A script for cleaning the system from all the metrics, topics info, tasks, etc. (in the future also passwords) to prepare it for deployments" />
     <MESSAGE value="metrics_collector.py:&#10; -" />
@@ -898,7 +891,8 @@
     <MESSAGE value="metrics_collector.py:&#10; - Rewrote the Utils().GenerateLldFromElasticAggrRes() method in different approach (iterative and not recursive) to support the usage with Gunicorn and to simplify the code and improve performance (it used to create a Zabbix LLD and then convert it again to contain the URLs, now it does everything at once)" />
     <MESSAGE value="metrics_collector.py:&#10; - Removed commented out code of the old GenerateLLD&#10; - Changed the code to use UTC when setting ranges and alike in Elasticsearch queries" />
     <MESSAGE value="alerter.py, configurator.py:&#10; - Added preparation for usage of Gunicorn and some service specific info in /ping methods&#10;&#10;metrics_analyzer.py, metrics_collector.py, timer.py:&#10; - Added code for synchronizing the service specific info between all the worker threads to make /ping results more accurate&#10; &#10;anomaly_detector.py:&#10; - Preparing for metrics discovery by collecting a list of unique metric names directly from Kafka. (to minimize latency and IOPS involved in filesystem enumeration)" />
-    <option name="LAST_COMMIT_MESSAGE" value="alerter.py, configurator.py:&#10; - Added preparation for usage of Gunicorn and some service specific info in /ping methods&#10;&#10;metrics_analyzer.py, metrics_collector.py, timer.py:&#10; - Added code for synchronizing the service specific info between all the worker threads to make /ping results more accurate&#10; &#10;anomaly_detector.py:&#10; - Preparing for metrics discovery by collecting a list of unique metric names directly from Kafka. (to minimize latency and IOPS involved in filesystem enumeration)" />
+    <MESSAGE value="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discovering metrics by subscribing to the metrics topic on Kafka and de-duping the input into a dictionary.&#10; - Rewritten the report_anomaly method to match the format and the techniques used in the metrics-analyzer.&#10; - Protecting against attempts for path traversal&#10; - Replaced code that was located within the class in class methods that created new instances of the class with the call to &quot;self.&quot;&#10;&#10;metrics_collector.py, timer.py, tinyurl.py:&#10; - Added the exception type in error messages in generic exception handlers.&#10; &#10;so-update.sh:&#10; - Added cleanup of all the metrics stored in the StatsD cache at every update (to prevent ghost metrics)" />
+    <option name="LAST_COMMIT_MESSAGE" value="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discovering metrics by subscribing to the metrics topic on Kafka and de-duping the input into a dictionary.&#10; - Rewritten the report_anomaly method to match the format and the techniques used in the metrics-analyzer.&#10; - Protecting against attempts for path traversal&#10; - Replaced code that was located within the class in class methods that created new instances of the class with the call to &quot;self.&quot;&#10;&#10;metrics_collector.py, timer.py, tinyurl.py:&#10; - Added the exception type in error messages in generic exception handlers.&#10; &#10;so-update.sh:&#10; - Added cleanup of all the metrics stored in the StatsD cache at every update (to prevent ghost metrics)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -912,11 +906,6 @@
           <url>file://$PROJECT_DIR$/Tests_and_POCs/test_text2image.py</url>
           <line>85</line>
           <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>897</line>
-          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -952,6 +941,16 @@ hashlib.algorithms_available</expression-string>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>element_token[0][0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>element_token[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>res_lld</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -983,21 +982,6 @@ hashlib.algorithms_available</expression-string>
       </expression>
       <expression>
         <expression-string>cls.lst</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>cls.FlattenAggregates</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>res</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>query_string</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1663,13 +1647,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/bottle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="1739" selection-start-line="1739" selection-end-line="1739" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -1687,23 +1664,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="1204" column="36" lean-forward="true" selection-start-line="1204" selection-start-column="36" selection-end-line="1204" selection-end-column="36" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="1812" column="54" lean-forward="true" selection-start-line="1812" selection-start-column="14" selection-end-line="1812" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1714,7 +1674,31 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="1563" column="46" lean-forward="true" selection-start-line="1563" selection-start-column="46" selection-end-line="1563" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/bottle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="1739" selection-start-line="1739" selection-end-line="1739" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="591" column="32" lean-forward="true" selection-start-line="591" selection-start-column="32" selection-end-line="591" selection-end-column="32" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
