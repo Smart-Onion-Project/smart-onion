@@ -8,6 +8,7 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
@@ -22,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="740" column="25" lean-forward="true" selection-start-line="740" selection-start-column="25" selection-end-line="740" selection-end-column="25" />
+            <state relative-caret-position="218">
+              <caret line="583" column="287" lean-forward="true" selection-start-line="583" selection-start-column="124" selection-end-line="583" selection-end-column="287" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -35,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="150" column="76" selection-start-line="150" selection-start-column="76" selection-end-line="150" selection-end-column="76" />
+            <state relative-caret-position="361">
+              <caret line="444" column="50" lean-forward="true" selection-start-line="444" selection-start-column="50" selection-end-line="444" selection-end-column="50" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
                 <element signature="e#1537#2856#0" />
@@ -96,6 +97,8 @@
       <find>report</find>
       <find>run</find>
       <find>wait</find>
+      <find>pattern</find>
+      <find>CPU</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -275,7 +278,7 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.16666667" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.18530701" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.16995615" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.114035085" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -394,8 +397,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="740" column="25" lean-forward="true" selection-start-line="740" selection-start-column="25" selection-end-line="740" selection-end-column="25" />
+        <state relative-caret-position="218">
+          <caret line="583" column="287" lean-forward="true" selection-start-line="583" selection-start-column="124" selection-end-line="583" selection-end-column="287" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
@@ -405,8 +408,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="150" column="76" selection-start-line="150" selection-start-column="76" selection-end-line="150" selection-end-column="76" />
+        <state relative-caret-position="361">
+          <caret line="444" column="50" lean-forward="true" selection-start-line="444" selection-start-column="50" selection-end-line="444" selection-end-column="50" />
           <folding>
             <element signature="e#922#936#0" expanded="true" />
             <element signature="e#1537#2856#0" />
