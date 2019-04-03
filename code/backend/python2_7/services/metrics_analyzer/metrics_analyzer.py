@@ -511,9 +511,12 @@ class MetricsRealtimeAnalyzer:
             self._raw_metrics_downloaded_from_kafka.value += 1
 
             # If this is an anomaly metric created by this service then there's no need to process it again...
-            if not re.match(self._allowed_to_work_on_metrics_pattern, str(metric.value)):
-                print("DEBUG: Handling the following metric " + str(metric.value) + " since it doesn't start with the following prefix: " + "stats.gauges." + self.metrics_prefix)
+            if re.match(self._allowed_to_work_on_metrics_pattern, str(metric.value)):
+                print("DEBUG: Handling the following metric " + str(metric.value) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
                 self.parse_metric_message(metric_raw_info=metric.value)
+            else:
+                print("DEBUG: Ignoring the following metric " + str(metric.value) + " since it DOES NOT matche the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+
 
 
 ip = ''
