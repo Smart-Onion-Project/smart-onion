@@ -83,8 +83,8 @@ class TimerService:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "discovery_requests_ran": self._discovery_requests_ran,
-                "discovery_requests_completed_successfully": self._discovery_requests_completed_successfully
+                "discovery_requests_ran": self._discovery_requests_ran.value,
+                "discovery_requests_completed_successfully": self._discovery_requests_completed_successfully.value
             }
         }
 

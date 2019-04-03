@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="96" column="160" lean-forward="true" selection-start-line="96" selection-start-column="116" selection-end-line="96" selection-end-column="160" />
+            <state relative-caret-position="92">
+              <caret line="477" column="25" lean-forward="true" selection-start-line="477" selection-start-column="25" selection-end-line="477" selection-end-column="25" />
               <folding>
                 <element signature="e#922#932#0" expanded="true" />
                 <element signature="e#1469#2480#0" />
@@ -67,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>= AnomalyLikelihood()</find>
       <find>parse</find>
       <find>loads</find>
       <find>urllib_req</find>
@@ -97,6 +95,7 @@
       <find>/dat</find>
       <find>report_an</find>
       <find>wait</find>
+      <find>Cons</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
@@ -269,6 +268,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.14820676" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -541,8 +541,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="96" column="160" lean-forward="true" selection-start-line="96" selection-start-column="116" selection-end-line="96" selection-end-column="160" />
+        <state relative-caret-position="92">
+          <caret line="477" column="25" lean-forward="true" selection-start-line="477" selection-start-column="25" selection-end-line="477" selection-end-column="25" />
           <folding>
             <element signature="e#922#932#0" expanded="true" />
             <element signature="e#1469#2480#0" />
