@@ -21,6 +21,7 @@ import threading
 from urllib import request as urllib_req
 from threading import Lock
 import hashlib
+from multiprocessing import Value
 
 DEBUG = False
 auto_save_dictionary_lock = Lock()
@@ -115,7 +116,7 @@ class TinyUrl:
                 with open(self._backup_file, "w") as backup_file:
                     backup_file.write(json_to_save)
             except Exception as ex:
-                print("WARN: Could not backup the in-memory database to file (" + str(ex) + "). The next time this service will be invoked ALL url's will become invalid unless the in-memory database will be successfuly saved in the next attempt.")
+                print("WARN: Could not backup the in-memory database to file (" + str(ex) + " (" + type(ex).__name__ + ")). The next time this service will be invoked ALL url's will become invalid unless the in-memory database will be successfuly saved in the next attempt.")
             time.sleep(self._backup_interval)
 
     def auto_load_state(self):

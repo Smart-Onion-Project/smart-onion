@@ -22,6 +22,7 @@ import hashlib
 import threading
 from bottle import Bottle
 from urllib import request as urllib_req
+from multiprocessing import Value
 
 DEBUG = False
 
@@ -37,13 +38,13 @@ class TimerService:
         self._kafka_client_id = "SmartOnionTimerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._kafka_producer = None
-        self._discovery_requests_ran = 0
-        self._discovery_requests_completed_successfully = 0
+        self._discovery_requests_ran = Value('i', 0)
+        self._discovery_requests_completed_successfully = Value('i', 0)
         while self._kafka_producer is None:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
             except Exception as ex:
-                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...")
+                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...  (" + str(ex) + " (" + type(ex).__name__ + "))")
                 time.sleep(10)
         self._app = Bottle()
         self._route()
@@ -115,7 +116,7 @@ class TimerService:
                     try:
                         lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
                         for query in lld_queries:
-                            self._discovery_requests_ran = self._discovery_requests_ran + 1
+                            self._discovery_requests_ran.value += 1
                             try:
                                 cur_url = base_url + query
                                 print("Calling " + cur_url)
@@ -128,18 +129,18 @@ class TimerService:
                                         cur_tasks_list.append({
                                             "URL": task["{#URL}"]
                                         })
-                                    self._discovery_requests_completed_successfully = self._discovery_requests_completed_successfully + 1
+                                    self._discovery_requests_completed_successfully.value += 1
                             except Exception as ex:
-                                print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+                                print("WARN: Failed to query or parse the discovery results (" + str(ex) + " (" + type(ex).__name__ + ")). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
 
                     except Exception as ex:
-                        print("WARN: Failed to query or parse the discovery results (" + str(ex) + "). CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+                        print("WARN: Failed to query or parse the discovery results (" + str(ex) + " (" + type(ex).__name__ + ")). CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
 
                     if len(cur_tasks_list) > 0:
                         try:
                             self.pack_and_resend_tasks(cur_tasks_list)
                         except Exception as ex:
-                            print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle.")
+                            print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle. (" + str(ex) + " (" + type(ex).__name__ + "))")
 
                     cur_tasks_list = []
                     print("INFO: Going to sleep for " + str(self._interval) + " seconds...")
@@ -147,7 +148,7 @@ class TimerService:
             except KeyboardInterrupt:
                 print("INFO: Shutting down... (KeyboardInterrupt)")
             except Exception as ex:
-                print("ERROR: An '" + str(ex) + "' exception has been thrown in the timer thread. Waiting 10 seconds and retrying...")
+                print("ERROR: An '" + str(ex) + "' (" + type(ex).__name__ + ") exception has been thrown in the timer thread. Waiting 10 seconds and retrying...")
                 time.sleep(10)
 
 config_copy = {}
@@ -185,8 +186,8 @@ while queries_conf is None:
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.queries"
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         queries_conf = json.loads(configurator_response)
-    except:
-        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...")
+    except Exception as ex:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)... (" + str(ex) + " (" + type(ex).__name__ + ")")
         time.sleep(10)
 
 metric_collector_ping_response = None

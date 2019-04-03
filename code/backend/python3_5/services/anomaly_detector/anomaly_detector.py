@@ -24,16 +24,13 @@ import statsd
 import hashlib
 from bottle import Bottle, request
 from urllib import request as urllib_req
+import kafka
+import uuid
+from multiprocessing import Value
 
 
 DEBUG = False
-REFERENCE_PAST_SAMPLES = '7,14,21'
-METRIC_PATH = '/var/lib/graphite/whisper/'
-# METRIC_PATH = '/home/yuval/MYTREE_ext_disk/Programming Projects/Python Projects/smart-onion-resources/whisper-files/whisper/'
-TIMESPAN_IN_SEC = 86400
 PERCENT_MODE = True
-METRICS_CACHE = {}
-DISCOVERY_CURRENTLY_RUNNING = {}
 metrics_prefix = "smart-onion.anomaly_score.anomaly_detector"
 
 
@@ -93,14 +90,38 @@ class NormalizedDataSet:
 class AnomalyDetector:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
-    def __init__(self):
+    def __init__(self, config_copy):
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
-        self._anomalies_reported = 0
+        self._anomalies_reported = Value('i', 0)
+        self._config_copy = config_copy
+        self._kafka_client_id = "SmartOnionAnomalyDetectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
+        self._allowed_to_work_on_metrics_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern"])
+        self._metrics_base_path = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_physical_path"]
+        self._metrics_prefix = "smart-onion.anomaly_score.anomaly_detector."
+        self._metrics_uniqe_list = {}
+        self._metrics_uniqe_list_update_lock = threading.Lock()
+        self._reference_past_sample_periods = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_past_sample_periods"]
+        self._reference_timespan_in_secods = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_timespan_in_seconds"]
+        self._anomalies_check_interval = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomalies_check_interval"]
+        self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
+        self._alerter_url = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
+        self._kafka_producer = None
+        while self._kafka_producer is None:
+            try:
+                self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
+            except Exception as ex:
+                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available... (" + str(ex) + " (" + type(ex).__name__ + ")")
+                time.sleep(10)
+        self._metrics_discoverer_thread = threading.Thread(target=self.metrics_collector)
+        self._metrics_discoverer_thread.start()
+        self._automated_anomaly_detection_thread = threading.Thread(target=self.auto_detect_metrics_anomalies_thread)
+        self._automated_anomaly_detection_thread.start()
 
     def _route(self):
-        self._app.route('/smart-onion/discover-metrics/<metric_pattern>', method="GET", callback=self.discover_metrics)
         self._app.route('/smart-onion/get-anomaly-score/<metric_name>', method="GET", callback=self.get_anomaly_score)
         self._app.route('/ping', method="GET", callback=self._ping)
 
@@ -121,14 +142,33 @@ class AnomalyDetector:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "anomalies_reported": self._anomalies_reported
+                "anomalies_reported": self._anomalies_reported.value
             }
         }
 
     def report_anomaly(self, metric, anomaly_info):
-        self._anomalies_reported = self._anomalies_reported + 1
+        self._anomalies_reported.value += 1
         print("INFO: The following anomaly reported regarding metric " + str(metric) + ": " + json.dumps(anomaly_info))
         pass
+
+        anomaly_report = {
+            "report_id": str(uuid.uuid4()),
+            "metric": metric,
+            "reporter": "anomaly_detector",
+            "meta_data": anomaly_info
+        }
+        try:
+            res = urllib_req.urlopen(url=self._alerter_url, data=anomaly_report, context={'Content-Type': 'application/json'}).read().decode('utf-8')
+            if res is None:
+                res = "None"
+        except Exception as ex:
+            print("WARN: Failed to report the following anomaly to the alerter service directly due to the follwing exception (" + type(ex).__name__ + "): " + str(ex) + ". Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report))
+
+        try:
+            self._kafka_producer.send(topic=self._reported_anomalies_kafka_topic, value=json.dumps(anomaly_report).encode('utf-8'))
+            print("INFO: Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report))
+        except Exception as ex:
+            print("WARN: Failed to report the following anomaly to Kafka due to the follwing exception (" + type(ex).__name__ + "): " + str(ex) + ". These are the anomaly details: " + json.dumps(anomaly_report))
 
     def normalize_data(self, raw_data):
         last_data_at = -1
@@ -189,7 +229,7 @@ class AnomalyDetector:
         R5 = 0
         R6 = 0
         rMAX = 0
-        referencePastPeriods = REFERENCE_PAST_SAMPLES.split(",")
+        referencePastPeriods = self._reference_past_sample_periods.split(",")
         for i in range(0, len(referencePastData)):
             # R1 - Current vs. reference period's max
             if (nowData.last() > referencePastData[i].max()):
@@ -234,25 +274,51 @@ class AnomalyDetector:
         else:
             return R
 
-    def metrics_discoverer(self, metrics_pattern):
-        if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
-            return
+    def metrics_collector(self):
+        print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._metrics_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads")
+        kafka_consumer = None
+        while kafka_consumer is None:
+            try:
+                kafka_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
+                                                     bootstrap_servers=self._kafka_server,
+                                                     client_id=self._kafka_client_id)
+            except:
+                print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                time.sleep(10)
 
-        else:
-            DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = True
+        for metric_record in kafka_consumer:
+            metric = str(metric_record.value)
+            metric_name = metric
+            if metric is None or metric.strip() == "" or len(metric.split(" ")) != 3:
+                if metric is None:
+                    metric_name = "None"
+                print("DEBUG: Received the following malformed metric. Ignoring: " + metric_name)
+                continue
 
-        metrics_pattern_real_path = os.path.join(METRIC_PATH, metrics_pattern.replace(".", "/")) + ".wsp"
+            metric_name = metric.split(" ")[0]
+            with self._metrics_uniqe_list_update_lock:
+                if not metric_name in self._metrics_uniqe_list.keys():
+                    self._metrics_uniqe_list[metric_name] = time.time()
 
-        raw_metrics_list = glob.glob(metrics_pattern_real_path, recursive=True)
-        res = []
-        for metric_file in raw_metrics_list:
-            metric_base_path = METRIC_PATH
-            if not metric_base_path.endswith("/"):
-                metric_base_path = metric_base_path + "/"
-            res.append(metric_file.replace(metric_base_path, "").replace("/", "."))
-
-        METRICS_CACHE[metrics_pattern] = res
-        DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
+    # def metrics_discoverer(self):
+        # if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
+        #     return
+        #
+        # else:
+        #     DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = True
+        #
+        # metrics_pattern_real_path = os.path.join(METRIC_PATH, metrics_pattern.replace(".", "/")) + ".wsp"
+        #
+        # raw_metrics_list = glob.glob(metrics_pattern_real_path, recursive=True)
+        # res = []
+        # for metric_file in raw_metrics_list:
+        #     metric_base_path = METRIC_PATH
+        #     if not metric_base_path.endswith("/"):
+        #         metric_base_path = metric_base_path + "/"
+        #     res.append(metric_file.replace(metric_base_path, "").replace("/", "."))
+        #
+        # METRICS_CACHE[metrics_pattern] = res
+        # DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
 
     def get_anomaly_score(self, metric_name, cur_time=None, ref_periods=None):
         res = 0
@@ -266,9 +332,11 @@ class AnomalyDetector:
         if "ref_periods" in request.query:
             ref_periods = request.query["ref_periods"]
 
-        anomaly_detector = AnomalyDetector()
+        metric_phys_path = os.path.abspath(os.path.join(self._metrics_base_path, (metric_name.replace(".", "/")) + ".wsp"))
+        if not metric_phys_path.startswith(self._metrics_base_path):
+            print("SEC_EX: The metric's name indicated a path outside the configured metrics path. This is probably a security issue. (metric_name='" + metric_name + "';metric_phys_path='" + metric_phys_path + "';metrics_base_path='" + self._metrics_base_path + "')")
+            return -999.999
 
-        metric_phys_path = os.path.join(METRIC_PATH, (metric_name.replace(".", "/")) + ".wsp")
         if cur_time is None or cur_time <= 0:
             cur_time_epoch = int(time.time())
         else:
@@ -277,25 +345,25 @@ class AnomalyDetector:
         if ref_periods is None or not re.match("^([0-9][0-9\,]+[0-9]|[0-9]+)$", ref_periods):
             reference_past_periods = ref_periods.split(",")
         else:
-            reference_past_periods = REFERENCE_PAST_SAMPLES.split(",")
+            reference_past_periods = self._reference_past_sample_periods.split(",")
 
         now_end_epoch = cur_time_epoch
-        now_start_epoch = now_end_epoch - TIMESPAN_IN_SEC
+        now_start_epoch = now_end_epoch - self._reference_timespan_in_secods
 
         # Verifying that the whisper file at the given location actually exists
         if not os.path.isfile(metric_phys_path):
             raise Exception("Could not find a metric file by the name specified.")
 
         now_raw_data = whisper.fetch(path=metric_phys_path, fromTime=now_start_epoch, untilTime=now_end_epoch)
-        now_data = anomaly_detector.normalize_data(now_raw_data[1])
+        now_data = self.normalize_data(now_raw_data[1])
 
         # Getting reference past data and normalizing it (that is, filling the blanks with calculated values and marking the beginning and end of the data)
         reference_past_data = []
         for i in range(0, len(reference_past_periods)):
-            cur_ref_point_ends = cur_time_epoch - (TIMESPAN_IN_SEC * int(reference_past_periods[i]))
-            cur_ref_point_starts = cur_ref_point_ends - TIMESPAN_IN_SEC
+            cur_ref_point_ends = cur_time_epoch - (self._reference_timespan_in_secods * int(reference_past_periods[i]))
+            cur_ref_point_starts = cur_ref_point_ends - self._reference_timespan_in_secods
             cur_ref_point_raw_data = whisper.fetch(path=metric_phys_path, fromTime=cur_ref_point_starts, untilTime=cur_ref_point_ends)
-            cur_ref_point_data = anomaly_detector.normalize_data(cur_ref_point_raw_data)
+            cur_ref_point_data = self.normalize_data(cur_ref_point_raw_data)
             reference_past_data.append(cur_ref_point_data)
 
         # Calculating the amount of datapoints that should be discarded from the end and beginning of all datasets
@@ -323,37 +391,52 @@ class AnomalyDetector:
             del now_data.data[:trim_all_starts_to]
 
             # Break here if there's no past data available
-            reference_past_periods = REFERENCE_PAST_SAMPLES.split(",")
+            reference_past_periods = self._reference_past_sample_periods.split(",")
             for i in range(0, len(reference_past_data)):
                 if reference_past_data[i].count() < now_data.count() or reference_past_data[i].count() == 0:
                     res = -1.222222
                     break
 
         if res == 0:
-            res = anomaly_detector.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
+            res = self.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
             if res > 90:
-                anomaly_detector.report_anomaly(metric=metric_name, anomaly_info={"anomaly_score": res})
+                self.report_anomaly(metric=metric_name, anomaly_info={"anomaly_score": res})
 
         try:
-            AnomalyDetector().statsd_client.gauge(metrics_prefix + "." + metric_name, res)
+            self.statsd_client.gauge(metrics_prefix + "." + metric_name, res)
         except:
             pass
         
         return "@@RES: " + str(res)
 
-    def discover_metrics(self, metric_pattern):
-        anomaly_detector = AnomalyDetector()
-        metrics_discoverer_thread = threading.Thread(target=anomaly_detector.metrics_discoverer, args=[metric_pattern])
-        metrics_discoverer_thread.start()
+    def auto_detect_metrics_anomalies_thread(self):
+        while True:
+            try:
+                with self._metrics_uniqe_list_update_lock:
+                    local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
 
-        if metric_pattern in METRICS_CACHE:
-            res = {
-                "data": METRICS_CACHE[metric_pattern]
-            }
-            return '@@RES: ' + json.dumps(res)
-        else:
-            return '@@RES: {"data":[]}'
-        pass
+                for metric in local_metrics_list_copy:
+                    print("DEBUG: Looking for anomalies in metric " + str(metric))
+                    self.get_anomaly_score(metric)
+                local_metrics_list_copy = None
+
+            except KeyboardInterrupt:
+                print("INFO: Received a keyboard interrupt. Shutting down main loop.")
+                break
+            except Exception as ex:
+                print("ERROR: The following exception (" + type(ex).__name__ + ") has been thrown while looking for anomalies in the collected metrics. Will try again in the next cycle: " + str(ex))
+
+            time.sleep(self._anomalies_check_interval)
+
+        #
+        # if metric_pattern in METRICS_CACHE:
+        #     res = {
+        #         "data": METRICS_CACHE[metric_pattern]
+        #     }
+        #     return '@@RES: ' + json.dumps(res)
+        # else:
+        #     return '@@RES: {"data":[]}'
+        # pass
 
 
 
@@ -416,4 +499,4 @@ if len(sys.argv) > 1:
                 quit(1)
 
 sys.argv = [sys.argv[0]]
-AnomalyDetector().run(listen_ip=listen_ip, listen_port=listen_port)
+AnomalyDetector(config_copy=config_copy).run(listen_ip=listen_ip, listen_port=listen_port)

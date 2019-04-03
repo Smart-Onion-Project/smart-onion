@@ -32,6 +32,8 @@ from bottle import Bottle
 import base64
 import uuid
 import kafka
+from multiprocessing import Value
+import re
 
 
 DEBUG = False
@@ -76,8 +78,8 @@ class MetricsRealtimeAnalyzer:
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self, config_copy):
-        self._metrics_received = 0
-        self._metrics_successfully_processed = 0
+        self._metrics_received = Value('i', 0)
+        self._metrics_successfully_processed = Value('i', 0)
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
@@ -86,12 +88,13 @@ class MetricsRealtimeAnalyzer:
         self._kafka_client_id = "SmartOnionMetricsAnalyzerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
+        self._allowed_to_work_on_metrics_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern"])
         self._kafka_producer = None
         while self._kafka_producer is None:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
             except Exception as ex:
-                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...")
+                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available... (" + str(ex) + " (" + type(ex).__name__ + ")")
                 time.sleep(10)
 
     def _route(self):
@@ -108,8 +111,8 @@ class MetricsRealtimeAnalyzer:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "metrics_received": self._metrics_received,
-                "metrics_successfully_processed": self._metrics_successfully_processed,
+                "metrics_received": self._metrics_received.value,
+                "metrics_successfully_processed": self._metrics_successfully_processed.value,
                 "models_loaded": len(self.models),
                 "anomaly_likelihood_calculators_loaded": len(self.anomaly_likelihood_detectors)
             }
@@ -117,6 +120,7 @@ class MetricsRealtimeAnalyzer:
 
     def report_anomaly(self, metric, anomaly_info):
         anomaly_report = {
+            "report_id": str(uuid.uuid4()),
             "metric": metric,
             "reporter": "metrics_analyzer",
             "meta_data": anomaly_info
@@ -400,7 +404,7 @@ class MetricsRealtimeAnalyzer:
             if self.EXIT_ALL_THREADS_FLAG:
                 return
             
-            self._metrics_successfully_processed = self._metrics_successfully_processed + 1
+            self._metrics_successfully_processed.value += 1
             
         except Exception as ex:
             print("WARN: Failed to analyze the metric(b64) " + str(base64.b64encode(metric)) + " due to the following exception: " + str(ex))
@@ -414,7 +418,7 @@ class MetricsRealtimeAnalyzer:
 
     def parse_metric_message(self, metric_raw_info):
         try:
-            self._metrics_received = self._metrics_received + 1
+            self._metrics_received.value += 1
             metric_family_hierarchy = ""
             metric_family = ""
     
@@ -500,7 +504,7 @@ class MetricsRealtimeAnalyzer:
 
         for metric in kafka_consumer:
             # If this is an anomaly metric created by this service then there's no need to process it again...
-            if not str(metric.value).startswith("stats.gauges." + self.metrics_prefix):
+            if not re.match(self._allowed_to_work_on_metrics_pattern, str(metric.value)):
                 print("DEBUG: Handling the following metric " + str(metric.value) + " since it doesn't start with the following prefix: " + "stats.gauges." + self.metrics_prefix)
                 self.parse_metric_message(metric_raw_info=metric.value)
 
