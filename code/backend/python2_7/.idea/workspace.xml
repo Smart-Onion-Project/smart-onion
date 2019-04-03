@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
