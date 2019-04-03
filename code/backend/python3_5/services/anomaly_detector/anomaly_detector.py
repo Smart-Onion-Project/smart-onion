@@ -148,7 +148,7 @@ class AnomalyDetector:
                 "anomalies_reported": self._anomalies_reported.value,
                 "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
                 "metrics_parsed": self._metrics_parsed.value,
-                "analysis_cycles_so_far": self._analysis_cycles_so_far
+                "analysis_cycles_so_far": self._analysis_cycles_so_far.value
             }
         }
 
