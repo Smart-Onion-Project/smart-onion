@@ -95,6 +95,9 @@ class AnomalyDetector:
         self._app = Bottle()
         self._route()
         self._anomalies_reported = Value('i', 0)
+        self._metrics_parsed = Value('i', 0)
+        self._analysis_cycles_so_far = Value('i', 0)
+        self._raw_metrics_downloaded_from_kafka = Value('i', 0)
         self._config_copy = config_copy
         self._kafka_client_id = "SmartOnionAnomalyDetectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
@@ -142,7 +145,10 @@ class AnomalyDetector:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "anomalies_reported": self._anomalies_reported.value
+                "anomalies_reported": self._anomalies_reported.value,
+                "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
+                "metrics_parsed": self._metrics_parsed.value,
+                "analysis_cycles_so_far": self._analysis_cycles_so_far
             }
         }
 
@@ -287,6 +293,7 @@ class AnomalyDetector:
                 time.sleep(10)
 
         for metric_record in kafka_consumer:
+            self._raw_metrics_downloaded_from_kafka.value += 1
             metric = str(metric_record.value)
             metric_name = metric
             if metric is None or metric.strip() == "" or len(metric.split(" ")) != 3:
@@ -411,6 +418,7 @@ class AnomalyDetector:
 
     def auto_detect_metrics_anomalies_thread(self):
         while True:
+            self._analysis_cycles_so_far.value += 1
             try:
                 with self._metrics_uniqe_list_update_lock:
                     local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
@@ -418,6 +426,7 @@ class AnomalyDetector:
                 for metric in local_metrics_list_copy:
                     print("DEBUG: Looking for anomalies in metric " + str(metric))
                     self.get_anomaly_score(metric)
+                    self._metrics_parsed.value += 1
                 local_metrics_list_copy = None
 
             except KeyboardInterrupt:
