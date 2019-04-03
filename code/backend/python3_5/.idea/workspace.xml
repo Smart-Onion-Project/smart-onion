@@ -8,8 +8,9 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-570">
-              <caret line="588" selection-start-line="588" selection-end-line="588" />
+            <state relative-caret-position="644">
+              <caret line="740" column="25" lean-forward="true" selection-start-line="740" selection-start-column="25" selection-end-line="740" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -32,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="290" column="32" lean-forward="true" selection-start-line="290" selection-start-column="32" selection-end-line="290" selection-end-column="32" />
+            <state relative-caret-position="214">
+              <caret line="150" column="39" selection-start-line="150" selection-start-column="39" selection-end-line="150" selection-end-column="39" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
                 <element signature="e#1537#2856#0" />
@@ -105,9 +106,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/services/tinyurl/tinyurl.py" />
-        <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
       </list>
     </option>
   </component>
@@ -392,24 +393,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
+    <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="290" column="32" lean-forward="true" selection-start-line="290" selection-start-column="32" selection-end-line="290" selection-end-column="32" />
+        <state relative-caret-position="644">
+          <caret line="740" column="25" lean-forward="true" selection-start-line="740" selection-start-column="25" selection-end-line="740" selection-end-column="25" />
           <folding>
-            <element signature="e#922#936#0" expanded="true" />
-            <element signature="e#1537#2856#0" />
+            <element signature="n#!!doc" />
+            <element signature="e#923#933#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-570">
-          <caret line="588" selection-start-line="588" selection-end-line="588" />
+        <state relative-caret-position="214">
+          <caret line="150" column="39" selection-start-line="150" selection-start-column="39" selection-end-line="150" selection-end-column="39" />
           <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#923#933#0" expanded="true" />
+            <element signature="e#922#936#0" expanded="true" />
+            <element signature="e#1537#2856#0" />
           </folding>
         </state>
       </provider>

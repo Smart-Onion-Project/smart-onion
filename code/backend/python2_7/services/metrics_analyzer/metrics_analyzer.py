@@ -80,11 +80,12 @@ class MetricsRealtimeAnalyzer:
     def __init__(self, config_copy):
         self._metrics_received = Value('i', 0)
         self._metrics_successfully_processed = Value('i', 0)
+        self._raw_metrics_downloaded_from_kafka = Value('i', 0)
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
         self._config_copy = config_copy
-        self._last_logged_messsage_about_too_many_models = 0
+        self._last_logged_message_about_too_many_models = 0
         self._kafka_client_id = "SmartOnionMetricsAnalyzerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
@@ -113,6 +114,7 @@ class MetricsRealtimeAnalyzer:
             "service_specific_info": {
                 "metrics_received": self._metrics_received.value,
                 "metrics_successfully_processed": self._metrics_successfully_processed.value,
+                "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
                 "models_loaded": len(self.models),
                 "anomaly_likelihood_calculators_loaded": len(self.anomaly_likelihood_detectors)
             }
@@ -285,9 +287,9 @@ class MetricsRealtimeAnalyzer:
                 models_number_below_configured_limit = True
             else:
                 models_number_below_configured_limit = False
-                if (time.time() - self._last_logged_messsage_about_too_many_models) > self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages"]:
+                if (time.time() - self._last_logged_message_about_too_many_models) > self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages"]:
                     print("WARN: Currently the number of models/anomaly_likelihood_calculators loaded is exceeds the configured quota. CANNOT CREATE NEW MODELS.")
-                    self._last_logged_messsage_about_too_many_models = time.time()
+                    self._last_logged_message_about_too_many_models = time.time()
 
             if not metric["metric_name"] in self.models:
                 create_model_thread_lock.acquire()
@@ -462,6 +464,7 @@ class MetricsRealtimeAnalyzer:
             anomaly_likelihood_detectors_save_base_path,
             alerter_url
         ])
+        print("INFO: Launching the analyzer thread (save_interval=" + str(save_interval) + ";models_save_base_path=" + str(models_save_base_path) + ";models_params_base_path=" + str(models_params_base_path)+ ";anomaly_likelihood_detectors_save_base_path=" + str(anomaly_likelihood_detectors_save_base_path) + ";alerter_url=" + str(alerter_url) + ")")
         self._analyzer_thread.start()
         self._app.run(host=self._ping_listening_host, port=self._ping_listening_port)
 
@@ -478,6 +481,7 @@ class MetricsRealtimeAnalyzer:
                 kafka_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
                                                      bootstrap_servers=self._kafka_server,
                                                      client_id=self._kafka_client_id)
+                print("INFO: Loaded a Kafka consumer successfully. (self._metrics_kafka_topic=" + str(self._metrics_kafka_topic) + ";bootstrap_servers=" + str(self._kafka_server) + ";client_id=" + str(self._kafka_client_id) + ")")
             except:
                 print(
                     "DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
@@ -500,9 +504,12 @@ class MetricsRealtimeAnalyzer:
             self.anomaly_likelihood_detectors_save_base_path = anomaly_likelihood_detectors_save_base_path
 
         autosave_thread = threading.Thread(target=self.auto_save_models, args=[save_interval])
+        print("INFO: Launching auto-save thread (save_interval=" + str(save_interval) + ")")
         autosave_thread.start()
 
         for metric in kafka_consumer:
+            self._raw_metrics_downloaded_from_kafka.value += 1
+
             # If this is an anomaly metric created by this service then there's no need to process it again...
             if not re.match(self._allowed_to_work_on_metrics_pattern, str(metric.value)):
                 print("DEBUG: Handling the following metric " + str(metric.value) + " since it doesn't start with the following prefix: " + "stats.gauges." + self.metrics_prefix)
