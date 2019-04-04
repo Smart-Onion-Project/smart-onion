@@ -89,14 +89,14 @@ class NormalizedDataSet:
 
 
 class AnomalyDetector:
-    statsd_client = statsd.StatsClient(prefix=metrics_prefix)
-
     def __init__(self, config_copy):
+        self._statsd_client = statsd.StatsClient(prefix=metrics_prefix)
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
         self._anomalies_reported = Value('i', 0)
         self._metrics_parsed = Value('i', 0)
+        self._metrics_successfully_analyzed = Value('i', 0)
         self._analysis_cycles_so_far = Value('i', 0)
         self._raw_metrics_downloaded_from_kafka = Value('i', 0)
         self._config_copy = config_copy
@@ -161,7 +161,8 @@ class AnomalyDetector:
                 "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
                 "metrics_parsed": self._metrics_parsed.value,
                 "analysis_cycles_so_far": self._analysis_cycles_so_far.value,
-                "metrics_in_list": metrics_in_list
+                "metrics_in_list": metrics_in_list,
+                "metrics_successfully_analyzed": self._metrics_successfully_analyzed.value
             }
         }
 
@@ -349,93 +350,107 @@ class AnomalyDetector:
         # DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
 
     def get_anomaly_score(self, metric_name, cur_time=None, ref_periods=None):
-        res = 0
-
-        if "cur_time" in request.query:
-            try:
-                cur_time = int(request.query["cur_time"])
-            except:
-                pass
-
-        if "ref_periods" in request.query:
-            ref_periods = request.query["ref_periods"]
-
-        metric_phys_path = os.path.abspath(os.path.join(self._metrics_base_path, (metric_name.replace(".", "/")) + ".wsp"))
-        if not metric_phys_path.startswith(self._metrics_base_path):
-            print("SEC_EX: The metric's name indicated a path outside the configured metrics path. This is probably a security issue. (metric_name='" + metric_name + "';metric_phys_path='" + metric_phys_path + "';metrics_base_path='" + self._metrics_base_path + "')")
-            return -999.999
-
-        if cur_time is None or cur_time <= 0:
-            cur_time_epoch = int(time.time())
-        else:
-            cur_time_epoch = cur_time
-
-        if ref_periods is None or not re.match("^([0-9][0-9\,]+[0-9]|[0-9]+)$", ref_periods):
-            reference_past_periods = ref_periods.split(",")
-        else:
-            reference_past_periods = self._reference_past_sample_periods.split(",")
-
-        now_end_epoch = cur_time_epoch
-        now_start_epoch = now_end_epoch - self._reference_timespan_in_secods
-
-        # Verifying that the whisper file at the given location actually exists
-        if not os.path.isfile(metric_phys_path):
-            raise Exception("Could not find a metric file by the name specified.")
-
-        now_raw_data = whisper.fetch(path=metric_phys_path, fromTime=now_start_epoch, untilTime=now_end_epoch)
-        now_data = self.normalize_data(now_raw_data[1])
-
-        # Getting reference past data and normalizing it (that is, filling the blanks with calculated values and marking the beginning and end of the data)
-        reference_past_data = []
-        for i in range(0, len(reference_past_periods)):
-            cur_ref_point_ends = cur_time_epoch - (self._reference_timespan_in_secods * int(reference_past_periods[i]))
-            cur_ref_point_starts = cur_ref_point_ends - self._reference_timespan_in_secods
-            cur_ref_point_raw_data = whisper.fetch(path=metric_phys_path, fromTime=cur_ref_point_starts, untilTime=cur_ref_point_ends)
-            cur_ref_point_data = self.normalize_data(cur_ref_point_raw_data)
-            reference_past_data.append(cur_ref_point_data)
-
-        # Calculating the amount of datapoints that should be discarded from the end and beginning of all datasets
-        trim_all_starts_to = 0
-        trim_all_ends_to = 0
-        for i in range(0, len(reference_past_data)):
-            if reference_past_data[i].trimmedFromStart > trim_all_starts_to:
-                trim_all_starts_to = reference_past_data[i].trimmedFromStart
-            if reference_past_data[i].trimmedToEnd > trim_all_ends_to:
-                trim_all_ends_to = reference_past_data[i].trimmedToEnd
-        if now_data.trimmedFromStart > trim_all_starts_to:
-            trim_all_starts_to = now_data.trimmedFromStart
-        if now_data.trimmedToEnd > trim_all_ends_to:
-            trim_all_ends_to = now_data.trimmedToEnd
-
-        if now_data.count() == 0:
-            res = -1.111111
-
-        if res == 0:
-            # Trimming all the datasets to the same size according to what has been calculated earlier
-            for i in range(0, len(reference_past_data)):
-                del reference_past_data[i].data[(len(reference_past_data[i].data) - trim_all_ends_to):]
-                del reference_past_data[i].data[:trim_all_starts_to]
-            del now_data.data[(len(now_data.data) - trim_all_ends_to):]
-            del now_data.data[:trim_all_starts_to]
-
-            # Break here if there's no past data available
-            reference_past_periods = self._reference_past_sample_periods.split(",")
-            for i in range(0, len(reference_past_data)):
-                if reference_past_data[i].count() < now_data.count() or reference_past_data[i].count() == 0:
-                    res = -1.222222
-                    break
-
-        if res == 0:
-            res = self.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
-            if res > 90:
-                self.report_anomaly(metric=metric_name, anomaly_info={"anomaly_score": res})
-
+        state = "BEGIN"
         try:
-            self.statsd_client.gauge(metrics_prefix + "." + metric_name, res)
-        except:
-            pass
-        
-        return "@@RES: " + str(res)
+            res = 0
+
+            if "cur_time" in request.query:
+                try:
+                    cur_time = int(request.query["cur_time"])
+                except:
+                    pass
+
+            if "ref_periods" in request.query:
+                ref_periods = request.query["ref_periods"]
+
+            state = "GetMetricFileFullPath"
+            metric_phys_path = os.path.abspath(os.path.join(self._metrics_base_path, (metric_name.replace(".", "/")) + ".wsp"))
+            if not metric_phys_path.startswith(self._metrics_base_path):
+                print("SEC_EX: The metric's name indicated a path outside the configured metrics path. This is probably a security issue. (metric_name='" + metric_name + "';metric_phys_path='" + metric_phys_path + "';metrics_base_path='" + self._metrics_base_path + "')")
+                return "@@RES: -999.999"
+
+            state = "CalcRefTimePeriods"
+            if cur_time is None or cur_time <= 0:
+                cur_time_epoch = int(time.time())
+            else:
+                cur_time_epoch = cur_time
+
+            if ref_periods is None or not re.match("^([0-9][0-9\,]+[0-9]|[0-9]+)$", ref_periods):
+                reference_past_periods = ref_periods.split(",")
+            else:
+                reference_past_periods = self._reference_past_sample_periods.split(",")
+
+            now_end_epoch = cur_time_epoch
+            now_start_epoch = now_end_epoch - self._reference_timespan_in_secods
+
+            # Verifying that the whisper file at the given location actually exists
+            state = "VerifyMetricFileExists"
+            if not os.path.isfile(metric_phys_path):
+                raise Exception("Could not find a metric file by the name specified.")
+
+            now_raw_data = whisper.fetch(path=metric_phys_path, fromTime=now_start_epoch, untilTime=now_end_epoch)
+            now_data = self.normalize_data(now_raw_data[1])
+
+            # Getting reference past data and normalizing it (that is, filling the blanks with calculated values and marking the beginning and end of the data)
+            state = "GetPastData"
+            reference_past_data = []
+            for i in range(0, len(reference_past_periods)):
+                cur_ref_point_ends = cur_time_epoch - (self._reference_timespan_in_secods * int(reference_past_periods[i]))
+                cur_ref_point_starts = cur_ref_point_ends - self._reference_timespan_in_secods
+                cur_ref_point_raw_data = whisper.fetch(path=metric_phys_path, fromTime=cur_ref_point_starts, untilTime=cur_ref_point_ends)
+                cur_ref_point_data = self.normalize_data(cur_ref_point_raw_data)
+                reference_past_data.append(cur_ref_point_data)
+
+            # Calculating the amount of datapoints that should be discarded from the end and beginning of all datasets
+            state = "CalcAmountOfPastData"
+            trim_all_starts_to = 0
+            trim_all_ends_to = 0
+            for i in range(0, len(reference_past_data)):
+                if reference_past_data[i].trimmedFromStart > trim_all_starts_to:
+                    trim_all_starts_to = reference_past_data[i].trimmedFromStart
+                if reference_past_data[i].trimmedToEnd > trim_all_ends_to:
+                    trim_all_ends_to = reference_past_data[i].trimmedToEnd
+            if now_data.trimmedFromStart > trim_all_starts_to:
+                trim_all_starts_to = now_data.trimmedFromStart
+            if now_data.trimmedToEnd > trim_all_ends_to:
+                trim_all_ends_to = now_data.trimmedToEnd
+
+            state = "VerifyEnoughDataExist"
+            if now_data.count() == 0:
+                res = -1.111111
+
+            state = "TrimPastDatasets"
+            if res == 0:
+                # Trimming all the datasets to the same size according to what has been calculated earlier
+                for i in range(0, len(reference_past_data)):
+                    del reference_past_data[i].data[(len(reference_past_data[i].data) - trim_all_ends_to):]
+                    del reference_past_data[i].data[:trim_all_starts_to]
+                del now_data.data[(len(now_data.data) - trim_all_ends_to):]
+                del now_data.data[:trim_all_starts_to]
+
+                # Break here if there's no past data available
+                reference_past_periods = self._reference_past_sample_periods.split(",")
+                for i in range(0, len(reference_past_data)):
+                    if reference_past_data[i].count() < now_data.count() or reference_past_data[i].count() == 0:
+                        res = -1.222222
+                        break
+
+            state = "CalcAnomalyScore"
+            if res == 0:
+                res = self.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
+                if res > 90:
+                    self.report_anomaly(metric=metric_name, anomaly_info={"anomaly_score": res})
+
+            state = "SendMetricDataToStatsD"
+            try:
+                self._statsd_client.gauge(metrics_prefix + "." + metric_name, res)
+            except Exception as ex:
+                print("ERROR: The following exception (" + type(ex).__name__ + ") has been thrown while sending the metric `" + str(metrics_prefix) + "." + str(metric_name) + "`: " + str(ex))
+
+            self._metrics_successfully_analyzed.value += 1
+            return "@@RES: " + str(res)
+        except Exception as ex:
+            return "@@EXCEPTION: " + type(ex).__name__ + ", " + str(ex) + " [State: " + str(state) + "]"
 
     def auto_detect_metrics_anomalies_thread(self):
         last_cycle_started = time.time()
