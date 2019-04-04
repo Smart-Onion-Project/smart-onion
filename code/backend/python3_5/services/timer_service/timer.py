@@ -25,6 +25,7 @@ from urllib import request as urllib_req
 from multiprocessing import Value
 
 DEBUG = False
+SINGLE_THREADED = False
 
 class TimerService:
 
@@ -89,11 +90,11 @@ class TimerService:
         }
 
     def run(self):
-        print("DEBUG: Launching the timer thread...")
+        print("DEBUG: Launching the timer thread..." + "\n" if DEBUG else "", end="")
         self._timer_thread = threading.Thread(target=self.run_timer)
         self._timer_thread.start()
 
-        if DEBUG:
+        if SINGLE_THREADED:
             self._app.run(host=self._listen_ip, port=self._listen_port)
         else:
             self._app.run(host=self._listen_ip, port=self._listen_port, server="gunicorn", workers=32, timeout=120)

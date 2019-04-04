@@ -29,7 +29,8 @@ import uuid
 from multiprocessing import Value
 
 
-DEBUG = False
+DEBUG = True
+SINGLE_THREADED = False
 PERCENT_MODE = True
 metrics_prefix = "smart-onion.anomaly_score.anomaly_detector"
 
@@ -133,7 +134,7 @@ class AnomalyDetector:
         self._app.route('/ping', method="GET", callback=self._ping)
 
     def run(self, listen_ip, listen_port):
-        if DEBUG:
+        if SINGLE_THREADED:
             self._app.run(host=listen_ip, port=listen_port)
         else:
             self._app.run(host=listen_ip, port=listen_port, server="gunicorn", workers=32, timeout=120)
@@ -293,7 +294,7 @@ class AnomalyDetector:
             return R
 
     def metrics_collector(self):
-        print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._metrics_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads")
+        print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._metrics_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads" + "\n" if DEBUG else "", end="")
         kafka_consumer = None
         while kafka_consumer is None:
             try:
@@ -301,7 +302,7 @@ class AnomalyDetector:
                                                      bootstrap_servers=self._kafka_server,
                                                      client_id=self._kafka_client_id)
             except:
-                print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds" + "\n" if DEBUG else "", end="")
                 time.sleep(10)
 
         for metric_record in kafka_consumer:
@@ -311,17 +312,20 @@ class AnomalyDetector:
             if metric is None or metric.strip() == "" or len(metric.split(" ")) != 3:
                 if metric is None:
                     metric_name = "None"
-                print("DEBUG: Received the following malformed metric. Ignoring: " + metric_name)
+                print("DEBUG: Received the following malformed metric. Ignoring: " + metric_name + "\n" if DEBUG else "", end="")
                 continue
 
             metric_name = metric.split(" ")[0]
             if re.match(self._allowed_to_work_on_metrics_pattern, str(metric_name)):
-                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
-                with self._metrics_uniqe_list_update_lock:
-                    if not metric_name in self._metrics_uniqe_list.keys():
-                        self._metrics_uniqe_list[metric_name] = time.time()
+                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
+                try:
+                    with self._metrics_uniqe_list_update_lock:
+                        if metric_name not in self._metrics_uniqe_list.keys():
+                            self._metrics_uniqe_list[metric_name] = time.time()
+                except Exception as ex:
+                    print("WARN: Failed to add the metric to the list due to the following exception (" + type(ex).__name__ + "): " + str(ex))
             else:
-                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
 
 
     # def metrics_discoverer(self):
@@ -443,20 +447,20 @@ class AnomalyDetector:
             last_cycle_started = time.time()
             self._analysis_cycles_so_far.value += 1
             try:
-                print("DEBUG: Starting a sampling cycle.")
+                print("DEBUG: Starting a sampling cycle." + "\n" if DEBUG else "", end="")
                 with self._metrics_uniqe_list_update_lock:
                     local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
 
                 for metric in local_metrics_list_copy:
                     cur_url = self._anomaly_detector_proto + "://" + self._anomaly_detector_host + ":" + self._anomaly_detector_port + self._anomaly_detector_url_path + urllib_req.quote(str(metric))
-                    print("DEBUG: Looking for anomalies in metric " + str(metric) + ". Calling " + cur_url)
+                    print("DEBUG: Looking for anomalies in metric " + str(metric) + ". Calling " + cur_url + "\n" if DEBUG else "", end="")
                     try:
                         urllib_req.urlopen(cur_url)
                     except Exception as ex:
                         print("WARN: Failed to call the url `" + str(cur_url) + "` due to the following exception (" + type(ex).__name__ + "): " + str(ex))
                     self._metrics_parsed.value += 1
 
-                print("DEBUG: Finished sampling cycle. Handled "+ str(len(local_metrics_list_copy)) + " metrics.")
+                print("DEBUG: Finished sampling cycle. Handled "+ str(len(local_metrics_list_copy)) + " metrics." + "\n" if DEBUG else "", end="")
                 local_metrics_list_copy = None
 
             except KeyboardInterrupt:

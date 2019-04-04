@@ -24,6 +24,7 @@ import hashlib
 from multiprocessing import Value
 
 DEBUG = False
+SINGLE_THREADED = False
 auto_save_dictionary_lock = Lock()
 
 
@@ -133,7 +134,7 @@ class TinyUrl:
         self.auto_load_state()
         self._backup_thread = threading.Thread(target=self.auto_save_state)
         self._backup_thread.start()
-        if DEBUG:
+        if SINGLE_THREADED:
             self._app.run(host=self._host, port=self._port)
         else:
             self._app.run(host=self._host, port=self._port, server="paste")
