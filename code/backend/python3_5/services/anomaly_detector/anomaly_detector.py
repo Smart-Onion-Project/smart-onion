@@ -112,6 +112,10 @@ class AnomalyDetector:
         self._anomalies_check_interval = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomalies_check_interval"]
         self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
         self._alerter_url = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
+        self._anomaly_detector_proto = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-protocol"]
+        self._anomaly_detector_host = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-host"]
+        self._anomaly_detector_port = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-port"]
+        self._anomaly_detector_url_path = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.base_urls.get-anomaly-score"]
         self._kafka_producer = None
         while self._kafka_producer is None:
             try:
@@ -444,8 +448,12 @@ class AnomalyDetector:
                     local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
 
                 for metric in local_metrics_list_copy:
-                    print("DEBUG: Looking for anomalies in metric " + str(metric))
-                    self.get_anomaly_score(metric)
+                    cur_url = self._anomaly_detector_proto + "://" + self._anomaly_detector_host + ":" + self._anomaly_detector_port + self._anomaly_detector_url_path + urllib_req.quote(str(metric))
+                    print("DEBUG: Looking for anomalies in metric " + str(metric) + ". Calling " + cur_url)
+                    try:
+                        urllib_req.urlopen(cur_url)
+                    except Exception as ex:
+                        print("WARN: Failed to call the url `" + str(cur_url) + "` due to the following exception (" + type(ex).__name__ + "): " + str(ex))
                     self._metrics_parsed.value += 1
 
                 print("DEBUG: Finished sampling cycle. Handled "+ str(len(local_metrics_list_copy)) + " metrics.")
