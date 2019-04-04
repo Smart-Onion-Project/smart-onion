@@ -7,10 +7,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-stat.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +47,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="1045">
               <caret line="61" column="164" selection-start-line="61" selection-start-column="164" selection-end-line="61" selection-end-column="164" />
               <folding>
                 <element signature="e#21#58#0" expanded="true" />
@@ -276,7 +276,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32127193" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.108552635" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.108552635" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -284,7 +284,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289941" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.46296296" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32894737" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -542,7 +542,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="1045">
           <caret line="61" column="164" selection-start-line="61" selection-start-column="164" selection-end-line="61" selection-end-column="164" />
           <folding>
             <element signature="e#21#58#0" expanded="true" />

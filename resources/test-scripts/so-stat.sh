@@ -7,7 +7,7 @@ ALL_SERVICES="$INFRA_SERVICES $ALL_UNIT_FILES"
 for svc_unit in $ALL_SERVICES; do
   SERVICE_NAME=`/usr/bin/basename $svc_unit | sed -s 's/\.service//g'`
   STATUS=`systemctl --no-pager status $SERVICE_NAME | grep 'Active: active (running) since' | wc -l | sed 's/1/UP/g' | sed 's/0/DOWN/g'`
-  echo "$SERVICE_NAME: $STATUS"
+  printf "%-33s %s\n" "$SERVICE_NAME:" [$STATUS]
 done
 
 echo
