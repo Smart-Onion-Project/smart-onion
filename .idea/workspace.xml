@@ -5,7 +5,13 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - As it turned out, using path.join and sending the right argument starting with a slash causes path.join to return only the argument without the base path." />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Forgot one font....">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
+            <state relative-caret-position="264">
+              <caret line="970" column="106" selection-start-line="970" selection-start-column="106" selection-end-line="970" selection-end-column="106" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -95,9 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>{{</find>
-      <find>smart-onion.metrics.command_and_control.destination_ips_per_vhost.</find>
-      <find>metric_name</find>
       <find>kafk</find>
       <find>produ</find>
       <find>stats</find>
@@ -125,6 +128,9 @@
       <find>get_</find>
       <find>ttf</find>
       <find>state</find>
+      <find>TIM</find>
+      <find>DEBUG</find>
+      <find>Running quer</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -271,6 +277,12 @@
               <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
               <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="similarity-test-fonts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
@@ -452,13 +464,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00127" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
-      <created>1553792486162</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1553792486162</updated>
     </task>
     <task id="LOCAL-00128" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
       <created>1553792567379</created>
@@ -796,7 +801,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554375799936</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="metrics_collector.py:&#10; - Forgot one font....">
+      <created>1554377032548</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1554377032548</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TodoView">
@@ -810,15 +822,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7985232" weight="0.31469297" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8270042" weight="0.114035085" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.8982068" visible="true" weight="0.12828948" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8982068" visible="true" weight="0.12828948" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49894515" weight="0.33004385" />
@@ -872,7 +883,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="queries.json:&#10; - Queries that needed both certificate name and source IP used bro_x509 type which lacks information about the source ips. Changed to use bro_ssl." />
     <MESSAGE value="queries.json:&#10; - Configured all queries that used base64 not to use it anymore.&#10; &#10;detokenize.py:&#10; - Added script for retrieving the actual parameter based on the token" />
     <MESSAGE value="metrics_collector.py:&#10; - Fixed thread sync issues." />
     <MESSAGE value="so-update.sh:&#10; - Added another command to start kafka because it seems to fail quite often after start for some reason." />
@@ -897,7 +907,8 @@
     <MESSAGE value="metrics_analyzer.py, configurator.py, alerter.py:&#10; - It seems that this is a special import that need to be on the first line of the file..." />
     <MESSAGE value="alerter.py:&#10; - Added comments that will guide the development of this service&#10; &#10;configurator.py:&#10; - Added a trailing slash to the URL path just to keep it aligned with the other paths listed&#10;&#10;anomaly_detector.py:&#10; - Added explicit conversion of the various URL parts to string to avoid the error about concatenating string and int&#10; &#10;metrics_collector.py:&#10; - Added more specific exceptions to help determine what is causing the similarity check method to fail" />
     <MESSAGE value="metrics_collector.py:&#10; - As it turned out, using path.join and sending the right argument starting with a slash causes path.join to return only the argument without the base path." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - As it turned out, using path.join and sending the right argument starting with a slash causes path.join to return only the argument without the base path." />
+    <MESSAGE value="metrics_collector.py:&#10; - Forgot one font...." />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Forgot one font...." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1709,8 +1720,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
+        <state relative-caret-position="264">
+          <caret line="970" column="106" selection-start-line="970" selection-start-column="106" selection-end-line="970" selection-end-column="106" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>

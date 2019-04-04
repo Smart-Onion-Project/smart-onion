@@ -603,7 +603,7 @@ class MetricsCollector:
                     for task_url in tasks_list.keys():
                         if tasks_list[task_url]["TTL"] > 0:
                             try:
-                                print("DEBUG[" + thread_id + "]: Calling '" + task_url + "'...")
+                                print("DEBUG[" + thread_id + "]: Calling '" + task_url + "'..." + "\n" if DEBUG else "", end="")
                                 urllib_req.urlopen(task_url)
                                 tasks_list[task_url]["TTL"] = tasks_list[task_url]["TTL"] - 1
                             except Exception as ex:
@@ -850,7 +850,7 @@ class MetricsCollector:
 
         state = "RunningElkQuery"
         try:
-            print("Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'")
+            print("DEBUG: Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'" + "\n" if DEBUG else "", end="")
             raw_res = ""
             res = self.es.search(
                 index=query_index,
@@ -968,7 +968,7 @@ class MetricsCollector:
             }
 
         try:
-            print("Running query: `" + json.dumps(query_body) + "'")
+            print("DEBUG: Running query: `" + json.dumps(query_body) + "'" + "\n" if DEBUG else "", end="")
             raw_res = ""
             if count_unique_values_in != None:
                 res = self.es.search(
