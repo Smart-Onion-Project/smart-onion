@@ -85,6 +85,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-port": 9001,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-protocol": "http",
+        "smart-onion.config.architecture.internal_services.backend.anomaly-detector.base_urls.get-anomaly-score": "/smart-onion/get-anomaly-score/",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-port": 9001,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.protocol": "http",
