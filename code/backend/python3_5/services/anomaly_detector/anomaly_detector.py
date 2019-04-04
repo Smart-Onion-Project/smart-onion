@@ -376,9 +376,9 @@ class AnomalyDetector:
                 cur_time_epoch = cur_time
 
             if ref_periods is None or not re.match("^([0-9][0-9\,]+[0-9]|[0-9]+)$", ref_periods):
-                reference_past_periods = ref_periods.split(",")
-            else:
                 reference_past_periods = self._reference_past_sample_periods.split(",")
+            else:
+                reference_past_periods = ref_periods.split(",")
 
             now_end_epoch = cur_time_epoch
             now_start_epoch = now_end_epoch - self._reference_timespan_in_secods
