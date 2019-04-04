@@ -34,6 +34,7 @@ import uuid
 import kafka
 from multiprocessing import Value
 import re
+from __future__ import print_function
 
 
 DEBUG = False
