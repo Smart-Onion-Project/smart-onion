@@ -409,10 +409,10 @@ class Utils:
 
     def VisualSimilarityRate(self, cur_value_to_compare_to, value_to_compare, fonts_path, algorithm="phash"):
         fonts = [
-            os.path.join(fonts_path, "/Arial_0.ttf"),
-            os.path.join(fonts_path, "/tahoma.ttf"),
-            os.path.join(fonts_path, "/TIMES_0.TTF"),
-            os.path.join(fonts_path, "/Courier New.ttf")
+            os.path.join(fonts_path, "Arial_0.ttf"),
+            os.path.join(fonts_path, "tahoma.ttf"),
+            os.path.join(fonts_path, "TIMES_0.TTF"),
+            os.path.join(fonts_path, "Courier New.ttf")
         ]
         max_similarity_rate = 0
 
