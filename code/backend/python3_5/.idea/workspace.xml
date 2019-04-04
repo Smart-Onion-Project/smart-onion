@@ -6,8 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../python2_7/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
@@ -23,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-418">
-              <caret line="362" column="17" lean-forward="true" selection-start-line="362" selection-start-column="17" selection-end-line="362" selection-end-column="17" />
+            <state relative-caret-position="1007">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
@@ -36,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="443" column="43" selection-start-line="443" selection-start-column="43" selection-end-line="443" selection-end-column="43" />
+            <state relative-caret-position="105">
+              <caret line="444" column="44" selection-start-line="444" selection-start-column="44" selection-end-line="444" selection-end-column="44" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
                 <element signature="e#1537#2856#0" />
@@ -81,8 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>time.</find>
-      <find>simil</find>
       <find>discover</find>
       <find>cover(</find>
       <find>doc_counts</find>
@@ -111,6 +113,8 @@
       <find>get_simi</find>
       <find>exce</find>
       <find>smart-onion.anomaly_score.anomaly_detector</find>
+      <find>number_of_dns_requests_returned_nxdomain_result_per_host</find>
+      <find>discover(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,8 +125,8 @@
       <list>
         <option value="$PROJECT_DIR$/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/services/timer_service/timer.py" />
-        <option value="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" />
         <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
+        <option value="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
@@ -286,13 +290,13 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19462025" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.015822785" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.18530701" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.18530701" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.16995615" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.114035085" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.114035085" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -313,11 +317,41 @@
           <line>70</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
+          <line>1068</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
+          <line>1146</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
+          <line>207</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
+          <line>89</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>urls</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>res</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>e</expression-string>
         <language-id>Python</language-id>
@@ -325,11 +359,6 @@
       </expression>
       <expression>
         <expression-string>cur_query_obj</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>res</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -355,11 +384,6 @@
       </expression>
       <expression>
         <expression-string>queries_conf[query_id]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self._url2key_dictionary</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -423,8 +447,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="362" column="17" lean-forward="true" selection-start-line="362" selection-start-column="17" selection-end-line="362" selection-end-column="17" />
+        <state relative-caret-position="1007">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
@@ -434,8 +458,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="443" column="43" selection-start-line="443" selection-start-column="43" selection-end-line="443" selection-end-column="43" />
+        <state relative-caret-position="105">
+          <caret line="444" column="44" selection-start-line="444" selection-start-column="44" selection-end-line="444" selection-end-column="44" />
           <folding>
             <element signature="e#922#936#0" expanded="true" />
             <element signature="e#1537#2856#0" />

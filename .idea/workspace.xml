@@ -5,9 +5,13 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Forgot one font....">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)">
+      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
@@ -26,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="970" column="106" selection-start-line="970" selection-start-column="106" selection-end-line="970" selection-end-column="106" />
+            <state relative-caret-position="1347">
+              <caret line="988" column="55" selection-start-line="988" selection-start-column="55" selection-end-line="988" selection-end-column="55" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -465,20 +469,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00128" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
-      <created>1553792567379</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1553792567379</updated>
-    </task>
-    <task id="LOCAL-00129" summary="metric_analyzer.py:&#10; - Trying to rebuild the message parsing code to support messages that span over multiple buffers">
-      <created>1553793345336</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1553793345336</updated>
-    </task>
     <task id="LOCAL-00130" summary="metric_analyzer.py:&#10; - Set the code that writes debug messages about the metrics being received to be depended on the DEBUG constant to try and lower the memory consumption of the service">
       <created>1553794308685</created>
       <option name="number" value="00130" />
@@ -808,7 +798,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554377032548</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="metrics_collector.py:&#10; - Missed couple of debug messages.&#10; &#10;anomaly_detector.py:&#10; - Added more info in exceptions to make it easier to debug the service&#10; - Added counter of metrics that were analyzed successfully">
+      <created>1554380311745</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1554380311745</updated>
+    </task>
+    <task id="LOCAL-00178" summary="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)">
+      <created>1554381242360</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1554381242361</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TodoView">
@@ -883,8 +887,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="queries.json:&#10; - Configured all queries that used base64 not to use it anymore.&#10; &#10;detokenize.py:&#10; - Added script for retrieving the actual parameter based on the token" />
-    <MESSAGE value="metrics_collector.py:&#10; - Fixed thread sync issues." />
     <MESSAGE value="so-update.sh:&#10; - Added another command to start kafka because it seems to fail quite often after start for some reason." />
     <MESSAGE value="queries.json:&#10; - Removed all base64 usage" />
     <MESSAGE value="queries.json:&#10; - Fixed an issue that sometimes could use the doc_count that has been returned from elastic as the argument for the query even when it wasn't necessary." />
@@ -908,7 +910,9 @@
     <MESSAGE value="alerter.py:&#10; - Added comments that will guide the development of this service&#10; &#10;configurator.py:&#10; - Added a trailing slash to the URL path just to keep it aligned with the other paths listed&#10;&#10;anomaly_detector.py:&#10; - Added explicit conversion of the various URL parts to string to avoid the error about concatenating string and int&#10; &#10;metrics_collector.py:&#10; - Added more specific exceptions to help determine what is causing the similarity check method to fail" />
     <MESSAGE value="metrics_collector.py:&#10; - As it turned out, using path.join and sending the right argument starting with a slash causes path.join to return only the argument without the base path." />
     <MESSAGE value="metrics_collector.py:&#10; - Forgot one font...." />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Forgot one font...." />
+    <MESSAGE value="metrics_collector.py:&#10; - Missed couple of debug messages.&#10; &#10;anomaly_detector.py:&#10; - Added more info in exceptions to make it easier to debug the service&#10; - Added counter of metrics that were analyzed successfully" />
+    <MESSAGE value="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)" />
+    <option name="LAST_COMMIT_MESSAGE" value="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1720,8 +1724,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="970" column="106" selection-start-line="970" selection-start-column="106" selection-end-line="970" selection-end-column="106" />
+        <state relative-caret-position="1347">
+          <caret line="988" column="55" selection-start-line="988" selection-start-column="55" selection-end-line="988" selection-end-column="55" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
