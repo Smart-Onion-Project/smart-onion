@@ -14,6 +14,9 @@ import hashlib
 import time
 from multiprocessing import Value
 
+# This service should hold the following models for detecting important anomalies:
+# - A model that will encode a 10min pattern of anomalies reported and the
+
 
 DEBUG = True
 
