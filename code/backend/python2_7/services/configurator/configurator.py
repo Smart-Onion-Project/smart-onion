@@ -1,4 +1,5 @@
 #!/usr/bin/python2.7
+from __future__ import print_function
 import sys
 from bottle import Bottle
 import datetime
@@ -8,7 +9,7 @@ import os
 import hashlib
 import time
 from multiprocessing import Value
-from __future__ import print_function
+
 
 
 DEBUG = False

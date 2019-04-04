@@ -1,4 +1,5 @@
 #!/usr/bin/python2.7
+from __future__ import print_function
 import sys
 import os
 import re
@@ -12,7 +13,6 @@ import syslog
 import hashlib
 import time
 from multiprocessing import Value
-from __future__ import print_function
 
 
 DEBUG = True
