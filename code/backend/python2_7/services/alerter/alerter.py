@@ -12,6 +12,7 @@ import syslog
 import hashlib
 import time
 from multiprocessing import Value
+from __future__ import print_function
 
 
 DEBUG = True
