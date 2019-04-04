@@ -281,7 +281,7 @@ class MetricsRealtimeAnalyzer:
             model = None
             anomalyLikelihoodCalc = None
             if DEBUG:
-                print("DEBUG: Received the metric " + str(base64.b64encode(metric)))
+                print("DEBUG: Received the metric " + str(base64.b64encode(metric)) + "\n" if DEBUG else "", end="")
 
             if len(self.models) < self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models"]:
                 models_number_below_configured_limit = True
@@ -513,15 +513,15 @@ class MetricsRealtimeAnalyzer:
             # If this is an anomaly metric created by this service then there's no need to process it again...
             metric_name = metric.value
             if metric.value is None or metric.value.strip() == "" or len(metric.value.split(" ")) != 3:
-                print("DEBUG: Received the following malformed metric. Ignoring: " + str(metric_name))
+                print("DEBUG: Received the following malformed metric. Ignoring: " + str(metric_name) + "\n" if DEBUG else "", end="")
                 continue
 
             metric_name = metric.value.split(" ")[0]
             if re.match(self._allowed_to_work_on_metrics_pattern, str(metric_name)):
-                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
                 self.parse_metric_message(metric_raw_info=metric.value)
             else:
-                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + ".")
+                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
 
 
 

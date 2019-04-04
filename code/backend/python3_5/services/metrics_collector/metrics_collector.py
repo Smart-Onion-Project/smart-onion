@@ -47,6 +47,7 @@ from multiprocessing import Value
 
 
 DEBUG = False
+SINGLE_THREADED = False
 elasticsearch_server = "127.0.0.1"
 metrics_prefix = "smart-onion"
 config_copy = {}
@@ -395,12 +396,12 @@ class Utils:
         # img.save(fullpath)
         return img
 
-    def VisualSimilarityRate(self, cur_value_to_compare_to, value_to_compare, algorithm="phash"):
+    def VisualSimilarityRate(self, cur_value_to_compare_to, value_to_compare, fonts_path, algorithm="phash"):
         fonts = [
-            "/home/yuval/.fonts/Arial_0.ttf",
-            "/home/yuval/.fonts/tahoma.ttf",
-            "/home/yuval/.fonts/TIMES_0.TTF",
-            "/home/yuval/.fonts/Courier New.ttf"
+            fonts_path + "/Arial_0.ttf",
+            fonts_path + "/tahoma.ttf",
+            fonts_path + "/TIMES_0.TTF",
+            fonts_path + "/Courier New.ttf"
         ]
         max_similarity_rate = 0
 
@@ -486,6 +487,7 @@ class MetricsCollector:
         self._tokenizer_db_name = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbname"]
         self._tokenizer_db_user = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbuser"]
         self._tokenizer_db_password = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbpassword"]
+        self._fonts_for_similarity_tests_path = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.similarity_test_fonts_path"]
 
     def _route(self):
         self._app.route('/smart-onion/field-query/<queryname>', method="GET", callback=self.fieldQuery)
@@ -540,14 +542,14 @@ class MetricsCollector:
         self._sampling_tasks_garbage_collector_thread = threading.Thread(target=self._sampling_tasks_garbage_collector)
         self._sampling_tasks_garbage_collector_thread.start()
 
-        if DEBUG:
+        if SINGLE_THREADED:
             self._app.run(host=self._host, port=self._port)
         else:
             self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32, timeout=120)
 
     def _sampling_tasks_garbage_collector(self):
         while True:
-            print("DEBUG: Going to sleep for " + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"]) + " seconds...")
+            print("DEBUG: Going to sleep for " + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"]) + " seconds..." + "\n" if DEBUG else "", end="")
             time.sleep(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"])
             self._is_sampling_tasks_gc_running = True
 
@@ -605,19 +607,19 @@ class MetricsCollector:
 
     def sampling_tasks_kafka_consumer(self):
         try:
-            print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._sampling_tasks_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads")
+            print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._sampling_tasks_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads" + "\n" if DEBUG else "", end="")
             kafka_consumer = None
             while kafka_consumer is None:
                 try:
                     kafka_consumer = kafka.KafkaConsumer(self._sampling_tasks_kafka_topic, bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
                 except:
-                    print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                    print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds" + "\n" if DEBUG else "", end="")
                     time.sleep(10)
 
             last_task_list_appended = -1
             for sampling_tasks_batch_raw in kafka_consumer:
                 sampling_tasks_batch = json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))
-                print("DEBUG: Received the following sampling task from Kafka (topic=" + str(sampling_tasks_batch_raw.topic) + ";partition=" + str(sampling_tasks_batch_raw.partition) + ";offset=" + str(sampling_tasks_batch_raw.offset) + ",): " + json.dumps(sampling_tasks_batch))
+                print("DEBUG: Received the following sampling task from Kafka (topic=" + str(sampling_tasks_batch_raw.topic) + ";partition=" + str(sampling_tasks_batch_raw.partition) + ";offset=" + str(sampling_tasks_batch_raw.offset) + ",): " + json.dumps(sampling_tasks_batch) + "\n" if DEBUG else "", end="")
                 for sampling_task in sampling_tasks_batch["batch"]:
                     is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
 
@@ -835,7 +837,7 @@ class MetricsCollector:
             }
         }
 
-
+        state = "RunningElkQuery"
         try:
             print("Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'")
             raw_res = ""
@@ -851,13 +853,15 @@ class MetricsCollector:
             if 'aggregations' in res and 'field_values0' in res['aggregations'] and 'buckets' in res['aggregations']['field_values0']:
                 for bucket in res['aggregations']['field_values0']['buckets']:
                     cur_value_to_compare_to = bucket["key"]
+
+                    state = "LevensteinDistance"
                     edit_distance_match_rate = Utils().LevenshteinDistance(value_to_compare, cur_value_to_compare_to)
+                    state = "HomoglyphsRatio"
                     homoglyphs_ratio = Utils().HomoglyphsRatio(value_to_compare, cur_value_to_compare_to)
+                    state = "VisualSimilarityRate"
                     visual_similarity_rate = []
-
                     for p_hashing_alg in Utils.perceptive_hashing_algs:
-                        visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, algorithm=p_hashing_alg))
-
+                        visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, fonts_path=self._fonts_for_similarity_tests_path, algorithm=p_hashing_alg))
                     # Create average match rate between all the perceptive hashing algorithms
                     visual_match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
 
@@ -887,7 +891,7 @@ class MetricsCollector:
             else:
                 res = "@@ERROR: Elasticsearch responded with an unexpected response: (" + json.dumps(res) + ")"
         except Exception as e:
-            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
+            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ") [state=" + state + "]"
 
         if Utils().is_number(res):
             try:
@@ -1157,13 +1161,13 @@ class MetricsCollector:
             if algo == "levenstein":
                 res = str(utils.LevenshteinDistance(s1, s2))
             if algo == "visual-phash":
-                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="phash"))
+                res = str(utils.VisualSimilarityRate(s1, s2, fonts_path=self._fonts_for_similarity_tests_path, algorithm="phash"))
             if algo == "visual-ahash":
-                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="ahash"))
+                res = str(utils.VisualSimilarityRate(s1, s2, fonts_path=self._fonts_for_similarity_tests_path, algorithm="ahash"))
             if algo == "visual-dhash":
-                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="dhash"))
+                res = str(utils.VisualSimilarityRate(s1, s2, fonts_path=self._fonts_for_similarity_tests_path, algorithm="dhash"))
             if algo == "visual-whash":
-                res = str(utils.VisualSimilarityRate(s1, s2, algorithm="whash"))
+                res = str(utils.VisualSimilarityRate(s1, s2, fonts_path=self._fonts_for_similarity_tests_path, algorithm="whash"))
 
             return res
         except Exception as ex:
