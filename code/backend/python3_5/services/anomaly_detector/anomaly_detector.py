@@ -452,7 +452,7 @@ class AnomalyDetector:
                     local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
 
                 for metric in local_metrics_list_copy:
-                    cur_url = self._anomaly_detector_proto + "://" + self._anomaly_detector_host + ":" + self._anomaly_detector_port + self._anomaly_detector_url_path + urllib_req.quote(str(metric))
+                    cur_url = str(self._anomaly_detector_proto) + "://" + str(self._anomaly_detector_host) + ":" + str(self._anomaly_detector_port) + str(self._anomaly_detector_url_path) + urllib_req.quote(str(metric))
                     print("DEBUG: Looking for anomalies in metric " + str(metric) + ". Calling " + cur_url + "\n" if DEBUG else "", end="")
                     try:
                         urllib_req.urlopen(cur_url)
@@ -460,7 +460,7 @@ class AnomalyDetector:
                         print("WARN: Failed to call the url `" + str(cur_url) + "` due to the following exception (" + type(ex).__name__ + "): " + str(ex))
                     self._metrics_parsed.value += 1
 
-                print("DEBUG: Finished sampling cycle. Handled "+ str(len(local_metrics_list_copy)) + " metrics." + "\n" if DEBUG else "", end="")
+                print("DEBUG: Finished sampling cycle. Handled " + str(len(local_metrics_list_copy)) + " metrics." + "\n" if DEBUG else "", end="")
                 local_metrics_list_copy = None
 
             except KeyboardInterrupt:

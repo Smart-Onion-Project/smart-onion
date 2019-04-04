@@ -349,12 +349,23 @@ class Utils:
         REPLACEMENT_CHARACTER = u'\uFFFD'
         NEWLINE_REPLACEMENT_STRING = ' ' + REPLACEMENT_CHARACTER + ' '
 
-        font = ImageFont.load_default()
+        try:
+            font = ImageFont.load_default()
+        except OSError as ex:
+            raise OSError("Failed to load the default font due to the following exception: (" + str(ex) + " (Type=" + type(ex).__name__ + ";ErrNo:" + str(ex.errno) + ";strerr=" + str(ex.strerror) + ")")
+
         if fontfullpath != None:
             if fontfullpath.lower().endswith(".ttf"):
-                ImageFont.truetype(fontfullpath, fontsize)
+                try:
+                    ImageFont.truetype(fontfullpath, fontsize)
+                except OSError as ex:
+                    raise OSError("Failed to load the truetype font '" + str(fontfullpath) + "' at size " + str(fontsize) + " due to the following exception: (" + str(ex) + " (Type=" + type(ex).__name__ + ";ErrNo:" + str(ex.errno) + ";strerr=" + str(ex.strerror) + ")")
             else:
-                ImageFont.load(fontfullpath)
+                try:
+                    ImageFont.load(fontfullpath)
+                except OSError as ex:
+                    raise OSError("Failed to load the non-truetype font '" + str(fontfullpath) + "' at size " + str(fontsize) + " due to the following exception: (" + str(ex) + " (Type=" + type(ex).__name__ + ";ErrNo:" + str(ex.errno) + ";strerr=" + str(ex.strerror) + ")")
+
         text = text.replace('\n', NEWLINE_REPLACEMENT_STRING)
 
         lines = []
@@ -398,10 +409,10 @@ class Utils:
 
     def VisualSimilarityRate(self, cur_value_to_compare_to, value_to_compare, fonts_path, algorithm="phash"):
         fonts = [
-            fonts_path + "/Arial_0.ttf",
-            fonts_path + "/tahoma.ttf",
-            fonts_path + "/TIMES_0.TTF",
-            fonts_path + "/Courier New.ttf"
+            os.path.join(fonts_path, "/Arial_0.ttf"),
+            os.path.join(fonts_path, "/tahoma.ttf"),
+            os.path.join(fonts_path, "/TIMES_0.TTF"),
+            os.path.join(fonts_path, "/Courier New.ttf")
         ]
         max_similarity_rate = 0
 
@@ -862,6 +873,8 @@ class MetricsCollector:
                     visual_similarity_rate = []
                     for p_hashing_alg in Utils.perceptive_hashing_algs:
                         visual_similarity_rate.append(Utils().VisualSimilarityRate(value_to_compare=value_to_compare, cur_value_to_compare_to=cur_value_to_compare_to, fonts_path=self._fonts_for_similarity_tests_path, algorithm=p_hashing_alg))
+
+                    state = "AnalyzingResult"
                     # Create average match rate between all the perceptive hashing algorithms
                     visual_match_rate = sum(visual_similarity_rate) / len(visual_similarity_rate)
 
