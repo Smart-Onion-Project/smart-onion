@@ -302,7 +302,7 @@ class AnomalyDetector:
 
         for metric_record in kafka_consumer:
             self._raw_metrics_downloaded_from_kafka.value += 1
-            metric = str(metric_record.value)
+            metric = str(metric_record.value.decode('utf-8'))
             metric_name = metric
             if metric is None or metric.strip() == "" or len(metric.split(" ")) != 3:
                 if metric is None:
