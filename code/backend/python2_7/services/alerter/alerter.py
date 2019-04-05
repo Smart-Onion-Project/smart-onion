@@ -15,7 +15,15 @@ import time
 from multiprocessing import Value
 
 # This service should hold the following models for detecting important anomalies:
-# - A model that will encode a 10min pattern of anomalies reported and the
+# - A model that will encode a pattern of anomalies reported within a 10 mins time period along with the current date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 10 mins time period along with the current jewish date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 1 hour time period along with the current date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 1 hour time period along with the current jewish date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 1 day time period along with the current date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 1 day time period along with the current jewish date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 1 week time period along with the current date and detect anomalies
+# - A model that will encode a pattern of anomalies reported within a 1 week time period along with the current jewish date and detect anomalies
+
 
 
 DEBUG = True
@@ -65,7 +73,7 @@ class SmartOnionAlerter:
             report_obj = request.json
             syslog.syslog("SmartOnionAlerter: INFO: Received anomaly report from " + report_obj["reporter"] + ". Report contents is " + json.dumps(report_obj))
         except:
-            syslog.syslog("SmartOnionAlerter: WARN: Received an anomaly report that was not structured properly. Cannot process it. DISCARDING")
+            syslog.syslog("SmartOnionAlerter: WARN: Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(request.body).encode('utf-8').decode('utf-8')))
 
 
 script_path = os.path.dirname(os.path.realpath(__file__))

@@ -35,6 +35,7 @@ import uuid
 import kafka
 from multiprocessing import Value
 import re
+import syslog
 
 
 DEBUG = False
@@ -91,12 +92,15 @@ class MetricsRealtimeAnalyzer:
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
         self._allowed_to_work_on_metrics_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern"])
+        self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
+        self._anomaly_score_threshold_for_reporting_to_alerter = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.anomaly_score_threshold_for_reporting"]
+        self._anomaly_likelihood_threshold_for_reporting_to_alerter = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.anomaly_likelihood_threshold_for_reporting"]
         self._kafka_producer = None
         while self._kafka_producer is None:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
             except Exception as ex:
-                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available... (" + str(ex) + " (" + type(ex).__name__ + ")")
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "__init__", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available..."))
                 time.sleep(10)
 
     def _route(self):
@@ -133,13 +137,14 @@ class MetricsRealtimeAnalyzer:
             if res is None:
                 res = "None"
         except Exception as ex:
-            print("WARN: Failed to report the following anomaly to the alerter service directly due to the follwing exception: " + str(ex) + ". Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report))
+            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to an exception"))
 
         try:
             self._kafka_producer.send(topic=self._reported_anomalies_kafka_topic, value=json.dumps(anomaly_report).encode('utf-8'))
-            print("INFO: Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report))
+            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "INFO", str(None), str(metric), str(None), str(None), "Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report)))
+
         except Exception as ex:
-            print("WARN: Failed to report the following anomaly to Kafka due to the follwing exception: " + str(ex) + ". These are the anomaly details: " + json.dumps(anomaly_report))
+            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to Kafka due to an exception. These are the anomaly details: " + json.dumps(anomaly_report)))
 
     def get_save_path(self, metric, path_element="model"):
         """
@@ -189,7 +194,7 @@ class MetricsRealtimeAnalyzer:
                 try:
                     model.save(model_save_path)
                 except Exception as ex:
-                    print("WARN: Could NOT auto save module no." + str(model_idx) + " at " + model_save_path + " due to the following exception: " + str(ex))
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "auto_save_models", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Could NOT auto save module no." + str(model_idx) + " at " + model_save_path + " due to an exception"))
 
                 if self.EXIT_ALL_THREADS_FLAG:
                     create_model_thread_lock.release()
@@ -208,7 +213,7 @@ class MetricsRealtimeAnalyzer:
                             , "w") as anomaly_likelihood_calc_file:
                         anomaly_likelihood_calculator.writeToFile(anomaly_likelihood_calc_file)
                 except OSError as ex:
-                    print("WARN: Could NOT auto save anomaly likelihood calc for metric " + str(metric) + " at " + anomaly_likelihood_calculators_path + " due to the following exception: " + str(ex))
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "auto_save_models", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Could NOT auto save anomaly likelihood calc for that metric at " + anomaly_likelihood_calculators_path + " due to an exception"))
 
                 if self.EXIT_ALL_THREADS_FLAG:
                     create_anomaly_likelihood_calc_thread_lock.release()
@@ -247,7 +252,7 @@ class MetricsRealtimeAnalyzer:
                 metric_family.replace(" ", "_").replace("-", "_").replace(".", "/")
             )
             if DEBUG:
-                print("Importing model params from %s" % yaml_filename)
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "get_model_params_from_metric_name", "DEBUG", str(None), str(metric_family), str(ex), type(ex).__name__, "Importing model params from " + str(yaml_filename)))
 
             with open(yaml_filename, "r") as yaml_file:
                 model_params = yaml.safe_load(yaml_file)
@@ -257,7 +262,7 @@ class MetricsRealtimeAnalyzer:
                 metric_family.replace(" ", "_").replace("-", "_")
             )
             if DEBUG:
-                print("Importing model params from %s" % importName)
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "get_model_params_from_metric_name", "DEBUG", str(None), str(metric_family), str(ex), type(ex).__name__, "Importing model params from " + str(importName)))
             try:
                 importedModelParams = importlib.import_module(importName).MODEL_PARAMS
             except ImportError:
@@ -265,8 +270,7 @@ class MetricsRealtimeAnalyzer:
                 importName = "data_model_params.default"
                 importedModelParams = importlib.import_module(importName).MODEL_PARAMS
                 if DEBUG:
-                    print("No model params exist for '%s'. Using default module params."
-                          % metric_family)
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "get_model_params_from_metric_name", "DEBUG", str(None), str(metric_family), str(ex), type(ex).__name__, "No model params exist for that metric family. Using default module params."))
 
             return importedModelParams
 
@@ -282,14 +286,14 @@ class MetricsRealtimeAnalyzer:
             model = None
             anomalyLikelihoodCalc = None
             if DEBUG:
-                print("DEBUG: Received the metric " + str(base64.b64encode(metric)) + "\n" if DEBUG else "", end="")
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "DEBUG", str(None), str(metric), str(None), str(None), "Received the metric mentioned."))
 
             if len(self.models) < self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.max-allowed-models"]:
                 models_number_below_configured_limit = True
             else:
                 models_number_below_configured_limit = False
                 if (time.time() - self._last_logged_message_about_too_many_models) > self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages"]:
-                    print("WARN: Currently the number of models/anomaly_likelihood_calculators loaded is exceeds the configured quota. CANNOT CREATE NEW MODELS.")
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "WARN", str(None), str(metric), str(None), str(None), "Currently the number of models/anomaly_likelihood_calculators loaded is exceeds the configured quota. CANNOT CREATE NEW MODELS."))
                     self._last_logged_message_about_too_many_models = time.time()
 
             if not metric["metric_name"] in self.models:
@@ -298,22 +302,23 @@ class MetricsRealtimeAnalyzer:
                     if models_number_below_configured_limit:
                         try:
                             self.models[metric["metric_name"]] = ModelFactory.loadFromCheckpoint(self.get_save_path(metric["metric_name"]))
-                            print("LOADED MODEL FOR " + metric["metric_name"] + " FROM DISK")
+                            if DEBUG:
+                                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "DEBUG", str(None), str(metric["metric_name"]), str(None), str(None), "LOADED MODEL FROM DISK"))
                         except Exception as ex:
                             self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
-                            print("WARN: Failed to create a model from disk (" + str(ex) + ")")
+                            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "WARN", str(None), str(metric["metric_name"]), str(ex), type(ex).__name__, "Failed to create a model from disk"))
 
                 if not metric["metric_name"] in self.models and not os.path.isdir(self.get_save_path(metric["metric_name"])):
                     if models_number_below_configured_limit:
                         self.models[metric["metric_name"]] = self.create_model(self.get_model_params_from_metric_name(metric["metric_family"]))
                         if DEBUG:
-                            print("Model for " + metric["metric_name"] + " created from params")
+                            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "DEBUG", str(None), str(metric["metric_name"]), str(None), str(None), "Model created from params"))
                 create_model_thread_lock.release()
     
             if metric["metric_name"] in self.models:
                 model = self.models[metric["metric_name"]]
                 if DEBUG:
-                    print("Model for " + metric["metric_name"] + " loaded from cache")
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "DEBUG", str(None), str(metric["metric_name"]), str(None), str(None), "Model loaded from cache"))
     
             create_anomaly_likelihood_calc_thread_lock.acquire()
             if not metric["metric_name"] in self.anomaly_likelihood_detectors:
@@ -324,11 +329,14 @@ class MetricsRealtimeAnalyzer:
                         try:
                             if models_number_below_configured_limit:
                                 self.anomaly_likelihood_detectors[metric["metric_name"]] = self.create_anomaly_likelihood_calc_from_disk(metric)
-                                print("LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE")
+                                if DEBUG:
+                                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "DEBUG", str(None), str(metric["metric_name"]), str(None), str(None), "LOADED ANOMALY_LIKELIHOOD_CALC FROM FILE"))
+
                         except Exception as ex:
                             if models_number_below_configured_limit:
                                 self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
-                                print("WARN: Failed to create an anomaly likelihood calc from disk (" + str(ex) + ")")
+                                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "WARN", str(None), str(metric["metric_name"]), str(ex), str(type(ex).__name__), "Failed to create an anomaly likelihood calc from disk"))
+
                 else:
                     if models_number_below_configured_limit:
                         self.anomaly_likelihood_detectors[metric["metric_name"]] = AnomalyLikelihood()
@@ -367,20 +375,10 @@ class MetricsRealtimeAnalyzer:
                     self.statsd_client.gauge(self.metrics_prefix + ".anomaly_score." + metric["metric_name"], anomalyScore)
                     self.statsd_client.gauge(self.metrics_prefix + ".anomaly_likelihood." + metric["metric_name"], anomalyLikelihood)
                     self.statsd_client.gauge(self.metrics_prefix + ".anomaly_direction." + metric["metric_name"], anomaly_direction)
-                except:
-                    print(
-                            "WARNING: Failed to report anomaly to statsd. ("
-                            "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
-                            "Metric: " + str(metric["metric_name"]) + ", " +
-                            "Value: " + str(metric["metric_value"]) + ", " +
-                            "Anomaly score: " + str(anomalyScore) + ", " +
-                            "Prediction: " + str(prediction) + ", " +
-                            "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
-                            "AnomalyReported: " + str(anomaly_reported) + ")"
-                    )
-                    pass
-    
-                if anomalyLikelihood > 0.9 and anomalyScore > 0.9:
+                except Exception as ex:
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "WARN", str(None), str(metric["metric_name"]), str(ex), str(type(ex).__name__), "Failed to report anomaly to statsd  (Value: " + str(metric["metric_value"]) + ", Anomaly score: " + str(anomalyScore) + ", Prediction: " + str(prediction) + ", AnomalyLikelihood: " + str(anomalyLikelihood) + ", AnomalyReported: " + str(anomaly_reported) + ")"))
+
+                if anomalyLikelihood > self._anomaly_likelihood_threshold_for_reporting_to_alerter and anomalyScore > self._anomaly_score_threshold_for_reporting_to_alerter:
                     self.report_anomaly(metric=metric, anomaly_info={
                         "htm_anomaly_score": anomalyScore,
                         "htm_anomaly_likelihood": anomalyLikelihood,
@@ -390,19 +388,9 @@ class MetricsRealtimeAnalyzer:
                         "value: ": metric["metric_value"]
                     })
                     anomaly_reported = True
-    
-                    print(
-                            "Timestamp: " + str(datetime.fromtimestamp(metric["metric_timestamp"])) + ", " +
-                            "Metric: " + str(metric["metric_name"]) + ", " +
-                            "Value: " + str(metric["metric_value"]) + ", " +
-                            "Anomaly score: " + str(anomalyScore) + ", " +
-                            "Prediction: " + str(prediction) + ", " +
-                            "AnomalyLikelihood: " + str(anomalyLikelihood) + ", " +
-                            "AnomalyReported: " + str(anomaly_reported)
-                    )
             else:
                 if models_number_below_configured_limit:
-                    print("ERROR: Could not load/create a model for " + str(metric))
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "ERROR", str(None), str(metric), str(None), str(None), "Could not load/create a model for this metric"))
     
             if self.EXIT_ALL_THREADS_FLAG:
                 return
@@ -410,7 +398,7 @@ class MetricsRealtimeAnalyzer:
             self._metrics_successfully_processed.value += 1
             
         except Exception as ex:
-            print("WARN: Failed to analyze the metric(b64) " + str(base64.b64encode(metric)) + " due to the following exception: " + str(ex))
+            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "WARN", str(None), str(base64.b64encode(str(metric))), str(ex), str(type(ex).__name__), "Failed to analyze that metric due to an exception."))
 
     def create_anomaly_likelihood_calc_from_disk(self, metric):
         anomaly_likelihood_calculators_path = self.get_save_path(metric["metric_name"], path_element="anomaly_likelihood_calculator")
@@ -434,26 +422,27 @@ class MetricsRealtimeAnalyzer:
                     metric_family = ".".join(metric_family_hierarchy)
                     metric_item = metric_family_raw[(len(metric_family_raw) - 1)]
                 else:
-                    print("WARN: Failed to parse metric info(b64) (failed to parse metric family. Less than one dot in the family name): " + str(base64.b64encode(metric_raw_info)))
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "parse_metric_message", "WARN", str(None), str(base64.b64encode(str(metric_raw_info))), str(None), str(None), "Failed to parse metric (failed to parse metric family. Less than one dot in the family name)"))
+                    return
                 try:
                     metric_value = float(metric_raw_info.split(" ")[1])
                 except:
-                    print("WARN: Failed to parse metric info(b64) (failed to convert metric value to float): " + str(base64.b64encode(metric_raw_info)))
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "parse_metric_message", "WARN", str(None), str(base64.b64encode(str(metric_raw_info))), str(None), str(None), "Failed to parse metric info (failed to convert metric value to float)"))
                     return
                 try:
                     metric_timestamp = int(metric_raw_info.split(" ")[2])
                 except:
-                    print("WARN: Failed to parse metric info(b64) (failed to convert timestamp value to int): " + str(base64.b64encode(metric_raw_info)))
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "parse_metric_message", "WARN", str(None), str(base64.b64encode(str(metric_raw_info))), str(None), str(None), "Failed to parse metric info(b64) (failed to convert timestamp value to int)"))
                     return
     
             else:
-                print("WARN: Failed to parse metric info(b64) (raw message contains more or less than two spaces): " + str(base64.b64encode(metric_raw_info)))
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "parse_metric_message", "WARN", str(None), str(base64.b64encode(str(metric_raw_info))), str(None), str(None), "Failed to parse metric info(b64) (raw message contains more or less than two spaces)"))
                 return
     
             self.anomaly_detector({"metric_family_hierarchy" : metric_family_hierarchy, "metric_family": metric_family, "metric_item": metric_item, "metric_name": metric_name, "metric_value": metric_value, "metric_timestamp": metric_timestamp})
             
         except Exception as ex:
-            print("WARN: The following unexpected exception has been thrown while parsing the metric message: " + str(ex))
+            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "parse_metric_message", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while parsing the metric message"))
 
     def run(self, ip='', port=3000, ping_listening_host="127.0.0.1", ping_listening_port=3001, connections_backlog=10, proto="UDP", save_interval=5, models_save_base_path=None, models_params_base_path=None, anomaly_likelihood_detectors_save_base_path=None, alerter_url=None):
         self._ping_listening_host = ping_listening_host
@@ -465,7 +454,7 @@ class MetricsRealtimeAnalyzer:
             anomaly_likelihood_detectors_save_base_path,
             alerter_url
         ])
-        print("INFO: Launching the analyzer thread (save_interval=" + str(save_interval) + ";models_save_base_path=" + str(models_save_base_path) + ";models_params_base_path=" + str(models_params_base_path)+ ";anomaly_likelihood_detectors_save_base_path=" + str(anomaly_likelihood_detectors_save_base_path) + ";alerter_url=" + str(alerter_url) + ")")
+        syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run", "INFO", str(None), str(None), str(None), str(None), "Launching the analyzer thread (save_interval=" + str(save_interval) + ";models_save_base_path=" + str(models_save_base_path) + ";models_params_base_path=" + str(models_params_base_path)+ ";anomaly_likelihood_detectors_save_base_path=" + str(anomaly_likelihood_detectors_save_base_path) + ";alerter_url=" + str(alerter_url) + ")"))
         self._analyzer_thread.start()
         self._app.run(host=self._ping_listening_host, port=self._ping_listening_port)
 
@@ -482,10 +471,9 @@ class MetricsRealtimeAnalyzer:
                 kafka_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
                                                      bootstrap_servers=self._kafka_server,
                                                      client_id=self._kafka_client_id)
-                print("INFO: Loaded a Kafka consumer successfully. (self._metrics_kafka_topic=" + str(self._metrics_kafka_topic) + ";bootstrap_servers=" + str(self._kafka_server) + ";client_id=" + str(self._kafka_client_id) + ")")
-            except:
-                print(
-                    "DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds")
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run_analyzer", "INFO", str(None), str(None), str(None), str(None), "Loaded a Kafka consumer successfully. (self._metrics_kafka_topic=" + str(self._metrics_kafka_topic) + ";bootstrap_servers=" + str(self._kafka_server) + ";client_id=" + str(self._kafka_client_id) + ")"))
+            except Exception as ex:
+                syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run_analyzer", "INFO", str(None), str(ex), str(type(ex).__name__), str(None), "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
 
         # launch the auto-save thread
@@ -505,7 +493,7 @@ class MetricsRealtimeAnalyzer:
             self.anomaly_likelihood_detectors_save_base_path = anomaly_likelihood_detectors_save_base_path
 
         autosave_thread = threading.Thread(target=self.auto_save_models, args=[save_interval])
-        print("INFO: Launching auto-save thread (save_interval=" + str(save_interval) + ")")
+        syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run_analyzer", "INFO", str(None), str(None), str(None), str(None), "Launching auto-save thread (save_interval=" + str(save_interval) + ")"))
         autosave_thread.start()
 
         for metric in kafka_consumer:
@@ -514,15 +502,18 @@ class MetricsRealtimeAnalyzer:
             # If this is an anomaly metric created by this service then there's no need to process it again...
             metric_name = metric.value
             if metric.value is None or metric.value.strip() == "" or len(metric.value.split(" ")) != 3:
-                print("DEBUG: Received the following malformed metric. Ignoring: " + str(metric_name) + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run_analyzer", "DEBUG", str(None), str(metric_name), str(None), str(None), "Received this malformed metric. Ignoring"))
                 continue
 
             metric_name = metric.value.split(" ")[0]
             if re.match(self._allowed_to_work_on_metrics_pattern, str(metric_name)):
-                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run_analyzer", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern))
                 self.parse_metric_message(metric_raw_info=metric.value)
             else:
-                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "run_analyzer", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern))
 
 
 
@@ -563,6 +554,10 @@ while alerter_url is None:
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
         configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
         config_copy = json.loads(configurator_response)
+        generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+        configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
+        config_copy = dict(config_copy, **json.loads(configurator_response))
+        logging_format = config_copy["smart-onion.config.common.logging_format"]
         ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host"]
         port = int(config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-port"])
         proto = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.protocol"]

@@ -29,7 +29,7 @@ import uuid
 from multiprocessing import Value
 
 
-DEBUG = True
+DEBUG = False
 SINGLE_THREADED = False
 PERCENT_MODE = True
 metrics_prefix = "smart-onion.anomaly_score.anomaly_detector"
@@ -117,6 +117,7 @@ class AnomalyDetector:
         self._anomaly_detector_host = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-host"]
         self._anomaly_detector_port = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-port"]
         self._anomaly_detector_url_path = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.base_urls.get-anomaly-score"]
+        self._anomaly_score_threshold_for_reporting_to_alerter = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomaly_score_threshold_for_reporting"]
         self._kafka_producer = None
         while self._kafka_producer is None:
             try:
@@ -438,7 +439,7 @@ class AnomalyDetector:
             state = "CalcAnomalyScore"
             if res == 0:
                 res = self.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
-                if res > 90:
+                if res > self._anomaly_score_threshold_for_reporting_to_alerter:
                     self.report_anomaly(metric=metric_name, anomaly_info={"anomaly_score": res})
 
             state = "SendMetricDataToStatsD"

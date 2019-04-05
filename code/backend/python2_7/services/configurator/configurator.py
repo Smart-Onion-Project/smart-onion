@@ -53,6 +53,7 @@ class Utils:
 
 class SmartOnionConfigurator:
     config = {
+        "smart-onion.config.common.logging_format": "timestamp=%s;module=%s;method=%s;severity=%s;state=%s;metric/metric_family=%s;exception_msg=%s;exception_type=%s;message=%s",
         "smart-onion.config.architecture.external_services.security-onion-elk.host": "127.0.0.1",
         "smart-onion.config.architecture.external_services.security-onion-elk.port": 9200,
         "smart-onion.config.architecture.external_services.security-onion-elk.protocol": "http",
@@ -97,6 +98,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_past_sample_periods": "7,14,21",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_timespan_in_seconds": 86400,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomalies_check_interval": 300,
+        "smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomaly_score_threshold_for_reporting": 90,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.published-listening-port": 9002,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host": "127.0.0.1",
@@ -111,6 +113,8 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name": "metrics",
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.minimum_seconds_between_model_over_quota_log_messages": 3600,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic": "metric-analyzer-detected-anomalies",
+        "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.anomaly_score_threshold_for_reporting": 0.9,
+        "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.anomaly_likelihood_threshold_for_reporting": 0.9,
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-port": 9003,
         "smart-onion.config.architecture.internal_services.backend.configurator.published-listening-protocol": "http",
