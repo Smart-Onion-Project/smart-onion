@@ -555,7 +555,7 @@ while alerter_url is None:
         configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
         config_copy = json.loads(configurator_response)
         generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
-        configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
+        configurator_response = urllib.urlopen(generic_config_url).read().decode('utf-8')
         config_copy = dict(config_copy, **json.loads(configurator_response))
         logging_format = config_copy["smart-onion.config.common.logging_format"]
         ip = config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host"]

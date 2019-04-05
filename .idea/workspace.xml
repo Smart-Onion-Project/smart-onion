@@ -5,16 +5,10 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)">
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Added more comments on how to develop the service&#10; - Added more information to the log when the service receives a malformed report&#10; &#10;configurator.py:&#10; - Added a logging format that will be used across the system to log information to syslog&#10; &#10;metrics_analyzer.py:&#10; - Using this service as a test case for the logging to syslog with a configured format initiative&#10; - Moved the thresholds for anomaly report to the config&#10; &#10;anomaly_detector.py:&#10; - Switched DEBUG to False to go easy on the disks subsystem&#10; - Moved the thresholds for anomaly report to the config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1347">
-              <caret line="988" column="55" selection-start-line="988" selection-start-column="55" selection-end-line="988" selection-end-column="55" />
+            <state relative-caret-position="703">
+              <caret line="67" column="22" lean-forward="true" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -469,13 +463,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00130" summary="metric_analyzer.py:&#10; - Set the code that writes debug messages about the metrics being received to be depended on the DEBUG constant to try and lower the memory consumption of the service">
-      <created>1553794308685</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1553794308685</updated>
-    </task>
     <task id="LOCAL-00131" summary="metric_analyzer.py:&#10; - Lowered the allowed number of loaded models to minimize the memory consumption of the service.">
       <created>1553794418836</created>
       <option name="number" value="00131" />
@@ -812,7 +799,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554381242361</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="alerter.py:&#10; - Added more comments on how to develop the service&#10; - Added more information to the log when the service receives a malformed report&#10; &#10;configurator.py:&#10; - Added a logging format that will be used across the system to log information to syslog&#10; &#10;metrics_analyzer.py:&#10; - Using this service as a test case for the logging to syslog with a configured format initiative&#10; - Moved the thresholds for anomaly report to the config&#10; &#10;anomaly_detector.py:&#10; - Switched DEBUG to False to go easy on the disks subsystem&#10; - Moved the thresholds for anomaly report to the config">
+      <created>1554396335080</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1554396335081</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TodoView">
@@ -826,6 +820,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -887,7 +882,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="so-update.sh:&#10; - Added another command to start kafka because it seems to fail quite often after start for some reason." />
     <MESSAGE value="queries.json:&#10; - Removed all base64 usage" />
     <MESSAGE value="queries.json:&#10; - Fixed an issue that sometimes could use the doc_count that has been returned from elastic as the argument for the query even when it wasn't necessary." />
     <MESSAGE value="queries.json:&#10; - Whooopsie... (-:" />
@@ -912,7 +906,8 @@
     <MESSAGE value="metrics_collector.py:&#10; - Forgot one font...." />
     <MESSAGE value="metrics_collector.py:&#10; - Missed couple of debug messages.&#10; &#10;anomaly_detector.py:&#10; - Added more info in exceptions to make it easier to debug the service&#10; - Added counter of metrics that were analyzed successfully" />
     <MESSAGE value="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)" />
-    <option name="LAST_COMMIT_MESSAGE" value="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)" />
+    <MESSAGE value="alerter.py:&#10; - Added more comments on how to develop the service&#10; - Added more information to the log when the service receives a malformed report&#10; &#10;configurator.py:&#10; - Added a logging format that will be used across the system to log information to syslog&#10; &#10;metrics_analyzer.py:&#10; - Using this service as a test case for the logging to syslog with a configured format initiative&#10; - Moved the thresholds for anomaly report to the config&#10; &#10;anomaly_detector.py:&#10; - Switched DEBUG to False to go easy on the disks subsystem&#10; - Moved the thresholds for anomaly report to the config" />
+    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Added more comments on how to develop the service&#10; - Added more information to the log when the service receives a malformed report&#10; &#10;configurator.py:&#10; - Added a logging format that will be used across the system to log information to syslog&#10; &#10;metrics_analyzer.py:&#10; - Using this service as a test case for the logging to syslog with a configured format initiative&#10; - Moved the thresholds for anomaly report to the config&#10; &#10;anomaly_detector.py:&#10; - Switched DEBUG to False to go easy on the disks subsystem&#10; - Moved the thresholds for anomaly report to the config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1724,8 +1719,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1347">
-          <caret line="988" column="55" selection-start-line="988" selection-start-column="55" selection-end-line="988" selection-end-column="55" />
+        <state relative-caret-position="703">
+          <caret line="67" column="22" lean-forward="true" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
