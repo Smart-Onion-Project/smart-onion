@@ -7,10 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/configurator/configurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +22,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="390" selection-start-line="387" selection-end-line="390" />
+                <state relative-caret-position="-129">
+                  <caret line="367" column="29" selection-start-line="367" selection-start-column="24" selection-end-line="367" selection-end-column="29" />
                   <folding>
                     <element signature="e#922#959#0" expanded="true" />
                     <element signature="e#1469#2480#0" />
@@ -88,8 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>9006</find>
-      <find>route</find>
       <find>smart-onion.config.architecture.internal_services.backend.tiny_url.protocol</find>
       <find>highest_similarity_to_any_top_accessed_tld_subdomains</find>
       <find>9007</find>
@@ -118,6 +113,8 @@
       <find>threa</find>
       <find>Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is:</find>
       <find>report</find>
+      <find>anomaly_detector</find>
+      <find>repor</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
@@ -597,8 +594,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="390" selection-start-line="387" selection-end-line="390" />
+        <state relative-caret-position="-129">
+          <caret line="367" column="29" selection-start-line="367" selection-start-column="24" selection-end-line="367" selection-end-column="29" />
           <folding>
             <element signature="e#922#959#0" expanded="true" />
             <element signature="e#1469#2480#0" />

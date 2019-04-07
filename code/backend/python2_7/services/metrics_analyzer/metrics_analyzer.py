@@ -382,12 +382,12 @@ class MetricsRealtimeAnalyzer:
 
                 if anomalyLikelihood > self._anomaly_likelihood_threshold_for_reporting_to_alerter and anomalyScore > self._anomaly_score_threshold_for_reporting_to_alerter:
                     self.report_anomaly(metric=metric, anomaly_info={
-                        "htm_anomaly_score": anomalyScore,
-                        "htm_anomaly_likelihood": anomalyLikelihood,
-                        "anomaly_score": anomalyLikelihood * anomaly_direction * 100,
+                        "htm_anomaly_score": float(anomalyScore),
+                        "htm_anomaly_likelihood": float(anomalyLikelihood),
+                        "anomaly_score": float(anomalyLikelihood * anomaly_direction * 100),
                         "timestamp: ": datetime.fromtimestamp(metric["metric_timestamp"]).isoformat(),
                         "metric: ": metric["metric_name"],
-                        "value: ": metric["metric_value"]
+                        "value: ": float(metric["metric_value"])
                     })
                     anomaly_reported = True
             else:
