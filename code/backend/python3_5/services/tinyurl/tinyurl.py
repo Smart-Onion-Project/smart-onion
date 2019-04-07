@@ -22,6 +22,8 @@ from urllib import request as urllib_req
 from threading import Lock
 import hashlib
 from multiprocessing import Value
+import datetime
+import syslog
 
 DEBUG = False
 SINGLE_THREADED = False
@@ -33,6 +35,7 @@ class TinyUrl:
     def __init__(self, config_object):
         self._time_loaded = time.time()
         self._config = config_object
+        self._logging_format = self._config["smart-onion.config.common.logging_format"]
         self._host = self._config["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-host"]
         self._port = int(self._config["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-port"])
         self._backup_file = self._config["smart-onion.config.architecture.internal_services.backend.tiny_url.backup_file"]
@@ -117,7 +120,7 @@ class TinyUrl:
                 with open(self._backup_file, "w") as backup_file:
                     backup_file.write(json_to_save)
             except Exception as ex:
-                print("WARN: Could not backup the in-memory database to file (" + str(ex) + " (" + type(ex).__name__ + ")). The next time this service will be invoked ALL url's will become invalid unless the in-memory database will be successfuly saved in the next attempt.")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "tinyurl", "auto_save_state", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Could not backup the in-memory database to file. The next time this service will be invoked ALL url's will become invalid unless the in-memory database will be successfuly saved in the next attempt."))
             time.sleep(self._backup_interval)
 
     def auto_load_state(self):
@@ -165,6 +168,10 @@ try:
     configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.tiny_url.*"
     configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
     config_copy = json.loads(configurator_response)
+    generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+    configurator_response = urllib_req.urlopen(generic_config_url).read().decode('utf-8')
+    config_copy = dict(config_copy, **json.loads(configurator_response))
+    logging_format = config_copy["smart-onion.config.common.logging_format"]
     listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-host"]
     listen_port = int(config_copy["smart-onion.config.architecture.internal_services.backend.tiny_url.listening-port"])
 except:

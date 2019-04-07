@@ -84,7 +84,6 @@ class Utils:
             url_base = url_base + services_urls["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls." + query_type.lower()] + query_id
 
             if not "aggregations" in res or not "field_values0" in res["aggregations"] or not "buckets" in res["aggregations"]["field_values0"]:
-                print("ERROR: GenerateLldFromElasticAggrRes: The input does not look like a result from Elasticsearch aggregation query.")
                 raise Exception("ERROR: GenerateLldFromElasticAggrRes: The input does not look like a result from Elasticsearch aggregation query.")
 
             for agg0_item in res["aggregations"]["field_values0"]["buckets"]:
@@ -217,7 +216,6 @@ class Utils:
             tiny_url_res = cur_url
             if tiny_url_service_details is not None:
                 tiny_service_url = tiny_url_service_details["protocol"] + "://" + tiny_url_service_details["server"] + ":" + str(tiny_url_service_details["port"]) + services_urls["smart-onion.config.architecture.internal_services.backend.tiny_url.base_urls.url2tiny"] + "?url=" + urllib.parse.quote(base64.b64encode(cur_url.encode('utf-8')).decode('utf-8'), safe='')
-                print("Calling " + tiny_service_url)
                 tiny_url_res = urllib_req.urlopen(tiny_service_url).read().decode('utf-8')
             else:
                 tiny_url_res = cur_url
@@ -372,7 +370,6 @@ class Utils:
         line = u""
 
         for word in text.split():
-            # print(word)
             if word == REPLACEMENT_CHARACTER:  # give a blank line
                 lines.append(line[1:])  # slice the white space in the begining of the line
                 line = u""
@@ -452,7 +449,6 @@ class Utils:
             if not char1 in homoglyphs_cache:
                 homoglyphs_cache[char1] = homoglyphs_obj.get_combinations(char1)
             if char2 != char1 and char2 in homoglyphs_cache[char1]:
-                print(char2 + " -> " + char1)
                 homoglyphs_found = homoglyphs_found + 1
 
         return homoglyphs_found / len(cur_value_to_compare_to) * 100
@@ -491,6 +487,7 @@ class MetricsCollector:
         self._field_query_requests_received = Value('i', 0)
         self._discovery_requests_received = Value('i', 0)
         self._discovery_requests_processed_successfully = Value('i', 0)
+        self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._metric_item_element_max_size = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_max_length"]
         self._tokenizer_db_type = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbtype"]
         self._tokenizer_db_port = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.metric_items_tokenizer_dbport"]
@@ -560,7 +557,8 @@ class MetricsCollector:
 
     def _sampling_tasks_garbage_collector(self):
         while True:
-            print("DEBUG: Going to sleep for " + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"]) + " seconds..." + "\n" if DEBUG else "", end="")
+            if DEBUG:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "_sampling_tasks_garbage_collector", "DEBUG", str(None), str(None), str(None), str(None), "Going to sleep for " + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"]) + " seconds..."))
             time.sleep(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_tasks_gc_interval"])
             self._is_sampling_tasks_gc_running = True
 
@@ -578,7 +576,7 @@ class MetricsCollector:
                             if url in sampling_tasks_list.keys():
                                 del sampling_tasks_list[url]
             except Exception as ex:
-                print("WARN: The following unexpected exception has been thrown during the garbage collection of the sampling tasks lists items (" + type(ex).__name__ + "): " + str(ex))
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "_sampling_tasks_garbage_collector", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown during the garbage collection of the sampling tasks lists items"))
 
             self._is_sampling_tasks_gc_running = False
 
@@ -587,14 +585,15 @@ class MetricsCollector:
         last_ran = 0
 
         sleep_time = random.randint(0, 10)
-        print("INFO: Going to sleep for " + str(sleep_time) + " seconds (randomly chosen sleeping time)...")
+        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_poller(thread_id:" + str(thread_id) + ")", "INFO", str(None), str(None), str(None), str(None), "Going to sleep for " + str(sleep_time) + " seconds (randomly chosen sleeping time)..."))
+
         time.sleep(sleep_time)
 
         while True:
             with self._sampling_tasks_threads_sync_lock:
                 try:
-                    if last_ran > 0 and int(time.time() - last_ran) > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000):
-                        print("WARN[" + thread_id + "]: Samples are lagging in " + str(time.time() - last_ran) + " seconds. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Elasticsearch's performance or add more instances of this service on other servers.")
+                    if last_ran > 0 and int(time.time() - last_ran) > int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] * 1.5 / 1000):
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_poller(thread_id:" + str(thread_id) + ")", "WARN", str(None), str(None), str(None), str(None), "Samples are lagging in " + str(time.time() - last_ran - int(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000)) + " seconds. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Elasticsearch's performance or add more instances of this service on other servers."))
 
                     last_ran = time.time()
 
@@ -603,34 +602,41 @@ class MetricsCollector:
                     for task_url in tasks_list.keys():
                         if tasks_list[task_url]["TTL"] > 0:
                             try:
-                                print("DEBUG[" + thread_id + "]: Calling '" + task_url + "'..." + "\n" if DEBUG else "", end="")
+                                if DEBUG:
+                                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_poller(thread_id:" + str(thread_id) + ")", "DEBUG", str(None), str(None), str(None), str(None), "Calling '" + task_url + "'..."))
                                 urllib_req.urlopen(task_url)
                                 tasks_list[task_url]["TTL"] = tasks_list[task_url]["TTL"] - 1
                             except Exception as ex:
-                                print("WARN[" + thread_id + "]: Failed to query the URL '" + task_url + "' due to the following exception (" + type(ex).__name__ + "): " + str(ex))
+                                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_poller", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to query the URL '" + str(task_url) + "' due to an exception"))
 
                 except Exception as ex:
-                    print("WARN[" + thread_id + "]: The following unexpected exception has been thrown while handling sampling tasks (" + type(ex).__name__ + "): " + str(ex))
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_poller(thread_id:" + thread_id + ")", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling sampling tasks"))
 
             sleep_time = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.sampling_interval_ms"] / 1000.0
-            print("INFO[" + thread_id + "]: Going to sleep for " + str(sleep_time) + " seconds...")
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_poller(thread_id:" + str(thread_id) + ")", "INFO", str(None), str(None), str(None), str(None), "Going to sleep for " + str(sleep_time) + " seconds..."))
             time.sleep(sleep_time)
 
     def sampling_tasks_kafka_consumer(self):
         try:
-            print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._sampling_tasks_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads" + "\n" if DEBUG else "", end="")
+            if DEBUG:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_kafka_consumer", "DEBUG", str(None), str(None), str(None), str(None), "Kafka consumer thread loaded. This thread will subscribe to the " + str(self._sampling_tasks_kafka_topic) + " topic on Kafka and will assign the various sampling tasks to the various polling threads"))
+
             kafka_consumer = None
             while kafka_consumer is None:
                 try:
                     kafka_consumer = kafka.KafkaConsumer(self._sampling_tasks_kafka_topic, bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
-                except:
-                    print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds" + "\n" if DEBUG else "", end="")
+                except Exception as ex:
+                    if DEBUG:
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_kafka_consumer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
+
                     time.sleep(10)
 
             last_task_list_appended = -1
             for sampling_tasks_batch_raw in kafka_consumer:
                 sampling_tasks_batch = json.loads(sampling_tasks_batch_raw.value.decode('utf-8'))
-                print("DEBUG: Received the following sampling task from Kafka (topic=" + str(sampling_tasks_batch_raw.topic) + ";partition=" + str(sampling_tasks_batch_raw.partition) + ";offset=" + str(sampling_tasks_batch_raw.offset) + ",): " + json.dumps(sampling_tasks_batch) + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_kafka_consumer", "DEBUG", str(None), str(None), str(None), str(None), "Received the following sampling task from Kafka (topic=" + str(sampling_tasks_batch_raw.topic) + ";partition=" + str(sampling_tasks_batch_raw.partition) + ";offset=" + str(sampling_tasks_batch_raw.offset) + ",): " + json.dumps(sampling_tasks_batch) + "."))
+
                 for sampling_task in sampling_tasks_batch["batch"]:
                     is_sampling_tasks_gc_running = self._is_sampling_tasks_gc_running
 
@@ -651,10 +657,10 @@ class MetricsCollector:
 
                                 last_task_list_appended = last_task_list_appended + 1
                         except Exception as ex:
-                            print("WARN: The following unexpected exception has been thrown while processing tasks from Kafka (" + type(ex).__name__ + "): " + str(ex))
+                            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_kafka_consumer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while processing tasks from Kafka"))
 
         except Exception as ex:
-            print("ERROR: An unexpected exception (" + str(ex) + " (" + type(ex).__name__ + ")) has been thrown while consuming sampling tasks from the Kafka server.")
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "sampling_tasks_kafka_consumer", "ERROR", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while consuming sampling tasks from the Kafka server"))
 
     def GetQueryTimeRange(self, query_details):
         # if DEBUG:
@@ -731,6 +737,7 @@ class MetricsCollector:
                                 element_token = element_token_query()
                                 if len(element_token) == 0:
                                     # If we couldn't set the token nor get it... exception!
+                                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "resolve_query_args_in_metric_name", "ERROR", str(None), str(None), str(ex), type(ex).__name__, "Could not tokenize the argument via the tokenizer DB."))
                                     raise Exception("ERROR: Could not tokenize the argument via the tokenizer DB. (Exception details: (" + str(ex) + " (" + type(ex).__name__ + "))")
 
                     if len(str(arg).strip()) != 0:
@@ -789,6 +796,7 @@ class MetricsCollector:
             res = "@@RES: " + raw_res
             self._field_query_requests_processed_successfully.value += 1
         except Exception as e:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "fieldQuery", "WARN", str(None), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a field_query call"))
             res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         if Utils().is_number(raw_res):
@@ -850,7 +858,9 @@ class MetricsCollector:
 
         state = "RunningElkQuery"
         try:
-            print("DEBUG: Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'" + "\n" if DEBUG else "", end="")
+            if DEBUG:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "get_similarity", "DEBUG", str(state), str(metric_name), str(ex), type(ex).__name__, "Running query for the list of items to compare to: `" + json.dumps(query_list_to_test_similarity_to_query_body) + "'"))
+
             raw_res = ""
             res = self.es.search(
                 index=query_index,
@@ -904,6 +914,7 @@ class MetricsCollector:
             else:
                 res = "@@ERROR: Elasticsearch responded with an unexpected response: (" + json.dumps(res) + ")"
         except Exception as e:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "get_similarity", "WARN", str(state), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a similarity test call"))
             res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ") [state=" + state + "]"
 
         if Utils().is_number(res):
@@ -968,7 +979,9 @@ class MetricsCollector:
             }
 
         try:
-            print("DEBUG: Running query: `" + json.dumps(query_body) + "'" + "\n" if DEBUG else "", end="")
+            if DEBUG:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "queryCount", "DEBUG", str(None), str(metric_name), str(ex), type(ex).__name__, "Running query: `" + json.dumps(query_body) + "'"))
+
             raw_res = ""
             if count_unique_values_in != None:
                 res = self.es.search(
@@ -986,6 +999,7 @@ class MetricsCollector:
             res = "@@RES: " + str(raw_res)
             self._metric_requests_processed_successfully.value += 1
         except Exception as e:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "queryCount", "WARN", str(None), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a query_count call"))
             res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         if Utils().is_number(raw_res):
@@ -1061,6 +1075,7 @@ class MetricsCollector:
 
             res = "@@RES: " + res_str
         except Exception as e:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "list_hash", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a list_hash call"))
             res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         return res
@@ -1152,6 +1167,7 @@ class MetricsCollector:
             res = "@@RES: " + res_str
             self._discovery_requests_processed_successfully.value += 1
         except Exception as e:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "discover", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a discovery query"))
             res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
         return res
@@ -1184,6 +1200,7 @@ class MetricsCollector:
 
             return res
         except Exception as ex:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "test_similarity", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An unexpected exception has been thrown while using the test method test-similarity"))
             return "@@EX: " + str(ex) + " (" + type(ex).__name__ + ")"
 
 configurator_base_url = ""
@@ -1223,9 +1240,12 @@ while queries_conf is None:
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.dynamic.learned.*"
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         learned_net_info = json.loads(configurator_response)
+        generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+        configurator_response = urllib_req.urlopen(generic_config_url).read().decode('utf-8')
+        config_copy = dict(config_copy, **json.loads(configurator_response))
+        logging_format = config_copy["smart-onion.config.common.logging_format"]
     except Exception as ex:
-        print(
-            "WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...  (" + str(ex) + " (" + type(ex).__name__ + "))")
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)...  (" + str(ex) + " (" + type(ex).__name__ + "))")
         time.sleep(10)
 
 config_file_specified_on_cmd = False

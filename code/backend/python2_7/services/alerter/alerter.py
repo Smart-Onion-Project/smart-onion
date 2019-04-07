@@ -31,7 +31,9 @@ DEBUG = True
 
 class SmartOnionAlerter:
 
-    def __init__(self, listen_ip, listen_port):
+    def __init__(self, listen_ip, listen_port, config_copy):
+        self._config_copy = config_copy
+        self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._time_loaded = time.time()
         self._host = listen_ip
         self._port = listen_port
@@ -73,7 +75,7 @@ class SmartOnionAlerter:
             report_obj = request.json
             syslog.syslog("SmartOnionAlerter: INFO: Received anomaly report from " + report_obj["reporter"] + ". Report contents is " + json.dumps(report_obj))
         except:
-            syslog.syslog("SmartOnionAlerter: WARN: Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(request.body).encode('utf-8').decode('utf-8')))
+            syslog.syslog("SmartOnionAlerter: WARN: Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(request.body).encode('utf-8')).decode('utf-8'))
 
 
 script_path = os.path.dirname(os.path.realpath(__file__))
@@ -99,6 +101,10 @@ try:
     configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
     configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
     config_copy = json.loads(configurator_response)
+    generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+    configurator_response = urllib.urlopen(generic_config_url).read().decode('utf-8')
+    config_copy = dict(config_copy, **json.loads(configurator_response))
+    logging_format = config_copy["smart-onion.config.common.logging_format"]
     listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"]
     listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]
 except:
@@ -131,5 +137,5 @@ if len(sys.argv) > 1:
                 quit(1)
 
 sys.argv = [sys.argv[0]]
-SmartOnionAlerter(listen_ip=listen_ip, listen_port=listen_port).run()
+SmartOnionAlerter(listen_ip=listen_ip, listen_port=listen_port, config_copy=config_copy).run()
 
