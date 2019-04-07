@@ -7,8 +7,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +49,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="106" column="94" selection-start-line="106" selection-start-column="94" selection-end-line="106" selection-end-column="94" />
+                <state relative-caret-position="310">
+                  <caret line="95" column="168" lean-forward="true" selection-start-line="95" selection-start-column="168" selection-end-line="95" selection-end-column="168" />
                   <folding>
                     <element signature="e#21#58#0" expanded="true" />
                   </folding>
@@ -114,8 +115,8 @@
       <find>report</find>
       <find>anomaly_detector</find>
       <find>repor</find>
-      <find>metric-analyzer-detected-anomalies</find>
       <find>Publish</find>
+      <find>metric-analyzer-detected-anomalies</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
@@ -603,8 +604,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="106" column="94" selection-start-line="106" selection-start-column="94" selection-end-line="106" selection-end-column="94" />
+        <state relative-caret-position="310">
+          <caret line="95" column="168" lean-forward="true" selection-start-line="95" selection-start-column="168" selection-end-line="95" selection-end-column="168" />
           <folding>
             <element signature="e#21#58#0" expanded="true" />
           </folding>
