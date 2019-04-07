@@ -615,15 +615,15 @@
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
-      "events_per_vhost",
-      "source_hosts_per_vhost",
-      "destination_hosts_per_vhost",
-      "number_of_get_requests_per_verb_per_website",
-      "number_of_post_requests_per_verb_per_website",
-      "number_of_put_requests_per_verb_per_website",
-      "number_of_patch_requests_per_verb_per_website",
-      "number_of_delete_requests_per_verb_per_website",
-      "number_of_options_requests_per_verb_per_website"
+      "events_per_url",
+      "source_hosts_per_url",
+      "destination_hosts_per_url",
+      "number_of_get_requests_per_verb_per_url",
+      "number_of_post_requests_per_verb_per_url",
+      "number_of_put_requests_per_verb_per_url",
+      "number_of_patch_requests_per_verb_per_url",
+      "number_of_delete_requests_per_verb_per_url",
+      "number_of_options_requests_per_verb_per_url"
     ]
   },
   "certs_issuers": {
@@ -912,7 +912,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ips.keyword",
-    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_issuer:{{#arg1}}",
+    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.servers-network}) AND certificate_issuer:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1046,7 +1046,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:{{#arg2}}",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:{{#arg2}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1056,7 +1056,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:GET",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:GET",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1066,7 +1066,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:POST",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:POST",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1076,7 +1076,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:PUT",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:PUT",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1086,7 +1086,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:PATCH",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:PATCH",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1096,7 +1096,7 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:DELETE",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:DELETE",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1106,7 +1106,67 @@
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND method:OPTIONS",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND method:OPTIONS",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "number_of_get_requests_per_verb_per_url": {
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.GET",
+    "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
+    "time_range": 3600,
+    "base_64_used": false,
+    "query": "event_type:bro_http AND uri:\"{{#arg1}}\" AND method:GET",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "number_of_post_requests_per_verb_per_url": {
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.POST",
+    "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
+    "time_range": 3600,
+    "base_64_used": false,
+    "query": "event_type:bro_http AND uri:\"{{#arg1}}\" AND method:POST",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "number_of_put_requests_per_verb_per_url": {
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.PUT",
+    "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
+    "time_range": 3600,
+    "base_64_used": false,
+    "query": "event_type:bro_http AND uri:\"{{#arg1}}\" AND method:PUT",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "number_of_patch_requests_per_verb_per_url": {
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.PATCH",
+    "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
+    "time_range": 3600,
+    "base_64_used": false,
+    "query": "event_type:bro_http AND uri:\"{{#arg1}}\" AND method:PATCH",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "number_of_delete_requests_per_verb_per_url": {
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.DELETE",
+    "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
+    "time_range": 3600,
+    "base_64_used": false,
+    "query": "event_type:bro_http AND uri:\"{{#arg1}}\" AND method:DELETE",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "number_of_options_requests_per_verb_per_url": {
+    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.OPTIONS",
+    "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
+    "time_range": 3600,
+    "base_64_used": false,
+    "query": "event_type:bro_http AND uri:\"{{#arg1}}\" AND method:OPTIONS",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1444,6 +1504,17 @@
     "type": "QUERY_COUNT",
     "interval_sec": 300
   },
+  "source_hosts_per_url": {
+    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_url.{{#arg1}}",
+    "tags": "peak:command_and_control",
+    "time_range": 86400,
+    "base_64_used": false,
+    "count_unique_values_in": "source_ip",
+    "query": "uri:\"{{#arg1}}\"",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
   "source_hosts_per_vhost": {
     "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_vhost.{{#arg1}}",
     "tags": "peak:command_and_control",
@@ -1525,6 +1596,17 @@
     "time_range": 3600,
     "base_64_used": false,
     "query": "event_type:bro_conn AND destination_ip:{{#arg1}}",
+    "index_pattern": "logstash-*",
+    "type": "QUERY_COUNT",
+    "interval_sec": 300
+  },
+  "destination_hosts_per_url": {
+    "metric_name": "smart-onion.metrics.command_and_control.destination_ips_per_url.{{#arg1}}",
+    "tags": "peak:command_and_control",
+    "time_range": 86400,
+    "base_64_used": false,
+    "count_unique_values_in": "destination_ip",
+    "query": "uri:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300

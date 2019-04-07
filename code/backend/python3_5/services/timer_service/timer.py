@@ -126,8 +126,8 @@ class TimerService:
                         lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
                         for query in lld_queries:
                             self._discovery_requests_ran.value += 1
+                            cur_url = str(base_url) + str(query)
                             try:
-                                cur_url = base_url + query
                                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "INFO", str(None), str(None), str(None), str(None), "Calling " + str(cur_url)))
                                 discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
                                 if "@@EXCEPTION:" in discover_raw_res:
@@ -140,7 +140,7 @@ class TimerService:
                                         })
                                     self._discovery_requests_completed_successfully.value += 1
                             except Exception as ex:
-                                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to query or parse the discovery results. TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED."))
+                                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to query or parse the discovery results (cur_url: " + str(cur_url) + "). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED."))
 
                     except Exception as ex:
                         syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to query or parse the discovery results. CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED."))
