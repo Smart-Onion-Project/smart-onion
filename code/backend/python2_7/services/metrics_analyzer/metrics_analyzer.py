@@ -385,7 +385,7 @@ class MetricsRealtimeAnalyzer:
                         "htm_anomaly_score": anomalyScore,
                         "htm_anomaly_likelihood": anomalyLikelihood,
                         "anomaly_score": anomalyLikelihood * anomaly_direction * 100,
-                        "timestamp: ": datetime.fromtimestamp(metric["metric_timestamp"]),
+                        "timestamp: ": datetime.fromtimestamp(metric["metric_timestamp"]).isoformat(),
                         "metric: ": metric["metric_name"],
                         "value: ": metric["metric_value"]
                     })
