@@ -105,7 +105,7 @@ class AnomalyDetector:
         self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._kafka_client_id = "SmartOnionAnomalyDetectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
-        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
+        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reported_anomalies_topic"]
         self._allowed_to_work_on_metrics_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern"])
         self._metrics_base_path = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_physical_path"]
         self._metrics_prefix = "smart-onion.anomaly_score.anomaly_detector."

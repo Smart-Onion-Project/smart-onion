@@ -99,6 +99,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_timespan_in_seconds": 86400,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomalies_check_interval": 300,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomaly_score_threshold_for_reporting": 90,
+        "smart-onion.config.architecture.internal_services.backend.anomaly-detector.reported_anomalies_topic": "anomaly-detector-detected-anomalies",
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.published-listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.published-listening-port": 9002,
         "smart-onion.config.architecture.internal_services.backend.metrics-analyzer.listening-host": "127.0.0.1",
