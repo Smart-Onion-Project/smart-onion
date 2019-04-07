@@ -428,10 +428,10 @@ class AnomalyDetector:
                 res = self.calculate_anomaly_score(nowData=now_data, referencePastData=reference_past_data)
                 if res > self._anomaly_score_threshold_for_reporting_to_alerter:
                     self.report_anomaly(metric=metric_name, anomaly_info={
-                        "anomaly_score": res,
+                        "anomaly_score": float(res),
                         "timestamp: ": datetime.datetime.now().isoformat(),
                         "metric: ": metric_name,
-                        "value: ": res
+                        "value: ": float(now_data.data[len(now_data.data) - 1])
                     })
 
             state = "SendMetricDataToStatsD"
