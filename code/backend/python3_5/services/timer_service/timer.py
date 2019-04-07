@@ -23,6 +23,8 @@ import threading
 from bottle import Bottle
 from urllib import request as urllib_req
 from multiprocessing import Value
+import syslog
+import datetime
 
 DEBUG = False
 SINGLE_THREADED = False
@@ -36,6 +38,7 @@ class TimerService:
         self._listen_ip = listen_ip
         self._listen_port = listen_port
         self._config_copy = config_copy
+        self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._kafka_client_id = "SmartOnionTimerService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._kafka_producer = None
@@ -45,7 +48,7 @@ class TimerService:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
             except Exception as ex:
-                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available...  (" + str(ex) + " (" + type(ex).__name__ + "))")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "__init__", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
         self._app = Bottle()
         self._route()
@@ -61,17 +64,20 @@ class TimerService:
             batch.append(item)
             timestamp = time.time()
             if len(batch) >= max_items_in_batch:
-                # print("DEBUG: [" + str(timestamp) + "]Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "pack_and_resend_tasks", "DEBUG", str(None), str(None), str(None), str(None), "Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + str(kafka_topic) + "' on server " + str(self._kafka_server)))
+
                 self._kafka_producer.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode('utf-8'))
                 batch = []
 
         if len(batch) > 0:
             timestamp = time.time()
-            # print("DEBUG: [" + str(timestamp) + "]Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
+            if DEBUG:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "pack_and_resend_tasks", "DEBUG", str(None), str(None), str(None), str(None), "Sending a batch of " + str(len(batch)) + " to Kafka in topic '" + str(kafka_topic) + "' on server " + str(self._kafka_server)))
             self._kafka_producer.send(topic=kafka_topic, value=json.dumps({"batch": batch, "timestamp": timestamp}).encode('utf-8'))
 
         timestamp = time.time()
-        print("INFO[" + str(timestamp) + "]: Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + kafka_topic + "' on server " + self._kafka_server)
+        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "pack_and_resend_tasks", "INFO", str(None), str(None), str(None), str(None), "Sent " + str(len(tasks_list)) + " tasks to Kafka in topic '" + str(kafka_topic) + "' on server " + str(self._kafka_server)))
 
     def _file_as_bytes(self, filename):
         with open(filename, 'rb') as file:
@@ -90,7 +96,9 @@ class TimerService:
         }
 
     def run(self):
-        print("DEBUG: Launching the timer thread..." + "\n" if DEBUG else "", end="")
+        if DEBUG:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run", "DEBUG", str(None), str(None), str(None), str(None), "Launching the timer thread..."))
+
         self._timer_thread = threading.Thread(target=self.run_timer)
         self._timer_thread.start()
 
@@ -112,7 +120,7 @@ class TimerService:
                 base_url = base_url + self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-collector.base_urls.lld"]
 
                 cur_tasks_list = []
-                print("INFO: Loaded with the following settings: DiscoveryInterval=" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + base_url + ",KafkaBootstrapServers=" + self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"] + ",KafkaClientID:" + self._kafka_client_id)
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "INFO", str(None), str(None), str(None), str(None), "Loaded with the following settings: DiscoveryInterval:" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + str(base_url) + ",KafkaBootstrapServers=" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]) + ",KafkaClientID:" + str(self._kafka_client_id)))
                 while True:
                     try:
                         lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
@@ -120,10 +128,10 @@ class TimerService:
                             self._discovery_requests_ran.value += 1
                             try:
                                 cur_url = base_url + query
-                                print("Calling " + cur_url)
+                                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "INFO", str(None), str(None), str(None), str(None), "Calling " + str(cur_url)))
                                 discover_raw_res = str(urllib_req.urlopen(cur_url).read().decode('utf-8')).replace("@@RES: ", '', 1)
                                 if "@@EXCEPTION:" in discover_raw_res:
-                                    print("WARN: Discovery call ('" + cur_url + "') returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics according to their TTL...")
+                                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(discover_raw_res), str(None), "Discovery call ('" + str(cur_url) + "') returned an exception. See the metrics_collector logs for more info. Skipping these URLs. The metric collector should still collect those metrics according to their TTL..."))
                                 else:
                                     discover_res = json.loads(discover_raw_res)
                                     for task in discover_res["data"]:
@@ -132,24 +140,25 @@ class TimerService:
                                         })
                                     self._discovery_requests_completed_successfully.value += 1
                             except Exception as ex:
-                                print("WARN: Failed to query or parse the discovery results (" + str(ex) + " (" + type(ex).__name__ + ")). TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+                                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to query or parse the discovery results. TRYING OTHER DISCOVERIES. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED."))
 
                     except Exception as ex:
-                        print("WARN: Failed to query or parse the discovery results (" + str(ex) + " (" + type(ex).__name__ + ")). CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED.")
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to query or parse the discovery results. CANNOT REPORT RESULTS TO KAFKA. SOME OR ALL METRICS MIGHT NOT BE CREATED OR UPDATED."))
 
                     if len(cur_tasks_list) > 0:
                         try:
                             self.pack_and_resend_tasks(cur_tasks_list)
                         except Exception as ex:
-                            print("WARN: Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle. (" + str(ex) + " (" + type(ex).__name__ + "))")
+                            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to report the list of tasks to the Kafka server. Will try again in the next discovery cycle."))
 
                     cur_tasks_list = []
-                    print("INFO: Going to sleep for " + str(self._interval) + " seconds...")
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "INFO", str(None), str(None), str(None), str(None), "Going to sleep for " + str(self._interval) + " seconds..."))
+
                     time.sleep(self._interval)
             except KeyboardInterrupt:
-                print("INFO: Shutting down... (KeyboardInterrupt)")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "INFO", str(None), str(None), str(None), str(None), "Shutting down... (KeyboardInterrupt)"))
             except Exception as ex:
-                print("ERROR: An '" + str(ex) + "' (" + type(ex).__name__ + ") exception has been thrown in the timer thread. Waiting 10 seconds and retrying...")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "WARN", str(None), str(None), str(ex), type(ex).__name__, "An exception has been thrown in the timer thread. Waiting 10 seconds and retrying..."))
                 time.sleep(10)
 
 config_copy = {}
@@ -187,6 +196,10 @@ while queries_conf is None:
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.queries"
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         queries_conf = json.loads(configurator_response)
+        generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+        configurator_response = urllib_req.urlopen(generic_config_url).read().decode('utf-8')
+        config_copy = dict(config_copy, **json.loads(configurator_response))
+        logging_format = config_copy["smart-onion.config.common.logging_format"]
     except Exception as ex:
         print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available (waiting for queries config)... (" + str(ex) + " (" + type(ex).__name__ + ")")
         time.sleep(10)

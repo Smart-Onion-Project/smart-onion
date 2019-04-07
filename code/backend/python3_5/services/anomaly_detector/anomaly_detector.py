@@ -27,6 +27,8 @@ from urllib import request as urllib_req
 import kafka
 import uuid
 from multiprocessing import Value
+import syslog
+import datetime
 
 
 DEBUG = False
@@ -100,6 +102,7 @@ class AnomalyDetector:
         self._analysis_cycles_so_far = Value('i', 0)
         self._raw_metrics_downloaded_from_kafka = Value('i', 0)
         self._config_copy = config_copy
+        self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._kafka_client_id = "SmartOnionAnomalyDetectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
         self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
@@ -123,7 +126,7 @@ class AnomalyDetector:
             try:
                 self._kafka_producer = kafka.producer.KafkaProducer(bootstrap_servers=self._kafka_server, client_id=self._kafka_client_id)
             except Exception as ex:
-                print("WARN: Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available... (" + str(ex) + " (" + type(ex).__name__ + ")")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "__init__", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Waiting (indefinetly in 10 sec intervals) for the Kafka service to become available..."))
                 time.sleep(10)
         self._metrics_discoverer_thread = threading.Thread(target=self.metrics_collector)
         self._metrics_discoverer_thread.start()
@@ -169,8 +172,7 @@ class AnomalyDetector:
 
     def report_anomaly(self, metric, anomaly_info):
         self._anomalies_reported.value += 1
-        print("INFO: The following anomaly reported regarding metric " + str(metric) + ": " + json.dumps(anomaly_info))
-        pass
+        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(None), str(None), "The following anomaly reported regarding metric " + str(metric) + ": " + json.dumps(anomaly_info)))
 
         anomaly_report = {
             "report_id": str(uuid.uuid4()),
@@ -183,13 +185,13 @@ class AnomalyDetector:
             if res is None:
                 res = "None"
         except Exception as ex:
-            print("WARN: Failed to report the following anomaly to the alerter service directly due to the follwing exception (" + type(ex).__name__ + "): " + str(ex) + ". Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report))
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to the aforementioned exception. Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report)))
 
         try:
             self._kafka_producer.send(topic=self._reported_anomalies_kafka_topic, value=json.dumps(anomaly_report).encode('utf-8'))
-            print("INFO: Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report))
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(None), str(None), "Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report)))
         except Exception as ex:
-            print("WARN: Failed to report the following anomaly to Kafka due to the follwing exception (" + type(ex).__name__ + "): " + str(ex) + ". These are the anomaly details: " + json.dumps(anomaly_report))
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to Kafka due to the aforementioned exception. These are the anomaly details: " + json.dumps(anomaly_report)))
 
     def normalize_data(self, raw_data):
         last_data_at = -1
@@ -296,15 +298,18 @@ class AnomalyDetector:
             return R
 
     def metrics_collector(self):
-        print("DEBUG: Kafka consumer thread loaded. This thread will subscribe to the " + self._metrics_kafka_topic + " topic on Kafka and will assign the various sampling tasks to the various polling threads" + "\n" if DEBUG else "", end="")
+        if DEBUG:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "DEBUG", str(None), str(None), str(None), str(None), "Kafka consumer thread loaded. This thread will subscribe to the " + str(self._metrics_kafka_topic) + " topic on Kafka and will assign the various sampling tasks to the various polling threads"))
+
         kafka_consumer = None
         while kafka_consumer is None:
             try:
                 kafka_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
                                                      bootstrap_servers=self._kafka_server,
                                                      client_id=self._kafka_client_id)
-            except:
-                print("DEBUG: Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds" + "\n" if DEBUG else "", end="")
+            except Exception as ex:
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "DEBUG", str(None), str(None), str(ex), type(ex).__name__, "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
 
         for metric_record in kafka_consumer:
@@ -314,41 +319,23 @@ class AnomalyDetector:
             if metric is None or metric.strip() == "" or len(metric.split(" ")) != 3:
                 if metric is None:
                     metric_name = "None"
-                print("DEBUG: Received the following malformed metric. Ignoring: " + metric_name + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "INFO", str(None), str(metric), str(None), str(None), "Received the following malformed metric. Ignoring: " + str(metric_name)))
                 continue
 
             metric_name = metric.split(" ")[0]
             if re.match(self._allowed_to_work_on_metrics_pattern, str(metric_name)):
-                print("DEBUG: Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "DEBUG", str(None), str(None), str(None), str(None), "Handling the following metric " + str(metric_name) + " since it matches the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "."))
                 try:
                     with self._metrics_uniqe_list_update_lock:
                         if metric_name not in self._metrics_uniqe_list.keys():
                             self._metrics_uniqe_list[metric_name] = time.time()
                 except Exception as ex:
-                    print("WARN: Failed to add the metric to the list due to the following exception (" + type(ex).__name__ + "): " + str(ex))
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to add the metric to the list due to the aforementioned exception"))
             else:
-                print("DEBUG: Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + self._allowed_to_work_on_metrics_pattern.pattern + "." + "\n" if DEBUG else "", end="")
-
-
-    # def metrics_discoverer(self):
-        # if metrics_pattern in DISCOVERY_CURRENTLY_RUNNING and DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] is True:
-        #     return
-        #
-        # else:
-        #     DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = True
-        #
-        # metrics_pattern_real_path = os.path.join(METRIC_PATH, metrics_pattern.replace(".", "/")) + ".wsp"
-        #
-        # raw_metrics_list = glob.glob(metrics_pattern_real_path, recursive=True)
-        # res = []
-        # for metric_file in raw_metrics_list:
-        #     metric_base_path = METRIC_PATH
-        #     if not metric_base_path.endswith("/"):
-        #         metric_base_path = metric_base_path + "/"
-        #     res.append(metric_file.replace(metric_base_path, "").replace("/", "."))
-        #
-        # METRICS_CACHE[metrics_pattern] = res
-        # DISCOVERY_CURRENTLY_RUNNING[metrics_pattern] = False
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "DEBUG", str(None), str(None), str(None), str(None), "Ignoring the following metric " + str(metric_name) + " since it DOES NOT match the regex " + str(self._allowed_to_work_on_metrics_pattern.pattern) + "."))
 
     def get_anomaly_score(self, metric_name, cur_time=None, ref_periods=None):
         state = "BEGIN"
@@ -367,7 +354,7 @@ class AnomalyDetector:
             state = "GetMetricFileFullPath"
             metric_phys_path = os.path.abspath(os.path.join(self._metrics_base_path, (metric_name.replace(".", "/")) + ".wsp"))
             if not metric_phys_path.startswith(self._metrics_base_path):
-                print("SEC_EX: The metric's name indicated a path outside the configured metrics path. This is probably a security issue. (metric_name='" + metric_name + "';metric_phys_path='" + metric_phys_path + "';metrics_base_path='" + self._metrics_base_path + "')")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "get_anomaly_score", "SEC_EX", str(None), str(metric_name), str(None), str(None), "The metric's name indicated a path outside the configured metrics path. This is probably a security issue. (metric_name:'" + str(metric_name) + "',metric_phys_path:'" + str(metric_phys_path) + "',metrics_base_path:'" + str(self._metrics_base_path) + "')"))
                 return "@@RES: -999.999"
 
             state = "CalcRefTimePeriods"
@@ -446,11 +433,12 @@ class AnomalyDetector:
             try:
                 self._statsd_client.gauge(metrics_prefix + "." + metric_name, res)
             except Exception as ex:
-                print("ERROR: The following exception (" + type(ex).__name__ + ") has been thrown while sending the metric `" + str(metrics_prefix) + "." + str(metric_name) + "`: " + str(ex))
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "get_anomaly_score", "ERROR", str(None), str(metric_name), str(ex), type(ex).__name__, "The aforementioned exception has been thrown while sending the metric to statsd."))
 
             self._metrics_successfully_analyzed.value += 1
             return "@@RES: " + str(res)
         except Exception as ex:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "get_anomaly_score", "WARN", str(None), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has occurred."))
             return "@@EXCEPTION: " + type(ex).__name__ + ", " + str(ex) + " [State: " + str(state) + "]"
 
     def auto_detect_metrics_anomalies_thread(self):
@@ -458,45 +446,39 @@ class AnomalyDetector:
         while True:
             time_since_last_cycle_started = time.time() - last_cycle_started
             if time_since_last_cycle_started > (self._anomalies_check_interval * 1.5):
-                print("WARN: Sampling cycles are taking too long to complete. Last cycle took " + str(time_since_last_cycle_started - self._anomalies_check_interval) + " seconds to completr. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Graphite's/disk subsystem's performance or add more instances of this service on other servers.")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "auto_detect_metrics_anomalies_thread", "WARN", str(None), str(None), str(None), str(None), "Sampling cycles are taking too long to complete. Last cycle took " + str(time_since_last_cycle_started - self._anomalies_check_interval) + " seconds to completr. Either add more threads per CPU, add more CPUs, switch to a faster CPU, improve Graphite's/disk subsystem's performance or add more instances of this service on other servers."))
 
             last_cycle_started = time.time()
             self._analysis_cycles_so_far.value += 1
             try:
-                print("DEBUG: Starting a sampling cycle." + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "auto_detect_metrics_anomalies_thread", "DEBUG", str(None), str(None), str(None), str(None), "Starting a sampling cycle."))
                 with self._metrics_uniqe_list_update_lock:
                     local_metrics_list_copy = list(self._metrics_uniqe_list.keys())
 
                 for metric in local_metrics_list_copy:
                     cur_url = str(self._anomaly_detector_proto) + "://" + str(self._anomaly_detector_host) + ":" + str(self._anomaly_detector_port) + str(self._anomaly_detector_url_path) + urllib_req.quote(str(metric))
-                    print("DEBUG: Looking for anomalies in metric " + str(metric) + ". Calling " + cur_url + "\n" if DEBUG else "", end="")
+                    if DEBUG:
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "auto_detect_metrics_anomalies_thread", "DEBUG", str(None), str(None), str(None), str(None), "Looking for anomalies in metric " + str(metric) + ". Calling " + str(cur_url)))
                     try:
                         urllib_req.urlopen(cur_url)
                     except Exception as ex:
-                        print("WARN: Failed to call the url `" + str(cur_url) + "` due to the following exception (" + type(ex).__name__ + "): " + str(ex))
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "auto_detect_metrics_anomalies_thread", "WARN", str(None), str(None), str(ex), type(ex).__name__, "Failed to call the url `" + str(cur_url) + "` due to the aforementioned exceptionWaiting."))
+
                     self._metrics_parsed.value += 1
 
-                print("DEBUG: Finished sampling cycle. Handled " + str(len(local_metrics_list_copy)) + " metrics." + "\n" if DEBUG else "", end="")
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "auto_detect_metrics_anomalies_thread", "DEBUG", str(None), str(None), str(None), str(None), "Finished sampling cycle. Handled " + str(len(local_metrics_list_copy)) + " metrics."))
+
                 local_metrics_list_copy = None
 
             except KeyboardInterrupt:
-                print("INFO: Received a keyboard interrupt. Shutting down main loop.")
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "auto_detect_metrics_anomalies_thread", "INFO", str(None), str(None), str(None), str(None), "Received a keyboard interrupt. Shutting down main loop."))
                 break
             except Exception as ex:
-                print("ERROR: The following exception (" + type(ex).__name__ + ") has been thrown while looking for anomalies in the collected metrics. Will try again in the next cycle: " + str(ex))
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "ERROR", str(None), str(None), str(ex), type(ex).__name__, "The aforementioned exception has been thrown while looking for anomalies in the collected metrics. Will try again in the next cycle."))
 
             time.sleep(self._anomalies_check_interval)
-
-        #
-        # if metric_pattern in METRICS_CACHE:
-        #     res = {
-        #         "data": METRICS_CACHE[metric_pattern]
-        #     }
-        #     return '@@RES: ' + json.dumps(res)
-        # else:
-        #     return '@@RES: {"data":[]}'
-        # pass
-
 
 
 script_path = os.path.dirname(os.path.realpath(__file__))
@@ -526,6 +508,10 @@ while config_copy is None:
         configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
         configurator_response = urllib_req.urlopen(configurator_final_url).read().decode('utf-8')
         config_copy = json.loads(configurator_response)
+        generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+        configurator_response = urllib_req.urlopen(generic_config_url).read().decode('utf-8')
+        config_copy = dict(config_copy, **json.loads(configurator_response))
+        logging_format = config_copy["smart-onion.config.common.logging_format"]
         listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-host"]
         listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-port"]
     except:

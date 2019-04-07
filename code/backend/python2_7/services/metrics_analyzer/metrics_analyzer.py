@@ -133,9 +133,11 @@ class MetricsRealtimeAnalyzer:
             "meta_data": anomaly_info
         }
         try:
-            res = urllib.urlopen(url=self.alerter_url, data=anomaly_report, context={'Content-Type': 'application/json'}).read().decode('utf-8')
+            res = urllib.urlopen(url=self.alerter_url, data=json.dumps(anomaly_report), context={'Content-Type': 'application/json'})
             if res is None:
                 res = "None"
+            if res is not None and res.getcode() != 200:
+                raise Exception("The result status (" + res.getcode() + ") is not expected after reporting an anomaly. The result status should be 200.")
         except Exception as ex:
             syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to an exception"))
 
