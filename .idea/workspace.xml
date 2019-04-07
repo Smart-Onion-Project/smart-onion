@@ -5,9 +5,10 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py, anomaly_detector.py:&#10; - Converting to float every numeric element in the anomaly report">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,74 +21,91 @@
     <favorites_list name="smart-onion" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="67" column="22" lean-forward="true" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-              <folding>
-                <element signature="e#923#933#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/queries.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="1563" selection-start-line="1563" selection-end-line="1564" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" selection-start-line="14" selection-end-line="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="74" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="vertical" split-proportion="0.68187">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="703">
+                  <caret line="67" column="22" lean-forward="true" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#923#933#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="171">
+                  <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="38">
+                  <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/config/queries.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="456">
+                  <caret line="634" column="38" lean-forward="true" selection-start-line="634" selection-start-column="38" selection-end-line="634" selection-end-column="38" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="228">
+                  <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="17" selection-start-line="14" selection-end-line="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="38">
+                  <caret line="2" column="74" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/config/queries.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1083">
+                  <caret line="1172" column="3" selection-start-line="1172" selection-start-column="3" selection-end-line="1172" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -99,11 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kafk</find>
-      <find>produ</find>
-      <find>stats</find>
-      <find>x509</find>
-      <find>&quot;use_base64&quot;: true</find>
       <find>DEBUG: Received the following sampling</find>
       <find>&quot;base_64_used&quot;: true</find>
       <find>&quot;use_base64&quot;: t</find>
@@ -129,6 +142,11 @@
       <find>TIM</find>
       <find>DEBUG</find>
       <find>Running quer</find>
+      <find>number_of_internal_servers_ips_connected_to_sites_signed_by_issuer</find>
+      <find>number_of_patch_requests_per_verb_per_website</find>
+      <find>&quot;source_hosts_per_</find>
+      <find>&quot;destination_hosts_per_</find>
+      <find>&quot;number_of_get_requests_per_verb_per_</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -184,11 +202,11 @@
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
         <option value="$PROJECT_DIR$/resources/test-scripts/detokenize.py" />
-        <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/config/queries.json" />
       </list>
     </option>
   </component>
@@ -462,20 +480,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00135" summary="metric_analyzer.py:&#10; - The message about exceeding the models quota repeated all the time. Fixed">
-      <created>1553834047034</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1553834047034</updated>
-    </task>
-    <task id="LOCAL-00136" summary="configurator.py:&#10; - Added configuration for a kafka topic that will be used for sending the anomaly reports by the metrics analyzer&#10;&#10;metric_analyzer.py:&#10; - Added code for reporting anomalies found in metrics to Kafka as well as to the alerter. This will allow other services to handle other aspects of the alerts and at least for now will help me debug the service.\&#10;&#10;metrics_collector.py, timer.py:&#10; - Added extra info to the ping result to help detect problems in the service.&#10; &#10;test_service_status.sh:&#10; - Added the infrastructure services (kafka, zookeeper, logstash)">
-      <created>1554024393654</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1554024393654</updated>
     </task>
     <task id="LOCAL-00137" summary="metric_analyzer.py:&#10; - Removed all commented out tcp server stuff&#10; - Added more info on why the service is waiting on load">
       <created>1554025958600</created>
@@ -806,7 +810,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554642480971</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="metrics_analyzer.py, anomaly_detector.py:&#10; - Each service is now using different Kafka topic to report anomalies detected by it.">
+      <created>1554643380390</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1554643380390</updated>
+    </task>
+    <task id="LOCAL-00185" summary="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it.">
+      <created>1554647890600</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1554647890600</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="TodoView">
@@ -820,22 +838,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7985232" weight="0.31469297" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8270042" weight="0.114035085" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8982068" visible="true" weight="0.12828948" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.8982068" visible="true" weight="0.038377192" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49894515" weight="0.33004385" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10179325" side_tool="true" visible="true" weight="0.12828948" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.10179325" side_tool="true" visible="true" weight="0.038377192" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -882,8 +899,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_collector.py:&#10; - Removed commented out code of the old GenerateLLD&#10; - Changed the code to use UTC when setting ranges and alike in Elasticsearch queries" />
-    <MESSAGE value="alerter.py, configurator.py:&#10; - Added preparation for usage of Gunicorn and some service specific info in /ping methods&#10;&#10;metrics_analyzer.py, metrics_collector.py, timer.py:&#10; - Added code for synchronizing the service specific info between all the worker threads to make /ping results more accurate&#10; &#10;anomaly_detector.py:&#10; - Preparing for metrics discovery by collecting a list of unique metric names directly from Kafka. (to minimize latency and IOPS involved in filesystem enumeration)" />
     <MESSAGE value="configuration.py:&#10; - Added config for the code in the anomaly_detector service (for detecting anomalies automatically on a scheduled basis and reporting them)&#10;&#10;metrics_analyzer.py:&#10; - Now uses a configured regex pattern to find which metrics should be processed by the service&#10; - Added unique id for each report. (will allow the Alerter to receive alerts both directly via HTTP and via Kafka and de-dupe the list)&#10;  &#10;anomaly_detector.py:&#10; - Moved many of the global constants to the configuration&#10; - Added a Kafka producer for sending out alerts about detected anomalies&#10; - Added a thread for continuously discovering metrics by subscribing to the metrics topic on Kafka and de-duping the input into a dictionary.&#10; - Rewritten the report_anomaly method to match the format and the techniques used in the metrics-analyzer.&#10; - Protecting against attempts for path traversal&#10; - Replaced code that was located within the class in class methods that created new instances of the class with the call to &quot;self.&quot;&#10;&#10;metrics_collector.py, timer.py, tinyurl.py:&#10; - Added the exception type in error messages in generic exception handlers.&#10; &#10;so-update.sh:&#10; - Added cleanup of all the metrics stored in the StatsD cache at every update (to prevent ghost metrics)" />
     <MESSAGE value="metrics_collector.py:&#10; - There was a bug that prevented the collector from tokenizing arguments in the metric name&#10; - The URLs that were created during discovery were not url-encoded" />
     <MESSAGE value="timer.py:&#10; - The /ping result included the raw Value object." />
@@ -907,7 +922,9 @@
     <MESSAGE value="metrics_analyzer.py:&#10; - Using different validation of the anomaly report status and sending the report as a string (json.dumps)&#10; &#10;alerter.py, metrics_collector.py, timer.py, tinyurl.py, anomaly_detector.py:&#10; - Switched to syslog logging with a configured format (instead of stdout/journalctl logging)" />
     <MESSAGE value="metrics_analyzer.py:&#10; - Hopefully fixed the problem with the date in the anomaly report.&#10; &#10;anomaly_detector.py:&#10; - Made the format of the anomaly_info similar to the one from the metrics_analyzer&#10; &#10;configurator:&#10; - Added indication that all the logs of all the modules belong to the smart-onion" />
     <MESSAGE value="metrics_analyzer.py, anomaly_detector.py:&#10; - Converting to float every numeric element in the anomaly report" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py, anomaly_detector.py:&#10; - Converting to float every numeric element in the anomaly report" />
+    <MESSAGE value="metrics_analyzer.py, anomaly_detector.py:&#10; - Each service is now using different Kafka topic to report anomalies detected by it." />
+    <MESSAGE value="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it." />
+    <option name="LAST_COMMIT_MESSAGE" value="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1703,13 +1720,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="1563" selection-start-line="1563" selection-end-line="1564" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-stat.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1724,6 +1734,13 @@ hashlib.algorithms_available</expression-string>
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="634" column="38" lean-forward="true" selection-start-line="634" selection-start-column="38" selection-end-line="634" selection-end-column="38" />
         </state>
       </provider>
     </entry>

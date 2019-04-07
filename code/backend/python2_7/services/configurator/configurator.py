@@ -93,7 +93,7 @@ class SmartOnionConfigurator:
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-host": "127.0.0.1",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.listening-port": 9001,
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.protocol": "http",
-        "smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern": "^(?!(stats\.gauges\.smart\-onion\.anomaly_)).+$",
+        "smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern": "^(?!(stats\.gauges\.smart\-onion\.anomaly_))[^ ]+[A-Za-z0-9\-_](( [0-9]+(\.[0-9]+|) [0-9]+)|)$",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_physical_path": "/data/metrics/whisper/",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_past_sample_periods": "7,14,21",
         "smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_timespan_in_seconds": 86400,
