@@ -8,12 +8,10 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/tinyurl/tinyurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/tinyurl/tinyurl.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +24,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
+            <state relative-caret-position="943">
               <caret line="1203" selection-start-line="1202" selection-end-line="1203" />
               <folding>
                 <element signature="n#!!doc" />
@@ -37,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="517" column="14" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="14" />
+            <state relative-caret-position="427">
+              <caret line="440" column="97" selection-start-line="440" selection-start-column="97" selection-end-line="440" selection-end-column="97" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
                 <element signature="e#1537#2856#0" />
@@ -62,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="133" column="227" selection-start-line="133" selection-start-column="227" selection-end-line="133" selection-end-column="227" />
+            <state relative-caret-position="240">
+              <caret line="203" column="13" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="13" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
               </folding>
@@ -108,13 +106,13 @@
       <find>except:</find>
       <find>&quot;report</find>
       <find>&quot;report_an</find>
-      <find>print(</find>
-      <find>print</find>
       <find>report</find>
       <find>goin</find>
       <find>Goin</find>
       <find>sleep</find>
       <find>to sleep</find>
+      <find>print(</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,9 +122,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" />
-        <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/services/tinyurl/tinyurl.py" />
         <option value="$PROJECT_DIR$/services/timer_service/timer.py" />
+        <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
       </list>
     </option>
   </component>
@@ -294,9 +292,9 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.18530701" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.18530701" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.16995615" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.114035085" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.114035085" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -394,25 +392,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="1203" selection-start-line="1202" selection-end-line="1203" />
+        <state relative-caret-position="240">
+          <caret line="203" column="13" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="13" />
           <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#923#933#0" expanded="true" />
-            <element signature="e#1782#26136#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="517" column="14" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="14" />
-          <folding>
-            <element signature="e#922#936#0" expanded="true" />
-            <element signature="e#1537#2856#0" />
+            <element signature="e#847#858#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -427,12 +412,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
+    <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="133" column="227" selection-start-line="133" selection-start-column="227" selection-end-line="133" selection-end-column="227" />
+        <state relative-caret-position="943">
+          <caret line="1203" selection-start-line="1202" selection-end-line="1203" />
           <folding>
-            <element signature="e#847#858#0" expanded="true" />
+            <element signature="n#!!doc" />
+            <element signature="e#923#933#0" expanded="true" />
+            <element signature="e#1782#26136#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="440" column="97" selection-start-line="440" selection-start-column="97" selection-end-line="440" selection-end-column="97" />
+          <folding>
+            <element signature="e#922#936#0" expanded="true" />
+            <element signature="e#1537#2856#0" />
           </folding>
         </state>
       </provider>

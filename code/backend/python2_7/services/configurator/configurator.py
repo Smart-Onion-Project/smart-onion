@@ -53,7 +53,7 @@ class Utils:
 
 class SmartOnionConfigurator:
     config = {
-        "smart-onion.config.common.logging_format": "timestamp=%s;module=%s;method=%s;severity=%s;state=%s;metric/metric_family=%s;exception_msg=%s;exception_type=%s;message=%s",
+        "smart-onion.config.common.logging_format": "timestamp=%s;module=smart-onion_%s;method=%s;severity=%s;state=%s;metric/metric_family=%s;exception_msg=%s;exception_type=%s;message=%s",
         "smart-onion.config.architecture.external_services.security-onion-elk.host": "127.0.0.1",
         "smart-onion.config.architecture.external_services.security-onion-elk.port": 9200,
         "smart-onion.config.architecture.external_services.security-onion-elk.protocol": "http",
