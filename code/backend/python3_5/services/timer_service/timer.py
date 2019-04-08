@@ -136,7 +136,8 @@ class TimerService:
                                     discover_res = json.loads(discover_raw_res)
                                     for task in discover_res["data"]:
                                         cur_tasks_list.append({
-                                            "URL": task["{#URL}"]
+                                            "URL": task["{#URL}"],
+                                            "LLD_QUERY_USED": cur_url
                                         })
                                     self._discovery_requests_completed_successfully.value += 1
                             except Exception as ex:
