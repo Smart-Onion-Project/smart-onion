@@ -5,11 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="timer.py:&#10; - Added the URL of the discovery to the URLs it generated to assist in troubleshooting the service">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="configurator.py:&#10; - Now using the same kafka topic for anomalies reported by both services&#10;&#10;so-update.sh: &#10; - Now deleting all kafka topics during update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
+              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="744" column="56" lean-forward="true" selection-start-line="744" selection-start-column="4" selection-end-line="744" selection-end-column="56" />
+            <state relative-caret-position="269">
+              <caret line="744" column="56" lean-forward="true" selection-start-line="744" selection-start-column="56" selection-end-line="744" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+            <state relative-caret-position="418">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -73,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" selection-start-line="14" selection-end-line="17" />
+            <state relative-caret-position="418">
+              <caret line="22" selection-start-line="17" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -100,7 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>count(</find>
       <find>number_of_clients_per_dns_tld_subdomain</find>
       <find>Count(</find>
       <find>&quot;agg_on_field&quot;: &quot;.*,.*&quot;</find>
@@ -130,6 +129,7 @@
       <find>highest_similarity_to_any_top_accessed_p</find>
       <find>number_of_internal_workstations_ips_connected_to_sites_signed_by_issuer</find>
       <find>website_pages</find>
+      <find>&quot;zabbix_macro&quot;: &quot;URL,.*&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -186,17 +186,17 @@
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
         <option value="$PROJECT_DIR$/resources/test-scripts/detokenize.py" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/config/queries.json" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="1906" />
-    <option name="height" value="993" />
+    <option name="width" value="960" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -463,20 +463,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00139" summary="metrics_collector.py:&#10; -">
-      <created>1554055278277</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1554055278278</updated>
-    </task>
-    <task id="LOCAL-00140" summary="so-clean_all.sh:&#10; - Deleting the topics instead of just purging them">
-      <created>1554055533984</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1554055533984</updated>
     </task>
     <task id="LOCAL-00141" summary="Just updated permissions">
       <created>1554055727652</created>
@@ -807,7 +793,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554708030923</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="queries.json:&#10; - The website_pages LLD returned a macro named URL, overwriting the real URL for monitoring">
+      <created>1554712905484</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1554712905484</updated>
+    </task>
+    <task id="LOCAL-00189" summary="configurator.py:&#10; - Now using the same kafka topic for anomalies reported by both services&#10;&#10;so-update.sh: &#10; - Now deleting all kafka topics during update">
+      <created>1554713174094</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1554713174094</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="TodoView">
@@ -823,12 +823,12 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21149789" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7985232" weight="0.31469297" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8264768" visible="true" weight="0.114035085" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8264768" visible="true" weight="0.114035085" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8976793" weight="0.038377192" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -883,8 +883,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="timer.py:&#10; - The /ping result included the raw Value object." />
-    <MESSAGE value="metrics_collector.py:&#10; - Fixed &quot;UnboundLocalError: local variable 'element_token' referenced before assignment&quot; in file &quot;/opt/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py&quot;, line 730, in resolve_query_args_in_metric_name" />
     <MESSAGE value="metrics_analyzer.py:&#10; - For some reason the metrics-analyzer doesn't analyze metrics. Added more info to the /ping request and to the logs.&#10; &#10;anomaly_detector.py&#10; - Added more counters to the /ping method to allow monitoring the service health" />
     <MESSAGE value="anomaly_detector.py&#10; - Whooopsie...." />
     <MESSAGE value="metrics_analyzer.py&#10; - Whooopsie...." />
@@ -908,7 +906,9 @@
     <MESSAGE value="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it." />
     <MESSAGE value="queries.json:&#10; - Some LLD queries referred to non-existent queries. Fixed&#10; - Some queries required double quotes around the argument. Fixed (at least some...)&#10; &#10;metrics_collector:&#10; - Added conversion to string before quoting or base64ing since that the value is sometimes float/int." />
     <MESSAGE value="timer.py:&#10; - Added the URL of the discovery to the URLs it generated to assist in troubleshooting the service" />
-    <option name="LAST_COMMIT_MESSAGE" value="timer.py:&#10; - Added the URL of the discovery to the URLs it generated to assist in troubleshooting the service" />
+    <MESSAGE value="queries.json:&#10; - The website_pages LLD returned a macro named URL, overwriting the real URL for monitoring" />
+    <MESSAGE value="configurator.py:&#10; - Now using the same kafka topic for anomalies reported by both services&#10;&#10;so-update.sh: &#10; - Now deleting all kafka topics during update" />
+    <option name="LAST_COMMIT_MESSAGE" value="configurator.py:&#10; - Now using the same kafka topic for anomalies reported by both services&#10;&#10;so-update.sh: &#10; - Now deleting all kafka topics during update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -925,12 +925,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>884</line>
+          <line>942</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py</url>
-          <line>810</line>
+          <line>868</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
@@ -1690,20 +1690,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" selection-start-line="14" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -1711,20 +1697,34 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
-          <folding>
-            <element signature="e#923#933#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="269">
+          <caret line="744" column="56" lean-forward="true" selection-start-line="744" selection-start-column="56" selection-end-line="744" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="744" column="56" lean-forward="true" selection-start-line="744" selection-start-column="4" selection-end-line="744" selection-end-column="56" />
+        <state relative-caret-position="418">
+          <caret line="22" selection-start-line="17" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+          <folding>
+            <element signature="e#923#933#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
