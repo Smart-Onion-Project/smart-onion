@@ -742,7 +742,7 @@
     "list_order": "desc",
     "time_range": 86400,
     "agg_on_field": "virtual_host.keyword,method.keyword,destination_port,uri.keyword",
-    "zabbix_macro": "VIRT_HOST,HTTP_VERB,PORT,URL",
+    "zabbix_macro": "VIRT_HOST,HTTP_VERB,PORT,SITE_URL",
     "query": "event_type:bro_http",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
