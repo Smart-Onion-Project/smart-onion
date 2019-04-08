@@ -16,6 +16,11 @@ systemctl start smart-onion-configurator
 sleep 2s
 systemctl start kafka-server
 sleep 2s
+echo "Deleting all relevant topics in Kafka..."
+/opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metrics --delete
+/opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metric-collection-tasks --delete
+/opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic detected-anomalies --delete
+sleep 5
 /opt/smart-onion/resources/test-scripts/test_services_status.sh start --quiet
 echo -=-=-=-=-=-=-=-=-=-=-=-=-=-=
 /opt/smart-onion/resources/test-scripts/so-stat.sh
