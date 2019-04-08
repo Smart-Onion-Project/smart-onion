@@ -47,7 +47,7 @@ from multiprocessing import Value
 
 
 DEBUG = False
-SINGLE_THREADED = True
+SINGLE_THREADED = False
 elasticsearch_server = "127.0.0.1"
 metrics_prefix = "smart-onion"
 config_copy = {}
@@ -991,7 +991,7 @@ class MetricsCollector:
 
             res = "@@RES: " + str(raw_res)
             self._metric_requests_processed_successfully.value += 1
-        except Exception as e:
+        except Exception as ex:
             syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "queryCount", "WARN", str(None), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a query_count call"))
             res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
 
