@@ -1558,12 +1558,12 @@
     "interval_sec": 300
   },
   "number_of_source_hosts_per_url": {
-    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg3}}.{{#arg1}}.{{#arg4}}.{{#arg2}}",
+    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg2}}.{{#arg1}}.{{#arg3}}.{{#arg4}}",
     "tags": "both:system_health,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg2}} AND method:{{#arg3}} AND destination_port:{{#arg4}}",
+    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg4}} AND method:{{#arg2}} AND destination_port:{{#arg3}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1623,11 +1623,11 @@
     "interval_sec": 300
   },
   "number_of_requests_per_url": {
-    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg3}}.{{#arg1}}.{{#arg4}}.{{#arg2}}",
+    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg2}}.{{#arg1}}.{{#arg3}}.{{#arg4}}",
     "tags": "both:system_health,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg2}} AND method:{{#arg3}} AND destination_port:{{#arg4}}",
+    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg4}} AND method:{{#arg2}} AND destination_port:{{#arg3}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300

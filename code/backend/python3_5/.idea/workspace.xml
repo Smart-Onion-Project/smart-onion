@@ -10,6 +10,8 @@
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/so-update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-update.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,16 +24,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2199">
-              <caret line="243" column="44" selection-start-line="243" selection-start-column="44" selection-end-line="243" selection-end-column="44" />
+            <state relative-caret-position="470">
+              <caret line="993" column="30" selection-start-line="993" selection-start-column="30" selection-end-line="993" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
                 <element signature="e#71058#82386#0" />
                 <element signature="e#82459#83679#0" />
                 <element signature="e#86482#185856#0" />
-                <element signature="e#186274#192060#0" />
-                <element signature="e#192309#194520#0" />
+                <element signature="e#184559#184568#0" />
               </folding>
             </state>
           </provider>
@@ -294,7 +295,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.18530701" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16995615" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47807017" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
@@ -313,13 +314,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
-          <line>992</line>
+          <line>927</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py</url>
-          <line>2892</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -467,16 +463,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2199">
-          <caret line="243" column="44" selection-start-line="243" selection-start-column="44" selection-end-line="243" selection-end-column="44" />
+        <state relative-caret-position="470">
+          <caret line="993" column="30" selection-start-line="993" selection-start-column="30" selection-end-line="993" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
             <element signature="e#71058#82386#0" />
             <element signature="e#82459#83679#0" />
             <element signature="e#86482#185856#0" />
-            <element signature="e#186274#192060#0" />
-            <element signature="e#192309#194520#0" />
+            <element signature="e#184559#184568#0" />
           </folding>
         </state>
       </provider>
