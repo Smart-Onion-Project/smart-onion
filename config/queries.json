@@ -1563,7 +1563,7 @@
     "time_range": 3600,
     "base_64_used": false,
     "count_unique_values_in": "source_ip",
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg4}} AND method:{{#arg2}} AND destination_port:{{#arg3}}",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\" AND uri:\"{{#arg4}}\" AND method:{{#arg2}} AND destination_port:{{#arg3}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
@@ -1627,7 +1627,7 @@
     "tags": "both:system_health,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
-    "query": "event_type:bro_http AND virtual_host:{{#arg1}} AND uri:{{#arg4}} AND method:{{#arg2}} AND destination_port:{{#arg3}}",
+    "query": "event_type:bro_http AND virtual_host:\"{{#arg1}}\", AND uri:\"{{#arg4}}\" AND method:{{#arg2}} AND destination_port:{{#arg3}}",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300
