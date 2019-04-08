@@ -209,7 +209,7 @@
     "type": "LLD",
     "max_list_size": 10,
     "queries_to_run": [
-      "highest_similarity_to_any_top_accessed_parent_domains",
+      "highest_similarity_to_any_top_accessed_parent_domain",
       "number_of_clients_per_dns_parent_domain",
       "number_of_queries_per_dns_parent_domain"
     ]
@@ -347,7 +347,7 @@
       "pings_from_host",
       "dns_tcp_requests_per_source_ip",
       "number_of_connections_to_workstations_for_workstation",
-      "number_of_dns_requests_returned_nxdomain_result_per_host"
+      "dns_nxdomain_queries_from_ip"
     ]
   },
   "tcp_ports_used_from_org": {
@@ -1321,7 +1321,7 @@
     "time_range": 86400,
     "base_64_used": false,
     "count_unique_values_in": "source_ips.keyword",
-    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_issuer:{{#arg1}}",
+    "query": "event_type:bro_ssl AND source_ips:({#smart-onion.config.dynamic.learned.networks.workstations-network}) AND certificate_issuer:\"{{#arg1}}\"",
     "index_pattern": "logstash-*",
     "type": "QUERY_COUNT",
     "interval_sec": 300

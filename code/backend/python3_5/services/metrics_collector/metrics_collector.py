@@ -91,49 +91,49 @@ class Utils:
                 arg_idx = 1
                 cur_url = url_base + "?"
                 if use_base64:
-                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(str(agg0_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                 else:
-                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(agg0_item["key"]) + "&"
+                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(str(agg0_item["key"])) + "&"
                 arg_idx = arg_idx + 1
                 latest_values.append(agg0_item["key"])
                 if "field_values1" in agg0_item and "buckets" in agg0_item["field_values1"]:
                     for agg1_item in agg0_item["field_values1"]["buckets"]:
                         if use_base64:
-                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(str(agg1_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                         else:
-                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(agg1_item["key"]) + "&"
+                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(str(agg1_item["key"])) + "&"
                         arg_idx = arg_idx + 1
                         latest_values.append(agg1_item["key"])
                         if "field_values2" in agg1_item and "buckets" in agg1_item["field_values2"]:
                             for agg2_item in agg1_item["field_values2"]["buckets"]:
                                 if use_base64:
-                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(agg2_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(str(agg2_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                 else:
-                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(agg2_item["key"]) + "&"
+                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(str(agg2_item["key"])) + "&"
                                 arg_idx = arg_idx + 1
                                 latest_values.append(agg2_item["key"])
                                 if "field_values3" in agg2_item and "buckets" in agg2_item["field_values3"]:
                                     for agg3_item in agg2_item["field_values3"]["buckets"]:
                                         if use_base64:
-                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(agg3_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(str(agg3_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                         else:
-                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(agg3_item["key"]) + "&"
+                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(str(agg3_item["key"])) + "&"
                                         arg_idx = arg_idx + 1
                                         latest_values.append(agg3_item["key"])
                                         if "field_values4" in agg3_item and "buckets" in agg3_item["field_values4"]:
                                             for agg4_item in agg3_item["field_values4"]["buckets"]:
                                                 if use_base64:
-                                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(agg4_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(str(agg4_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                                 else:
-                                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(agg4_item["key"]) + "&"
+                                                    cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(str(agg4_item["key"])) + "&"
                                                 arg_idx = arg_idx + 1
                                                 latest_values.append(agg4_item["key"])
                                                 if "field_values5" in agg4_item and "buckets" in agg4_item["field_values5"]:
                                                     for agg5_item in agg4_item["field_values5"]["buckets"]:
                                                         if use_base64:
-                                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(agg5_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(base64.b64encode(str(agg5_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                                         else:
-                                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(agg5_item["key"]) + "&"
+                                                            cur_url = cur_url + "arg" + str(arg_idx) + "=" + urllib_parse.quote(str(agg5_item["key"])) + "&"
                                                         arg_idx = arg_idx + 1
                                                         latest_values.append(agg5_item["key"])
                                                 else:
@@ -145,16 +145,16 @@ class Utils:
                                                     cur_url = url_base + "?"
                                                     if use_base64:
                                                         cur_url = cur_url + \
-                                                                  "arg1=" + urllib_parse.quote(base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8')) + "&" + \
-                                                                  "arg2=" + urllib_parse.quote(base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8')) + "&" + \
-                                                                  "arg3=" + urllib_parse.quote(base64.b64encode(agg2_item["key"].encode('utf-8')).decode('utf-8')) + "&" + \
-                                                                  "arg4=" + urllib_parse.quote(base64.b64encode(agg3_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                                                  "arg1=" + urllib_parse.quote(base64.b64encode(str(agg0_item["key"]).encode('utf-8')).decode('utf-8')) + "&" + \
+                                                                  "arg2=" + urllib_parse.quote(base64.b64encode(str(agg1_item["key"]).encode('utf-8')).decode('utf-8')) + "&" + \
+                                                                  "arg3=" + urllib_parse.quote(base64.b64encode(str(agg2_item["key"]).encode('utf-8')).decode('utf-8')) + "&" + \
+                                                                  "arg4=" + urllib_parse.quote(base64.b64encode(str(agg3_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                                     else:
                                                         cur_url = cur_url + \
-                                                                  "arg1=" + urllib_parse.quote(agg0_item["key"]) + "&" + \
-                                                                  "arg2=" + urllib_parse.quote(agg1_item["key"]) + "&" + \
-                                                                  "arg3=" + urllib_parse.quote(agg2_item["key"]) + "&" + \
-                                                                  "arg4=" + urllib_parse.quote(agg3_item["key"]) + "&"
+                                                                  "arg1=" + urllib_parse.quote(str(agg0_item["key"])) + "&" + \
+                                                                  "arg2=" + urllib_parse.quote(str(agg1_item["key"])) + "&" + \
+                                                                  "arg3=" + urllib_parse.quote(str(agg2_item["key"])) + "&" + \
+                                                                  "arg4=" + urllib_parse.quote(str(agg3_item["key"])) + "&"
                                         else:
                                             cur_url = cur_url.strip('&')
                                             urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg3_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
@@ -164,14 +164,14 @@ class Utils:
                                             cur_url = url_base + "?"
                                             if use_base64:
                                                 cur_url = cur_url + \
-                                                          "arg1=" + urllib_parse.quote(base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8')) + "&" + \
-                                                          "arg2=" + urllib_parse.quote(base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8')) + "&" + \
-                                                          "arg3=" + urllib_parse.quote(base64.b64encode(agg2_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                                          "arg1=" + urllib_parse.quote(base64.b64encode(str(agg0_item["key"]).encode('utf-8')).decode('utf-8')) + "&" + \
+                                                          "arg2=" + urllib_parse.quote(base64.b64encode(str(agg1_item["key"]).encode('utf-8')).decode('utf-8')) + "&" + \
+                                                          "arg3=" + urllib_parse.quote(base64.b64encode(str(agg2_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                             else:
                                                 cur_url = cur_url + \
-                                                          "arg1=" + urllib_parse.quote(agg0_item["key"]) + "&" + \
-                                                          "arg2=" + urllib_parse.quote(agg1_item["key"]) + "&" + \
-                                                          "arg3=" + urllib_parse.quote(agg2_item["key"]) + "&"
+                                                          "arg1=" + urllib_parse.quote(str(agg0_item["key"])) + "&" + \
+                                                          "arg2=" + urllib_parse.quote(str(agg1_item["key"])) + "&" + \
+                                                          "arg3=" + urllib_parse.quote(str(agg2_item["key"])) + "&"
                                 else:
                                     cur_url = cur_url.strip('&')
                                     urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg2_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
@@ -181,12 +181,12 @@ class Utils:
                                     cur_url = url_base + "?"
                                     if use_base64:
                                         cur_url = cur_url + \
-                                                  "arg1=" + urllib_parse.quote(base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8')) + "&" + \
-                                                  "arg2=" + urllib_parse.quote(base64.b64encode(agg1_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                                  "arg1=" + urllib_parse.quote(base64.b64encode(str(agg0_item["key"]).encode('utf-8')).decode('utf-8')) + "&" + \
+                                                  "arg2=" + urllib_parse.quote(base64.b64encode(str(agg1_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                                     else:
                                         cur_url = cur_url + \
-                                                  "arg1=" + urllib_parse.quote(agg0_item["key"]) + "&" + \
-                                                  "arg2=" + urllib_parse.quote(agg1_item["key"]) + "&"
+                                                  "arg1=" + urllib_parse.quote(str(agg0_item["key"])) + "&" + \
+                                                  "arg2=" + urllib_parse.quote(str(agg1_item["key"])) + "&"
                         else:
                             cur_url = cur_url.strip('&')
                             urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg1_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
@@ -196,10 +196,10 @@ class Utils:
                             cur_url = url_base + "?"
                             if use_base64:
                                 cur_url = cur_url + \
-                                          "arg1=" + urllib_parse.quote(base64.b64encode(agg0_item["key"].encode('utf-8')).decode('utf-8')) + "&"
+                                          "arg1=" + urllib_parse.quote(base64.b64encode(str(agg0_item["key"]).encode('utf-8')).decode('utf-8')) + "&"
                             else:
                                 cur_url = cur_url + \
-                                          "arg1=" + urllib_parse.quote(agg0_item["key"]) + "&"
+                                          "arg1=" + urllib_parse.quote(str(agg0_item["key"])) + "&"
                 else:
                     cur_url = cur_url.strip('&')
                     urls.append({"URL": cur_url, "query_id": query_id, "query_type": query_type, "doc_count": agg0_item["doc_count"], "macro_values": latest_values, "agg_on_field": agg_on_field})
