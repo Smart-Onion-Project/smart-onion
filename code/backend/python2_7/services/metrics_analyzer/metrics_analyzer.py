@@ -165,7 +165,7 @@ class MetricsRealtimeAnalyzer:
             if os.path.isdir(save_path):
                 dir_contents = os.listdir(save_path)
                 if len(dir_contents) > 0 and "model.pkl" not in dir_contents:
-                    os.path.join(save_path, ".root")
+                    save_path = os.path.join(save_path, ".root")
             return save_path
         elif path_element == "anomaly_likelihood_calculator":
             save_path = self.anomaly_likelihood_detectors_save_base_path
@@ -175,7 +175,7 @@ class MetricsRealtimeAnalyzer:
             if os.path.isdir(save_path):
                 dir_contents = os.listdir(save_path)
                 if len(dir_contents) > 0 and "model.pkl" not in dir_contents:
-                    os.path.join(save_path, ".root")
+                    save_path = os.path.join(save_path, ".root")
             return save_path
         else:
             raise Exception("Unrecognized path element code")
