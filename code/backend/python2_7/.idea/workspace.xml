@@ -7,8 +7,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +23,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="193">
-                  <caret line="474" column="12" selection-start-line="474" selection-start-column="12" selection-end-line="474" selection-end-column="12" />
+                <state relative-caret-position="581">
+                  <caret line="177" column="32" selection-start-line="177" selection-start-column="32" selection-end-line="177" selection-end-column="32" />
                   <folding>
                     <element signature="e#922#959#0" expanded="true" />
                   </folding>
@@ -85,7 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_ping(self)</find>
       <find>self.DEBUG</find>
       <find>WRN</find>
       <find>top</find>
@@ -115,6 +114,7 @@
       <find>NOT</find>
       <find>Reco</find>
       <find>get</find>
+      <find>get_s</find>
     </findStrings>
     <replaceStrings>
       <replace>value</replace>
@@ -135,8 +135,8 @@
         <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/services/configurator/configurator.py" />
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
         <option value="$PROJECT_DIR$/services/alerter/alerter.py" />
+        <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
       </list>
     </option>
   </component>
@@ -601,8 +601,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="474" column="12" selection-start-line="474" selection-start-column="12" selection-end-line="474" selection-end-column="12" />
+        <state relative-caret-position="581">
+          <caret line="177" column="32" selection-start-line="177" selection-start-column="32" selection-end-line="177" selection-end-column="32" />
           <folding>
             <element signature="e#922#959#0" expanded="true" />
           </folding>
