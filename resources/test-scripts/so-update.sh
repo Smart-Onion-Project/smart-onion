@@ -14,7 +14,7 @@ echo "Updating systemctl with the new Unit files and starting services..."
 systemctl daemon-reload
 systemctl start smart-onion-configurator
 sleep 2s
-systemctl start kafka-server
+systemctl start zookeeper
 sleep 2s
 systemctl start kafka-server
 sleep 2s

@@ -719,17 +719,17 @@ class MetricsCollector:
 
                     if len(arg) > self._metric_item_element_max_size:
                         # Tokenizing the element in the DB:
-                        element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key=convert_from(decode('" + base64.b64encode(arg) + "', 'base64'), 'UTF8')")
+                        element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key=convert_from(decode('" + base64.b64encode(str(arg).encode('utf-8')).decode('utf-8') + "', 'base64'), 'UTF8')")
                         element_token = element_token_query()
                         if len(element_token) == 0:
                             # If the token was not found - creating new one and saving it to the DB
                             element_token = [[str(uuid.uuid4())]]
                             try:
-                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key, timestamp) values ('" + element_token[0][0] + "', convert_from(decode('" + base64.b64encode(arg) + "', 'base64'), 'UTF8'), " + str(time.time()) + ")")
+                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key, timestamp) values ('" + element_token[0][0] + "', convert_from(decode('" + base64.b64encode(str(arg).encode('utf-8')).decode('utf-8') + "', 'base64'), 'UTF8'), " + str(time.time()) + ")")
                                 set_token()
                             except Exception as ex:
                                 # Perhaps another thread preceded us and created it already?
-                                element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key=convert_from(decode('" + base64.b64encode(arg) + "', 'base64'), 'UTF8')")
+                                element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key=convert_from(decode('" + base64.b64encode(str(arg).encode('utf-8')).decode('utf-8') + "', 'base64'), 'UTF8')")
                                 element_token = element_token_query()
                                 if len(element_token) == 0:
                                     # If we couldn't set the token nor get it... exception!
@@ -1142,7 +1142,7 @@ class MetricsCollector:
             agg = agg["field_values" + str(i)]["aggs"]
 
         try:
-            syslog.syslog("metrics_collector: INFO: Executing the following query: hosts: " + json.dumps(self.es_hosts) + ", timeout: " + str(self.timeout_to_elastic) + ", index=" + query_index + ", query_body=" + json.dumps(query_body))
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "discover", "INFO", str(None), str(None), str(None), str(None), "Executing the following query: hosts: " + json.dumps(self.es_hosts) + ", timeout: " + str(self.timeout_to_elastic) + ", index=" + query_index + ", query_body=" + json.dumps(query_body)))
             res = self.es.search(
                 index=query_index,
                 body=query_body,
