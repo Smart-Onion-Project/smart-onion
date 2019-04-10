@@ -5,12 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_analyzer.py:&#10; - Preventing division by zero in homoglyphs ratio detection&#10; - Using based64 encoding to overcome any &quot;sql injection&quot; issues (characters in the url that have sql meaning)&#10; - Fixed several uses of e as the exception variable instead of ex">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="metrics_collector.py:&#10; - Fixed a spot that in debug mode would crash since that it uses a non-existent variable&#10; &#10;timer.py:&#10; - Styling...&#10; &#10;queries.json:&#10; - Fixed the top_n_most_rarely_queried_fqdns query so that it will not return empty results&#10; &#10;so-clean_all.sh:&#10; - Fixed the name of one of the topics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/test-scripts/so-update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/resources/test-scripts/so-update.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,11 +25,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="1144" column="12" selection-start-line="1144" selection-start-column="12" selection-end-line="1144" selection-end-column="12" />
+            <state relative-caret-position="418">
+              <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
               <folding>
                 <element signature="e#923#933#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="77" column="231" selection-start-line="77" selection-start-column="164" selection-end-line="77" selection-end-column="231" />
             </state>
           </provider>
         </entry>
@@ -56,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="1565" column="86" selection-start-line="1565" selection-start-column="86" selection-end-line="1565" selection-end-column="86" />
+            <state relative-caret-position="252">
+              <caret line="513" column="51" selection-start-line="513" selection-start-column="51" selection-end-line="513" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -83,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" selection-start-line="17" selection-end-line="22" />
+            <state relative-caret-position="380">
+              <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -110,8 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>@time</find>
-      <find>Count</find>
       <find>tld</find>
       <find>number_of_clients_per_dns_subdomain</find>
       <find>consum</find>
@@ -140,6 +146,8 @@
       <find>number_of_requests_per_url</find>
       <find>number_of_source_hosts_per_url</find>
       <find>INFO: Executing the following query:</find>
+      <find>Count</find>
+      <find>top_n_most_rarely_queried_fqdns</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -195,10 +203,10 @@
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_collector.service" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
         <option value="$PROJECT_DIR$/resources/test-scripts/detokenize.py" />
-        <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
-        <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/resources/test-scripts/so-update.sh" />
+        <option value="$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh" />
+        <option value="$PROJECT_DIR$/config/queries.json" />
         <option value="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" />
       </list>
     </option>
@@ -473,20 +481,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00147" summary="metrics_analyzer.py:&#10; - Added debug message that should explain why the service supposedly handles metrics that were created by it.&#10; &#10;*.service:&#10; - Set the service load order (&quot;After=&quot;) correctly&#10; &#10;so-stat.sh, test_services_status.sh:&#10; - Added statsd and other infrastructure services to the list.">
-      <created>1554110143494</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1554110143494</updated>
-    </task>
-    <task id="LOCAL-00148" summary="metrics_analyzer.py:&#10; - Hopefully, realized why the service kept handling its own metrics and causing a loop. Hopefully - fixed it.">
-      <created>1554110857425</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1554110857425</updated>
     </task>
     <task id="LOCAL-00149" summary="metrics_collector.py:&#10; - Fixed a null-ref error">
       <created>1554111932091</created>
@@ -817,7 +811,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554877013139</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <task id="LOCAL-00196" summary="metrics_analyzer.py:&#10; - Bug in the way base64 encoding was used. FIXED&#10; &#10;so-update.sh:&#10; - Zookeeper had to be started before starting Kafka (for cleaning up topics)">
+      <created>1554878661294</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1554878661294</updated>
+    </task>
+    <task id="LOCAL-00197" summary="metrics_collector.py:&#10; - Fixed a spot that in debug mode would crash since that it uses a non-existent variable&#10; &#10;timer.py:&#10; - Styling...&#10; &#10;queries.json:&#10; - Fixed the top_n_most_rarely_queried_fqdns query so that it will not return empty results&#10; &#10;so-clean_all.sh:&#10; - Fixed the name of one of the topics">
+      <created>1554884947548</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1554884947548</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="TodoView">
@@ -833,11 +841,11 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18301688" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18301688" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7979958" visible="true" weight="0.03618421" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.7979958" visible="true" weight="0.3859649" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8264768" weight="0.114035085" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8976793" weight="0.038377192" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -846,7 +854,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20200422" side_tool="true" visible="true" weight="0.03618421" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20200422" side_tool="true" visible="true" weight="0.3859649" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -893,8 +901,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="anomaly_detector.py:&#10; - Added new constant that can be used for debugging to force the service to run on a single thread instead of using Gunicorn&#10; - Added code for making the printing of debug message depend on the DEBUG constant&#10; - The condition that checks whether the metric name appears in the unique metrics list was incorrectly written&#10; - Added try-except block around the addition to the uniqe metrics list to detect issues that prevent the service from working properly now.&#10;  &#10;metrics_analyzer.py:&#10; - Added code for making the printing of debug message depend on the DEBUG constant&#10;&#10;configurator.py:&#10; - Added configuration of the path to the fonts that are going to be used in the similarity tests&#10; &#10;metrics_collector.py:&#10; - Fixed an issue with the visual similarity test: it used to refer to fonts at /home/yuval/.fonts which obviously did not exist in production. Now uses a path from the config&#10; - Added new constant that can be used for debugging to force the service to run on a single thread instead of using Gunicorn&#10; - Added code for making the printing of debug message depend on the DEBUG constant&#10; - Added state variable to help identify exception causes&#10; &#10;timer.py, tinyurl.py:&#10; - Added new constant that can be used for debugging to force the service to run on a single thread instead of using Gunicorn" />
-    <MESSAGE value="metrics_analyzer.py, configurator.py, alerter.py:&#10; - The code that makes printing of debug messages depended on a constant need a special import in python2.7 - ADDED" />
     <MESSAGE value="metrics_analyzer.py, configurator.py, alerter.py:&#10; - It seems that this is a special import that need to be on the first line of the file..." />
     <MESSAGE value="alerter.py:&#10; - Added comments that will guide the development of this service&#10; &#10;configurator.py:&#10; - Added a trailing slash to the URL path just to keep it aligned with the other paths listed&#10;&#10;anomaly_detector.py:&#10; - Added explicit conversion of the various URL parts to string to avoid the error about concatenating string and int&#10; &#10;metrics_collector.py:&#10; - Added more specific exceptions to help determine what is causing the similarity check method to fail" />
     <MESSAGE value="metrics_collector.py:&#10; - As it turned out, using path.join and sending the right argument starting with a slash causes path.join to return only the argument without the base path." />
@@ -918,7 +924,9 @@
     <MESSAGE value="metrics_analyzer.py:&#10; - Added the .root folder to the save path of HTM models and anomaly likelihood calcs in case the path exists and does not contain model.pkl (for example in ..tld/gov and ..tld/gov/il) to allow models and calcs to be saved to and read from." />
     <MESSAGE value="metrics_analyzer.py:&#10; - Whooopsssie (-:" />
     <MESSAGE value="metrics_analyzer.py:&#10; - Preventing division by zero in homoglyphs ratio detection&#10; - Using based64 encoding to overcome any &quot;sql injection&quot; issues (characters in the url that have sql meaning)&#10; - Fixed several uses of e as the exception variable instead of ex" />
-    <option name="LAST_COMMIT_MESSAGE" value="metrics_analyzer.py:&#10; - Preventing division by zero in homoglyphs ratio detection&#10; - Using based64 encoding to overcome any &quot;sql injection&quot; issues (characters in the url that have sql meaning)&#10; - Fixed several uses of e as the exception variable instead of ex" />
+    <MESSAGE value="metrics_analyzer.py:&#10; - Bug in the way base64 encoding was used. FIXED&#10; &#10;so-update.sh:&#10; - Zookeeper had to be started before starting Kafka (for cleaning up topics)" />
+    <MESSAGE value="metrics_collector.py:&#10; - Fixed a spot that in debug mode would crash since that it uses a non-existent variable&#10; &#10;timer.py:&#10; - Styling...&#10; &#10;queries.json:&#10; - Fixed the top_n_most_rarely_queried_fqdns query so that it will not return empty results&#10; &#10;so-clean_all.sh:&#10; - Fixed the name of one of the topics" />
+    <option name="LAST_COMMIT_MESSAGE" value="metrics_collector.py:&#10; - Fixed a spot that in debug mode would crash since that it uses a non-existent variable&#10; &#10;timer.py:&#10; - Styling...&#10; &#10;queries.json:&#10; - Fixed the top_n_most_rarely_queried_fqdns query so that it will not return empty results&#10; &#10;so-clean_all.sh:&#10; - Fixed the name of one of the topics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1604,16 +1612,6 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding>
-            <element signature="e#21#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1102">
@@ -1699,22 +1697,8 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/queries.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="1565" column="86" selection-start-line="1565" selection-start-column="86" selection-end-line="1565" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python3.5_venv/lib/python3.5/site-packages/postgresql/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" selection-start-line="17" selection-end-line="22" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-update.sh">
       <provider selected="true" editor-type-id="text-editor">
@@ -1730,10 +1714,31 @@ hashlib.algorithms_available</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="77" column="231" selection-start-line="77" selection-start-column="164" selection-end-line="77" selection-end-column="231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/test-scripts/so-clean_all.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/queries.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="513" column="51" selection-start-line="513" selection-start-column="51" selection-end-line="513" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="1144" column="12" selection-start-line="1144" selection-start-column="12" selection-end-line="1144" selection-end-column="12" />
+        <state relative-caret-position="418">
+          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
           <folding>
             <element signature="e#923#933#0" expanded="true" />
           </folding>
