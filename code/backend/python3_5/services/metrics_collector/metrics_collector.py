@@ -976,7 +976,7 @@ class MetricsCollector:
 
         try:
             if DEBUG:
-                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "queryCount", "DEBUG", str(None), str(metric_name), str(ex), type(ex).__name__, "Running query: `" + json.dumps(query_body) + "'"))
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "queryCount", "DEBUG", str(None), str(metric_name), str(None), str(None), "Running query: `" + json.dumps(query_body) + "'"))
 
             raw_res = ""
             if count_unique_values_in != None:

@@ -18,7 +18,7 @@ systemctl restart statsd
 echo "Deleting all relevant topics in Kafka..."
 /opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metrics --delete
 /opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metric-collection-tasks --delete
-/opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic metric-analyzer-detected-anomalies --delete
+/opt/kafka_2.11-2.1.0/bin/kafka-topics.sh --zookeeper localhost:2181 --topic detected-anomalies --delete
 sleep 5
 echo "Removing all Nupic models..."
 rm -rf /data/models/models/*

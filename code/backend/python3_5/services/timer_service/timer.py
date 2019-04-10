@@ -123,7 +123,7 @@ class TimerService:
                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "timer_service", "run_timer", "INFO", str(None), str(None), str(None), str(None), "Loaded with the following settings: DiscoveryInterval:" + str(self._interval) + ",MaxBatchSize:" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.timer.max_items_in_batch"]) + ",BaseURL=" + str(base_url) + ",KafkaBootstrapServers=" + str(self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]) + ",KafkaClientID:" + str(self._kafka_client_id)))
                 while True:
                     try:
-                        lld_queries = [q for q in self._queries if self._queries[q]["type"]=="LLD"]
+                        lld_queries = [q for q in self._queries if self._queries[q]["type"] == "LLD"]
                         for query in lld_queries:
                             self._discovery_requests_ran.value += 1
                             cur_url = str(base_url) + str(query)
