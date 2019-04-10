@@ -443,6 +443,9 @@ class Utils:
             if char2 != char1 and char2 in homoglyphs_cache[char1]:
                 homoglyphs_found = homoglyphs_found + 1
 
+        if len(cur_value_to_compare_to) == 0:
+            return 0
+
         return homoglyphs_found / len(cur_value_to_compare_to) * 100
 
 
@@ -716,17 +719,17 @@ class MetricsCollector:
 
                     if len(arg) > self._metric_item_element_max_size:
                         # Tokenizing the element in the DB:
-                        element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key = '" + arg + "'")
+                        element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key=convert_from(decode('" + base64.b64encode(arg) + "', 'base64'), 'UTF8')")
                         element_token = element_token_query()
                         if len(element_token) == 0:
                             # If the token was not found - creating new one and saving it to the DB
                             element_token = [[str(uuid.uuid4())]]
                             try:
-                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key, timestamp) values ('" + element_token[0][0] + "', '" + arg + "', " + str(time.time()) + ")")
+                                set_token = tokenizer_db_conn.prepare("insert into tokenizer (metric_param_token, metric_param_key, timestamp) values ('" + element_token[0][0] + "', convert_from(decode('" + base64.b64encode(arg) + "', 'base64'), 'UTF8'), " + str(time.time()) + ")")
                                 set_token()
                             except Exception as ex:
                                 # Perhaps another thread preceded us and created it already?
-                                element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key = '" + arg + "'")
+                                element_token_query = tokenizer_db_conn.prepare("select metric_param_token from tokenizer where metric_param_key=convert_from(decode('" + base64.b64encode(arg) + "', 'base64'), 'UTF8')")
                                 element_token = element_token_query()
                                 if len(element_token) == 0:
                                     # If we couldn't set the token nor get it... exception!
@@ -906,9 +909,9 @@ class MetricsCollector:
                 self._similarity_test_requests_processed_successfully.value += 1
             else:
                 res = "@@ERROR: Elasticsearch responded with an unexpected response: (" + json.dumps(res) + ")"
-        except Exception as e:
+        except Exception as ex:
             syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "get_similarity", "WARN", str(state), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a similarity test call"))
-            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ") [state=" + state + "]"
+            res = "@@RES: @@EXCEPTION: " + str(ex) + " (" + type(ex).__name__ + ") [state=" + state + "]"
 
         if Utils().is_number(res):
             try:
@@ -993,7 +996,7 @@ class MetricsCollector:
             self._metric_requests_processed_successfully.value += 1
         except Exception as ex:
             syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "metrics_collector", "queryCount", "WARN", str(None), str(metric_name), str(ex), type(ex).__name__, "An unexpected exception has been thrown while handling a query_count call"))
-            res = "@@RES: @@EXCEPTION: " + str(e) + " (" + type(e).__name__ + ")"
+            res = "@@RES: @@EXCEPTION: " + str(ex) + " (" + type(ex).__name__ + ")"
 
         if Utils().is_number(raw_res):
             try:
