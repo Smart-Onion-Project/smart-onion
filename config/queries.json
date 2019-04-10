@@ -511,7 +511,7 @@
     "time_range": 86400,
     "agg_on_field": "query.keyword",
     "zabbix_macro": "DNS_REC",
-    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query:\"-\"",
+    "query": "(source_ips:({#smart-onion.config.dynamic.learned.networks.lan-network})) AND event_type:bro_dns AND NOT query.keyword:\"\"",
     "index_pattern": "logstash-bro-*",
     "type": "LLD",
     "max_list_size": 10,
