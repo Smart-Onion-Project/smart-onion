@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-143">
-              <caret line="107" column="154" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="154" />
+            <state relative-caret-position="180">
+              <caret line="107" column="149" selection-start-line="107" selection-start-column="149" selection-end-line="107" selection-end-column="149" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
               </folding>
@@ -471,8 +470,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-143">
-          <caret line="107" column="154" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="154" />
+        <state relative-caret-position="180">
+          <caret line="107" column="149" selection-start-line="107" selection-start-column="149" selection-end-line="107" selection-end-column="149" />
           <folding>
             <element signature="e#922#936#0" expanded="true" />
           </folding>

@@ -14,3 +14,15 @@ echo
 echo "Non Anomaly Metric (*.wsp) Files: "`find /data/metrics/whisper/ -name '*.wsp' | grep -v anomaly | wc -l`
 echo "Anomaly Metric (*.wsp) Files    : "`find /data/metrics/whisper/ -name '*.wsp' | grep anomaly | wc -l`
 echo "Metrics in StatsD               : "`echo "gauges" | nc 127.0.0.1 8126 | sed 's/END//g' | sed "s/'/\"/g" | jq -r "keys[]" | wc -l`
+echo
+echo "metrics-collector stats:"
+curl localhost:9000/ping 2>/dev/null | jq '.["service_specific_info"]' | grep -ve '[\{|\}]' | sed 's/^  "/"/g' | sort
+echo
+echo "metrics-analyzer stats:"
+curl localhost:9007/ping 2>/dev/null | jq '.["service_specific_info"]' | grep -ve '[\{|\}]' | sed 's/^  "/"/g' | sort
+echo
+echo "anomaly-detector stats:"
+curl localhost:9001/ping 2>/dev/null | jq '.["service_specific_info"]' | grep -ve '[\{|\}]' | sed 's/^  "/"/g' | sort
+echo
+echo "timer stats:"
+curl localhost:9006/ping 2>/dev/null | jq '.["service_specific_info"]' | grep -ve '[\{|\}]' | sed 's/^  "/"/g' | sort
