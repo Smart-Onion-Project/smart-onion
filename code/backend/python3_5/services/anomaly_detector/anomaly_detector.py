@@ -105,7 +105,7 @@ class AnomalyDetector:
         self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._kafka_client_id = "SmartOnionAnomalyDetectorService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
         self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
-        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reported_anomalies_topic"]
+        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
         self._allowed_to_work_on_metrics_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_to_work_on_pattern"])
         self._metrics_base_path = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.metrics_physical_path"]
         self._metrics_prefix = "smart-onion.anomaly_score.anomaly_detector."
@@ -114,7 +114,7 @@ class AnomalyDetector:
         self._reference_past_sample_periods = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_past_sample_periods"]
         self._reference_timespan_in_secods = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reference_timespan_in_seconds"]
         self._anomalies_check_interval = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.anomalies_check_interval"]
-        self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"]
+        self._reported_anomalies_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reported_anomalies_topic"]
         self._alerter_url = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.protocol"] + "://" + config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"] + ":" + str(config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]) + "/smart-onion/alerter/report_alert"
         self._anomaly_detector_proto = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-protocol"]
         self._anomaly_detector_host = config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.published-listening-host"]
@@ -298,8 +298,7 @@ class AnomalyDetector:
             return R
 
     def metrics_collector(self):
-        if DEBUG:
-            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "DEBUG", str(None), str(None), str(None), str(None), "Kafka consumer thread loaded. This thread will subscribe to the " + str(self._metrics_kafka_topic) + " topic on Kafka and will assign the various sampling tasks to the various polling threads"))
+        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "INFO", str(None), str(None), str(None), str(None), "Kafka consumer thread loaded. This thread will subscribe to the " + str(self._metrics_kafka_topic) + " topic on Kafka and will assign the various sampling tasks to the various polling threads"))
 
         kafka_consumer = None
         while kafka_consumer is None:
@@ -308,8 +307,7 @@ class AnomalyDetector:
                                                      bootstrap_servers=self._kafka_server,
                                                      client_id=self._kafka_client_id)
             except Exception as ex:
-                if DEBUG:
-                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "DEBUG", str(None), str(None), str(ex), type(ex).__name__, "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "metrics_collector", "INFO", str(None), str(None), str(ex), type(ex).__name__, "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
 
         for metric_record in kafka_consumer:

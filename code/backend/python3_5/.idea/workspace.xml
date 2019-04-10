@@ -8,9 +8,8 @@
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/timer_service/timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/timer_service/timer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../resources/test-scripts/so-clean_all.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/test-scripts/so-clean_all.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +19,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/metrics_collector/metrics_collector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
@@ -37,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1881">
-              <caret line="115" column="95" selection-start-line="115" selection-start-column="95" selection-end-line="115" selection-end-column="95" />
+            <state relative-caret-position="-143">
+              <caret line="107" column="154" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="154" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
               </folding>
@@ -123,9 +122,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/services/tinyurl/tinyurl.py" />
-        <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
         <option value="$PROJECT_DIR$/services/timer_service/timer.py" />
         <option value="$PROJECT_DIR$/services/metrics_collector/metrics_collector.py" />
+        <option value="$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py" />
       </list>
     </option>
   </component>
@@ -293,8 +292,8 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.18530701" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1491228" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.18530701" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.1491228" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
@@ -305,7 +304,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Debug" order="3" visible="true" weight="0.22115384" />
+      <window_info anchor="right" id="Debug" order="3" weight="0.22115384" />
     </layout>
   </component>
   <component name="XDebuggerManager">
@@ -428,16 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1881">
-          <caret line="115" column="95" selection-start-line="115" selection-start-column="95" selection-end-line="115" selection-end-column="95" />
-          <folding>
-            <element signature="e#922#936#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/tinyurl/tinyurl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
@@ -476,6 +465,16 @@
             <element signature="e#82459#83679#0" />
             <element signature="e#86482#185856#0" />
             <element signature="e#184559#184568#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="107" column="154" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="154" />
+          <folding>
+            <element signature="e#922#936#0" expanded="true" />
           </folding>
         </state>
       </provider>
