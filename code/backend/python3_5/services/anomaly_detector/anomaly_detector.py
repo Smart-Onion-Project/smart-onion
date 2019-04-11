@@ -162,7 +162,7 @@ class AnomalyDetector:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "anomalies_reports_attempted": self._anomalies_reports_attempted,
+                "anomalies_reports_attempted": self._anomalies_reports_attempted.value,
                 "anomalies_reported": self._anomalies_reported.value,
                 "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
                 "metrics_parsed": self._metrics_parsed.value,
