@@ -5,15 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="smart-onion-metrics_analyzer.py:&#10; - Updated models and calcs paths to the correct location">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Now will use only Kafka as the way to report anomalies&#10; - Added more comments on how to develop the service&#10; - Added dictionaries of metric families (will be used later to encode the anomalies detected)&#10;&#10;configurator.py:&#10; - Added two more regular expressions that will be used to detect which metrics should be processed by which service&#10; &#10;metrics_analyzer.py, anomaly_detector.py, queries.json:&#10; - Changed the metrics name format (to help the alerter find out which anomalies contribute to which attack type.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/configurator/configurator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -478,13 +475,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00152" summary="queries.json:&#10; - Configured all queries that used base64 not to use it anymore.&#10; &#10;detokenize.py:&#10; - Added script for retrieving the actual parameter based on the token">
-      <created>1554122207324</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1554122207324</updated>
-    </task>
     <task id="LOCAL-00153" summary="metrics_collector.py:&#10; - Fixed thread sync issues.">
       <created>1554124233386</created>
       <option name="number" value="00153" />
@@ -821,7 +811,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554976897701</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="alerter.py:&#10; - Now will use only Kafka as the way to report anomalies&#10; - Added more comments on how to develop the service&#10; - Added dictionaries of metric families (will be used later to encode the anomalies detected)&#10;&#10;configurator.py:&#10; - Added two more regular expressions that will be used to detect which metrics should be processed by which service&#10; &#10;metrics_analyzer.py, anomaly_detector.py, queries.json:&#10; - Changed the metrics name format (to help the alerter find out which anomalies contribute to which attack type.">
+      <created>1554988363741</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1554988363741</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TodoView">
@@ -835,6 +832,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18301688" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -896,7 +894,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_collector.py:&#10; - Forgot one font...." />
     <MESSAGE value="metrics_collector.py:&#10; - Missed couple of debug messages.&#10; &#10;anomaly_detector.py:&#10; - Added more info in exceptions to make it easier to debug the service&#10; - Added counter of metrics that were analyzed successfully" />
     <MESSAGE value="anomaly_detector.py:&#10; - Fixed a wrong if (the action if true should be in the case of false)" />
     <MESSAGE value="alerter.py:&#10; - Added more comments on how to develop the service&#10; - Added more information to the log when the service receives a malformed report&#10; &#10;configurator.py:&#10; - Added a logging format that will be used across the system to log information to syslog&#10; &#10;metrics_analyzer.py:&#10; - Using this service as a test case for the logging to syslog with a configured format initiative&#10; - Moved the thresholds for anomaly report to the config&#10; &#10;anomaly_detector.py:&#10; - Switched DEBUG to False to go easy on the disks subsystem&#10; - Moved the thresholds for anomaly report to the config" />
@@ -921,7 +918,8 @@
     <MESSAGE value="anomaly_detector.py:&#10; - Used the wrong kafka topic to pull metrics from." />
     <MESSAGE value="so-stat.sh:&#10; - Added output from the /ping method" />
     <MESSAGE value="smart-onion-metrics_analyzer.py:&#10; - Updated models and calcs paths to the correct location" />
-    <option name="LAST_COMMIT_MESSAGE" value="smart-onion-metrics_analyzer.py:&#10; - Updated models and calcs paths to the correct location" />
+    <MESSAGE value="alerter.py:&#10; - Now will use only Kafka as the way to report anomalies&#10; - Added more comments on how to develop the service&#10; - Added dictionaries of metric families (will be used later to encode the anomalies detected)&#10;&#10;configurator.py:&#10; - Added two more regular expressions that will be used to detect which metrics should be processed by which service&#10; &#10;metrics_analyzer.py, anomaly_detector.py, queries.json:&#10; - Changed the metrics name format (to help the alerter find out which anomalies contribute to which attack type." />
+    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Now will use only Kafka as the way to report anomalies&#10; - Added more comments on how to develop the service&#10; - Added dictionaries of metric families (will be used later to encode the anomalies detected)&#10;&#10;configurator.py:&#10; - Added two more regular expressions that will be used to detect which metrics should be processed by which service&#10; &#10;metrics_analyzer.py, anomaly_detector.py, queries.json:&#10; - Changed the metrics name format (to help the alerter find out which anomalies contribute to which attack type." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

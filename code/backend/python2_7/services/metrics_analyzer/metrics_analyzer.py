@@ -77,7 +77,7 @@ class MetricsRealtimeAnalyzer:
     models_params_base_path = None
     anomaly_likelihood_calculator_filename = "anomaly_likelihood_calculator"
     metrics_prefix = "smart-onion.{{#anomaly_metric}}.metrics_analyzer"
-    statsd_client = statsd.StatsClient(prefix=metrics_prefix)
+    statsd_client = statsd.StatsClient()
 
     def __init__(self, config_copy):
         self._metrics_received = Value('i', 0)

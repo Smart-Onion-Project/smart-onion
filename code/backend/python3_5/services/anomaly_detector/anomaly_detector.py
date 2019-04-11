@@ -92,7 +92,7 @@ class NormalizedDataSet:
 
 class AnomalyDetector:
     def __init__(self, config_copy):
-        self._statsd_client = statsd.StatsClient(prefix=metrics_prefix)
+        self._statsd_client = statsd.StatsClient()
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
