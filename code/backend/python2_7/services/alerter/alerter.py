@@ -13,6 +13,9 @@ import syslog
 import hashlib
 import time
 from multiprocessing import Value
+import kafka
+import uuid
+import threading
 
 # This service should hold the following models for detecting important anomalies:
 # - A model that will encode a pattern of anomalies reported within a 10 mins time period along with the current date and detect anomalies
@@ -24,6 +27,8 @@ from multiprocessing import Value
 # - A model that will encode a pattern of anomalies reported within a 1 week time period along with the current date and detect anomalies
 # - A model that will encode a pattern of anomalies reported within a 1 week time period along with the current jewish date and detect anomalies
 
+# The pattern of anomalies should encode a number per metric category (lateral movement, penetration, privilege escalation, etc.) that number would be
+# the sum of all the anomalies reported in that specific category.
 
 
 DEBUG = True
@@ -35,10 +40,46 @@ class SmartOnionAlerter:
         self._config_copy = config_copy
         self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._time_loaded = time.time()
+        self._unique_metrics = {
+
+        }
+        self._unique_metrics_length = {}
         self._host = listen_ip
         self._port = listen_port
         self._app = Bottle()
         self._route()
+        self._kafka_client_id = "SmartOnionAlerterService_" + str(uuid.uuid4()) + "_" + str(int(time.time()))
+        self._kafka_server = self._config_copy["smart-onion.config.architecture.internal_services.backend.queue.kafka.bootstrap_servers"]
+        self._metrics_kafka_topic = self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_topic_name"]
+        self._reported_anomalies_kafka_topics = [
+            self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.reported_anomalies_topic"],
+            self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reported_anomalies_topic"]
+        ]
+        self._metrics_to_work_on_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.alerter.metrics_to_work_on_pattern"])
+        self._kafka_metrics_consumer = None
+        self._kafka_alerts_consumer = None
+        while self._kafka_metrics_consumer is None:
+            try:
+                self._kafka_metrics_consumer = kafka.KafkaConsumer(self._metrics_kafka_topic,
+                                                     bootstrap_servers=self._kafka_server,
+                                                     client_id=self._kafka_client_id)
+                if self._reported_anomalies_kafka_topics[0] == self._reported_anomalies_kafka_topics[1]:
+                    self._kafka_alerts_consumer = kafka.KafkaConsumer(topics=self._reported_anomalies_kafka_topics[0],
+                                                     bootstrap_servers=self._kafka_server,
+                                                     client_id=self._kafka_client_id)
+                else:
+                    self._kafka_alerts_consumer = kafka.KafkaConsumer(topics=self._reported_anomalies_kafka_topics,
+                                                     bootstrap_servers=self._kafka_server,
+                                                     client_id=self._kafka_client_id)
+
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "__init__", "INFO", str(None), str(None), str(None), str(None), "Loaded Kafka consumers successfully. (self._metrics_kafka_topic=" + str(self._metrics_kafka_topic) + ";self._reported_anomalies_kafka_topics=" + json.dumps(self._reported_anomalies_kafka_topics) + ";bootstrap_servers=" + str(self._kafka_server) + ";client_id=" + str(self._kafka_client_id) + ")"))
+            except Exception as ex:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "__init__", "INFO", str(None), str(ex), str(type(ex).__name__), str(None), "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
+                time.sleep(10)
+        self._metrics_poller_thread = threading.Thread(target=self._pull_metrics())
+        self._metrics_poller_thread.start()
+        self._anomaly_reports_poller_thread = threading.Thread(target=self._pull_anomaly_reports())
+        self._anomaly_reports_poller_thread.start()
 
     def _route(self):
         self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
@@ -53,7 +94,10 @@ class SmartOnionAlerter:
             "response": "PONG",
             "file": __file__,
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
-            "uptime": time.time() - self._time_loaded
+            "uptime": time.time() - self._time_loaded,
+            "service_specific_info": {
+                "unique_metrics_length": json.dumps(self._unique_metrics_length)
+            }
         }
 
     def run(self):
@@ -61,6 +105,34 @@ class SmartOnionAlerter:
             self._app.run(host=self._host, port=self._port)
         else:
             self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
+
+    def _pull_anomaly_reports(self):
+        for anomaly_report_record in self._kafka_alerts_consumer:
+            try:
+                report_obj = json.loads(anomaly_report_record.value.decode())
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "INFO", str(None), str(None), str(None), str(None), "Received anomaly report from " + report_obj["reporter"] + ". Report contents is " + json.dumps(report_obj)))
+            except:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "WARN", str(None), str(None), str(None), str(None), "Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(anomaly_report_record.value).encode('utf-8')).decode('utf-8')))
+
+    def _pull_metrics(self):
+        for metric in self._kafka_metrics_consumer:
+            metric_name = metric.value
+            if metric.value is None or metric.value.strip() == "" or len(metric.value.split(" ")) != 3:
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Received this malformed metric. Ignoring"))
+                continue
+
+            metric_name = metric.value.split(" ")[0]
+            if re.match(self._metrics_to_work_on_pattern, str(metric_name)):
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._metrics_to_work_on_pattern.pattern))
+
+                metric_name_parts = metric_name.split(".")
+
+            else:
+                if DEBUG:
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._metrics_to_work_on_pattern.pattern))
+
 
     def report_alert(self):
         #This method should expect to receive a JSON (as an argument in the POST vars) with all the details of the metrics that triggered this alert

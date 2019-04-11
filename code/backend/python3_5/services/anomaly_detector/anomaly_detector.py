@@ -96,6 +96,7 @@ class AnomalyDetector:
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
+        self._anomalies_reports_attempted = Value('i', 0)
         self._anomalies_reported = Value('i', 0)
         self._metrics_parsed = Value('i', 0)
         self._metrics_successfully_analyzed = Value('i', 0)
@@ -134,7 +135,7 @@ class AnomalyDetector:
         self._automated_anomaly_detection_thread.start()
 
     def _route(self):
-        self._app.route('/smart-onion/get-anomaly-score/<metric_name>', method="GET", callback=self.get_anomaly_score)
+        # self._app.route('/smart-onion/get-anomaly-score/<metric_name>', method="GET", callback=self.get_anomaly_score)
         self._app.route('/ping', method="GET", callback=self._ping)
 
     def run(self, listen_ip, listen_port):
@@ -161,6 +162,7 @@ class AnomalyDetector:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
+                "anomalies_reports_attempted": self._anomalies_reports_attempted,
                 "anomalies_reported": self._anomalies_reported.value,
                 "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
                 "metrics_parsed": self._metrics_parsed.value,
@@ -171,7 +173,7 @@ class AnomalyDetector:
         }
 
     def report_anomaly(self, metric, anomaly_info):
-        self._anomalies_reported.value += 1
+        self._anomalies_reports_attempted.value += 1
         syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(None), str(None), "The following anomaly reported regarding metric " + str(metric) + ": " + json.dumps(anomaly_info)))
 
         anomaly_report = {
@@ -180,16 +182,18 @@ class AnomalyDetector:
             "reporter": "anomaly_detector",
             "meta_data": anomaly_info
         }
-        try:
-            res = urllib_req.urlopen(url=self._alerter_url, data=anomaly_report, context={'Content-Type': 'application/json'}).read().decode('utf-8')
-            if res is None:
-                res = "None"
-        except Exception as ex:
-            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to the aforementioned exception. Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report)))
+        # Disabled direct connection to the alerter service
+        # try:
+        #     res = urllib_req.urlopen(url=self._alerter_url, data=anomaly_report, context={'Content-Type': 'application/json'}).read().decode('utf-8')
+        #     if res is None:
+        #         res = "None"
+        # except Exception as ex:
+        #     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to the aforementioned exception. Will still try to report the following anomaly to Kafka: " + json.dumps(anomaly_report)))
 
         try:
             self._kafka_producer.send(topic=self._reported_anomalies_kafka_topic, value=json.dumps(anomaly_report).encode('utf-8'))
             syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "INFO", str(None), str(metric), str(None), str(None), "Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report)))
+            self._anomalies_reported.value += 1
         except Exception as ex:
             syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "anomaly_detector", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to Kafka due to the aforementioned exception. These are the anomaly details: " + json.dumps(anomaly_report)))
 
