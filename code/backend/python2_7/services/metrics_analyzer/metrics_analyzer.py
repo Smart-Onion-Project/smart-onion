@@ -76,13 +76,15 @@ class MetricsRealtimeAnalyzer:
     models_save_base_path = None
     models_params_base_path = None
     anomaly_likelihood_calculator_filename = "anomaly_likelihood_calculator"
-    metrics_prefix = "smart-onion.anomaly_score.metrics_analyzer"
+    metrics_prefix = "smart-onion.{{#anomaly_metric}}.metrics_analyzer"
     statsd_client = statsd.StatsClient(prefix=metrics_prefix)
 
     def __init__(self, config_copy):
         self._metrics_received = Value('i', 0)
         self._metrics_successfully_processed = Value('i', 0)
         self._raw_metrics_downloaded_from_kafka = Value('i', 0)
+        self._anomalies_reported = Value('i', 0)
+        self._anomalies_reports_attempted = Value('i', 0)
         self._time_loaded = time.time()
         self._app = Bottle()
         self._route()
@@ -117,6 +119,8 @@ class MetricsRealtimeAnalyzer:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
+                "anomalies_reports_attempted": self._anomalies_reports_attempted,
+                "anomalies_reported": self._anomalies_reported.value,
                 "metrics_received": self._metrics_received.value,
                 "metrics_successfully_processed": self._metrics_successfully_processed.value,
                 "raw_metrics_downloaded_from_kafka": self._raw_metrics_downloaded_from_kafka.value,
@@ -126,24 +130,27 @@ class MetricsRealtimeAnalyzer:
         }
 
     def report_anomaly(self, metric, anomaly_info):
+        self._anomalies_reports_attempted.value += 1
         anomaly_report = {
             "report_id": str(uuid.uuid4()),
             "metric": metric,
             "reporter": "metrics_analyzer",
             "meta_data": anomaly_info
         }
-        try:
-            res = urllib.urlopen(url=self.alerter_url, data=json.dumps(anomaly_report), context={'Content-Type': 'application/json'})
-            if res is None:
-                res = "None"
-            if res is not None and res.getcode() != 200:
-                raise Exception("The result status (" + res.getcode() + ") is not expected after reporting an anomaly. The result status should be 200.")
-        except Exception as ex:
-            syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to an exception"))
+        # Disabled direct connection to the alerter service
+        # try:
+        #     res = urllib.urlopen(url=self.alerter_url, data=json.dumps(anomaly_report), context={'Content-Type': 'application/json'})
+        #     if res is None:
+        #         res = "None"
+        #     if res is not None and res.getcode() != 200:
+        #         raise Exception("The result status (" + res.getcode() + ") is not expected after reporting an anomaly. The result status should be 200.")
+        # except Exception as ex:
+        #     syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to the alerter service directly due to an exception"))
 
         try:
             self._kafka_producer.send(topic=self._reported_anomalies_kafka_topic, value=json.dumps(anomaly_report).encode('utf-8'))
             syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "INFO", str(None), str(metric), str(None), str(None), "Reported the following anomaly to the alerter service and to kafka: " + json.dumps(anomaly_report)))
+            self._anomalies_reported.value += 1
 
         except Exception as ex:
             syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "report_anomaly", "WARN", str(None), str(metric), str(ex), type(ex).__name__, "Failed to report the following anomaly to Kafka due to an exception. These are the anomaly details: " + json.dumps(anomaly_report)))
@@ -386,9 +393,9 @@ class MetricsRealtimeAnalyzer:
                         anomaly_direction = -1
     
                 try:
-                    self.statsd_client.gauge(self.metrics_prefix + ".anomaly_score." + metric["metric_name"], anomalyScore)
-                    self.statsd_client.gauge(self.metrics_prefix + ".anomaly_likelihood." + metric["metric_name"], anomalyLikelihood)
-                    self.statsd_client.gauge(self.metrics_prefix + ".anomaly_direction." + metric["metric_name"], anomaly_direction)
+                    self.statsd_client.gauge(self.metrics_prefix.replace("{{#anomaly_metric}}", "anomaly_score") + "." + metric["metric_name"], anomalyScore)
+                    self.statsd_client.gauge(self.metrics_prefix.replace("{{#anomaly_metric}}", "anomaly_likelihood") + "." + metric["metric_name"], anomalyLikelihood)
+                    self.statsd_client.gauge(self.metrics_prefix.replace("{{#anomaly_metric}}", "anomaly_direction") + "." + metric["metric_name"], anomaly_direction)
                 except Exception as ex:
                     syslog.syslog(self._logging_format % (datetime.now().isoformat(), "metrics_analyzer", "anomaly_detector", "WARN", str(None), str(metric["metric_name"]), str(ex), str(type(ex).__name__), "Failed to report anomaly to statsd  (Value: " + str(metric["metric_value"]) + ", Anomaly score: " + str(anomalyScore) + ", Prediction: " + str(prediction) + ", AnomalyLikelihood: " + str(anomalyLikelihood) + ", AnomalyReported: " + str(anomaly_reported) + ")"))
 

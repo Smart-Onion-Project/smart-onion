@@ -864,7 +864,7 @@
     "type": "COMMENT"
   },
   "source_hosts_per_server": {
-    "metric_name": "smart-onion.metrics.weird_behaviour.source_hosts_per_server.{{#arg1}}",
+    "metric_name": "weird_behaviour.source_hosts_per_server.{{#arg1}}",
     "tags": "peak:denial_of_service,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
@@ -875,7 +875,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_ssh": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -896,7 +896,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_qry": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_qry.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_qry.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -907,7 +907,7 @@
     "interval_sec": 300
   },
   "number_of_internal_servers_ips_connected_to_sites_signed_by_issuer": {
-    "metric_name": "smart-onion.metrics.phishing.number_of_internal_servers_ips_connected_to_sites_signed_by_issuer.{{#arg1}}",
+    "metric_name": "phishing.number_of_internal_servers_ips_connected_to_sites_signed_by_issuer.{{#arg1}}",
     "tags": "both:system_health",
     "time_range": 86400,
     "base_64_used": false,
@@ -918,7 +918,7 @@
     "interval_sec": 300
   },
   "number_of_external_ips_connections_via_port": {
-    "metric_name": "smart-onion.metrics.weird_behaviour.number_of_external_ips_connections_via_port.{{#arg1}}",
+    "metric_name": "weird_behaviour.number_of_external_ips_connections_via_port.{{#arg1}}",
     "tags": "peak:denial_of_service,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
@@ -928,7 +928,7 @@
     "interval_sec": 300
   },
   "ports_used_to_host": {
-    "metric_name": "smart-onion.metrics.reconnaissance.ports_attempted_to_pub_ip.{{#arg1}}",
+    "metric_name": "reconnaissance.ports_attempted_to_pub_ip.{{#arg1}}",
     "tags": "dip:traffic_hijacking,dip:service_offline_or_becoming_unused,peak:denial_of_service",
     "time_range": 86400,
     "base_64_used": false,
@@ -939,7 +939,7 @@
     "interval_sec": 300
   },
   "number_of_web_connections_to_ip": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_internal_ips_connected_to_ext_ip.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_internal_ips_connected_to_ext_ip.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -949,7 +949,7 @@
     "interval_sec": 300
   },
   "number_of_connections_from_servers_to_ext_ip": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connected_to_ext_ip.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connected_to_ext_ip.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 3600,
     "base_64_used": false,
@@ -959,7 +959,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_ldap": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ldap.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ldap.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:privilege_escalation,peak:brute_force,peak:dictionary_attack,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -979,7 +979,7 @@
     "interval_sec": 300
   },
   "number_of_servers_ips_connected_to_sites_signed_by_cert_cn": {
-    "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
+    "metric_name": "phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
     "tags": "both:system_health",
     "time_range": 86400,
     "base_64_used": false,
@@ -990,7 +990,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_tld_subdomain": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_tld_subdomain.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_tld_subdomain.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1001,7 +1001,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_ssh": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1021,7 +1021,7 @@
     "interval_sec": 300
   },
   "org_source_workstations_per_org_http_verb": {
-    "metric_name": "smart-onion.metrics.command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
+    "metric_name": "command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
     "tags": "peak:denial_of_service,dip:service_offline_or_becoming_unused",
     "time_range": 86400,
     "base_64_used": false,
@@ -1032,7 +1032,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_ldap": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ldap.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ldap.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:privilege_escalation,peak:brute_force,peak:dictionary_attack,peak:penetration,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1042,7 +1042,7 @@
     "interval_sec": 300
   },
   "number_of_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1052,7 +1052,7 @@
     "interval_sec": 300
   },
   "number_of_get_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.GET",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.GET",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1062,7 +1062,7 @@
     "interval_sec": 300
   },
   "number_of_post_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.POST",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.POST",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1072,7 +1072,7 @@
     "interval_sec": 300
   },
   "number_of_put_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.PUT",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.PUT",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1082,7 +1082,7 @@
     "interval_sec": 300
   },
   "number_of_patch_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.PATCH",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.PATCH",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1092,7 +1092,7 @@
     "interval_sec": 300
   },
   "number_of_delete_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.DELETE",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.DELETE",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1102,7 +1102,7 @@
     "interval_sec": 300
   },
   "number_of_options_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.OPTIONS",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.OPTIONS",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1112,7 +1112,7 @@
     "interval_sec": 300
   },
   "number_of_get_requests_per_verb_per_url": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.GET",
+    "metric_name": "reconnaissance.requests_per_uri_per_verb.{{#arg1}}.GET",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1122,7 +1122,7 @@
     "interval_sec": 300
   },
   "number_of_post_requests_per_verb_per_url": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.POST",
+    "metric_name": "reconnaissance.requests_per_uri_per_verb.{{#arg1}}.POST",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1132,7 +1132,7 @@
     "interval_sec": 300
   },
   "number_of_put_requests_per_verb_per_url": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.PUT",
+    "metric_name": "reconnaissance.requests_per_uri_per_verb.{{#arg1}}.PUT",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1142,7 +1142,7 @@
     "interval_sec": 300
   },
   "number_of_patch_requests_per_verb_per_url": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.PATCH",
+    "metric_name": "reconnaissance.requests_per_uri_per_verb.{{#arg1}}.PATCH",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1152,7 +1152,7 @@
     "interval_sec": 300
   },
   "number_of_delete_requests_per_verb_per_url": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.DELETE",
+    "metric_name": "reconnaissance.requests_per_uri_per_verb.{{#arg1}}.DELETE",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1162,7 +1162,7 @@
     "interval_sec": 300
   },
   "number_of_options_requests_per_verb_per_url": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_uri_per_verb.{{#arg1}}.OPTIONS",
+    "metric_name": "reconnaissance.requests_per_uri_per_verb.{{#arg1}}.OPTIONS",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1172,7 +1172,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_tld": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_tld.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_tld.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1192,7 +1192,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_pgsql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_pgsql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_pgsql.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1202,7 +1202,7 @@
     "interval_sec": 300
   },
   "number_of_connections_to_workstations_for_workstation": {
-    "metric_name": "smart-onion.metrics.lateral_movement.number_of_connections_to_workstations_for_workstation.{{#arg1}}",
+    "metric_name": "lateral_movement.number_of_connections_to_workstations_for_workstation.{{#arg1}}",
     "tags": "peak:lateral_movement,peak:reconnaissance",
     "time_range": 3600,
     "base_64_used": false,
@@ -1212,7 +1212,7 @@
     "interval_sec": 300
   },
   "org_source_workstations_per_ext_http_verb": {
-    "metric_name": "smart-onion.metrics.command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
+    "metric_name": "command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1223,7 +1223,7 @@
     "interval_sec": 300
   },
   "org_source_servers_per_ext_http_verb": {
-    "metric_name": "smart-onion.metrics.command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
+    "metric_name": "command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1245,7 +1245,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_subdomain": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_subdomain.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_subdomain.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1255,7 +1255,7 @@
     "interval_sec": 300
   },
   "number_of_servers_ips_connected_to_ip_via_web_ports": {
-    "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
+    "metric_name": "phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 86400,
     "base_64_used": false,
@@ -1276,7 +1276,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1296,7 +1296,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_dhcp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_dhcp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_dhcp.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -1306,7 +1306,7 @@
     "interval_sec": 300
   },
   "dns_nxdomain_queries_from_ip": {
-    "metric_name": "smart-onion.metrics.dga.number_of_dns_queries_responded_with_nxdmomain_per_client.{{#arg1}}",
+    "metric_name": "dga.number_of_dns_queries_responded_with_nxdmomain_per_client.{{#arg1}}",
     "tags": "peak:dns_killswitch",
     "time_range": 600,
     "base_64_used": false,
@@ -1316,7 +1316,7 @@
     "interval_sec": 300
   },
   "number_of_internal_workstations_ips_connected_to_sites_signed_by_issuer": {
-    "metric_name": "smart-onion.metrics.phishing.number_of_internal_workstations_ips_connected_to_sites_signed_by_issuer.{{#arg1}}",
+    "metric_name": "phishing.number_of_internal_workstations_ips_connected_to_sites_signed_by_issuer.{{#arg1}}",
     "tags": "both:system_health",
     "time_range": 86400,
     "base_64_used": false,
@@ -1327,7 +1327,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_ips_connected_to_sites_signed_by_cert_cn": {
-    "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
+    "metric_name": "phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
     "tags": "both:system_health",
     "time_range": 86400,
     "base_64_used": false,
@@ -1348,7 +1348,7 @@
     "interval_sec": 300
   },
   "source_hosts_per_udp_dst_port": {
-    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_udp_destination_port.{{#arg1}}",
+    "metric_name": "command_and_control.source_ips_per_udp_destination_port.{{#arg1}}",
     "tags": "peak:command_and_control,peak:traffic_hijacking",
     "time_range": 86400,
     "base_64_used": false,
@@ -1359,7 +1359,7 @@
     "interval_sec": 300
   },
   "source_hosts_per_tcp_dst_port": {
-    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
+    "metric_name": "command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
     "tags": "peak:command_and_control,peak:traffic_hijacking",
     "time_range": 86400,
     "base_64_used": false,
@@ -1370,7 +1370,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_parent_domain": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_parent_domain.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_parent_domain.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1381,7 +1381,7 @@
     "interval_sec": 300
   },
   "ports_used_by_host": {
-    "metric_name": "smart-onion.metrics.reconnaissance.ports_attempted_by_ext_ip.{{#arg1}}",
+    "metric_name": "reconnaissance.ports_attempted_by_ext_ip.{{#arg1}}",
     "tags": "peak:lateral_movement,peak:reconnaissance",
     "time_range": 86400,
     "base_64_used": false,
@@ -1392,7 +1392,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_mssql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_mssql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_mssql.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -1402,7 +1402,7 @@
     "interval_sec": 300
   },
   "dns_tcp_requests": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_tcp_requests_in_10mins",
+    "metric_name": "reconnaissance.dns_tcp_requests_in_10mins",
     "tags": "",
     "time_range": 600,
     "base_64_used": false,
@@ -1412,7 +1412,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_mysql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_mysql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_mysql.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -1433,7 +1433,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_class_name": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_class_name.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_class_name.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1443,7 +1443,7 @@
     "interval_sec": 300
   },
   "source_hosts_per_dst_host_per_tcp_dst_port": {
-    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
+    "metric_name": "command_and_control.source_ips_per_tcp_destination_port.{{#arg1}}",
     "tags": "peak:lateral_movement",
     "time_range": 86400,
     "base_64_used": false,
@@ -1464,7 +1464,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_mysql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_mysql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_mysql.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1505,7 +1505,7 @@
     "interval_sec": 300
   },
   "source_hosts_per_url": {
-    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_url.{{#arg1}}",
+    "metric_name": "command_and_control.source_ips_per_url.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1516,7 +1516,7 @@
     "interval_sec": 300
   },
   "source_hosts_per_vhost": {
-    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_vhost.{{#arg1}}",
+    "metric_name": "command_and_control.source_ips_per_vhost.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1527,7 +1527,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_ftp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ftp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ftp.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -1558,7 +1558,7 @@
     "interval_sec": 300
   },
   "number_of_source_hosts_per_url": {
-    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg2}}.{{#arg1}}.{{#arg3}}.{{#arg4}}",
+    "metric_name": "web_reqs.number_of_web_reqs_per_url.{{#arg2}}.{{#arg1}}.{{#arg3}}.{{#arg4}}",
     "tags": "both:system_health,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
@@ -1580,7 +1580,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_ips_connected_to_ip_via_web_ports": {
-    "metric_name": "smart-onion.metrics.phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
+    "metric_name": "phishing.number_of_internal_ips_connected_to_sites_signed_by_cert_cn.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 86400,
     "base_64_used": false,
@@ -1591,7 +1591,7 @@
     "interval_sec": 300
   },
   "number_of_connections_to_ip": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_internal_ips_connected_to_ext_ip.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_internal_ips_connected_to_ext_ip.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 3600,
     "base_64_used": false,
@@ -1601,7 +1601,7 @@
     "interval_sec": 300
   },
   "destination_hosts_per_url": {
-    "metric_name": "smart-onion.metrics.command_and_control.destination_ips_per_url.{{#arg1}}",
+    "metric_name": "command_and_control.destination_ips_per_url.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1612,7 +1612,7 @@
     "interval_sec": 300
   },
   "destination_hosts_per_vhost": {
-    "metric_name": "smart-onion.metrics.command_and_control.destination_ips_per_vhost.{{#arg1}}",
+    "metric_name": "command_and_control.destination_ips_per_vhost.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1623,7 +1623,7 @@
     "interval_sec": 300
   },
   "number_of_requests_per_url": {
-    "metric_name": "smart-onion.metrics.web_reqs.number_of_web_reqs_per_url.{{#arg2}}.{{#arg1}}.{{#arg3}}.{{#arg4}}",
+    "metric_name": "web_reqs.number_of_web_reqs_per_url.{{#arg2}}.{{#arg1}}.{{#arg3}}.{{#arg4}}",
     "tags": "both:system_health,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
@@ -1633,7 +1633,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_subdomain": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_subdomain.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_subdomain.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1644,7 +1644,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_tld_subdomain": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_tld_subdomain.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_tld_subdomain.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1654,7 +1654,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_tftp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_tftp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_tftp.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1664,7 +1664,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_ftp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ftp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ftp.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1674,7 +1674,7 @@
     "interval_sec": 300
   },
   "dns_queries_to_ip": {
-    "metric_name": "smart-onion.metrics.network.general_health.dns_queries_to_ip.{{#arg1}}",
+    "metric_name": "network.general_health.dns_queries_to_ip.{{#arg1}}",
     "tags": "",
     "time_range": 600,
     "base_64_used": false,
@@ -1684,7 +1684,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_mssql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_mssql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_mssql.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1704,7 +1704,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_qry_flag": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_qry_flag.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_qry_flag.{{#arg1}}",
     "tags": "peak:dns_killswitch",
     "time_range": 86400,
     "base_64_used": false,
@@ -1714,7 +1714,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_pgsql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_pgsql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_pgsql.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -1724,7 +1724,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_parent_domain": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_parent_domain.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_parent_domain.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1734,7 +1734,7 @@
     "interval_sec": 300
   },
   "source_hosts_per_useragent": {
-    "metric_name": "smart-onion.metrics.command_and_control.source_ips_per_useragent.{{#arg1}}",
+    "metric_name": "command_and_control.source_ips_per_useragent.{{#arg1}}",
     "tags": "peak:new_client_app,peak:execution,peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1745,7 +1745,7 @@
     "interval_sec": 300
   },
   "pings_to_pub_ip": {
-    "metric_name": "smart-onion.metrics.reconnaissance.pings_to_pub_ip.{{#arg1}}",
+    "metric_name": "reconnaissance.pings_to_pub_ip.{{#arg1}}",
     "tags": "",
     "time_range": 86400,
     "base_64_used": false,
@@ -1786,7 +1786,7 @@
     "interval_sec": 300
   },
   "dns_tcp_requests_per_source_ip": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_tcp_requests.per_source_ip.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_tcp_requests.per_source_ip.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:dns_zone_transfer",
     "time_range": 600,
     "base_64_used": false,
@@ -1796,7 +1796,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_ldap": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ldap.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ldap.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:privilege_escalation,peak:brute_force,peak:dictionary_attack,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1806,7 +1806,7 @@
     "interval_sec": 300
   },
   "number_of_outbound_connections_to_server_via_tftp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_tftp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_tftp.{{#arg1}}",
     "tags": "peak:reconnaissance,peak:penetration",
     "time_range": 3600,
     "base_64_used": false,
@@ -1816,7 +1816,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_dhcp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_dhcp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_dhcp.{{#arg1}}",
     "tags": "peak:dhcp_starvation,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1826,7 +1826,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_mysql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_mysql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_mysql.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1836,7 +1836,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_ftp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ftp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ftp.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1846,7 +1846,7 @@
     "interval_sec": 300
   },
   "useragents_per_source_host": {
-    "metric_name": "smart-onion.metrics.command_and_control.useragents_per_source_ip.{{#arg1}}",
+    "metric_name": "command_and_control.useragents_per_source_ip.{{#arg1}}",
     "tags": "peak:new_client_app",
     "time_range": 86400,
     "base_64_used": false,
@@ -1857,7 +1857,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_tftp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_tftp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_tftp.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1867,7 +1867,7 @@
     "interval_sec": 300
   },
   "number_of_connections_to_port": {
-    "metric_name": "smart-onion.metrics.weird_behaviour.number_of_connections_to_port.{{#arg1}}",
+    "metric_name": "weird_behaviour.number_of_connections_to_port.{{#arg1}}",
     "tags": "",
     "time_range": 3600,
     "base_64_used": false,
@@ -1887,7 +1887,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_tld": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_tld.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_tld.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1898,7 +1898,7 @@
     "interval_sec": 300
   },
   "destination_hosts_per_useragent": {
-    "metric_name": "smart-onion.metrics.command_and_control.destinaion_ips_per_useragent.{{#arg1}}",
+    "metric_name": "command_and_control.destinaion_ips_per_useragent.{{#arg1}}",
     "tags": "peak:new_client_app,peak:execution,peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1909,7 +1909,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_pgsql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_pgsql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_pgsql.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1919,7 +1919,7 @@
     "interval_sec": 300
   },
   "number_of_queries_per_dns_qry": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_queries_per_dns_qry.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_queries_per_dns_qry.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -1940,7 +1940,7 @@
     "interval_sec": 300
   },
   "number_of_connections_to_workstations_for_server": {
-    "metric_name": "smart-onion.metrics.lateral_movement.number_of_connections_to_workstations_for_server.{{#arg1}}",
+    "metric_name": "lateral_movement.number_of_connections_to_workstations_for_server.{{#arg1}}",
     "tags": "peak:lateral_movement,peak:reconnaissance",
     "time_range": 3600,
     "base_64_used": false,
@@ -1960,7 +1960,7 @@
     "interval_sec": 300
   },
   "number_of_servers_requests_per_verb_per_website": {
-    "metric_name": "smart-onion.metrics.reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
+    "metric_name": "reconnaissance.requests_per_webserver_per_verb.{{#arg1}}.{{#arg2}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:brute_force,peak:denial_of_service,dip:traffic_hijacking,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -1970,7 +1970,7 @@
     "interval_sec": 300
   },
   "number_of_connections_from_workstations_to_ext_ip": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_workstations_connected_to_ext_ip.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_workstations_connected_to_ext_ip.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 3600,
     "base_64_used": false,
@@ -1980,7 +1980,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_qry_flag": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_qry_flag.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_qry_flag.{{#arg1}}",
     "tags": "both:misbehaving_internal_host",
     "time_range": 86400,
     "base_64_used": false,
@@ -2001,7 +2001,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_dhcp": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_dhcp.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_dhcp.{{#arg1}}",
     "tags": "peak:dhcp_starvation,peak:servers_with_dynamic_addresses,peak:denial_of_service",
     "time_range": 3600,
     "base_64_used": false,
@@ -2011,7 +2011,7 @@
     "interval_sec": 300
   },
   "external_source_hosts_per_ext_http_verb": {
-    "metric_name": "smart-onion.metrics.command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
+    "metric_name": "command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
     "tags": "peak:reconnaissance",
     "time_range": 86400,
     "base_64_used": false,
@@ -2022,7 +2022,7 @@
     "interval_sec": 300
   },
   "number_of_servers_connections_to_server_via_ssh": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_ssh.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -2032,7 +2032,7 @@
     "interval_sec": 300
   },
   "number_of_workstations_connections_to_server_via_mssql": {
-    "metric_name": "smart-onion.metrics.command_and_control.number_of_servers_connections_to_server_via_mssql.{{#arg1}}",
+    "metric_name": "command_and_control.number_of_servers_connections_to_server_via_mssql.{{#arg1}}",
     "tags": "peak:brute_force,peak:dictionary_attack,peak:reconnaissance,dip:service_offline_or_becoming_unused",
     "time_range": 3600,
     "base_64_used": false,
@@ -2042,7 +2042,7 @@
     "interval_sec": 300
   },
   "org_source_servers_per_org_http_verb": {
-    "metric_name": "smart-onion.metrics.command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
+    "metric_name": "command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
     "tags": "peak:denial_of_service,dip:service_offline_or_becoming_unused",
     "time_range": 86400,
     "base_64_used": false,
@@ -2053,7 +2053,7 @@
     "interval_sec": 300
   },
   "number_of_clients_per_dns_class_name": {
-    "metric_name": "smart-onion.metrics.reconnaissance.dns_interrogation.number_of_clients_per_dns_class_name.{{#arg1}}",
+    "metric_name": "reconnaissance.dns_interrogation.number_of_clients_per_dns_class_name.{{#arg1}}",
     "tags": "peak:command_and_control",
     "time_range": 86400,
     "base_64_used": false,
@@ -2064,7 +2064,7 @@
     "interval_sec": 300
   },
   "number_of_external_ips_connections_to_host": {
-    "metric_name": "smart-onion.metrics.weird_behaviour.number_of_external_ips_connections_to_host.{{#arg1}}",
+    "metric_name": "weird_behaviour.number_of_external_ips_connections_to_host.{{#arg1}}",
     "tags": "peak:denial_of_service,dip:traffic_hijacking",
     "time_range": 3600,
     "base_64_used": false,
@@ -2074,7 +2074,7 @@
     "interval_sec": 300
   },
   "external_source_hosts_per_org_http_verb": {
-    "metric_name": "smart-onion.metrics.command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
+    "metric_name": "command_and_control.org_source_hosts_per_http_verb.{{#arg1}}",
     "tags": "peak:reconnaissance",
     "time_range": 86400,
     "base_64_used": false,
@@ -2096,7 +2096,7 @@
     "interval_sec": 300
   },
   "dns_nxdomain_queries_to_ip": {
-    "metric_name": "smart-onion.metrics.dga.number_of_dns_queries_responded_with_nxdmomain_per_server.{{#arg1}}",
+    "metric_name": "dga.number_of_dns_queries_responded_with_nxdmomain_per_server.{{#arg1}}",
     "tags": "",
     "time_range": 600,
     "base_64_used": false,
@@ -2133,7 +2133,7 @@
     "type": "COMMENT"
   },
   "highest_similarity_to_any_top_searched_virtual_host": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_searched_virtual_host.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_searched_virtual_host.{{#arg1}}",
     "list_order": "desc",
     "tags": "peak:command_and_control",
     "time_range": 86400,
@@ -2146,7 +2146,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_searched_fqdn": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_searched_fqdn.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_searched_fqdn.{{#arg1}}",
     "list_order": "desc",
     "tags": "",
     "time_range": 86400,
@@ -2159,7 +2159,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_fqdn": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_fqdn.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_fqdn.{{#arg1}}",
     "list_order": "desc",
     "tags": "peak:phishing",
     "time_range": 86400,
@@ -2172,7 +2172,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_subdomain": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_subdomain.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_subdomain.{{#arg1}}",
     "list_order": "desc",
     "tags": "peak:phishing",
     "time_range": 86400,
@@ -2185,7 +2185,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_tld_subdomain": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_tld_subdomain.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_tld_subdomain.{{#arg1}}",
     "list_order": "desc",
     "tags": "",
     "time_range": 86400,
@@ -2198,7 +2198,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_parent_domain": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_parent_domain.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_parent_domain.{{#arg1}}",
     "list_order": "desc",
     "tags": "",
     "time_range": 86400,
@@ -2211,7 +2211,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_cert": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_cert.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_cert.{{#arg1}}",
     "list_order": "desc",
     "tags": "peak:command_and_control",
     "time_range": 86400,
@@ -2224,7 +2224,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_searched_uri": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_url.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_url.{{#arg1}}",
     "list_order": "desc",
     "tags": "peak:phishing",
     "time_range": 86400,
@@ -2237,7 +2237,7 @@
     "interval_sec": 300
   },
   "highest_similarity_to_any_top_accessed_tld": {
-    "metric_name": "smart-onion.metrics.phishing.highest_similarity_to_any_top_tld.{{#arg1}}",
+    "metric_name": "phishing.highest_similarity_to_any_top_tld.{{#arg1}}",
     "list_order": "desc",
     "tags": "peak:phishing",
     "time_range": 86400,
