@@ -82,7 +82,7 @@ class SmartOnionAlerter:
         self._anomaly_reports_poller_thread.start()
 
     def _route(self):
-        self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
+        # self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
         self._app.route('/ping', method="GET", callback=self._ping)
 
     def _file_as_bytes(self, filename):

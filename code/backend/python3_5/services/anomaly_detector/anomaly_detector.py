@@ -135,7 +135,7 @@ class AnomalyDetector:
         self._automated_anomaly_detection_thread.start()
 
     def _route(self):
-        # self._app.route('/smart-onion/get-anomaly-score/<metric_name>', method="GET", callback=self.get_anomaly_score)
+        self._app.route('/smart-onion/get-anomaly-score/<metric_name>', method="GET", callback=self.get_anomaly_score)
         self._app.route('/ping', method="GET", callback=self._ping)
 
     def run(self, listen_ip, listen_port):
