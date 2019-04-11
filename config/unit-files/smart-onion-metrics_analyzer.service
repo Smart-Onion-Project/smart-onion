@@ -6,7 +6,7 @@ After=smart-onion-configurator.service kafka-server.service smart-onion-alerter.
 Type=simple
 User=smartonion_services
 Group=smartonion_services
-ExecStart=/opt/smart-onion/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py --models-save-base-path=/metrics/nupic/models/ --models-params-base-path=/metrics/nupic/model_params/ --anomaly_likelihood_detectors_save_base_path=/metrics/nupic/anomaly_likelihood_calcs/
+ExecStart=/opt/smart-onion/code/backend/python2_7/services/metrics_analyzer/metrics_analyzer.py --models-save-base-path=/data/models/models/ --models-params-base-path=/data/models/model_params/ --anomaly_likelihood_detectors_save_base_path=/data/models/anomaly_likelihood_calcs/
 
 [Install]
 WantedBy=multi-user.target
