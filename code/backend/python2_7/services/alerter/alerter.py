@@ -155,8 +155,9 @@ class SmartOnionAlerter:
                         self._unique_metrics[".".join(metric_name_parts[0:9])] = [metric_name]
                         self._unique_metrics_length[".".join(metric_name_parts[0:9])] = 1
                     else:
-                        self._unique_metrics[".".join(metric_name_parts[0:9])].append(metric_name)
-                        self._unique_metrics_length[".".join(metric_name_parts[0:9])] += 1
+                        if not metric_name in self._unique_metrics[".".join(metric_name_parts[0:9])]:
+                            self._unique_metrics[".".join(metric_name_parts[0:9])].append(metric_name)
+                            self._unique_metrics_length[".".join(metric_name_parts[0:9])] += 1
             else:
                 if DEBUG:
                     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._metrics_to_work_on_pattern.pattern))
