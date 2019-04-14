@@ -155,7 +155,7 @@ class SmartOnionAlerter:
                         self._unique_metrics[".".join(metric_name_parts[0:9])] = [metric_name]
                         self._unique_metrics_length[".".join(metric_name_parts[0:9])] = 1
                     else:
-                        if not metric_name in self._unique_metrics[".".join(metric_name_parts[0:9])]:
+                        if metric_name not in self._unique_metrics[".".join(metric_name_parts[0:9])]:
                             self._unique_metrics[".".join(metric_name_parts[0:9])].append(metric_name)
                             self._unique_metrics_length[".".join(metric_name_parts[0:9])] += 1
             else:
