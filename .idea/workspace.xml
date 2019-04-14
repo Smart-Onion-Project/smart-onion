@@ -5,7 +5,8 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Added flag for the single/multi threading issue.&#10; - Added new type of ping that will list all details of metrics detected. Will affect how they're encoded later...">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Added more logs to help find out why the service is not listening...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
@@ -37,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="537">
-              <caret line="194" column="35" lean-forward="true" selection-start-line="194" selection-start-column="35" selection-end-line="194" selection-end-column="35" />
+              <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -54,8 +55,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8167">
-              <caret line="2239" column="60" selection-start-line="2239" selection-start-column="60" selection-end-line="2239" selection-end-column="60" />
+            <state relative-caret-position="168">
+              <caret line="1818" column="46" lean-forward="true" selection-start-line="1818" selection-start-column="46" selection-end-line="1818" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -473,27 +474,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00157" summary="queries.json:&#10; - Whooopsie... (-:">
-      <created>1554130337591</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1554130337591</updated>
-    </task>
-    <task id="LOCAL-00158" summary="metrics_collector.py:&#10; - Rewrote the Utils().GenerateLldFromElasticAggrRes() method in different approach (iterative and not recursive) to support the usage with Gunicorn and to simplify the code and improve performance (it used to create a Zabbix LLD and then convert it again to contain the URLs, now it does everything at once)">
-      <created>1554193543223</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1554193543223</updated>
-    </task>
-    <task id="LOCAL-00159" summary="metrics_collector.py:&#10; - Removed commented out code of the old GenerateLLD&#10; - Changed the code to use UTC when setting ranges and alike in Elasticsearch queries">
-      <created>1554196901692</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1554196901692</updated>
-    </task>
     <task id="LOCAL-00160" summary="alerter.py, configurator.py:&#10; - Added preparation for usage of Gunicorn and some service specific info in /ping methods&#10;&#10;metrics_analyzer.py, metrics_collector.py, timer.py:&#10; - Added code for synchronizing the service specific info between all the worker threads to make /ping results more accurate&#10; &#10;anomaly_detector.py:&#10; - Preparing for metrics discovery by collecting a list of unique metric names directly from Kafka. (to minimize latency and IOPS involved in filesystem enumeration)">
       <created>1554208980329</created>
       <option name="number" value="00160" />
@@ -816,7 +796,28 @@
       <option name="project" value="LOCAL" />
       <updated>1555238038889</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="alerter.py:&#10; - Added more logs to help find out why the service is not listening...">
+      <created>1555239007230</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1555239007230</updated>
+    </task>
+    <task id="LOCAL-00207" summary="alerter.py:&#10; - Added more logs to help find out why the service is not listening...">
+      <created>1555239104760</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1555239104760</updated>
+    </task>
+    <task id="LOCAL-00208" summary="alerter.py:&#10; - Added more logs to help find out why the service is not listening...">
+      <created>1555239284906</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1555239284906</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="TodoView">
@@ -891,7 +892,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_analyzer.py:&#10; - Using different validation of the anomaly report status and sending the report as a string (json.dumps)&#10; &#10;alerter.py, metrics_collector.py, timer.py, tinyurl.py, anomaly_detector.py:&#10; - Switched to syslog logging with a configured format (instead of stdout/journalctl logging)" />
     <MESSAGE value="metrics_analyzer.py:&#10; - Hopefully fixed the problem with the date in the anomaly report.&#10; &#10;anomaly_detector.py:&#10; - Made the format of the anomaly_info similar to the one from the metrics_analyzer&#10; &#10;configurator:&#10; - Added indication that all the logs of all the modules belong to the smart-onion" />
     <MESSAGE value="metrics_analyzer.py, anomaly_detector.py:&#10; - Converting to float every numeric element in the anomaly report" />
     <MESSAGE value="metrics_analyzer.py, anomaly_detector.py:&#10; - Each service is now using different Kafka topic to report anomalies detected by it." />
@@ -916,7 +916,8 @@
     <MESSAGE value="metrics_analyzer.py, anomaly_detector.py:&#10; - Whooopsssiee...." />
     <MESSAGE value="alerter.py, anomaly_detector.py:&#10; - Whooopsssiee...." />
     <MESSAGE value="alerter.py:&#10; - Added flag for the single/multi threading issue.&#10; - Added new type of ping that will list all details of metrics detected. Will affect how they're encoded later..." />
-    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Added flag for the single/multi threading issue.&#10; - Added new type of ping that will list all details of metrics detected. Will affect how they're encoded later..." />
+    <MESSAGE value="alerter.py:&#10; - Added more logs to help find out why the service is not listening..." />
+    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Added more logs to help find out why the service is not listening..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1726,14 +1727,14 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="537">
-          <caret line="194" column="35" lean-forward="true" selection-start-line="194" selection-start-column="35" selection-end-line="194" selection-end-column="35" />
+          <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/queries.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8167">
-          <caret line="2239" column="60" selection-start-line="2239" selection-start-column="60" selection-end-line="2239" selection-end-column="60" />
+        <state relative-caret-position="168">
+          <caret line="1818" column="46" lean-forward="true" selection-start-line="1818" selection-start-column="46" selection-end-line="1818" selection-end-column="46" />
         </state>
       </provider>
     </entry>
