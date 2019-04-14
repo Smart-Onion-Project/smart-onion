@@ -32,7 +32,7 @@ import threading
 
 
 DEBUG = True
-SINGLE_THREADED = False
+SINGLE_THREADED = True
 
 
 class SmartOnionAlerter:
