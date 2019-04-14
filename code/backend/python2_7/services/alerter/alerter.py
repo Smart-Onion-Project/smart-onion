@@ -116,18 +116,23 @@ class SmartOnionAlerter:
         }
 
     def run(self):
-        if SINGLE_THREADED:
-            self._app.run(host=self._host, port=self._port)
-        else:
-            self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
+        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting an HTTP listener on " + str(self._host) + ":" + str(self._port)))
+        try:
+            if SINGLE_THREADED:
+                self._app.run(host=self._host, port=self._port)
+            else:
+                self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
+        except Exception as ex:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "ERROR", str(None), str(None), str(ex), str(type(ex).__name__), str(None), "Failed to start an HTTP listener on " + str(self._host) + ":" + str(self._port)))
+            raise ex
 
     def _pull_anomaly_reports(self):
         for anomaly_report_record in self._kafka_alerts_consumer:
             try:
                 report_obj = json.loads(anomaly_report_record.value.decode())
                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "INFO", str(None), str(None), str(None), str(None), "Received anomaly report from " + report_obj["reporter"] + ". Report contents is " + json.dumps(report_obj)))
-            except:
-                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "WARN", str(None), str(None), str(None), str(None), "Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(anomaly_report_record.value).encode('utf-8')).decode('utf-8')))
+            except Exception as ex:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "WARN", str(None), str(None), str(ex), str(type(ex).__name__), str(None), "Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(anomaly_report_record.value).encode('utf-8')).decode('utf-8')))
 
     def _pull_metrics(self):
         for metric in self._kafka_metrics_consumer:
