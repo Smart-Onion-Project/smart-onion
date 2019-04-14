@@ -58,6 +58,7 @@ class SmartOnionAlerter:
             self._config_copy["smart-onion.config.architecture.internal_services.backend.anomaly-detector.reported_anomalies_topic"]
         ]
         self._metrics_to_work_on_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.alerter.metrics_to_work_on_pattern"])
+        self._metrics_for_anomaly_detectives_to_work_on_pattern = re.compile(self._config_copy["smart-onion.config.architecture.internal_services.backend.metrics-analyzer.metrics_to_work_on_pattern"])
         self._kafka_metrics_consumer = None
         self._kafka_alerts_consumer = None
         while self._kafka_metrics_consumer is None:
@@ -148,24 +149,36 @@ class SmartOnionAlerter:
 
                 metric_name = metric.value.split(" ")[0]
                 if re.match(self._metrics_to_work_on_pattern, str(metric_name)):
-                    if DEBUG:
-                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._metrics_to_work_on_pattern.pattern))
+                    # if DEBUG:
+                    #     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._metrics_to_work_on_pattern.pattern))
+                    pass
 
-                    metric_name_parts = metric_name.split(".")
-                    with self._unique_metrics_lock:
-                        if ".".join(metric_name_parts[0:10]) not in self._unique_metrics.keys():
-                            self._unique_metrics[".".join(metric_name_parts[0:10])] = [metric_name]
-                            self._unique_metrics_length[".".join(metric_name_parts[0:10])] = 1
-                        else:
-                            if metric_name not in self._unique_metrics[".".join(metric_name_parts[0:10])]:
-                                self._unique_metrics[".".join(metric_name_parts[0:10])].append(metric_name)
-                                self._unique_metrics_length[".".join(metric_name_parts[0:10])] += 1
+                elif re.match(self._metrics_for_anomaly_detectives_to_work_on_pattern, str(metric_name)):
+                    metric_name = "stats.gauges.smart-onion.anomaly_score.anomaly_detector." + metric_name
+
                 else:
                     # if DEBUG:
                     #     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._metrics_to_work_on_pattern.pattern))
-                    pass
+                    continue
+
+                metric_name_parts = metric_name.split(".")
+                with self._unique_metrics_lock:
+                    metric_name_including_path_sender_agnostic = ".".join(metric_name_parts[0:10])
+                    metric_name_including_path_sender_agnostic = metric_name_including_path_sender_agnostic.replace(".anomaly_detector.", ".__detecting_service__.")
+                    metric_name_including_path_sender_agnostic = metric_name_including_path_sender_agnostic.replace(".metrics_analyzer.", ".__detecting_service__.")
+                    for detecting_service in ["anomaly_detector", "metrics_analyzer"]:
+                        metric_name_to_use = metric_name.replace(".anomaly_detector.", "." + detecting_service + ".")
+                        metric_name_to_use = metric_name_to_use.replace(".metrics_analyzer.", "." + detecting_service + ".")
+                        if metric_name_including_path_sender_agnostic not in self._unique_metrics.keys():
+                            self._unique_metrics[metric_name_including_path_sender_agnostic] = [metric_name_to_use]
+                            self._unique_metrics_length[metric_name_including_path_sender_agnostic] = 1
+                        else:
+                            if metric_name_to_use not in self._unique_metrics[metric_name_including_path_sender_agnostic]:
+                                self._unique_metrics[metric_name_including_path_sender_agnostic].append(metric_name_to_use)
+                                self._unique_metrics_length[metric_name_including_path_sender_agnostic] += 1
+
             except Exception as ex:
-                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "ERROR", str(None), str(metric_name), str(ex), str(type(ex).__name__), str(None), "Failed to handle a metric from Kafka."))
+                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "ERROR", str(None), str(metric_name), str(ex), str(type(ex).__name__), str(None), "Failed to handle a metric from Kafka."))
 
     def report_alert(self):
         #This method should expect to receive a JSON (as an argument in the POST vars) with all the details of the metrics that triggered this alert
