@@ -5,8 +5,11 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Whooopssiieee">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Trying single threading...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="537">
-              <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
+              <caret line="201" column="35" lean-forward="true" selection-start-line="201" selection-start-column="35" selection-end-line="201" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -49,11 +52,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/queries.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
               <caret line="1818" column="46" lean-forward="true" selection-start-line="1818" selection-start-column="46" selection-end-line="1818" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/unique_metrics_sample.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="3305" column="86" selection-start-line="3305" selection-start-column="86" selection-end-line="3305" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -130,12 +142,12 @@
       <find>number_of_requests_per_url</find>
       <find>number_of_source_hosts_per_url</find>
       <find>INFO: Executing the following query:</find>
-      <find>Count</find>
       <find>top_n_most_rarely_queried_fqdns</find>
       <find>host_behaviour.ids_attacks_for_host</find>
       <find>smart-onion.</find>
       <find>&quot;metric_name&quot;: &quot;smart-onion.</find>
       <find>&quot;metric_name&quot;: &quot;smart-onion.metrics.</find>
+      <find>Count</find>
     </findStrings>
     <replaceStrings>
       <replace>,{$METRIC_COLLECTOR_PORT},</replace>
@@ -197,6 +209,7 @@
         <option value="$PROJECT_DIR$/resources/test-scripts/so-stat.sh" />
         <option value="$PROJECT_DIR$/config/unit-files/smart-onion-metrics_analyzer.service" />
         <option value="$PROJECT_DIR$/config/queries.json" />
+        <option value="$PROJECT_DIR$/resources/unique_metrics_sample.json" />
       </list>
     </option>
   </component>
@@ -282,18 +295,6 @@
               <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
               <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="similarity-test-fonts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smart-onion" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart-onion" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="test-scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -470,20 +471,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
-    </task>
-    <task id="LOCAL-00162" summary="metrics_collector.py:&#10; - There was a bug that prevented the collector from tokenizing arguments in the metric name&#10; - The URLs that were created during discovery were not url-encoded">
-      <created>1554297803701</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1554297803701</updated>
-    </task>
-    <task id="LOCAL-00163" summary="timer.py:&#10; - The /ping result included the raw Value object.">
-      <created>1554298597558</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1554298597558</updated>
     </task>
     <task id="LOCAL-00164" summary="metrics_collector.py:&#10; - Fixed &quot;UnboundLocalError: local variable 'element_token' referenced before assignment&quot; in file &quot;/opt/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py&quot;, line 730, in resolve_query_args_in_metric_name">
       <created>1554300718838</created>
@@ -814,7 +801,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555240269929</updated>
     </task>
-    <option name="localTasksCounter" value="211" />
+    <task id="LOCAL-00211" summary="alerter.py:&#10; - Whooopssiieee">
+      <created>1555240842566</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1555240842566</updated>
+    </task>
+    <task id="LOCAL-00212" summary="alerter.py:&#10; - Trying single threading...">
+      <created>1555241288484</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1555241288484</updated>
+    </task>
+    <option name="localTasksCounter" value="213" />
     <servers />
   </component>
   <component name="TodoView">
@@ -828,13 +829,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18301688" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18301688" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.7979958" visible="true" weight="0.3859649" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7979958" visible="true" weight="0.3618421" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8264768" weight="0.114035085" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8976793" weight="0.038377192" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -843,7 +843,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Python Console" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20200422" side_tool="true" visible="true" weight="0.3859649" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20200422" side_tool="true" visible="true" weight="0.3618421" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -890,7 +890,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metrics_analyzer.py, anomaly_detector.py:&#10; - Each service is now using different Kafka topic to report anomalies detected by it." />
     <MESSAGE value="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it." />
     <MESSAGE value="queries.json:&#10; - Some LLD queries referred to non-existent queries. Fixed&#10; - Some queries required double quotes around the argument. Fixed (at least some...)&#10; &#10;metrics_collector:&#10; - Added conversion to string before quoting or base64ing since that the value is sometimes float/int." />
     <MESSAGE value="timer.py:&#10; - Added the URL of the discovery to the URLs it generated to assist in troubleshooting the service" />
@@ -915,7 +914,8 @@
     <MESSAGE value="alerter.py:&#10; - Added more logs to help find out why the service is not listening..." />
     <MESSAGE value="alerter.py:&#10; - Fixed an issue with the uniqueness of the metrics list..." />
     <MESSAGE value="alerter.py:&#10; - Whooopssiieee" />
-    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Whooopssiieee" />
+    <MESSAGE value="alerter.py:&#10; - Trying single threading..." />
+    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Trying single threading..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1021,7 +1021,6 @@ hashlib.algorithms_available</expression-string>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/code/backend/python3_5/services/anomaly_detector/anomaly_detector-original-script.py" />
     <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1725,7 +1724,7 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="537">
-          <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
+          <caret line="201" column="35" lean-forward="true" selection-start-line="201" selection-start-column="35" selection-end-line="201" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1733,6 +1732,13 @@ hashlib.algorithms_available</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="1818" column="46" lean-forward="true" selection-start-line="1818" selection-start-column="46" selection-end-line="1818" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/unique_metrics_sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="3305" column="86" selection-start-line="3305" selection-start-column="86" selection-end-line="3305" selection-end-column="86" />
         </state>
       </provider>
     </entry>
