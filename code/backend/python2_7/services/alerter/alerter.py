@@ -32,6 +32,7 @@ import threading
 
 
 DEBUG = True
+SINGLE_THREADED = False
 
 
 class SmartOnionAlerter:
@@ -40,6 +41,7 @@ class SmartOnionAlerter:
         self._config_copy = config_copy
         self._logging_format = self._config_copy["smart-onion.config.common.logging_format"]
         self._time_loaded = time.time()
+        self._unique_metrics_lock = threading.Lock()
         self._unique_metrics = {
 
         }
@@ -84,6 +86,7 @@ class SmartOnionAlerter:
     def _route(self):
         # self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
         self._app.route('/ping', method="GET", callback=self._ping)
+        self._app.route('/ping_details', method="GET", callback=self._ping_details)
 
     def _file_as_bytes(self, filename):
         with open(filename, 'rb') as file:
@@ -96,12 +99,24 @@ class SmartOnionAlerter:
             "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
             "uptime": time.time() - self._time_loaded,
             "service_specific_info": {
-                "unique_metrics_length": json.dumps(self._unique_metrics_length)
             }
         }
 
+    def _ping_details(self):
+        with self._unique_metrics_lock:
+            return {
+                "response": "PONG",
+                "file": __file__,
+                "hash": hashlib.md5(self._file_as_bytes(__file__)).hexdigest(),
+                "uptime": time.time() - self._time_loaded,
+                "service_specific_info": {
+                    "unique_metrics_length": self._unique_metrics_length,
+                    "unique_metrics": self._unique_metrics
+                }
+        }
+
     def run(self):
-        if DEBUG:
+        if SINGLE_THREADED:
             self._app.run(host=self._host, port=self._port)
         else:
             self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
@@ -128,7 +143,13 @@ class SmartOnionAlerter:
                     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._metrics_to_work_on_pattern.pattern))
 
                 metric_name_parts = metric_name.split(".")
-
+                with self._unique_metrics_lock:
+                    if ".".join(metric_name_parts[0:9]) not in self._unique_metrics.keys():
+                        self._unique_metrics[".".join(metric_name_parts[0:9])] = [metric_name]
+                        self._unique_metrics_length[".".join(metric_name_parts[0:9])] = 1
+                    else:
+                        self._unique_metrics[".".join(metric_name_parts[0:9])].append(metric_name)
+                        self._unique_metrics_length[".".join(metric_name_parts[0:9])] += 1
             else:
                 if DEBUG:
                     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._metrics_to_work_on_pattern.pattern))
@@ -155,6 +176,9 @@ config_file_default_path = "/etc/smart-onion/"
 settings_file_name = "alerter_settings.json"
 settings_file = os.path.join(config_file_default_path, settings_file_name)
 settings = None
+config_copy = None
+listen_ip = None
+listen_port = 0
 try:
     with open(settings_file, "r") as settings_file_obj:
         settings = json.loads(settings_file_obj.read())
@@ -167,21 +191,22 @@ except:
     configurator_port = 9003
     configurator_proto = "http"
 
-try:
-    # Contact configurator to fetch all of our config and configure listen-ip and port
-    configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
-    configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
-    configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
-    config_copy = json.loads(configurator_response)
-    generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
-    configurator_response = urllib.urlopen(generic_config_url).read().decode('utf-8')
-    config_copy = dict(config_copy, **json.loads(configurator_response))
-    logging_format = config_copy["smart-onion.config.common.logging_format"]
-    listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"]
-    listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]
-except:
-    listen_ip = "127.0.0.1"
-    listen_port = 9004
+while config_copy is None:
+    try:
+        # Contact configurator to fetch all of our config and configure listen-ip and port
+        configurator_base_url = str(configurator_proto).strip() + "://" + str(configurator_host).strip() + ":" + str(configurator_port).strip() + "/smart-onion/configurator/"
+        configurator_final_url = configurator_base_url + "get_config/" + "smart-onion.config.architecture.internal_services.backend.*"
+        configurator_response = urllib.urlopen(configurator_final_url).read().decode('utf-8')
+        config_copy = json.loads(configurator_response)
+        generic_config_url = configurator_base_url + "get_config/" + "smart-onion.config.common.*"
+        configurator_response = urllib.urlopen(generic_config_url).read().decode('utf-8')
+        config_copy = dict(config_copy, **json.loads(configurator_response))
+        logging_format = config_copy["smart-onion.config.common.logging_format"]
+        listen_ip = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-host"]
+        listen_port = config_copy["smart-onion.config.architecture.internal_services.backend.alerter.listening-port"]
+    except Exception as ex:
+        print("WARN: Waiting (indefinetly in 10 sec intervals) for the Configurator service to become available... (Exception: " + str(ex) + ")")
+        time.sleep(10)
 
 if len(sys.argv) > 1:
     for arg in sys.argv:
