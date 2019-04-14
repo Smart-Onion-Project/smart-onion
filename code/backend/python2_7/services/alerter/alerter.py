@@ -79,9 +79,7 @@ class SmartOnionAlerter:
                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "__init__", "INFO", str(None), str(ex), str(type(ex).__name__), str(None), "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
         self._metrics_poller_thread = threading.Thread(target=self._pull_metrics())
-        self._metrics_poller_thread.start()
         self._anomaly_reports_poller_thread = threading.Thread(target=self._pull_anomaly_reports())
-        self._anomaly_reports_poller_thread.start()
 
     def _route(self):
         # self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
@@ -116,8 +114,12 @@ class SmartOnionAlerter:
         }
 
     def run(self):
-        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting an HTTP listener on " + str(self._host) + ":" + str(self._port)))
         try:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting the metrics poller thread"))
+            self._metrics_poller_thread.start()
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting the anomalies poller thread"))
+            self._anomaly_reports_poller_thread.start()
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting an HTTP listener on " + str(self._host) + ":" + str(self._port)))
             if SINGLE_THREADED:
                 self._app.run(host=self._host, port=self._port)
             else:
