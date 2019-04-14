@@ -79,9 +79,7 @@ class SmartOnionAlerter:
                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "__init__", "INFO", str(None), str(ex), str(type(ex).__name__), str(None), "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
         self._metrics_poller_thread = threading.Thread(target=self._pull_metrics())
-        self._metrics_poller_thread.start()
         self._anomaly_reports_poller_thread = threading.Thread(target=self._pull_anomaly_reports())
-        self._anomaly_reports_poller_thread.start()
 
     def _route(self):
         # self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
@@ -116,18 +114,27 @@ class SmartOnionAlerter:
         }
 
     def run(self):
-        if SINGLE_THREADED:
-            self._app.run(host=self._host, port=self._port)
-        else:
-            self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
+        try:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting the metrics poller thread"))
+            self._metrics_poller_thread.start()
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting the anomalies poller thread"))
+            self._anomaly_reports_poller_thread.start()
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "INFO", str(None), str(None), str(None), str(None), "Starting an HTTP listener on " + str(self._host) + ":" + str(self._port)))
+            if SINGLE_THREADED:
+                self._app.run(host=self._host, port=self._port)
+            else:
+                self._app.run(host=self._host, port=self._port, server="gunicorn", workers=32)
+        except Exception as ex:
+            syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "ERROR", str(None), str(None), str(ex), str(type(ex).__name__), str(None), "Failed to start an HTTP listener on " + str(self._host) + ":" + str(self._port)))
+            raise ex
 
     def _pull_anomaly_reports(self):
         for anomaly_report_record in self._kafka_alerts_consumer:
             try:
                 report_obj = json.loads(anomaly_report_record.value.decode())
                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "INFO", str(None), str(None), str(None), str(None), "Received anomaly report from " + report_obj["reporter"] + ". Report contents is " + json.dumps(report_obj)))
-            except:
-                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "WARN", str(None), str(None), str(None), str(None), "Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(anomaly_report_record.value).encode('utf-8')).decode('utf-8')))
+            except Exception as ex:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_anomaly_reports", "WARN", str(None), str(None), str(ex), str(type(ex).__name__), str(None), "Received an anomaly report that was not structured properly. Cannot process it. DISCARDING. Raw content is: " + base64.b64encode(str(anomaly_report_record.value).encode('utf-8')).decode('utf-8')))
 
     def _pull_metrics(self):
         for metric in self._kafka_metrics_consumer:
