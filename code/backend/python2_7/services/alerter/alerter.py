@@ -78,8 +78,8 @@ class SmartOnionAlerter:
             except Exception as ex:
                 syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "__init__", "INFO", str(None), str(ex), str(type(ex).__name__), str(None), "Waiting on a dedicated thread for the Kafka server to be available... Going to sleep for 10 seconds"))
                 time.sleep(10)
-        self._metrics_poller_thread = threading.Thread(target=self._pull_metrics())
-        self._anomaly_reports_poller_thread = threading.Thread(target=self._pull_anomaly_reports())
+        self._metrics_poller_thread = threading.Thread(target=self._pull_metrics)
+        self._anomaly_reports_poller_thread = threading.Thread(target=self._pull_anomaly_reports)
 
     def _route(self):
         # self._app.route('/smart-onion/alerter/report_alert', method="POST", callback=self.report_alert)
