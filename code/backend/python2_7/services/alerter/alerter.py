@@ -138,30 +138,34 @@ class SmartOnionAlerter:
 
     def _pull_metrics(self):
         for metric in self._kafka_metrics_consumer:
-            metric_name = metric.value
-            if metric.value is None or metric.value.strip() == "" or len(metric.value.split(" ")) != 3:
-                if DEBUG:
-                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Received this malformed metric. Ignoring"))
-                continue
+            metric_name = None
+            try:
+                metric_name = metric.value
+                if metric.value is None or metric.value.strip() == "" or len(metric.value.split(" ")) != 3:
+                    if DEBUG:
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Received this malformed metric. Ignoring"))
+                    continue
 
-            metric_name = metric.value.split(" ")[0]
-            if re.match(self._metrics_to_work_on_pattern, str(metric_name)):
-                if DEBUG:
-                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._metrics_to_work_on_pattern.pattern))
+                metric_name = metric.value.split(" ")[0]
+                if re.match(self._metrics_to_work_on_pattern, str(metric_name)):
+                    if DEBUG:
+                        syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Handling this metric since it matches the regex " + self._metrics_to_work_on_pattern.pattern))
 
-                metric_name_parts = metric_name.split(".")
-                with self._unique_metrics_lock:
-                    if ".".join(metric_name_parts[0:9]) not in self._unique_metrics.keys():
-                        self._unique_metrics[".".join(metric_name_parts[0:9])] = [metric_name]
-                        self._unique_metrics_length[".".join(metric_name_parts[0:9])] = 1
-                    else:
-                        if metric_name not in self._unique_metrics[".".join(metric_name_parts[0:9])]:
-                            self._unique_metrics[".".join(metric_name_parts[0:9])].append(metric_name)
-                            self._unique_metrics_length[".".join(metric_name_parts[0:9])] += 1
-            else:
-                if DEBUG:
-                    syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._metrics_to_work_on_pattern.pattern))
-
+                    metric_name_parts = metric_name.split(".")
+                    with self._unique_metrics_lock:
+                        if ".".join(metric_name_parts[0:9]) not in self._unique_metrics.keys():
+                            self._unique_metrics[".".join(metric_name_parts[0:9])] = [metric_name]
+                            self._unique_metrics_length[".".join(metric_name_parts[0:9])] = 1
+                        else:
+                            if metric_name not in self._unique_metrics[".".join(metric_name_parts[0:9])]:
+                                self._unique_metrics[".".join(metric_name_parts[0:9])].append(metric_name)
+                                self._unique_metrics_length[".".join(metric_name_parts[0:9])] += 1
+                else:
+                    # if DEBUG:
+                    #     syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "pull_metrics", "DEBUG", str(None), str(metric_name), str(None), str(None), "Ignoring this metric since it DOES NOT match the regex " + self._metrics_to_work_on_pattern.pattern))
+                    pass
+            except Exception as ex:
+                syslog.syslog(self._logging_format % (datetime.datetime.now().isoformat(), "alerter", "run", "ERROR", str(None), str(metric_name), str(ex), str(type(ex).__name__), str(None), "Failed to handle a metric from Kafka."))
 
     def report_alert(self):
         #This method should expect to receive a JSON (as an argument in the POST vars) with all the details of the metrics that triggered this alert
