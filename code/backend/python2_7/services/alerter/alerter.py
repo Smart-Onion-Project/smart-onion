@@ -27,9 +27,20 @@ import threading
 # - A model that will encode a pattern of anomalies reported within a 1 week time period along with the current date and detect anomalies
 # - A model that will encode a pattern of anomalies reported within a 1 week time period along with the current jewish date and detect anomalies
 
-# The pattern of anomalies should encode a number per metric category (lateral movement, penetration, privilege escalation, etc.) that number would be
-# the sum of all the anomalies reported in that specific category.
 
+# Encoding single anomaly metric (class AnomalyMetricValueEncoder(Encoder))
+# - BoundedScalarEncoder - anomaly_score
+# - CategoryEncoder - anomaly_direction
+# - SmartOnionAnomalyCategoryEncoder - Should encode the metric family (e.g. stats.gauges.smart-onion.anomaly_direction.__detecting_service__.stats.gauges.smart-onion.command_and_control.number_of_servers_connections_to_server_via_ldap)
+#                                      in such a way that it would overlap a lot with metrics that may indicate similar issues (e.g. some metrics can indicate both dga attempt and
+#                                      command-and-control attempt)
+
+# Encoding an anomaly pattern (class AnomalyPatternEncoder(Encoder))
+# - DateEncoder/HebDateEncoder - pattern_start_timestamp
+# - DateEncoder/HebDateEncoder - pattern_end_timestamp
+# - AnomalyMetricValueEncoder[] - anomaly_scores_recorded
+
+# Use this document to create and use the encoder (perhaps use the MultiEncoder): http://nupic.docs.numenta.org/1.0.3/quick-start/algorithms.html#one-row-of-data
 
 DEBUG = True
 SINGLE_THREADED = True

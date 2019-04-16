@@ -5,7 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Trying single threading...">
+    <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Trying to simulate all the possible metric types to get a better picture of the current status in the organization. This information will be used to construct the encoder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py" afterDir="false" />
@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="537">
-              <caret line="201" column="35" lean-forward="true" selection-start-line="201" selection-start-column="35" selection-end-line="201" selection-end-column="35" />
+              <caret line="223" column="35" lean-forward="true" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/unique_metrics_sample.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="3305" column="86" selection-start-line="3305" selection-start-column="86" selection-end-line="3305" selection-end-column="86" />
+            <state relative-caret-position="485">
+              <caret line="5878" selection-start-line="5878" selection-end-line="5878" />
             </state>
           </provider>
         </entry>
@@ -472,20 +472,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528350953565</updated>
     </task>
-    <task id="LOCAL-00164" summary="metrics_collector.py:&#10; - Fixed &quot;UnboundLocalError: local variable 'element_token' referenced before assignment&quot; in file &quot;/opt/smart-onion/code/backend/python3_5/services/metrics_collector/metrics_collector.py&quot;, line 730, in resolve_query_args_in_metric_name">
-      <created>1554300718838</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1554300718838</updated>
-    </task>
-    <task id="LOCAL-00165" summary="metrics_analyzer.py:&#10; - For some reason the metrics-analyzer doesn't analyze metrics. Added more info to the /ping request and to the logs.&#10; &#10;anomaly_detector.py&#10; - Added more counters to the /ping method to allow monitoring the service health">
-      <created>1554303722648</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1554303722648</updated>
-    </task>
     <task id="LOCAL-00166" summary="anomaly_detector.py&#10; - Whooopsie....">
       <created>1554305008082</created>
       <option name="number" value="00166" />
@@ -815,7 +801,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555241288484</updated>
     </task>
-    <option name="localTasksCounter" value="213" />
+    <task id="LOCAL-00213" summary="alerter.py:&#10; - Trying to use another level of the metric path">
+      <created>1555247367480</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1555247367480</updated>
+    </task>
+    <task id="LOCAL-00214" summary="alerter.py:&#10; - Trying to simulate all the possible metric types to get a better picture of the current status in the organization. This information will be used to construct the encoder">
+      <created>1555249190419</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1555249190419</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TodoView">
@@ -829,6 +829,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18301688" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -890,8 +891,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="queries.json:&#10; - Some queries used the uri field from the LLD to query against the virtual_host field which of-course yielded no results. Created a new version of them that uses the correct field.&#10; &#10;timer.py:&#10; - Added to the exception about discoveries the discovery URL to help debugging it." />
-    <MESSAGE value="queries.json:&#10; - Some LLD queries referred to non-existent queries. Fixed&#10; - Some queries required double quotes around the argument. Fixed (at least some...)&#10; &#10;metrics_collector:&#10; - Added conversion to string before quoting or base64ing since that the value is sometimes float/int." />
     <MESSAGE value="timer.py:&#10; - Added the URL of the discovery to the URLs it generated to assist in troubleshooting the service" />
     <MESSAGE value="queries.json:&#10; - The website_pages LLD returned a macro named URL, overwriting the real URL for monitoring" />
     <MESSAGE value="configurator.py:&#10; - Now using the same kafka topic for anomalies reported by both services&#10;&#10;so-update.sh: &#10; - Now deleting all kafka topics during update" />
@@ -915,7 +914,9 @@
     <MESSAGE value="alerter.py:&#10; - Fixed an issue with the uniqueness of the metrics list..." />
     <MESSAGE value="alerter.py:&#10; - Whooopssiieee" />
     <MESSAGE value="alerter.py:&#10; - Trying single threading..." />
-    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Trying single threading..." />
+    <MESSAGE value="alerter.py:&#10; - Trying to use another level of the metric path" />
+    <MESSAGE value="alerter.py:&#10; - Trying to simulate all the possible metric types to get a better picture of the current status in the organization. This information will be used to construct the encoder" />
+    <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Trying to simulate all the possible metric types to get a better picture of the current status in the organization. This information will be used to construct the encoder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1724,7 +1725,7 @@ hashlib.algorithms_available</expression-string>
     <entry file="file://$PROJECT_DIR$/code/backend/python2_7/services/alerter/alerter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="537">
-          <caret line="201" column="35" lean-forward="true" selection-start-line="201" selection-start-column="35" selection-end-line="201" selection-end-column="35" />
+          <caret line="223" column="35" lean-forward="true" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1737,8 +1738,8 @@ hashlib.algorithms_available</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/unique_metrics_sample.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="3305" column="86" selection-start-line="3305" selection-start-column="86" selection-end-line="3305" selection-end-column="86" />
+        <state relative-caret-position="485">
+          <caret line="5878" selection-start-line="5878" selection-end-line="5878" />
         </state>
       </provider>
     </entry>
