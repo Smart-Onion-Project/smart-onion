@@ -6,9 +6,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df83c708-2bfd-4db1-bdf2-a96699b70577" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../python2_7/services/alerter/smart_onion_jewish_date_encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../python2_7/services/alerter/smart_onion_metric_encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../python2_7/services/alerter/smart_onion_metric_name_encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../resources/semantics_relevancy_percentage_map.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python2_7/services/alerter/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,10 +31,6 @@
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#923#933#0" expanded="true" />
-                <element signature="e#71058#82386#0" />
-                <element signature="e#82459#83679#0" />
-                <element signature="e#86482#185856#0" />
-                <element signature="e#184559#184568#0" />
               </folding>
             </state>
           </provider>
@@ -38,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
+            <state relative-caret-position="2299">
               <caret line="137" column="8" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
               <folding>
                 <element signature="e#922#936#0" expanded="true" />
@@ -62,7 +63,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
+            <state relative-caret-position="2375">
               <caret line="138" column="53" selection-start-line="138" selection-start-column="53" selection-end-line="138" selection-end-column="53" />
               <folding>
                 <element signature="e#847#858#0" expanded="true" />
@@ -127,10 +128,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="27" />
-    <option name="width" value="960" />
-    <option name="height" value="1053" />
+    <option name="width" value="950" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -284,8 +285,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="27" width="950" height="1023" extended-state="1" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.016025642" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -405,13 +405,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python3.5_venv/lib/python3.5/site-packages/kafka/producer/kafka.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="268" column="26" selection-start-line="268" selection-start-column="9" selection-end-line="268" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python3.5_venv/lib/python3.5/site-packages/kafka/producer/kafka.py" />
     <entry file="file:///usr/lib/python3/dist-packages/PIL/ImageFont.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -426,40 +420,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/tinyurl/tinyurl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="56" column="14" selection-start-line="56" selection-start-column="14" selection-end-line="56" selection-end-column="14" />
-          <folding>
-            <element signature="e#697#748#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/bottle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="867" selection-start-line="867" selection-end-line="867" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="138" column="53" selection-start-line="138" selection-start-column="53" selection-end-line="138" selection-end-column="53" />
-          <folding>
-            <element signature="e#847#858#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="137" column="8" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
-          <folding>
-            <element signature="e#922#936#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -470,10 +434,36 @@
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#923#933#0" expanded="true" />
-            <element signature="e#71058#82386#0" />
-            <element signature="e#82459#83679#0" />
-            <element signature="e#86482#185856#0" />
-            <element signature="e#184559#184568#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/anomaly_detector/anomaly_detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2299">
+          <caret line="137" column="8" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
+          <folding>
+            <element signature="e#922#936#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/tinyurl/tinyurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="56" column="14" selection-start-line="56" selection-start-column="14" selection-end-line="56" selection-end-column="14" />
+          <folding>
+            <element signature="e#697#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/timer_service/timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2375">
+          <caret line="138" column="53" selection-start-line="138" selection-start-column="53" selection-end-line="138" selection-end-column="53" />
+          <folding>
+            <element signature="e#847#858#0" expanded="true" />
           </folding>
         </state>
       </provider>

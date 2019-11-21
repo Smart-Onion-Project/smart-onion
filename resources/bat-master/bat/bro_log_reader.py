@@ -148,7 +148,7 @@ class BroLogReader(file_tailer.FileTailer):
             # # Keep the header offset
             #  offset = bro_file.tell()
 
-        field_names = ['ts', 'uid', 'id.orig_h', 'id.orig_p', 'id.resp_h', 'id.resp_p', 'proto', 'trans_id', 'rtt', 'query', 'qclass', 'qclass_name' \
+        field_names = ['ts', 'uid', 'query_id.orig_h', 'query_id.orig_p', 'query_id.resp_h', 'query_id.resp_p', 'proto', 'trans_id', 'rtt', 'query', 'qclass', 'qclass_name' \
             , 'qtype', 'qtype_name', 'rcode', 'rcode_name', 'AA', 'TC', 'RD', 'RA', 'Z', 'answers', 'TTLs','rejected']
 
         field_types = ['time', 'string', 'addr', 'port', 'addr', 'port', 'enum', 'count', 'string', 'string','count', 'string', 'count', 'string', 'count', \

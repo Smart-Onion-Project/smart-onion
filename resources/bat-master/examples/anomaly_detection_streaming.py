@@ -39,7 +39,7 @@ if __name__ == '__main__':
         # Sanity check for either http or dns log
         if 'http' in args.bro_log:
             log_type = 'http'
-            features = ['id.resp_p', 'method', 'resp_mime_types', 'request_body_len']
+            features = ['query_id.resp_p', 'method', 'resp_mime_types', 'request_body_len']
         elif 'dns' in args.bro_log:
             log_type = 'dns'
             features = ['Z', 'rejected', 'proto', 'query', 'qclass_name', 'qtype_name', 'rcode_name', 'query_length']
@@ -74,7 +74,7 @@ if __name__ == '__main__':
                 bro_df['query_length'] = bro_df['query'].str.len()
 
                 # Use the bat DataframeToMatrix class
-                features = ['Z', 'rejected', 'proto', 'query', 'qclass_name', 'qtype_name', 'rcode_name', 'query_length', 'id.resp_p']
+                features = ['Z', 'rejected', 'proto', 'query', 'qclass_name', 'qtype_name', 'rcode_name', 'query_length', 'query_id.resp_p']
                 to_matrix = dataframe_to_matrix.DataFrameToMatrix()
                 bro_matrix = to_matrix.fit_transform(bro_df[features])
                 print(bro_matrix.shape)
@@ -99,7 +99,7 @@ if __name__ == '__main__':
                 cluster_groups = odd_df.groupby('cluster')
 
                 # Now print out the details for each cluster
-                show_fields = ['id.orig_h', 'id.resp_h'] + features
+                show_fields = ['query_id.orig_h', 'query_id.resp_h'] + features
                 print('<<< Outliers Detected! >>>')
                 for key, group in cluster_groups:
                     print('\nCluster {:d}: {:d} observations'.format(key, len(group)))

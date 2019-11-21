@@ -1,0 +1,42 @@
+{
+    "semantic_properties_space": [0, 0],
+    "semantics_relevancy_percentage": {
+      "dip": {
+        "penetration": 0,
+        "dga": 0,
+        "proxying": 0,
+        "phishing": 0,
+        "remote_code_execution": 0,
+        "privilege_escalation": 0,
+        "command_and_control": 0,
+        "lateral_movement": 0,
+        "traffic_hijacking": 40,
+        "service_offline_or_becoming_unused": 60,
+        "denial_of_service": 0,
+        "reconnaissance": 0,
+        "web_application_requests": 0,
+        "data_exfiltration": 0,
+        "obfuscation_anti_forensics": 0
+      },
+      "peak": {
+        "penetration": 0,
+        "dga": 0,
+        "proxying": 0,
+        "phishing": 0,
+        "remote_code_execution": 0,
+        "privilege_escalation": 0,
+        "command_and_control": 0,
+        "lateral_movement": 0,
+        "traffic_hijacking": 0,
+        "service_offline_or_becoming_unused": 0,
+        "denial_of_service": 70,
+        "reconnaissance": 10,
+        "web_application_requests": 0,
+        "data_exfiltration": 10,
+        "obfuscation_anti_forensics": 0
+      }
+    },
+    "documentation": {
+
+    }
+}

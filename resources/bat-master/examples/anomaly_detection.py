@@ -41,7 +41,7 @@ if __name__ == '__main__':
         # Sanity check either http or dns log
         if 'http' in args.bro_log:
             log_type = 'http'
-            features = ['id.resp_p', 'method', 'resp_mime_types', 'request_body_len']
+            features = ['query_id.resp_p', 'method', 'resp_mime_types', 'request_body_len']
         elif 'dns' in args.bro_log:
             log_type = 'dns'
             features = ['Z', 'rejected', 'proto', 'query', 'qclass_name', 'qtype_name', 'rcode_name', 'query_length', 'answer_length', 'entropy']

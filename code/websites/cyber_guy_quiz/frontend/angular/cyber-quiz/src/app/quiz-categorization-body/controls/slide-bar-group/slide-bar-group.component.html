@@ -1,0 +1,11 @@
+<app-slide-bar 
+    *ngFor="let item of items;" 
+    [id]="item.id"
+    [label]="item.label" 
+    [value]="item.value" 
+    [minValue]="item.minValue" 
+    [maxValue]="item.maxValue" 
+    (valueModified)="slidebarValueModified($event)" 
+    (valueIncreased)="slidebarValueIncreased($event)" 
+    (valueDecreased)="slidebarValueDecreased($event)">
+</app-slide-bar>

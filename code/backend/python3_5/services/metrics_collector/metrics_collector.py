@@ -1654,7 +1654,7 @@ class MetricsCollector:
                                                                 "doc_count": 168
                                                             },
                                                             {
-                                                                "key": "/MivtachSimon/AppWebServices/AppGridWebService.ashx?id=crmGrid&operation=Reset",
+                                                                "key": "/MivtachSimon/AppWebServices/AppGridWebService.ashx?query_id=crmGrid&operation=Reset",
                                                                 "doc_count": 120
                                                             },
                                                             {
@@ -2676,7 +2676,7 @@ class MetricsCollector:
                                                         "sum_other_doc_count": 0,
                                                         "buckets": [
                                                             {
-                                                                "key": "/edit_bug.aspx?id=0",
+                                                                "key": "/edit_bug.aspx?query_id=0",
                                                                 "doc_count": 1
                                                             }
                                                         ],

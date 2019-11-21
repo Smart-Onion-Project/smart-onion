@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-1">&nbsp;</div>
+    <div class="col-md-10">
+        <div id="question" class="question">Loading...</div>
+        <app-slide-bar-group></app-slide-bar-group>
+        <div id="answers" class="answers"><div id="categories"></div></div>
+    </div>
+    <div class="col-md-1">&nbsp;</div>
+</div>
+<div class="row">
+    <div id="submit_button_container" class="col-xs-12 submit_button_container">
+      <table style="width: 100%;">
+        <tr>
+          <td class="submit-answer-button-container">
+            <app-text-button text="Submit answer" width=25 (click)="onSubmitAnswer($event);"></app-text-button>
+          </td>
+          <td class="skip-to-grade-button-container">
+            <app-text-button text="Skip to grade" width=25 (click)="onSkipToGrade($event);"></app-text-button>
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>

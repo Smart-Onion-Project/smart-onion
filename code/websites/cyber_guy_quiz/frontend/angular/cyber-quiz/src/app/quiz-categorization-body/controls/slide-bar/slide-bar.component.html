@@ -1,0 +1,3 @@
+<pre class="slide-bar-container noselect" [class.slide-bar-clicked]="_clicked">
+  <span class="lable">{{_labelText}}</span>&nbsp;<span class="leftButton" (click)='decreaseValue()'>&lt;</span><span class="slideBar">{{_slidebarChar.repeat(_value - _minValue - 1)}}<span>{{_slidebarValueIndicatorChar}}</span>{{_slidebarChar.repeat(_maxValue - _value)}}</span><span class="rightButton" (click)='increaseValue()'>&gt;</span>
+</pre>

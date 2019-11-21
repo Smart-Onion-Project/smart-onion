@@ -78,8 +78,8 @@ if __name__ == '__main__':
                     results = vtq.query_url(query)
                     if results.get('positives', 0) > 3: # At least four hits
                         print('\nRisky Domain DNS Query Found')
-                        print('From: {:s} To: {:s} QType: {:s} RCode: {:s}'.format(row['id.orig_h'],
-                               row['id.resp_h'], row['qtype_name'], row['rcode_name']))
+                        print('From: {:s} To: {:s} QType: {:s} RCode: {:s}'.format(row['query_id.orig_h'],
+                               row['query_id.resp_h'], row['qtype_name'], row['rcode_name']))
                         pprint(results)
 
         # Save the Virus Total Query

@@ -1,81 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../../../config/queries.json" description="    &quot;queries_to_run&quot;: [&#10;      &quot;number_of_servers_c..." line="676" />
-    <bookmark url="file://$PROJECT_DIR$/../../../config/queries.json" description="&quot;queries_to_run&quot;: [" line="383" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/services/alerter/smart_onion_jewish_date_encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/alerter/smart_onion_metric_encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/alerter/smart_onion_metric_name_encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/backend/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/jquery/jquery-3.4.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../resources/semantics_relevancy_percentage_map.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/smart-onion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/smart-onion.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/alerter/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/alerter/alerter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../config/queries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../docs/Edit_distance_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docs/Edit_distance_Wiki.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../docs/Levenshtein_distance_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docs/Levenshtein_distance_Wiki.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../docs/Wagner–Fischer_algorithm_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docs/Wagner–Fischer_algorithm_Wiki.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/bat/bro_log_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/bat/bro_log_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/bat/dataframe_cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/bat/dataframe_cache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/examples/anomaly_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/examples/anomaly_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/examples/anomaly_detection_streaming.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/examples/anomaly_detection_streaming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/examples/risky_dns.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/examples/risky_dns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../resources/bat-master/examples/tor_and_port_count.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../resources/bat-master/examples/tor_and_port_count.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.8746867">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="97">
-                  <caret line="479" column="13" selection-start-line="479" selection-start-column="13" selection-end-line="479" selection-end-column="13" />
-                  <folding>
-                    <element signature="e#922#959#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/services/alerter/alerter.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="456">
-                  <caret line="42" column="161" selection-start-line="42" selection-start-column="161" selection-end-line="42" selection-end-column="161" />
-                  <folding>
-                    <element signature="e#21#58#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="479">
-                  <caret line="102" column="8" lean-forward="true" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="111" />
-                  <folding>
-                    <element signature="e#21#58#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="38">
-                  <caret line="54" selection-start-line="54" selection-end-line="54" />
-                  <folding>
-                    <element signature="e#21#58#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -127,68 +88,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force/number_of_failed_logins_per_user.py" />
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/default.yaml" />
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.yaml" />
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/services/configurator/configurator.py" />
-        <option value="$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py" />
-        <option value="$PROJECT_DIR$/services/alerter/alerter.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="27" />
-    <option name="width" value="960" />
-    <option name="height" value="1053" />
-  </component>
+  <component name="ProjectId" id="1Oy7GcpuNzFxEoYoab639hTKb9k" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="alerter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="configurator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="python2_7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="python2_7" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="metrics_analyzer" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../python3_5" />
@@ -286,47 +187,18 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14820676" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.15899123" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.108552635" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.18092105" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289941" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.46296296" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.20833333" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14820676" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32127193" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.108552635" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991228" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289941" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.46296296" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.20833333" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -394,245 +266,5 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/model_params.py" />
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/support/configuration_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6018">
-          <caret line="54" column="45" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1618045004/__builtin__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="2155" column="8" selection-start-line="2155" selection-start-column="8" selection-end-line="2155" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../nupic/model.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="76" selection-start-line="6" selection-start-column="76" selection-end-line="6" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../nupic/createModel">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/yaml/constructor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2430">
-          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/test_data/rec-center-hourly.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/yaml/loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/yaml/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/default.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user__OLD__.py" />
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="49" column="19" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/bindings/engine_internal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="1203" selection-start-line="1203" selection-end-line="1203" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/ssl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="872" column="8" selection-start-line="872" selection-start-column="8" selection-end-line="872" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1618045004/_socket.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="497" column="6" selection-start-line="497" selection-start-column="6" selection-end-line="497" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1618045004/capnp/lib/capnp/_DynamicStructBuilder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="196" column="8" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1618045004/capnp/lib/capnp/_StructModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="204" column="8" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/socket.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="230" column="24" lean-forward="true" selection-start-line="230" selection-start-column="24" selection-end-line="230" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/serializable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/data_model_params/brute_force/number_of_failed_logins_per_user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/frameworks/opf/htm_prediction_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3258">
-          <caret line="204" column="12" selection-start-line="204" selection-start-column="12" selection-end-line="204" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/bottle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="582" column="8" selection-start-line="582" selection-start-column="8" selection-end-line="582" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/socket.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="523" column="8" selection-start-line="523" selection-start-column="8" selection-end-line="523" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1618045004/posix.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1914">
-          <caret line="585" column="4" selection-start-line="585" selection-start-column="4" selection-end-line="585" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2/typing.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="405" column="4" selection-start-line="405" selection-start-column="4" selection-end-line="405" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/algorithms/anomaly_likelihood.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-661">
-          <caret line="520" column="4" selection-start-line="520" selection-start-column="4" selection-end-line="520" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/alerter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/nupic/frameworks/opf/model_factory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="75" column="6" selection-start-line="75" selection-start-column="6" selection-end-line="75" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python2.7_venv/local/lib/python2.7/site-packages/kafka/consumer/subscription_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/MYTREE_ext_disk/Programming Projects/Python Projects/python2.7_venv/local/lib/python2.7/site-packages/kafka/consumer/group.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="341" column="36" selection-start-line="341" selection-start-column="36" selection-end-line="341" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/metrics_analyzer/metrics_analyzer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="479" column="13" selection-start-line="479" selection-start-column="13" selection-end-line="479" selection-end-column="13" />
-          <folding>
-            <element signature="e#922#959#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/configurator/configurator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="102" column="8" lean-forward="true" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="111" />
-          <folding>
-            <element signature="e#21#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/alerter/alerter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="42" column="161" selection-start-line="42" selection-start-column="161" selection-end-line="42" selection-end-column="161" />
-          <folding>
-            <element signature="e#21#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
         for row in reader.readrows():
             # Add the destination port to the list of ports
-            ports.append(row['id.resp_p'])
+            ports.append(row['query_id.resp_p'])
             # Pull out the Certificate Issuer
             try:
                 issuer = row['issuer']
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 # Check if the subject matches the known Tor format
                 if subject_regex.match(subject):
                     print('\nPossible Tor connection found')
-                    print('From: {:s} To: {:s} Port: {:d}'.format(row['id.orig_h'], row['id.resp_h'], row['id.resp_p']))
+                    print('From: {:s} To: {:s} Port: {:d}'.format(row['query_id.orig_h'], row['query_id.resp_h'], row['query_id.resp_p']))
                     number +=1
 
         # If we are not tailing a live log file, let's print some stats.

@@ -1,0 +1,26 @@
+.slide-bar-container {
+    background-color: black;
+    border: 0;
+    color: #555555;
+}
+.slide-bar {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.slide-bar-clicked {
+    color: white;
+}
+.leftButton, .rightButton {
+    cursor: pointer;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}

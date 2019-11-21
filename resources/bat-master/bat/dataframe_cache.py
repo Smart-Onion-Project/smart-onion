@@ -54,13 +54,13 @@ def test():
     df_cache = DataFrameCache(max_cache_size=10, max_cache_time=1)  # Make it small and short for testing
 
     # Make some fake data
-    base_row = {'id': 0, 'foo': 'bar', 'port': 80, 'protocol': 17}
+    base_row = {'query_id': 0, 'foo': 'bar', 'port': 80, 'protocol': 17}
 
     # Create an array of test rows
     test_data = []
     for i in range(20):
         row = copy.deepcopy(base_row)
-        row['id'] = i
+        row['query_id'] = i
         test_data.append(row)
 
     # Add rows
@@ -69,7 +69,7 @@ def test():
     # Make sure the cache size is working properly
     my_df = df_cache.dataframe()
     assert len(my_df) == 10
-    assert my_df.iloc[0]['id'] == 10  # This means the deque is proper FIFO
+    assert my_df.iloc[0]['query_id'] == 10  # This means the deque is proper FIFO
 
     # Now test time expiration
     time.sleep(1)
