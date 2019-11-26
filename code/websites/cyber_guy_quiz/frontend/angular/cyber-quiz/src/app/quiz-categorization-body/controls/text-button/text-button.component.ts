@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EventEmitter } from '@angular/common/src/facade/async';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-text-button',
   templateUrl: './text-button.component.html',
-  styleUrls: ['./text-button.component.css']
+  styleUrls: ['./text-button.component.scss']
 })
 export class TextButtonComponent implements OnInit {
   _width : number = 8;

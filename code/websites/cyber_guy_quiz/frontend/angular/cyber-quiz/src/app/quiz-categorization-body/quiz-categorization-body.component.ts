@@ -4,7 +4,7 @@ import { CategoriesService } from './services/categories.service';
 @Component({
   selector: 'app-quiz-categorization-body',
   templateUrl: './quiz-categorization-body.component.html',
-  styleUrls: ['./quiz-categorization-body.component.css'],
+  styleUrls: ['./quiz-categorization-body.component.scss'],
   providers: [CategoriesService]
 })
 export class QuizCategorizationBodyComponent implements OnInit {

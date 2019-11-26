@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { SlideBarData } from 'app/quiz-categorization-body/models/slide-bar-data/slide-bar-data.model';
-import { SlideBarDataUpdate } from 'app/quiz-categorization-body/models/slide-bar-data-update/slide-bar-data-update.model';
+import { SlideBarData } from '../../../quiz-categorization-body/models/slide-bar-data/slide-bar-data.model';
+import { SlideBarDataUpdate } from '../../../quiz-categorization-body/models/slide-bar-data-update/slide-bar-data-update.model';
 import { v4 as uuid } from 'uuid';
-import { CategoriesService } from 'app/quiz-categorization-body/services/categories.service';
-import { CategoryInfo } from 'app/models/category-info/category-info.model';
+import { CategoriesService } from '../../../quiz-categorization-body/services/categories.service';
+import { CategoryInfo } from '../../../models/category-info/category-info.model';
+import { isUndefined } from 'util';
 
 // TODO: 
 // 0. Create the service and create event that will be emitted when the list of the categories is being retrieved from the backend service 
@@ -18,7 +19,7 @@ import { CategoryInfo } from 'app/models/category-info/category-info.model';
 @Component({
   selector: 'app-slide-bar-group',
   templateUrl: './slide-bar-group.component.html',
-  styleUrls: ['./slide-bar-group.component.css']
+  styleUrls: ['./slide-bar-group.component.scss']
 })
 export class SlideBarGroupComponent implements OnInit, OnDestroy {
   @Input() slidebarsMinValue : number = 0;
@@ -110,8 +111,11 @@ export class SlideBarGroupComponent implements OnInit, OnDestroy {
       else {
         elementToUpdate = elementsMatching[1];
       }
-      elementToUpdate.value += modificationFactor;
-      elementToUpdate.timesModifiedByGroup += 1;
+
+      if (elementToUpdate != null && ! isUndefined(elementToUpdate)) {
+        elementToUpdate.value += modificationFactor;
+        elementToUpdate.timesModifiedByGroup += 1;
+      }
       return;
     }
   }

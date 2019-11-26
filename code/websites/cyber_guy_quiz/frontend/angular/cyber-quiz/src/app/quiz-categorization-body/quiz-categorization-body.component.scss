@@ -1,0 +1,19 @@
+.buttons-container {
+    width: 100%;
+}
+.submit_button_container {
+    text-align: center;
+    margin-top: 25px;
+}
+.submit-answer-button-container {
+    padding-right: 0.5em;
+    text-align: right;
+}
+.skip-to-grade-button-container {
+    padding-left: 0.5em;
+    text-align: left;
+}
+.disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+}

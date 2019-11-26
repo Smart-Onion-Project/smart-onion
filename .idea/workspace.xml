@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Added comment that refers to a Nupic document that can be used to build the encoder and use it">
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/smart_onion_jewish_date_encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/smart_onion_metric_encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/backend/python2_7/services/alerter/smart_onion_metric_name_encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/backend/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/jquery/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/semantics_relevancy_percentage_map.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/smart-onion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smart-onion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python3_5/services/metrics_collector/metrics_collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/queries.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/queries.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Edit_distance_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Edit_distance_Wiki.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Levenshtein_distance_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Levenshtein_distance_Wiki.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Wagner–Fischer_algorithm_Wiki.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Wagner–Fischer_algorithm_Wiki.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bat-master/bat/bro_log_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bat-master/bat/bro_log_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bat-master/bat/dataframe_cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bat-master/bat/dataframe_cache.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bat-master/examples/anomaly_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bat-master/examples/anomaly_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bat-master/examples/anomaly_detection_streaming.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bat-master/examples/anomaly_detection_streaming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bat-master/examples/risky_dns.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bat-master/examples/risky_dns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bat-master/examples/tor_and_port_count.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bat-master/examples/tor_and_port_count.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/services/backend.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/services/backend.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

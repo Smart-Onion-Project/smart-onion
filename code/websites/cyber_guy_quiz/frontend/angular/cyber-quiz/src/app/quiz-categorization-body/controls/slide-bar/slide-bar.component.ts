@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SlideBarDataUpdate } from 'app/quiz-categorization-body/models/slide-bar-data-update/slide-bar-data-update.model';
+import { SlideBarDataUpdate } from '../../../quiz-categorization-body/models/slide-bar-data-update/slide-bar-data-update.model';
 import { v4 as uuid } from 'uuid';
 
 
 @Component({
   selector: 'app-slide-bar',
   templateUrl: './slide-bar.component.html',
-  styleUrls: ['./slide-bar.component.css']
+  styleUrls: ['./slide-bar.component.scss']
 })
 export class SlideBarComponent implements OnInit {
   @Output() valueModified : EventEmitter<SlideBarDataUpdate> = new EventEmitter();

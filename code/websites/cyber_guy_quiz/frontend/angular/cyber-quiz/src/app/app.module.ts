@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { QuizTitleComponent } from './quiz-title/quiz-title.component';
@@ -22,8 +21,7 @@ import { BackendService } from './services/backend.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    FormsModule
   ],
   providers: [BackendService],
   bootstrap: [AppComponent]
