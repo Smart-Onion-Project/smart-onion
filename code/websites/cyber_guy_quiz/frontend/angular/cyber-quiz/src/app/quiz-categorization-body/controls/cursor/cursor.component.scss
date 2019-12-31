@@ -1,0 +1,20 @@
+.cursor_visible {
+    display: inline-block;
+    display: inline-block;
+    margin-left: 0.5em;
+    font-family: monospace;
+    padding: 1px 2px 1px 2px;
+    font-weight: bold;
+    background-color: white;
+    visibility: visible;
+}
+.cursor_hidden {
+    display: inline-block;
+    display: inline-block;
+    margin-left: 0.5em;
+    font-family: monospace;
+    padding: 1px 2px 1px 2px;
+    font-weight: bold;
+    background-color: white;
+    visibility: hidden;
+}
