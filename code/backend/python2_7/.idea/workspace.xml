@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c477d344-eb5f-4a6a-a27d-fe6e6917c6c0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar-group/slide-bar-group.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar-group/slide-bar-group.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/services/categories.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/services/categories.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/services/backend.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/services/backend.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +73,11 @@
   </component>
   <component name="ProjectId" id="1Oy7GcpuNzFxEoYoab639hTKb9k" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../python3_5" />
@@ -80,18 +95,6 @@
       <recent name="$PROJECT_DIR$/services/metrics_analyzer/data_models/brute_force" />
       <recent name="$PROJECT_DIR$/services/metrics_analyzer" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.configurator">
     <configuration name="configurator" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -146,6 +149,18 @@
         <item itemvalue="Python.metrics_analyzer" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />

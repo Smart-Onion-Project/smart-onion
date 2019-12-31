@@ -2,6 +2,9 @@
     background-color: black;
     border: 0;
     color: #555555;
+    margin: 0;
+    padding: 0;
+    line-height: 0.5;
 }
 .slide-bar {
     cursor: pointer;
@@ -9,11 +12,24 @@
     padding: 0;
     margin: 0;
 }
+.spacer {
+    border-bottom: 1px dotted;
+    width: 100%;
+}
 .slide-bar-clicked {
     color: white;
 }
 .leftButton, .rightButton {
     cursor: pointer;
+}
+.labelContainer {
+    text-align: left;
+}
+.sliderContainer {
+    text-align: right;
+}
+.wrapper-table {
+    width: 600px;
 }
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */

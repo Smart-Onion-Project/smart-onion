@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { CategoriesService } from '../../../quiz-categorization-body/services/categories.service';
 import { CategoryInfo } from '../../../models/category-info/category-info.model';
 import { isUndefined } from 'util';
+import { stringify } from 'querystring';
 
 // TODO: 
 // 0. Create the service and create event that will be emitted when the list of the categories is being retrieved from the backend service 
@@ -27,6 +28,9 @@ export class SlideBarGroupComponent implements OnInit, OnDestroy {
   private items : SlideBarData[] = [];
 
   constructor(private categoriesService : CategoriesService) {
+    this.categoriesService.clearCategories.subscribe((eventData : string) => {
+      this.items = [];
+    });
     this.categoriesService.categoryAdded.subscribe((categoryInfo : CategoryInfo) => {
       this.add_slidebar(categoryInfo);
     });

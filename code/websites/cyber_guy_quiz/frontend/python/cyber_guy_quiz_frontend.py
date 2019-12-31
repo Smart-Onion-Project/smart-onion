@@ -28,22 +28,24 @@ class CyberGuyQuizFrontEnd:
         self.__route()
 
     def __route(self):
+        self.__app.add_hook(name='before_request', func=self.__set_cors_header)
         self.__app.add_hook(name='before_request', func=self.__set_server_header)
         self.__app.error_handler[404] = self.__error_handler
+        self.__app.error_handler[405] = self.__error_handler
         self.__app.error_handler[500] = self.__error_handler
-        self.__app.route('/', method="GET", callback=self.__root_handler)
-        self.__app.route('/bootstrap/<bootstrap_res_type>/<bootstrap_filename>', method="GET", callback=self.__get_bootstrap_files)
-        self.__app.route('/jquery', method="GET", callback=self.__get_jquery_script)
-        self.__app.route('/index.htm', method="GET", callback=self.__get_page)
-        self.__app.route('/styles.css', method="GET", callback=self.__stylesheet)
+        # self.__app.route('/', method="GET", callback=self.__root_handler)
+        # self.__app.route('/bootstrap/<bootstrap_res_type>/<bootstrap_filename>', method="GET", callback=self.__get_bootstrap_files)
+        # self.__app.route('/jquery', method="GET", callback=self.__get_jquery_script)
+        # self.__app.route('/index.htm', method="GET", callback=self.__get_page)
+        # self.__app.route('/styles.css', method="GET", callback=self.__stylesheet)
         self.__app.route('/report-query/<query_id>', method="POST", callback=self.__report_query)
         self.__app.route('/test-db-conn', method="GET", callback=self.__test_db_conn)
         self.__app.route('/add-category', method="POST", callback=self.__insert_new_category)
         self.__app.route('/get-all-query-ids', method="GET", callback=self.__get_all_query_ids)
-        self.__app.route('/get-all-categories', method="GET", callback=self.__get_all_categories)
-        self.__app.route('/get-random-question', method="POST", callback=self.__get_random_query)
+        self.__app.route('/get-all-categories', method=["GET", "OPTIONS"], callback=self.__get_all_categories)
+        self.__app.route('/get-random-question', method=["POST", "OPTIONS"], callback=self.__get_random_query)
         self.__app.route('/get-grade', method="POST", callback=self.__get_grade)
-        self.__app.route('/validate-token/<captcha_token>', method="GET", callback=self.__validate_captcha)
+        # self.__app.route('/validate-token/<captcha_token>', method="GET", callback=self.__validate_captcha)
 
 
     def run(self):
@@ -52,6 +54,11 @@ class CyberGuyQuizFrontEnd:
     def __set_server_header(self):
         response.set_header('Server', 'Microsoft-IIS/8.5')
 
+    def __set_cors_header(self):
+        response.set_header('Access-Control-Allow-Origin', 'http://localhost:4200')
+        response.set_header('Access-Control-Allow-Methods', 'OPTIONS, POST, GET')
+        response.set_header('Access-Control-Allow-Headers', 'Access-Control-Request-Headers,Access-Control-Request-Method,content-type')
+
     def __error_handler(self, error):
         response.set_header('Server', 'Microsoft-IIS/8.5')
         return json.dumps({
@@ -59,55 +66,55 @@ class CyberGuyQuizFrontEnd:
             "msg": error.status_line
         })
 
-    def __root_handler(self):
-        response.set_header('Server', 'Microsoft-IIS/8.5')
-        redirect('/index.htm')
-
-    def __get_bootstrap_files(self, bootstrap_res_type, bootstrap_filename):
-        response.set_header('Server', 'Microsoft-IIS/8.5')
-        if bootstrap_res_type == 'css':
-            response.content_type = 'text/css; charset=UTF-8'
-        requested_bootstrap_folder = os.path.join(os.path.join(self.__bootstrap_path, bootstrap_res_type))
-        requested_bootstrap_resource = os.path.join(requested_bootstrap_folder, bootstrap_filename)
-        if os.path.abspath(requested_bootstrap_resource).startswith(self.__bootstrap_path) and os.path.exists(requested_bootstrap_resource):
-            with open(requested_bootstrap_resource) as bootstrap_file:
-                bootstrap_file_contents = bootstrap_file.read()
-            return bootstrap_file_contents
-        else:
-            return ''
-
-    def __get_jquery_script(self):
-        response.set_header('Server', 'Microsoft-IIS/8.5')
-        with open(os.path.join(self.__jquery_path, self.__jquery_script_filename)) as jquery_script_file:
-            jquery_script_file_contents = jquery_script_file.read()
-        return jquery_script_file_contents
-
-    def __get_page(self):
-        response.set_header('Server', 'Microsoft-IIS/8.5')
-        with open(self.__index_html_filename) as html_file:
-            html_contents = html_file.read()
-        return html_contents
-
-    def __stylesheet(self):
-        response.content_type = 'text/css; charset=UTF-8'
-        response.set_header('Server', 'Microsoft-IIS/8.5')
-        with open(self.__styles_css_filename) as css_file:
-            css_contents = css_file.read()
-        return css_contents
+    # def __root_handler(self):
+    #     response.set_header('Server', 'Microsoft-IIS/8.5')
+    #     redirect('/index.htm')
+    #
+    # def __get_bootstrap_files(self, bootstrap_res_type, bootstrap_filename):
+    #     response.set_header('Server', 'Microsoft-IIS/8.5')
+    #     if bootstrap_res_type == 'css':
+    #         response.content_type = 'text/css; charset=UTF-8'
+    #     requested_bootstrap_folder = os.path.join(os.path.join(self.__bootstrap_path, bootstrap_res_type))
+    #     requested_bootstrap_resource = os.path.join(requested_bootstrap_folder, bootstrap_filename)
+    #     if os.path.abspath(requested_bootstrap_resource).startswith(self.__bootstrap_path) and os.path.exists(requested_bootstrap_resource):
+    #         with open(requested_bootstrap_resource) as bootstrap_file:
+    #             bootstrap_file_contents = bootstrap_file.read()
+    #         return bootstrap_file_contents
+    #     else:
+    #         return ''
+    #
+    # def __get_jquery_script(self):
+    #     response.set_header('Server', 'Microsoft-IIS/8.5')
+    #     with open(os.path.join(self.__jquery_path, self.__jquery_script_filename)) as jquery_script_file:
+    #         jquery_script_file_contents = jquery_script_file.read()
+    #     return jquery_script_file_contents
+    #
+    # def __get_page(self):
+    #     response.set_header('Server', 'Microsoft-IIS/8.5')
+    #     with open(self.__index_html_filename) as html_file:
+    #         html_contents = html_file.read()
+    #     return html_contents
+    #
+    # def __stylesheet(self):
+    #     response.content_type = 'text/css; charset=UTF-8'
+    #     response.set_header('Server', 'Microsoft-IIS/8.5')
+    #     with open(self.__styles_css_filename) as css_file:
+    #         css_contents = css_file.read()
+    #     return css_contents
+    #
+    # def __validate_captcha(self, captcha_token):
+    #     response.content_type = 'text/css; charset=UTF-8'
+    #     response.set_header('Server', 'Microsoft-IIS/8.5')
+    #
+    #     token_valid = False
+    #     if token_valid:
+    #         session_token = uuid.uuid4()
+    #         response.set_cookie('session_token', session_token)
 
     def __get_grade(self):
         response.content_type = 'text/css; charset=UTF-8'
         response.set_header('Server', 'Microsoft-IIS/8.5')
         return json.dumps({"grade": 85})
-
-    def __validate_captcha(self, captcha_token):
-        response.content_type = 'text/css; charset=UTF-8'
-        response.set_header('Server', 'Microsoft-IIS/8.5')
-
-        token_valid = False
-        if token_valid:
-            session_token = uuid.uuid4()
-            response.set_cookie('session_token', session_token)
 
     '''
     {
@@ -123,7 +130,6 @@ class CyberGuyQuizFrontEnd:
         values = [ category_id, request.json["category_name"] ]
         cursor.execute(query_template, values)
 
-        response.set_header('Server', 'Microsoft-IIS/8.5')
         return category_id
 
     '''
@@ -163,7 +169,6 @@ class CyberGuyQuizFrontEnd:
                     # TODO: If the times_categorized is above 1 the current client gets a point (later the grade will be determined by the percentage of these points out of the questions he answered.
                     categorization_ids.append(categorization_id)
 
-            response.set_header('Server', 'Microsoft-IIS/8.5')
             response.set_header('Content-Type', 'application/json')
             return json.dumps({
                 "categorization_ids": categorization_ids
@@ -190,9 +195,7 @@ class CyberGuyQuizFrontEnd:
                 "category_name": raw_res[1]
             })
 
-        response.set_header('Server', 'Microsoft-IIS/8.5')
         response.set_header('Content-Type', 'application/json')
-        response.set_header('Access-Control-Allow-Origin', 'http://localhost:4200')
         return json.dumps({
             "categories": categories
         })
@@ -207,7 +210,6 @@ class CyberGuyQuizFrontEnd:
         for raw_res in qry_res:
             query_ids.append(raw_res[0])
 
-        response.set_header('Server', 'Microsoft-IIS/8.5')
         response.set_header('Content-Type', 'application/json')
         return json.dumps({
             "query_ids": query_ids
@@ -219,7 +221,6 @@ class CyberGuyQuizFrontEnd:
         cursor.execute(query_template, [query_id])
         qry_res = cursor.fetchall()
 
-        response.set_header('Server', 'Microsoft-IIS/8.5')
         response.set_header('Content-Type', 'application/json')
         return json.dumps({
             "question_id": qry_res[0][0],
@@ -247,7 +248,6 @@ class CyberGuyQuizFrontEnd:
             selected_id = all_ids[random.randint(0, len(all_ids) - 1)]
             i = i + 1
 
-        response.set_header('Server', 'Microsoft-IIS/8.5')
         response.set_header('Content-Type', 'application/json')
         return self.__get_query(selected_id)
 

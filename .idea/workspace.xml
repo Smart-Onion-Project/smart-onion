@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e290c29-9915-40a5-9496-47de8f88fcb2" name="Default" comment="alerter.py:&#10; - Added comment that refers to a Nupic document that can be used to build the encoder and use it">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/backend/python2_7/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar-group/slide-bar-group.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar-group/slide-bar-group.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/controls/slide-bar/slide-bar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/quiz-categorization-body.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/services/categories.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/quiz-categorization-body/services/categories.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/services/backend.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/angular/cyber-quiz/src/app/services/backend.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +36,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Oy7HDovQDRweH2WCFhOqsVTadT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -49,18 +65,6 @@
       <recent name="$PROJECT_DIR$/code/backend/python2_7/services" />
       <recent name="$PROJECT_DIR$/code/backend/python3_5" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.cyber_guy_quiz_frontend">
     <configuration name="anomaly_detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -184,6 +188,18 @@
         <item itemvalue="Python.classify_queries" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -606,6 +622,24 @@
     <MESSAGE value="alerter.py:&#10; - Added comment that refers to a Nupic document that can be used to build the encoder and use it" />
     <option name="LAST_COMMIT_MESSAGE" value="alerter.py:&#10; - Added comment that refers to a Nupic document that can be used to build the encoder and use it" />
   </component>
+  <component name="WindowStateProjectService">
+    <state width="1896" height="335" key="GridCell.Tab.0.bottom" timestamp="1577722562623">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="335" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1577722562623" />
+    <state width="1896" height="335" key="GridCell.Tab.0.center" timestamp="1577722562622">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="335" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1577722562622" />
+    <state width="1896" height="335" key="GridCell.Tab.0.left" timestamp="1577722562622">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="335" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1577722562622" />
+    <state width="1896" height="335" key="GridCell.Tab.0.right" timestamp="1577722562623">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1896" height="335" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1577722562623" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -631,7 +665,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/code/websites/cyber_guy_quiz/frontend/python/cyber_guy_quiz_frontend.py</url>
-          <line>171</line>
+          <line>176</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>

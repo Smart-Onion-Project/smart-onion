@@ -5,6 +5,7 @@ import { BackendService } from "../../services/backend.service";
 @Injectable()
 export class CategoriesService {
     @Output() categoryAdded : EventEmitter<CategoryInfo> = new EventEmitter<CategoryInfo>();
+    @Output() clearCategories : EventEmitter<string> = new EventEmitter<string>();
 
     private categories : CategoryInfo[] = [];
 
@@ -20,9 +21,15 @@ export class CategoriesService {
     }
 
     refreshCategories() {
-        var raw_categories = this.backendService.getAllCategories();
-        raw_categories.map((category_info : CategoryInfo) => {
-            this.addCategory(category_info);
+        var raw_categories = this.backendService.getAllCategories().subscribe(raw_categories => {
+            raw_categories.map((category_info : CategoryInfo) => {
+                this.addCategory(category_info);
+            });    
         });
+    }
+
+    forceRefreshCategories() {
+        this.clearCategories.emit(null);
+        this.refreshCategories();
     }
 }
