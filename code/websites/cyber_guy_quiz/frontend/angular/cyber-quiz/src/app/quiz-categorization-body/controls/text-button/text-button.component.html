@@ -1,5 +1,5 @@
-<pre class="text-button-container noselect">
-  <table class="text-button">
+<pre class="text-button-container noselect" [class.disabled]="_disabled">
+  <table class="text-button" [class.disabled]="_disabled">
     <tr>
       <td class="corner top-left-corner">{{_cornersChar[0]}}</td><td class="border top-border">{{_topBorderChar.repeat(_width - 2)}}</td><td class="corner top-right-corner">{{_cornersChar[0]}}</td>
     </tr>

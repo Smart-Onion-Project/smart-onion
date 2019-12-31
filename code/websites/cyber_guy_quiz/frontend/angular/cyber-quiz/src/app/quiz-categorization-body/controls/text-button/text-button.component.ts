@@ -15,8 +15,14 @@ export class TextButtonComponent implements OnInit {
   _leftBorderChar : string = "|";
   _rightBorderChar : string = "|";
   _text : string = "Submit";
+  _disabled : boolean = false;
+
 
   @Input() name: string;
+  @Input('disabled')
+  set disabled(value : boolean) {
+    this._disabled = value;
+  }
   @Input('width')
   set width(value: number) {
     this._width = value;

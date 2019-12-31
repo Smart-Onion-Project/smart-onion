@@ -11,6 +11,11 @@
     padding: 0;
     margin: 0;
 }
+.disabled {
+    cursor: not-allowed !important;
+    color: #4D4E4E;
+    pointer-events: none;
+}
 .text {
     text-align: center;
 }
